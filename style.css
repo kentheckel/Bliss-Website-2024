@@ -1,0 +1,1020 @@
+/* General Styles */
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'VT323', monospace;
+    background-image: url('images/bliss_Website_Background.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    font-size: 40px; /* Increased base font size */
+}
+
+/* Desktop Icons Section */
+#desktop-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Increase space between icons to avoid overlap */
+    padding: 10px;
+    position: fixed; /* Position the icons on the left */
+    top: 50px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    align-items: flex-start; /* Align icons to the left */
+}
+
+/* Icon Button Styles */
+.icon-btn {
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+    width: 100px; /* Set consistent width */
+    font-family: 'VT323', monospace;
+    font-size: 24px; /* Text size for About and Social labels */
+}
+
+.icon-btn img, .icon-btn svg {
+    width: 80px; /* Set the size of the SVG or image */
+    height: 80px; /* Set consistent height for the icon */
+    margin-bottom: 5px; /* Space between the icon and the text label */
+}
+
+.icon-btn:hover {
+    transform: scale(1.1);
+}
+
+
+/* Taskbar Section */
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #0049d1;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+#startButton {
+    text-align: center;
+    height: 54px;
+    width: 150px;
+    background-color: #60A75C;
+    border: 3px solid #568E51;
+    border-radius: 15px;
+    margin: 0 10px;
+    color: white;
+    font-size: 20px;
+    font-family: 'VT323', monospace;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#taskbar-windows {
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.taskbar-window-button {
+    background-color: #60A75C;
+    color: white;
+    border: 2px solid #568E51;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+}
+
+#taskbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0044c2;
+    z-index: -1;
+    border-radius: 5px;
+}
+
+#startButton:hover {
+    background-color: #4e8e4d;
+    transform: scale(1.05);
+}
+
+/* Time and Date Styles */
+#time-date {
+    margin-right: 20px;
+    text-align: right;
+    color: white;
+    font-size: 18px;
+    line-height: 1.4;
+    font-family: 'VT323', monospace;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    left: 15%;
+    top: 10%;
+    z-index: 2;
+    width: 70%;
+    height: 80%;
+    background-color: #f0f0f0;
+    border: 2px solid #0049d1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    overflow: hidden;
+    font-family: 'VT323', monospace;
+    cursor: grab;
+}
+
+/* Window Controls Container */
+.window-controls {
+    background-color: #0044c2; /* Same blue as other windows */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    
+}
+
+/* Window Buttons (Minimize and Close) Container */
+.window-btn-container {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    pointer-events: auto; /* Ensure pointer events for buttons */
+}
+
+.window-btn {
+    background: #ffffff; /* White background for button container */
+    border: 2px solid #0044c2; /* Blue border to match the modal */
+    color: #0044c2; /* Blue text for the button */
+    font-size: 16px; /* Slightly larger button text */
+    font-weight: bold;
+    margin: 0;
+    width: 30px; /* Fixed size to make it more box-like */
+    height: 30px; /* Fixed size for consistency */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.2s;
+    outline: none; /* Remove default button outline */
+    z-index: 10; /* Ensure the button is above everything else */
+}
+
+
+.window-btn:hover {
+    background-color: #e6e6e6; /* Light grey when hovered */
+}
+
+/* Iframe Styling */
+.modal-iframe {
+    width: 100%;
+    height: calc(100% - 40px);
+    border: none;
+}
+
+
+/* AIM Modal Styles */
+#ModalSocial {
+    position: fixed;
+    left: 5%;
+    top: 5%;
+    z-index: 2;
+    width: 300px;
+    height: 600px;
+    background-color: #dcdcdc; /* Light grey background for classic AIM look */
+    border: 2px solid #0049d1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    cursor: grab;
+    font-size: 12px; /* Reduced font size for text inside AIM modal */
+}
+
+/* AIM Window Controls */
+#modalHeaderSocial {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #c0c0c0; /* Classic Windows-style header */
+    padding: 5px;
+    border-bottom: 2px solid #808080; /* Darker grey border */
+    gap: 10px;
+}
+
+
+
+.window-btn:hover {
+    background-color: #a0a0a0; /* Darker grey when hovered */
+}
+
+/* AIM Layout Elements */
+.aim-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    font-size: 12px; /* Reduced font size for AIM layout text */
+}
+
+/* AIM Logo */
+.aim-logo {
+    margin-bottom: 10px;
+}
+
+/* AIM Tabs */
+.aim-tabs {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.aim-tab-button {
+    background-color: #e0e0e0;
+    border: 1px solid #808080;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px; /* Slightly smaller text size for tabs */
+}
+
+.aim-tab-button:hover {
+    background-color: #d0d0d0;
+}
+
+/* AIM Buddy List Styling */
+.aim-buddy-list {
+    width: 100%;
+    background-color: #ffffff; /* White background for the buddy list */
+    padding: 10px;
+    border: 2px solid #cccccc;
+    max-height: 400px; /* Set maximum height for the buddy list to make it scrollable */
+    overflow-y: auto; /* Add vertical scrolling when content exceeds max-height */
+}
+
+/* Group Title Button Styling */
+.group-title {
+    background: #e6e6e6; /* Light grey for group title background */
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.group-title:hover {
+    background-color: #d0d0d0; /* Slightly darker on hover */
+}
+
+.arrow {
+    font-size: 14px;
+}
+
+/* Buddy Group List */
+.buddy-group {
+    margin-bottom: 10px;
+}
+
+.buddies {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    display: block;
+}
+
+.buddies li {
+    padding: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.buddies li img {
+    margin-right: 10px;
+}
+
+.buddies.offline {
+    color: #808080; /* Grey color for offline users */
+}
+
+/* Social Media List Styling */
+.social-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+}
+
+.social-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.social-list a {
+    color: #0000EE; /* Standard hyperlink blue */
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.social-list a:hover {
+    color: #FF4500; /* Change to orange on hover to make it pop */
+}
+
+
+/* Login Modal Styles */
+#ModalLogin {
+    position: fixed;
+    left: 35%;
+    top: 15%;
+    z-index: 2;
+    width: 300px; /* Tall and skinny style */
+    height: 500px; /* Increase height to fit all fields */
+    background-color: #dcdcdc; /* Light grey background for classic AIM look */
+    border: 2px solid #0049d1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    cursor: grab;
+}
+
+/* Login Layout */
+.login-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    height: 100%;
+    justify-content: space-between;
+}
+
+/* AIM Logo */
+.login-logo img {
+    width: 100%; /* Adjust the logo image to fit */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Login Fields */
+.login-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.login-body label {
+    align-self: flex-start;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000080; /* Dark blue text to match classic AIM style */
+}
+
+.login-body input {
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 14px;
+    width: calc(100% - 20px);
+}
+
+/* Options (Save password, Auto-login) */
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.login-options div {
+    display: flex;
+    align-items: center;
+}
+
+.login-options label {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/* Buttons Section */
+.login-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.extra-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.extra-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.sign-on-btn {
+    background-color: #60A75C;
+    border: 2px solid #568E51;
+    padding: 5px 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+.sign-on-btn img {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.sign-on-btn:hover {
+    background-color: #4e8e4d;
+}
+
+/* Version Information */
+.login-version {
+    font-size: 10px;
+    color: #808080;
+    margin-top: 10px;
+}
+
+/* Incorrect Password Modal Styles */
+#ModalError {
+    position: fixed;
+    left: 40%; /* Adjusted slightly more to the right */
+    top: 30%;
+    z-index: 3;
+    width: 300px;
+    height: 180px;
+    background-color: #e6e6e6; /* Light grey for classic Windows background */
+    border: 2px solid #000080; /* Dark blue border for Windows-style error box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    overflow: hidden;
+    font-family: 'Tahoma', sans-serif; /* Classic Windows font */
+}
+
+/* Error Modal Header */
+#modalHeaderError {
+    background-color: #0044c2; /* Same blue as the other modals */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: grab;
+}
+
+
+
+.window-btn:hover {
+    color: #ff0000;
+}
+
+/* Error Layout */
+.error-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    justify-content: space-between;
+    height: calc(100% - 40px); /* Adjust height to account for header */
+}
+
+/* Error Icon */
+.error-icon img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+/* Error Message */
+.error-message {
+    color: #000000;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Error Button */
+.error-button {
+    margin-top: 10px;
+}
+
+.fix-button {
+    padding: 5px 15px;
+    background-color: #e6e6e6;
+    border: 1px solid #000000;
+    color: black;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Tahoma', sans-serif;
+}
+
+.fix-button:hover {
+    background-color: #d0d0d0; /* Slightly darker grey on hover */
+}
+
+/* Trash Icon Positioning */
+.trash-icon {
+    position: fixed;
+    bottom: 100px; /* Moved up to ensure it is above the taskbar */
+    right: 20px;
+}
+
+/* Trash Modal Styles */
+#ModalTrash, #ModalPasswords, #ModalPasswordsTxt {
+    position: fixed;
+    z-index: 3;
+    width: 400px; /* Wider style to match Windows look */
+    height: 300px; /* Adjust as needed */
+    background-color: #dcdcdc; /* Light grey background */
+    border: 2px solid #0044c2; /* Blue border to match the other modals */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    overflow: hidden;
+    font-family: 'Tahoma', sans-serif;
+    cursor: grab;
+}
+
+/* Positioning for Trash, Passwords, and Passwords.txt modals */
+#ModalTrash {
+    left: 30%;
+    top: 20%;
+}
+
+#ModalPasswords {
+    left: 35%; /* Slightly to the right of the Trash modal */
+    top: 25%; /* Slightly down from the Trash modal */
+}
+
+#ModalPasswordsTxt {
+    left: 40%; /* Slightly to the right of the Passwords modal */
+    top: 30%; /* Slightly down from the Passwords modal */
+}
+
+/* Modal Headers */
+/* Modal Headers for Passwords.txt */
+.window-controls {
+    background-color: #0044c2; /* Same blue as other windows */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    
+}
+
+/* Trash Layout */
+.trash-layout, .passwords-layout {
+    height: calc(100% - 40px); /* Account for header */
+}
+
+/* Folder Icon Positioning */
+.top-left-folder, .top-left-txt {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+}
+
+.folder-btn, .txt-btn {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.folder-btn img, .txt-btn img {
+    width: 60px; /* Icon size */
+    height: 60px;
+    margin-bottom: 5px;
+}
+
+.folder-btn span, .txt-btn span {
+    font-size: 14px;
+    color: #000000;
+    font-family: 'Tahoma', sans-serif;
+}
+
+/* Password Text File Modal - Larger Size */
+#ModalPasswordsTxt.large-modal {
+    position: fixed;
+    left: 35%;
+    top: 20%;
+    z-index: 3;
+    width: 600px;  /* Increased width */
+    height: 500px; /* Increased height */
+    background-color: #ffffff; /* Ensure the entire background is white */
+    border: 2px solid #0044c2; /* Blue border to match the other modals */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    font-family: 'Tahoma', sans-serif;
+    cursor: grab;
+}
+
+/* Passwords.txt Content - Textarea */
+.txt-content {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: calc(100% - 80px); /* Account for header and file menu height */
+    background-color: #ffffff; /* Full white background */
+    box-sizing: border-box;
+}
+
+#passwordTextArea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #ffffff; /* Ensure the entire background is white */
+    resize: none; /* Disable resizing */
+    font-family: 'Courier New', Courier, monospace; /* Classic notepad font */
+    font-size: 14px;
+    color: #000000;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none; /* Remove outline on focus */
+}
+
+/* File Menu for Passwords.txt Modal */
+.file-menu-bar {
+    background-color: #d3d3d3; /* Light grey background */
+    color: black;
+    display: flex;
+    padding: 5px;
+    font-family: 'Tahoma', sans-serif;
+    height: 30px; /* Consistent height for file menu */
+}
+
+.menu-tab {
+    position: relative;
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: #d3d3d3; /* All grey tabs */
+}
+
+.menu-tab:hover {
+    background-color: #c0c0c0; /* Slightly darker grey when hovered */
+}
+
+/* Dropdown Content Styling */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.menu-tab:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-item {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Tahoma', sans-serif;
+}
+
+.dropdown-item:hover {
+    background-color: #e6e6e6;
+}
+
+/* AIM Chat Modal */
+.aim-chat-window {
+    position: fixed;
+    left: 20%;
+    top: 15%;
+    width: 350px;
+    height: 500px;
+    background-color: #f0f0f0;
+    border: 2px solid #0049d1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* AIM Chat Header */
+.aim-chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0044c2;
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: grab;
+}
+
+
+
+.window-btn:hover {
+    background: #ddd;
+}
+
+/* AIM Chat History */
+.aim-chat-history {
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* AIM Chat Input Container */
+.aim-chat-input-container {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background-color: #e8e8e8;
+}
+
+/* AIM Chat Input */
+.aim-chat-input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    resize: none;
+}
+
+/* AIM Chat Send Button */
+.aim-chat-send-button {
+    background-color: #60A75C;
+    color: white;
+    border: 1px solid #568E51;
+    padding: 5px 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.aim-chat-send-button:hover {
+    background-color: #4e8e4d;
+}
+
+/* Apply Roboto Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Contact Email Modal */
+#ModalContact {
+    position: fixed;
+    left: 35%;
+    top: 15%;
+    z-index: 2;
+    width: 400px; /* Compact width */
+    height: 550px; /* Tall enough to fit all content */
+    background-color: #ffffff; /* Full white background */
+    border: none; /* No visible border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    display: none;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+}
+
+/* Header Styling */
+#modalHeaderContact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 14px; /* Smaller font for "New Message" */
+    font-weight: bold;
+    color: #333333; /* Dark grey text */
+    background-color: #ffffff; /* Matches the rest of the modal */
+    border-bottom: 1px solid #e0e0e0; /* Light grey border for separation */
+}
+
+/* Minimize and Close Buttons */
+.window-btn-container {
+    display: flex;
+    gap: 5px;
+}
+
+.window-btn {
+    background: none;
+    border: none;
+    color: #808080; /* Light grey button text */
+    font-size: 14px; /* Smaller size */
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 18px;
+    cursor: pointer;
+    border-radius: 3px; /* Slightly rounded hover background */
+    transition: background-color 0.2s;
+}
+
+.window-btn:hover {
+    background-color: #f0f0f0; /* Slightly darker grey on hover */
+}
+
+/* Email Layout */
+.email-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.email-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    /* Add a single grey line underneath each row */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.email-label {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    min-width: 50px; /* Fixed width for labels to align them */
+}
+
+.email-input, .email-body textarea {
+    border: none; /* Remove any border */
+    outline: none; /* Remove outline */
+    width: 100%;
+    padding: 4px 0;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    box-sizing: border-box;
+    border-bottom: none !important; /* Add grey line underneath */
+    background-color: transparent; /* Ensure no background color */
+}
+
+.email-body {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.email-body textarea {
+    flex-grow: 1; /* Allow textarea to fill the available space */
+    width: 100%;
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+    resize: none; /* Disable resizing */
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #fff; /* Ensure background is white */
+    padding: 0; /* Remove padding to align with other inputs */
+    box-sizing: border-box;
+    margin-top: 14px; /* Add margin to shift the textarea down */
+}
+
+/* Placeholder Text Styling */
+.email-body textarea::placeholder {
+    color: #aaa; /* Match the color of the subject box's placeholder */
+}
+
+.email-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-top: 1px solid #e0e0e0;
+    background: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/* Send Button - Bottom Left */
+.send-btn {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    font-family: 'Roboto', sans-serif;
+}
+
+.send-btn:hover {
+    background-color: #1559c9;
+    transform: scale(1.05);
+}
+
+.tools-section {
+    display: flex;
+    gap: 8px;
+}
+
+.tool-btn {
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.tool-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    opacity: 0.7;
+}
+
+.email-input::placeholder {
+    color: #aaa;
+}
+
+/* Email Row */
+.email-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    /* Add a single grey line underneath each row */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Email Input */
+.email-input {
+    border: none; /* Ensure no border */
+    outline: none;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    width: 100%;
+    padding: 4px 0;
+    /* Remove border-bottom from input itself */
+    border-bottom: none;
+}

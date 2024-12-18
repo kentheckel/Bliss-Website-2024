@@ -1,0 +1,480 @@
+/* Overall Body Styling */
+    body {
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    a {
+        text-decoration: none;
+        color: #606469;
+     }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+/* Material Icon Styling */
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;  /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        color: #767676;
+    }
+    .material-icons.md-dark { color: #767676; }
+    .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+    .menu {
+        padding: 12px;
+        height: 24px;
+        width: 24px;
+    }
+    .search {
+        padding: 12px;
+        height: 24px;
+        width: 24px;
+        float: left;
+        left: 50px;
+        justify-self: left;
+        left-margin: 40px;
+    }
+    .arrow_drop_down {
+        padding: 12px;
+        height: 24px;
+        width: 24px;
+        float: right;
+        justify-self: left;
+    }
+    .contact_support {
+        padding: 12px;
+        height: 24px;
+        width: 24px;
+    }
+    .apps {
+        padding-left: 40px;
+        padding-right: 40px;
+        height: 24px;
+        width: 24px;
+    }
+
+
+/* Top Nav Bar */
+    #topNav {
+        border-bottom: 1px solid #eceff1;
+        border-width: 90%;
+        height: 9.6vh;
+        width: 100%;
+        font-family: 'Roboto', sans-serif;
+        
+        /* Flexbox Styling */
+        display: flex;
+        flex-direction: ltr;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+/* Style and Spacing for Top Left Corner of Nav */
+    #leftTopNav {
+        float: left;
+
+        /* Flexbox Styling */
+        display: flex;
+        flex-basis: 24vw;
+        flex-direction: ltr;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    #leftTopSpace {
+        width: 0px;
+    }
+
+    #centerTopNav {
+
+    }
+
+/* Style and Spacing for Right Top Corner of Nav Bar */
+    #rightTopNav {
+        float: right;
+
+        /* Flexbox Styling */
+        display: flex;
+        flex-basis: 20vw;
+        flex-direction: rtl;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    #rightRightSpace {
+        width: 18px;
+    }
+
+    #rightLeftSpace {
+        width: 18px;
+    }
+
+/* Style and Spacing for Search Bar in Nav Bar */
+    #searchBar {
+        background-color: #f1f3f4;
+        border-radius: .5em;
+        width: 53vw;
+        height: 2.95em;
+        color: #6f6f70;
+        /*
+        margin-left: 9em;
+        margin-right: 5em;
+        */ 
+        /* Flexbox Styling */
+        display: flex;
+        flex-basis: 55vw;
+        align-items: center;
+        justify-content: flex-start;
+
+    }
+
+    #leftSearchSpace {
+        width: 20px;
+    }
+
+    #leftMiddleSearchSpace {
+        width: 15px;
+    }
+
+    #middleSearchSpace {
+        width: 38.5vw;
+    }
+
+/* Gmail Logo */
+#gmailLogo {
+    height: 40px;
+    padding-left: 16px;
+    padding-right: 15%;
+}
+
+/* Profile Photo Styling */
+    #profilePhoto {
+        height: 36px;
+        width: 36px;
+        border-radius: 50% 50% 50% 50%;
+        border-width: 20px 20px 20px 20px;
+        border-top-color: #e92c18;
+        border-right-color: #3174f1;
+        border-bottom-color: #239a41;
+        border-left-color: #f6ad01;
+    }
+
+/* Container Div */
+    #mainNav {
+        height: 91vh;
+        width: 100%;
+
+        /* Flexbox Styling */
+        display: flex;
+        flex-direction: ltr;
+        flex-wrap: nowrap;
+        justify-content: center;
+
+    }
+
+/* Left Sidebar */
+    #sidebarLeft {
+        /*border-right: 1px solid #eceff1;*/
+
+        /* Flexbox Styling */
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        flex-basis: 7%;
+        float: center;
+    }
+
+    #gmailPlusButton {
+        margin-top: .25em;
+    }
+
+    .leftSideBarIcon {
+        margin-left: 1.65em;
+        margin-top: .3em;
+    }
+
+    .leftSideBarlabel1 {
+        margin-left: 1.65em;
+        margin-top: .3em;
+        color: #d46535;
+    }
+
+    .leftSideBarlabel2 {
+        margin-left: 1.65em;
+        margin-top: .3em;
+        color: #e3d7ff;
+    }
+
+    .leftSideBarlabel3 {
+        margin-left: 1.65em;
+        margin-top: .3em;
+        color: #4986e7;
+    }
+
+    .leftSideBarlabel4 {
+        margin-left: 1.65em;
+        margin-top: .3em;
+        color: #b3efd3;
+    }
+
+/* Center Area */
+    #centerArea {
+        /* Flexbox Styling */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-basis: 100%;  
+        flex-wrap: wrap;
+        align-items: flex-start;
+        position: relative;
+    }
+
+    .emailBox {
+        font-family: 'Roboto', sans-serif;
+        color: #777a7f;
+        font-size: .875rem;
+        letter-spacing: .2px;
+        width: 97%;
+        height: auto;
+        background-color: #f5f7f7;
+        border-top: 1px solid #eceff1;
+        border-bottom: 1px solid #eceff1;
+        margin-left: .75em;
+       
+        border-collapse: collapse;
+        align-items: center;
+    }
+
+    .emailBox b {
+        color: #2e2f32;
+    }
+
+/* Email Table Styling */
+    .checkBox {
+        width: 4%;
+        height: 100%;
+        padding: 3px;
+    }
+
+    .star {
+        width: 3%;
+        height: 100%;
+        padding: 5px;
+    }
+
+    .priorityBox {
+        width: 3%;
+        height: 100%;
+        padding: 5px;
+    }
+
+    .nameBox {
+        width: 15%;
+        height: 100%;
+        padding: 5px;
+    }
+
+    .emailContent {
+        width: 55%;
+        height: 110%;
+        padding: 10px;
+    }
+
+    .attachmentBox {
+        width: 5%;
+        height: 100%;
+        padding: 5px;
+    }
+
+    .dateBox {
+        width: 8%;
+        height: 100%;
+        padding: 5px;
+    }
+
+/* Center Toolbox Styling */
+    #toolBar {
+        width: 100%;
+        height: 2em;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-left: 15px;
+        margin-right: 2em;
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        float: left;
+        border-spacing: 4px;
+        left: 10px;
+    }
+
+    .toolcheckBox {
+        width: .5%;
+        border-spacing: 1px;
+    }
+
+    .toolArrowDown {
+        width: .2%;
+    }
+
+    .toolRewind {
+        width: 8%;
+    }
+
+    .toolMenu {
+        width: 2%;
+        padding: 2px;
+    }
+
+    .toolEmpty {
+        width: 50%;
+        padding: 2px;
+    }
+
+    .toolEmailNumber {
+        width: 7%;
+        padding: 2px;
+        font-size: 12px;
+    }
+
+    .toolArrows {
+        width: 7%;
+        padding: 2px;
+    }
+
+    .toolKeyboard {
+        width: 6%;
+        padding: 2px;
+    }
+
+    .toolSettings {
+        width: 9%;
+        padding: 2px;
+    }
+
+/* Center Low Area Styling */
+
+    #centerLowArea {
+       /* width: 90vw: */
+        font-family: 'Roboto', sans-serif;
+        color: #606469;
+        font-size: .75rem;
+        letter-spacing: .3px;
+        line-height: 20px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+
+/* Center LowER Area Styling */
+    #centerLowerArea {
+        /*width: 90vw;*/
+        font-family: 'Roboto', sans-serif;
+        color: #606469;
+        font-size: .75rem;
+        letter-spacing: .3px;
+        line-height: 20px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    #lowerContainerLeft {
+        float: left;
+    }
+
+    #lowerContainerCenter {
+
+    }
+
+    #lowerContainerRight {
+        float: right;
+    }
+
+/* Right Sidebar */
+    #sidebarRight {
+    border-left: 1px solid #eceff1;
+    width: 90%;
+    color: #606469;
+
+    /* Flexbox Styling */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-basis: 5%; 
+    }
+
+    #calendarIcon {
+        height: 28px;
+        width: 24px;
+        margin-left: 16px;
+    }
+
+    #keepIcon {
+        height: 28px;
+        width: 24px;
+        margin-left: 16px;
+    }
+
+    #notesIcon {
+        height: 28px;
+        width: 24px;
+        margin-left: 16px;
+    }
+
+    .emptyRightDiv {
+        height: 30px;
+        width: 20px;
+    }
+    
+    .emptyRightDiv2 {
+        height: 75%;
+        width: 20px;
+        margin: 20px 20px 20x 20px;
+    }
+
+    .emptyRightDiv3 {
+
+    }
+
+    .red-overlay {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .red-overlay i {
+        color: red; /* Change the icon color to red */
+    }
+    
+    .red-overlay::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 0, 0, 0.5); /* Red overlay with transparency */
+        z-index: -1; /* Place the overlay behind the icon */
+    }
