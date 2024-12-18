@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <title>Bliss Desktop - Kent Heckel</title>
@@ -52,6 +53,12 @@
             <span>Trash</span>
         </button>
 
+        <!-- Videos Icon on Desktop -->
+        <button id="VideosBtn" class="icon-btn">
+            <img src="images/icons/cameraIcon.png" alt="Video camera Icon">
+            <span>Videos</span>
+        </button>
+
     </div>
 
     <!-- Taskbar Section -->
@@ -66,7 +73,7 @@
         <!-- About Modal (iframe to load HTML content) -->
         <div id="ModalAbout" class="modal">
             <div id="modalHeaderAbout" class="window-controls">
-                <span>About</span>
+                <span class="title">About</span>
                 <button id="aboutMinimize" class="window-btn">-</button>
                 <button id="aboutClose" class="window-btn">X</button>
             </div>
@@ -142,7 +149,7 @@
         <!-- AIM Style Modal (hidden until login is successful) -->
         <div id="ModalSocial" class="modal">
             <div id="modalHeaderSocial" class="window-controls">
-                <span>Social</span>
+                <span class="title">Social</span>
                 <button id="socialMinimize" class="window-btn">-</button>
                 <button id="socialClose" class="window-btn">X</button>
             </div>
@@ -274,7 +281,7 @@
         <div id="ModalGmail" class="modal"
             style="width: 1100px; height: 800px; top: 20px; left: 20px; position: absolute;">
             <div id="modalHeaderGmail" class="window-controls">
-                <span>Gmail</span>
+                <span class="title">Gmail</span>
                 <button id="gmailMinimize" class="window-btn">-</button>
                 <button id="gmailClose" class="window-btn">X</button>
             </div>
@@ -340,81 +347,118 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-
-
-
-
-            <!-- Trash Modal -->
-            <div id="ModalTrash" class="modal">
-                <div id="modalHeaderTrash" class="window-controls">
-                    <span>Trash</span>
-                    <div class="window-btn-container">
-                        <button id="trashMinimize" class="window-btn">-</button>
-                        <button id="trashClose" class="window-btn">X</button>
+            <!-- Videos Choose Account Modal -->
+        <div id="ModalChooseAccount" class="modal">
+            <div id="modalHeaderChooseAccount" class="window-controls">
+                <span class="title">Choose Account</span>
+                <button id="chooseAccountClose" class="window-btn">X</button>
+            </div>
+            <div class="account-list">
+                <!-- Account 1 -->
+                <div class="account-item" onclick="window.open('https://www.youtube.com/channel/UCexample1', '_blank')">
+                    <img src="images/profile1.jpg" alt="Funky Friday" class="account-img">
+                    <div class="account-info">
+                        <b>Funky Friday Podcast Clips</b>
+                        <p>@FunkyFridayCamNewton<br>126,000 subscribers</p>
                     </div>
                 </div>
-                <div class="trash-layout">
-                    <div class="top-left-folder">
-                        <button id="passwordsFolderBtn" class="folder-btn">
-                            <img src="images/icons/Icon_Press.svg" alt="Passwords Folder Icon">
-                            <span>Passwords</span>
-                        </button>
+                <!-- Account 2 -->
+                <div class="account-item" onclick="window.open('https://www.youtube.com/channel/UCexample2', '_blank')">
+                    <img src="images/profile2.jpg" alt="Iconic Saga" class="account-img">
+                    <div class="account-info">
+                        <b>Iconic Saga</b>
+                        <p>@iconicsaga7136<br>4,170 subscribers</p>
                     </div>
+                </div>
+                <!-- Account 3 -->
+                <div class="account-item" onclick="window.open('https://www.youtube.com/channel/UCexample3', '_blank')">
+                    <img src="images/profile3.jpg" alt="More Cam Newton" class="account-img">
+                    <div class="account-info">
+                        <b>More Cam Newton</b>
+                        <p>@MoreCamNewton<br>51,300 subscribers</p>
+                    </div>
+                </div>
+                <!-- Add more accounts here -->
+            </div>
+        </div>
+
+
+
+        <!-- Trash Modal -->
+        <div id="ModalTrash" class="modal">
+            <div id="modalHeaderTrash" class="window-controls">
+                <span>Trash</span>
+                <div class="window-btn-container">
+                    <button id="trashMinimize" class="window-btn">-</button>
+                    <button id="trashClose" class="window-btn">X</button>
                 </div>
             </div>
-
-            <!-- Passwords Modal -->
-            <div id="ModalPasswords" class="modal">
-                <div id="modalHeaderPasswords" class="window-controls">
-                    <span>Passwords</span>
-                    <div class="window-btn-container">
-                        <button id="passwordsMinimize" class="window-btn">-</button>
-                        <button id="passwordsClose" class="window-btn">X</button>
-                    </div>
-                </div>
-                <div class="passwords-layout">
-                    <div class="top-left-txt">
-                        <button id="passwordsTxtBtn" class="txt-btn">
-                            <img src="images/icons/txt.png" alt="Passwords Text File Icon">
-                            <span>passwords.txt</span>
-                        </button>
-                    </div>
+            <div class="trash-layout">
+                <div class="top-left-folder">
+                    <button id="passwordsFolderBtn" class="folder-btn">
+                        <img src="images/icons/Icon_Press.svg" alt="Passwords Folder Icon">
+                        <span>Passwords</span>
+                    </button>
                 </div>
             </div>
+        </div>
 
-            <!-- Password Text File Modal -->
-            <div id="ModalPasswordsTxt" class="modal large-modal">
-                <div id="modalHeaderPasswordsTxt" class="window-controls">
-                    <span>passwords.txt</span>
-                    <div class="window-btn-container">
-                        <button id="passwordsTxtMinimize" class="window-btn">-</button>
-                        <button id="passwordsTxtClose" class="window-btn">X</button>
-                    </div>
-                </div>
-                <div class="file-menu-bar">
-                    <div class="menu-tab" id="fileTab">File
-                        <div class="dropdown-content">
-                            <button id="newTab" class="dropdown-item">New tab</button>
-                            <button id="newWindow" class="dropdown-item">New window</button>
-                            <button id="openFile" class="dropdown-item">Open</button>
-                            <button id="saveTextButton" class="dropdown-item">Save</button>
-                            <button id="saveAs" class="dropdown-item">Save as</button>
-                            <button id="saveAll" class="dropdown-item">Save all</button>
-                            <button id="pageSetup" class="dropdown-item">Page setup</button>
-                            <button id="print" class="dropdown-item">Print</button>
-                            <button id="closeTab" class="dropdown-item">Close tab</button>
-                            <button id="closeWindow" class="dropdown-item">Close window</button>
-                            <button id="exit" class="dropdown-item">Exit</button>
-                        </div>
-                    </div>
-                    <div class="menu-tab">Edit</div>
-                    <div class="menu-tab">View</div>
-                </div>
-                <div class="txt-content">
-                    <textarea id="passwordTextArea">KIM PASSWORD: passw0rd</textarea>
+        <!-- Passwords Modal -->
+        <div id="ModalPasswords" class="modal">
+            <div id="modalHeaderPasswords" class="window-controls">
+                <span>Passwords</span>
+                <div class="window-btn-container">
+                    <button id="passwordsMinimize" class="window-btn">-</button>
+                    <button id="passwordsClose" class="window-btn">X</button>
                 </div>
             </div>
+            <div class="passwords-layout">
+                <div class="top-left-txt">
+                    <button id="passwordsTxtBtn" class="txt-btn">
+                        <img src="images/icons/txt.png" alt="Passwords Text File Icon">
+                        <span>passwords.txt</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Password Text File Modal -->
+        <div id="ModalPasswordsTxt" class="modal large-modal">
+            <div id="modalHeaderPasswordsTxt" class="window-controls">
+                <span>passwords.txt</span>
+                <div class="window-btn-container">
+                    <button id="passwordsTxtMinimize" class="window-btn">-</button>
+                    <button id="passwordsTxtClose" class="window-btn">X</button>
+                </div>
+            </div>
+            <div class="file-menu-bar">
+                <div class="menu-tab" id="fileTab">File
+                    <div class="dropdown-content">
+                        <button id="newTab" class="dropdown-item">New tab</button>
+                        <button id="newWindow" class="dropdown-item">New window</button>
+                        <button id="openFile" class="dropdown-item">Open</button>
+                        <button id="saveTextButton" class="dropdown-item">Save</button>
+                        <button id="saveAs" class="dropdown-item">Save as</button>
+                        <button id="saveAll" class="dropdown-item">Save all</button>
+                        <button id="pageSetup" class="dropdown-item">Page setup</button>
+                        <button id="print" class="dropdown-item">Print</button>
+                        <button id="closeTab" class="dropdown-item">Close tab</button>
+                        <button id="closeWindow" class="dropdown-item">Close window</button>
+                        <button id="exit" class="dropdown-item">Exit</button>
+                    </div>
+                </div>
+                <div class="menu-tab">Edit</div>
+                <div class="menu-tab">View</div>
+            </div>
+            <div class="txt-content">
+                <textarea id="passwordTextArea">KIM PASSWORD: passw0rd</textarea>
+            </div>
+        </div>
+
+        
+
 
             <!-- Add an audio element for the error sound -->
             <audio id="errorSound">

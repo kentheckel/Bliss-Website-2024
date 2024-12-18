@@ -145,50 +145,8 @@ body, html {
 }
 
 /* Window Controls Container */
-.window-controls {
-    background-color: #0044c2; /* Same blue as other windows */
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 10px;
-    font-size: 14px;
-    font-weight: bold;
-    
-}
-
-/* Window Buttons (Minimize and Close) Container */
-.window-btn-container {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    pointer-events: auto; /* Ensure pointer events for buttons */
-}
-
-.window-btn {
-    background: #ffffff; /* White background for button container */
-    border: 2px solid #0044c2; /* Blue border to match the modal */
-    color: #0044c2; /* Blue text for the button */
-    font-size: 16px; /* Slightly larger button text */
-    font-weight: bold;
-    margin: 0;
-    width: 30px; /* Fixed size to make it more box-like */
-    height: 30px; /* Fixed size for consistency */
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    box-sizing: border-box;
-    transition: background-color 0.2s;
-    outline: none; /* Remove default button outline */
-    z-index: 10; /* Ensure the button is above everything else */
-}
 
 
-.window-btn:hover {
-    background-color: #e6e6e6; /* Light grey when hovered */
-}
 
 /* Iframe Styling */
 .modal-iframe {
@@ -610,7 +568,10 @@ body, html {
     padding: 5px 10px;
     font-size: 14px;
     font-weight: bold;
-    
+}
+
+.window-controls .title {
+    margin-right: auto;
 }
 
 /* Trash Layout */
@@ -1017,4 +978,59 @@ body, html {
     padding: 4px 0;
     /* Remove border-bottom from input itself */
     border-bottom: none;
+}
+
+/* Modal Styling */
+#ModalChooseAccount {
+    background-color: #202020;
+    color: white;
+    border: 2px solid #0049d1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+}
+
+#modalHeaderChooseAccount {
+    background-color: #0049d1;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account-list {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+.account-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: #303030;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.account-item:hover {
+    background-color: #424242;
+}
+
+.account-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.account-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #aaaaaa;
 }

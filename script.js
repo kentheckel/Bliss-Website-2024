@@ -565,3 +565,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000); // Simulate email sending delay
     });
 });
+
+// Videos Button Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const videosBtn = document.getElementById('VideosBtn');
+    const chooseAccountModal = document.getElementById('ModalChooseAccount');
+    const closeBtn = document.getElementById('chooseAccountClose');
+
+    // Open the modal when Videos button is clicked
+    if (videosBtn) {
+        videosBtn.addEventListener('click', () => {
+            if (chooseAccountModal) {
+                chooseAccountModal.style.display = 'block'; // Show the modal
+                chooseAccountModal.style.left = '35%'; // Adjust positioning as needed
+                chooseAccountModal.style.top = '20%'; // Adjust positioning as needed
+                console.log('Opened ModalChooseAccount');
+            } else {
+                console.error('ModalChooseAccount not found');
+            }
+        });
+    }
+
+    // Close the modal when the close button is clicked
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            if (chooseAccountModal) {
+                chooseAccountModal.style.display = 'none'; // Hide the modal
+                console.log('Closed ModalChooseAccount');
+            }
+        });
+    }
+});
