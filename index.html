@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- hope this works--> 
+<!-- MARK: Head--> 
+
 
 <head>
     <meta charset="UTF-8">
@@ -23,11 +24,13 @@
             font-family: 'Roboto', sans-serif;
             color: #333;
         }
+
+        
     </style>
 </head>
 
 <body>
-    <!-- Desktop Icons Container -->
+    <!-- MARK: Desktop Icons Container -->
     <div id="desktop-icons">
         <!-- About Icon -->
         <button id="aboutBtn" class="icon-btn">
@@ -55,13 +58,13 @@
 
         <!-- Videos Icon on Desktop -->
         <button id="VideosBtn" class="icon-btn">
-            <img src="images/icons/cameraIcon.png" alt="Video camera Icon">
+            <img src="images/YouTubeStudio2.png" alt="Video camera Icon">
             <span>Videos</span>
         </button>
 
     </div>
 
-    <!-- Taskbar Section -->
+    <!-- MARK: Taskbar Section -->
     <div id="taskbar">
         <button id="startButton" class="start-btn">Start</button>
         <div id="taskbar-windows" class="taskbar-windows"></div>
@@ -80,7 +83,7 @@
             <iframe src="facebook/index.html" class="modal-iframe"></iframe>
         </div>
 
-        <!-- Login Modal (initially hidden) -->
+        <!-- MARK: Login Modal  -->
         <div id="ModalLogin" class="modal">
             <div id="modalHeaderLogin" class="window-controls">
                 <button id="loginClose" class="window-btn">X</button>
@@ -127,7 +130,7 @@
             </div>
         </div>
 
-        <!-- Incorrect Password Modal (initially hidden) -->
+        <!-- MARK: Incorrect Password Modal -->
         <div id="ModalError" class="modal">
             <div id="modalHeaderError" class="window-controls">
                 <span>Error</span>
@@ -146,7 +149,7 @@
             </div>
         </div>
 
-        <!-- AIM Style Modal (hidden until login is successful) -->
+        <!-- MARK: AIM Modal -->
         <div id="ModalSocial" class="modal">
             <div id="modalHeaderSocial" class="window-controls">
                 <span class="title">Social</span>
@@ -259,7 +262,7 @@
             </div>
         </div>
 
-        <!-- AIM Chat Modal -->
+        <!-- MARK: AIM Chat Modal -->
         <div id="ModalAIMChat" class="modal aim-chat-window">
             <div id="modalHeaderAIMChat" class="window-controls">
                 <span>Instant Message - Kent Heckel</span>
@@ -277,7 +280,7 @@
             </div>
         </div>
 
-        <!-- Gmail Modal -->
+        <!-- MARK: Gmail Modal -->
         <div id="ModalGmail" class="modal"
             style="width: 1100px; height: 800px; top: 20px; left: 20px; position: absolute;">
             <div id="modalHeaderGmail" class="window-controls">
@@ -291,7 +294,7 @@
 
 
 
-        <!-- Contact Email Modal -->
+        <!-- MARK: Contact Email Modal -->
         <div id="ModalContact" class="modal">
             <!-- Header -->
             <div id="modalHeaderContact" class="window-controls">
@@ -349,44 +352,187 @@
             </div>
         </div>
 
-            <!-- Videos Choose Account Modal -->
-        <div id="ModalChooseAccount" class="modal">
-            <div id="modalHeaderChooseAccount" class="window-controls">
-                <span class="title">Choose Account</span>
-                <button id="chooseAccountClose" class="window-btn">X</button>
+            <!-- MARK: Videos Modal -->
+        <div id="ModalVideos" style="display: none;">
+            <div id="modalHeaderVideos" class="window-controls">
+                <span>Choose Account</span>
+                <button id="VideosMinimize" class="window-btn">-</button>
+                <button id="VideosClose" class="window-btn">X</button>
             </div>
             <div class="account-list">
                 <!-- Account 1 -->
-                <div class="account-item" onclick="window.open('https://www.youtube.com/channel/UCexample1', '_blank')">
-                    <img src="images/profile1.jpg" alt="Funky Friday" class="account-img">
+                <div class="account-item" data-channel="CamNewton" onclick="openChannelModals('CamNewton')">
+                    <img src="images/cam.jpg" alt="Cam Newton" class="account-img">
                     <div class="account-info">
-                        <b>Funky Friday Podcast Clips</b>
-                        <p>@FunkyFridayCamNewton<br>126,000 subscribers</p>
-                    </div>
+                        <b>Cam Newton</b>
+                        <p>@CamNewton<br>1.57M subscribers</p>
+                    </div>                    
+                    <button class="arrow-btn" onclick="window.open('https://youtube.com/@CamNewton', '_blank')">➔</button>
                 </div>
                 <!-- Account 2 -->
-                <div class="account-item" onclick="window.open('https://www.youtube.com/channel/UCexample2', '_blank')">
-                    <img src="images/profile2.jpg" alt="Iconic Saga" class="account-img">
+                <div class="account-item" data-channel="4thand1" onclick="openChannelModals('4thand1')">
+                    <img src="images/4th.jpg" alt="4th&1 with Cam Newton logo" class="account-img">
                     <div class="account-info">
-                        <b>Iconic Saga</b>
-                        <p>@iconicsaga7136<br>4,170 subscribers</p>
+                        <b>4th&1 with Cam Newton</b>
+                        <p>@4thand1CamNewton<br>300k subscribers</p>
                     </div>
+                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@4thand1CamNewton', '_blank')">➔</button>
                 </div>
                 <!-- Account 3 -->
-                <div class="account-item" onclick="window.open('https://www.youtube.com/channel/UCexample3', '_blank')">
-                    <img src="images/profile3.jpg" alt="More Cam Newton" class="account-img">
+                <div class="account-item" data-channel="FunkyFriday" onclick="openChannelModals('FunkyFriday')">
+                    <img src="images/funky.jpg" alt="Funky Friday with Cam Newton logo" class="account-img">
                     <div class="account-info">
-                        <b>More Cam Newton</b>
-                        <p>@MoreCamNewton<br>51,300 subscribers</p>
+                        <b>Funky Friday</b>
+                        <p>@FunkyFriday<br>126k subscribers</p>
                     </div>
+                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@FunkyFridayCamNewton', '_blank')">➔</button>
                 </div>
-                <!-- Add more accounts here -->
+                <!-- Add more accounts as needed -->
+                 <!-- Account 4 -->
+                <div class="account-item" data-channel="JimGaffigan" onclick="openChannelModals('JimGaffigan')">
+                    <img src="images/jim.jpg" alt="Jim Gaffigan logo" class="account-img">
+                    <div class="account-info">
+                        <b>Jim Gaffigan</b>
+                        <p>@JimGaffigan<br>955k subscribers</p>
+                    </div>
+                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@jimgaffigan', '_blank')">➔</button>
+                </div>
+
+                <!-- Account 5 -->
+                <div class="account-item" data-channel="KentHeckel" onclick="openChannelModals('KentHeckel')">
+                    <img src="images/kent.jpg" alt="Kent Heckel logo" class="account-img">
+                    <div class="account-info">
+                        <b>Kent Heckel</b>
+                        <p>@KentHeckel<br>27k subscribers</p>
+                    </div>
+                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/c/kentheckel', '_blank')">➔</button>
+                </div>
+
             </div>
+        </div>
+ <!-- MARK: Analytics Modals -->
+        <!-- Modal for Cam Newton -->
+        <!-- Analytics Modal for Cam Newton -->
+        <div id="ModalAnalyticsCamNewton" class="modal ModalYouTubeBorder" style="display: none;">
+            <div id="modalHeaderAnalyticsCamNewton" class="window-controls">
+                <span class="title">Cam Newton Analytics</span>
+                <button id="AnalyticsMinimizeCamNewton" class="window-btn-youtube">-</button>
+                <button id="AnalyticsCloseCamNewton" class="window-btn-youtube">X</button>
+            </div>
+            <iframe src="analytics/indexYouTubeStudio.html" class="modal-iframe"></iframe>
+        </div>
+        
+        <div id="ModalTextBoxCamNewton" class="modal" style="display: none;">
+            <div id="modalHeaderTextBoxCamNewton" class="window-controls">
+                <span>Cam Newton Notes</span>
+                <button id="TextBoxCloseCamNewton" class="window-btn">X</button>
+            </div>
+            <div class="modal-content">
+                <iframe src="analytics/CamNewtonYouTubeStrategies/CamNewtonYouTubeStrategiesNEW.html" 
+                        class="modal-iframe">
+                </iframe>
+            </div>
+        </div>
+        <!-- Modal for 4th&1 with Cam Newton -->
+
+        <div id="ModalAnalytics4thand1" class="modal ModalYouTubeBorder" style="display: none;">
+            <div id="modalHeaderAnalytics4thand1" class="window-controls">
+                <span class="title">4th&1 Analytics</span>
+                <button id="AnalyticsMinimize4thand1" class="window-btn-youtube">-</button>
+                <button id="AnalyticsClose4thand1" class="window-btn-youtube">X</button>
+            </div>
+            <iframe src="analytics/indexYouTubeStudio4thand1.html" class="modal-iframe"></iframe>
         </div>
 
 
+        <div id="ModalTextBox4thand1" class="modal" style="display: none;">
+            <div id="modalHeaderTextBox4thand1" class="window-controls">
+                <span>4th&1 Notes</span>
+                <button id="TextBoxClose4thand1" class="window-btn">X</button>
+            </div>
+            <div class="modal-content">
+                <iframe src="analytics/4thStrategy/4th1Strategyv2.html" 
+                        class="modal-iframe">
+                </iframe>
+            </div>
+        </div>
 
-        <!-- Trash Modal -->
+        <!-- Modal for Funky Friday -->
+        <div id="ModalTextBoxFunkyFriday" class="modal" style="display: none; width: 400px; height: 300px;">
+            <div id="modalHeaderTextBoxFunkyFriday" class="window-controls">
+                <span>Funky Friday Text Box</span>
+                <button id="TextBoxCloseFunkyFriday" class="window-btn">X</button>
+            </div>
+            <div class="modal-content">
+                <h2>Editable Content for Funky Friday</h2>
+                <textarea id="textBoxContentFunkyFriday" style="width: 100%; height: 200px;" placeholder="Add your text and images here"></textarea>
+            </div>
+        </div>
+
+        <div id="ModalAnalyticsFunkyFriday" class="modal" style="display: none; width: 400px; height: 300px;">
+            <div id="modalHeaderAnalyticsFunkyFriday" class="window-controls">
+                <span>Funky Friday Analytics</span>
+                <button id="AnalyticsCloseFunkyFriday" class="window-btn">X</button>
+            </div>
+            <div class="modal-content">
+                <h2>Analytics Dashboard for Funky Friday</h2>
+                <div id="analyticsPlaceholderFunkyFriday" style="height: 200px; background-color: #f0f0f0; text-align: center; line-height: 200px;">
+                    Placeholder for analytics data
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Jim Gaffigan -->
+        <div id="ModalTextBoxJimGaffigan" class="modal" style="display: none; width: 400px; height: 300px;">
+            <div id="modalHeaderTextBoxJimGaffigan" class="window-controls">
+                <span>Jim Gaffigan Text Box</span>
+                <button id="TextBoxCloseJimGaffigan" class="window-btn">X</button>
+            </div>
+            <div class="modal-content">
+                <h2>Editable Content for Jim Gaffigan</h2>
+                <textarea id="textBoxContentJimGaffigan" style="width: 100%; height: 200px;" placeholder="Add your text and images here"></textarea>
+            </div>
+        </div>
+
+        <div id="ModalAnalyticsJimGaffigan" class="modal" style="display: none; width: 400px; height: 300px;">
+            <div id="modalHeaderAnalyticsJimGaffigan" class="window-controls">
+                <span>Jim Gaffigan Analytics</span>
+                <button id="AnalyticsCloseJimGaffigan" class="window-btn">X</button>
+            </div>
+            <div class="modal-content">
+                <h2>Analytics Dashboard for Jim Gaffigan</h2>
+                <div id="analyticsPlaceholderJimGaffigan" style="height: 200px; background-color: #f0f0f0; text-align: center; line-height: 200px;">
+                    Placeholder for analytics data
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Kent Heckel -->
+        <div id="ModalTextBoxKentHeckel" class="modal" style="display: none; width: 400px; height: 300px;">
+            <div id="modalHeaderTextBoxKentHeckel" class="window-controls">
+                <span>Kent Heckel Text Box</span>
+                <button id="TextBoxCloseKentHeckel" class="window-btn">X</button>
+            </div>
+            <div class="modal-content">
+                <h2>Editable Content for Kent Heckel</h2>
+                <textarea id="textBoxContentKentHeckel" style="width: 100%; height: 200px;" placeholder="Add your text and images here"></textarea>
+            </div>
+        </div>
+
+        <div id="ModalAnalyticsKentHeckel" class="modal" style="display: none; width: 400px; height: 300px;">
+            <div id="modalHeaderAnalyticsKentHeckel" class="window-controls">
+                <span>Kent Heckel Analytics</span>
+                <button id="AnalyticsCloseKentHeckel" class="window-btn">X</button>
+            </div>
+            <div class="modal-content">
+                <h2>Analytics Dashboard for Kent Heckel</h2>
+                <div id="analyticsPlaceholderKentHeckel" style="height: 200px; background-color: #f0f0f0; text-align: center; line-height: 200px;">
+                    Placeholder for analytics data
+                </div>
+            </div>
+        </div>
+
+        <!-- MARK: Trash Modal -->
         <div id="ModalTrash" class="modal">
             <div id="modalHeaderTrash" class="window-controls">
                 <span>Trash</span>
@@ -405,7 +551,7 @@
             </div>
         </div>
 
-        <!-- Passwords Modal -->
+        <!-- MARK: Passwords Modal -->
         <div id="ModalPasswords" class="modal">
             <div id="modalHeaderPasswords" class="window-controls">
                 <span>Passwords</span>
@@ -424,7 +570,7 @@
             </div>
         </div>
 
-        <!-- Password Text File Modal -->
+        <!-- MARK: Password Text File Modal -->
         <div id="ModalPasswordsTxt" class="modal large-modal">
             <div id="modalHeaderPasswordsTxt" class="window-controls">
                 <span>passwords.txt</span>

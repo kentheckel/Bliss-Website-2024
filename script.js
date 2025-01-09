@@ -1,15 +1,15 @@
+console.log('JavaScript file is loaded');
+
 "use strict";
 
 // Helper function to add click event listeners to existing elements
-function addClickListener(id, handler) {
+function addClickListener(id, callback) {
     const element = document.getElementById(id);
     if (element) {
-        element.addEventListener('click', handler);
-    } else {
-        console.error(`Element with id ${id} not found.`);
+        element.addEventListener('click', callback);
     }
 }
-
+// MARK: Open Functionality
 // Modal handling for opening modals
 document.querySelectorAll('.icon-btn').forEach(button => {
     button.addEventListener('click', () => {
@@ -32,44 +32,49 @@ document.querySelectorAll('.icon-btn').forEach(button => {
         }
     });
 });
-
+// MARK: Close Functionality
 // Handling Close buttons for all modals
-['aboutClose', 'socialClose', 'loginClose', 'errorClose', 'aimChatClose', 'trashClose', 'passwordsClose', 'passwordsTxtClose'].forEach(id => {
+[
+    'AnalyticsCloseCamNewton', 'TextBoxCloseCamNewton',
+    'TextBoxClose4thand1', 'AnalyticsClose4thand1',
+    'TextBoxCloseFunkyFriday', 'AnalyticsCloseFunkyFriday',
+    'TextBoxCloseJimGaffigan', 'AnalyticsCloseJimGaffigan',
+    'TextBoxCloseKentHeckel', 'AnalyticsCloseKentHeckel',
+    'errorClose', 'socialClose', 'aimChatClose', 'gmailClose',
+    'contactClose', 'VideosClose', 'trashClose', 'passwordsClose',
+    'passwordsTxtClose'
+].forEach(id => {
     addClickListener(id, (event) => {
-        event.stopPropagation();  // Prevent this event from being recognized as a drag
+        event.stopPropagation();
         const modalId = id.replace('Close', '');
-        // Special case for AIM Chat window
-        if (modalId === 'aimChat') {
-            const modal = document.getElementById('ModalAIMChat');
-            if (modal) {
-                modal.style.display = 'none';
-                console.log(`Closed modal: ${modal.id}`);
-            }
-        } else {
-            const modal = document.getElementById(`Modal${modalId.charAt(0).toUpperCase() + modalId.slice(1)}`);
-            if (modal) {
-                modal.style.display = 'none';
-                console.log(`Closed modal: ${modal.id}`);
-            }
+        const modal = document.getElementById(`Modal${modalId}`);
+        if (modal) {
+            modal.style.display = 'none';
+            console.log(`Closed modal: ${modal.id}`);
         }
     });
 });
 
+// MARK: Minimize Functionality
 // Handling Minimize buttons for all modals
-['aboutMinimize', 'socialMinimize', 'aimChatMinimize', 'trashMinimize', 'passwordsMinimize', 'passwordsTxtMinimize', 'gmailMinimize', 'contactMinimize'].forEach(id => {
+[
+    'AnalyticsMinimizeCamNewton', 'TextBoxMinimizeCamNewton',
+    'TextBoxMinimize4thand1', 'AnalyticsMinimize4thand1',
+    'TextBoxMinimizeFunkyFriday', 'AnalyticsMinimizeFunkyFriday',
+    'TextBoxMinimizeJimGaffigan', 'AnalyticsMinimizeJimGaffigan',
+    'TextBoxMinimizeKentHeckel', 'AnalyticsMinimizeKentHeckel',
+    'socialMinimize', 'aimChatMinimize', 'gmailMinimize',
+    'contactMinimize', 'VideosMinimize', 'trashMinimize',
+    'passwordsMinimize', 'passwordsTxtMinimize'
+].forEach(id => {
     addClickListener(id, (event) => {
-        event.stopPropagation();  // Prevent this event from being recognized as a drag
+        event.stopPropagation();
         const modalId = id.replace('Minimize', '');
-        // Special case for AIM Chat window
-        if (modalId === 'aimChat') {
-            handleMinimize('ModalAIMChat', 'taskbar-aimChat', 'AIM Chat');
-        } else {
-            handleMinimize(
-                `Modal${modalId.charAt(0).toUpperCase() + modalId.slice(1)}`,
-                `taskbar-${modalId}`,
-                modalId.charAt(0).toUpperCase() + modalId.slice(1)
-            );
-        }
+        handleMinimize(
+            `Modal${modalId}`,
+            `taskbar-${modalId}`,
+            modalId
+        );
     });
 });
 
@@ -83,21 +88,18 @@ function handleMinimize(modalId, taskbarId, label) {
         return;
     }
 
-    // Hide the modal
     modal.style.display = 'none';
 
-    // Create a taskbar button if it doesn't already exist
     if (!document.getElementById(taskbarId)) {
         const minimizeButton = document.createElement('button');
         minimizeButton.id = taskbarId;
         minimizeButton.className = 'taskbar-window-button';
         minimizeButton.textContent = label;
-        minimizeButton.style.backgroundColor = "#0063e0"; // Slightly lighter blue than the taskbar
-        minimizeButton.style.width = '150px'; // Same width as start button
-        minimizeButton.style.height = '54px'; // Same height as start button
+        minimizeButton.style.backgroundColor = "#0063e0";
+        minimizeButton.style.width = '150px';
+        minimizeButton.style.height = '54px';
         taskbarWindows.appendChild(minimizeButton);
 
-        // Restore the window when the taskbar button is clicked
         minimizeButton.addEventListener('click', () => {
             console.log(`Restoring minimized modal: ${modal.id}`);
             modal.style.display = 'block';
@@ -105,79 +107,64 @@ function handleMinimize(modalId, taskbarId, label) {
         });
     }
 }
+// MARK: Draggable Functionality
+function makeDraggable(element, handle) {
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
 
-// Make modals draggable
-function makeModalDraggable(modalId, headerId) {
-    const modal = document.getElementById(modalId);
-    const modalHeader = document.getElementById(headerId);
+    handle.style.cursor = 'pointer';
 
-    if (!modal || !modalHeader) {
-        console.error(`Cannot find modal or header for: ${modalId}, ${headerId}`);
-        return;
+    function dragStart(e) {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+
+        if (e.target === handle) {
+            isDragging = true;
+        }
     }
 
-    console.log(`Making modal draggable: ${modalId}`);
-
-    let isDragging = false;
-    let startX, startY, initialLeft, initialTop;
-    let dragStarted = false; // Flag to determine if dragging occurred
-
-    modalHeader.addEventListener("mousedown", (e) => {
-        if (e.target.dataset.noDrag) {
-            return; // Do not initiate drag if the target element should not be draggable
-        }
-
-        dragStarted = false;
-        isDragging = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        initialLeft = modal.offsetLeft;
-        initialTop = modal.offsetTop;
-        modal.style.cursor = "grabbing";
-        console.log(`Mouse down on: ${modalId}`);
-    });
-
-    document.addEventListener("mousemove", (e) => {
-        if (isDragging) {
-            const deltaX = e.clientX - startX;
-            const deltaY = e.clientY - startY;
-
-            if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
-                // Considered as dragging if movement is significant
-                dragStarted = true;
-                modal.style.left = `${initialLeft + deltaX}px`;
-                modal.style.top = `${initialTop + deltaY}px`;
-            }
-        }
-    });
-
-    document.addEventListener("mouseup", (e) => {
-        if (isDragging) {
-            console.log(`Stopped dragging: ${modalId}`);
-            if (!dragStarted) {
-                console.log(`Mouse click detected instead of drag: ${modalId}`);
-            }
-        }
+    function dragEnd(e) {
+        initialX = currentX;
+        initialY = currentY;
         isDragging = false;
-        dragStarted = false;
-        modal.style.cursor = "grab";
-    });
+    }
+
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+            xOffset = currentX;
+            yOffset = currentY;
+
+            element.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        }
+    }
+
+    handle.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
 }
 
-// Apply draggable functionality to all modals after DOM is loaded
+// Apply draggable functionality after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const modals = [
-        'ModalAbout', 'ModalSocial', 'ModalLogin', 'ModalError', 'ModalTrash', 
-        'ModalPasswords', 'ModalPasswordsTxt', 'ModalAIMChat', 'ModalGmail', 'ModalContact'
-    ];
-
-    modals.forEach(modalId => {
-        const headerId = `modalHeader${modalId.slice(5)}`;
-        makeModalDraggable(modalId, headerId);
+    const modals = document.querySelectorAll('.modal');
+    
+    modals.forEach(modal => {
+        const handle = modal.querySelector('.window-controls');
+        if (handle) {
+            makeDraggable(modal, handle);
+            console.log(`Made draggable: ${modal.id}`);
+        }
     });
 });
 
-
+// MARK: Login Functionality
 // Login handling for Social
 addClickListener('loginButton', () => {
     const passwordInput = document.getElementById('password').value;
@@ -207,6 +194,7 @@ addClickListener('loginButton', () => {
     }
 });
 
+// MARK: Chat Functionality
 // Handle sending chat messages
 addClickListener('sendChatButton', () => {
     sendChatMessage();
@@ -327,6 +315,7 @@ async function fetchChatGPTResponse(userMessage) {
         appendMessage('Kent Heckel', 'Sorry, I am having trouble responding at the moment.');
     }
 }
+
 // Helper function to show modals
 function showModal(modalId) {
     const modal = document.getElementById(modalId);
@@ -340,6 +329,8 @@ function showModal(modalId) {
     }
 }
 
+// MARK: Passwords Functionality
+
 // Add an event listener to the folder button inside the Trash window
 addClickListener('passwordsFolderBtn', () => {
     showModal('ModalPasswords'); // Open the Passwords modal when folder button is clicked
@@ -351,6 +342,7 @@ addClickListener('passwordsTxtBtn', () => {
 });
 
 
+// MARK: Time and Date Functionality
 // Time and Date handling
 function updateTimeDate() {
     const now = new Date();
@@ -372,6 +364,7 @@ function updateTimeDate() {
 setInterval(updateTimeDate, 1000);
 updateTimeDate(); // Initial call to set immediately
 
+// MARK: Gmail and Contact Functionality
 // Open Gmail Modal and Contact Email Modal
 document.getElementById('contactBtn').addEventListener('click', () => {
     const gmailModal = document.getElementById('ModalGmail');
@@ -399,7 +392,6 @@ document.getElementById('sendEmailButton').addEventListener('click', () => {
         alert('Please fill in the subject and message before sending.');
         return;
     }
-
     // Mock email sending
     console.log('Sending email...');
     setTimeout(() => {
@@ -566,33 +558,87 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Videos Button Functionality
+// MARK: Videos Functionality
+// Add this event listener 
 document.addEventListener('DOMContentLoaded', () => {
     const videosBtn = document.getElementById('VideosBtn');
-    const chooseAccountModal = document.getElementById('ModalChooseAccount');
-    const closeBtn = document.getElementById('chooseAccountClose');
+    console.log('VideosBtn:', videosBtn); // Log the button element
 
-    // Open the modal when Videos button is clicked
     if (videosBtn) {
         videosBtn.addEventListener('click', () => {
-            if (chooseAccountModal) {
-                chooseAccountModal.style.display = 'block'; // Show the modal
-                chooseAccountModal.style.left = '35%'; // Adjust positioning as needed
-                chooseAccountModal.style.top = '20%'; // Adjust positioning as needed
-                console.log('Opened ModalChooseAccount');
-            } else {
-                console.error('ModalChooseAccount not found');
-            }
+            console.log('Videos button clicked');
         });
-    }
-
-    // Close the modal when the close button is clicked
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            if (chooseAccountModal) {
-                chooseAccountModal.style.display = 'none'; // Hide the modal
-                console.log('Closed ModalChooseAccount');
-            }
-        });
+    } else {
+        console.error('VideosBtn not found in the DOM');
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded');
+
+    // Function to show a modal by ID
+    function showModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'block';
+            modal.style.left = '15%'; // Adjust as needed
+            modal.style.top = '10%';  // Adjust as needed
+            console.log(`Showing modal: ${modalId}`);
+        } else {
+            console.error(`Modal with ID ${modalId} not found.`);
+        }
+    }
+
+    // Get all account items
+    const accountItems = document.querySelectorAll('#ModalVideos .account-item');
+    console.log('Found account items:', accountItems.length);
+
+    // Add click handlers
+    accountItems.forEach((item) => {
+        const channelName = item.dataset.channel;
+        console.log(`Setting up handler for account item: ${channelName}`);
+
+        item.addEventListener('click', (event) => {
+            console.log(`Account item clicked: ${channelName}`);
+
+            // Prevent if clicking arrow button
+            if (event.target.closest('.arrow-btn')) {
+                console.log('Arrow button clicked - ignoring');
+                return;
+            }
+
+            // Open the corresponding TextBox and Analytics modals
+            showModal(`ModalTextBox${channelName}`);
+            showModal(`ModalAnalytics${channelName}`);
+        });
+    });
+});
+
+// MARK: Analytics Functionality
+// Function to open modals for a specific channel
+function openChannelModals(channelName) {
+    console.log(`Opening modals for channel: ${channelName}`);
+    showModal(`ModalTextBox${channelName}`);
+    showModal(`ModalAnalytics${channelName}`);
+}
+
+function switchAnalyticsTab(tabName) {
+    // Get all tab panels and tabs
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    const analyticsTabs = document.querySelectorAll('.analytics-tab');
+
+    // Hide all tab panels and remove the active class from all tabs
+    tabPanels.forEach(panel => {
+        panel.style.display = 'none';
+    });
+    analyticsTabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    // Show the selected tab panel and set the corresponding tab as active
+    document.getElementById(tabName).style.display = 'block';
+    document.querySelector(`.analytics-tab[data-tab="${tabName}"]`).classList.add('active');
+}
+
+// Example usage: call this function with the tab name, e.g., 'overview', 'content', 'audience', or 'trends'
+// switchAnalyticsTab('overview'); // To switch to Overview tab

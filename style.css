@@ -980,16 +980,18 @@ body, html {
     border-bottom: none;
 }
 
-/* Modal Styling */
-#ModalChooseAccount {
+
+
+#ModalChooseAccount, #ModalTextBox, #ModalAnalytics {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1001;
     background-color: #202020;
     color: white;
     border: 2px solid #0049d1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     border-radius: 8px;
     overflow: hidden;
-    z-index: 1000;
-    font-family: Arial, sans-serif;
 }
 
 #modalHeaderChooseAccount {
@@ -1001,36 +1003,322 @@ body, html {
     align-items: center;
 }
 
+/* Account List Styling */
 .account-list {
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    gap: 10px;
+    gap: 15px;
+    padding: 15px;
 }
 
 .account-item {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 8px;
-    background-color: #303030;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
 }
 
 .account-item:hover {
-    background-color: #424242;
+    background-color: #404040;
+}
+
+.account-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    padding: 10px;
+    cursor: pointer;
 }
 
 .account-img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 10px; /* Add margin to create a gap */
+}
+
+.account-info {
+    flex-grow: 1;
+    color: white;
+}
+
+.account-info b {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 4px;
 }
 
 .account-info p {
-    margin: 0;
     font-size: 12px;
     color: #aaaaaa;
+    margin: 0;
+}
+
+/* Arrow Button Styling */
+.arrow-btn {
+    background-color: #0049d1;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: auto;
+}
+
+.arrow-btn:hover {
+    background-color: #0063e8;
+}
+
+/* Videos Modal Specific Styling */
+/* Custom modal class for Videos modal */
+#ModalVideos {
+    position: fixed;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 350px;
+    height: auto;
+    max-height: 80vh;
+    background-color: #303030;
+    font-family: 'Roboto', sans-serif;
+    z-index: 1000;
+    box-shadow: -4px 0 8px rgba(0,0,0,0.2);
+    overflow-y: auto;
+    margin: 0 !important;
+    transform: none !important;
+}
+
+#ModalVideos .window-controls {
+    background-color: #404040;
+    padding: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+#ModalVideos .account-list {
+    padding: 10px;
+    max-height: calc(80vh - 35px); /* Adjust to fit within the modal */
+    overflow-y: auto;
+}
+
+#ModalVideos .account-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+/* Analytics Tabs */
+.analytics-tabs {
+    display: flex;
+    background-color: #333;
+    border-bottom: 1px solid #444;
+}
+
+.analytics-tab {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+}
+
+.analytics-tab.active {
+    background-color: #444;
+    font-weight: bold;
+}
+
+.analytics-tab:hover {
+    background-color: #555;
+}
+
+/* Tab Panels */
+.tab-panel {
+    display: none;
+    padding: 20px;
+}
+
+.tab-panel#overview {
+    display: block; /* Show Overview by default */
+}
+
+/* Metrics Section */
+.overview-metrics {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.metric {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    flex: 1;
+}
+
+.metric h2 {
+    margin: 5px 0;
+}
+
+.metric .positive {
+    color: #4caf50;
+}
+
+.metric .neutral {
+    color: #ffc107;
+}
+
+/* Placeholder for Chart */
+.chart-placeholder {
+    margin-top: 20px;
+    background-color: #333;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.ModalYouTubeBorder {
+    position: absolute !important; /* Ensure it overrides other styles */
+    top: 25px !important; /* Ensure it overrides other styles */
+    left: 30px !important; /* Ensure it overrides other styles */
+    width: 1200px;
+    height: 700px;
+    background-color: #181818;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+#ModalAnalyticsCamNewton .window-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #181818; /* Match the border color */
+    padding: 10px;
+    color: white;
+    
+}
+
+#ModalAnalyticsCamNewton .window-controls .title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.window-btn-youtube {
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    color: white; /* Set text color */
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.3s, border-radius 0.3s; /* Smooth transition for hover effect */
+}
+
+.window-btn-youtube:hover {
+    background-color: white; /* Show white background on hover */
+    color: #181818; /* Change text color to match the modal border */
+    border-radius: 4px; /* Optional: Add some rounding to the hover effect */
+}
+
+.ModalTextBox {
+    position: absolute !important; /* Ensure the modal is positioned relative to the viewport */
+    top: 60px !important; /* Distance from the bottom of the screen */
+    left: 1200px !important; /* Distance from the right of the screen */
+    width: 460px; /* Set the width */
+    height: 800px; /* Set the height */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+#ModalTextBoxCamNewton {
+    position: fixed;
+    top: 60px !important; /* Distance from the bottom of the screen */
+    left: 1200px !important; 
+    width: 460px;
+    height: 80vh; /* Changed to viewport height */
+    background-color: #fff;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+#ModalTextBoxCamNewton .modal-content {
+    flex: 1;
+    overflow: hidden;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 40px); /* Subtract header height */
+}
+
+#ModalTextBoxCamNewton .modal-iframe {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#ModalTextBoxCamNewton .window-controls {
+    height: 20px; /* Explicit height for header */
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#ModalTextBox4thand1 {
+    position: absolute !important;
+    top: 60px !important;
+    left: 1200px !important; 
+    width: 460px;
+    height: 80vh;
+    background-color: #fff;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+#ModalTextBox4thand1 .modal-content {
+    flex: 1;
+    overflow: hidden;
+    padding: 0; /* Removed padding */
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 40px);
+}
+
+#ModalTextBox4thand1 .modal-iframe {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0; /* Removed padding */
+    margin: 0; /* Remove any margins */
+}
+
+#ModalTextBox4thand1 .window-controls {
+    height: 40px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
