@@ -1,0 +1,198 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        
+        <div class="logo">
+            <i class="fas fa-bars hamburger-menu"></i>
+            <i class="fab fa-youtube"></i>
+            <span>Studio</span>
+           
+        </div>
+        <ul class="menu">
+            <div class="profile">
+                <img src="cam.jpg" alt="Cam Newton" class="profile-img">
+                <div class="profile-name">Cam Newton</div>
+            </div>
+            <li><i class="fas fa-th"></i><span>Dashboard</span></li>
+            <li><i class="fas fa-video"></i><span>Content</span></li>
+            <li class="active"><i class="fas fa-chart-bar"></i><span>Analytics</span></li>
+            <li><i class="fas fa-users"></i><span>Community</span></li>
+            <li><i class="fas fa-closed-captioning"></i><span>Subtitles</span></li>
+            <li><i class="fas fa-copyright"></i><span>Copyright</span></li>
+            <li><i class="fas fa-dollar-sign"></i><span>Earn</span></li>
+            <li><i class="fas fa-paint-brush"></i><span>Customization</span></li>
+            <li><i class="fas fa-music"></i><span>Audio library</span></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-bar" placeholder="Search across your channel">
+            </div>
+        </div>
+        <div class="analytics-header">Channel analytics</div>
+        <div class="tabs">
+            <div class="tab-container">
+                <div class="tab active">Overview</div>
+                <div class="tab">Content</div>
+                <div class="tab">Audience</div>
+                <div class="tab">Trends</div>
+            </div>
+            <div class="date-range">
+                <div class="date">Jan 26, 2023 – Dec 20, 2024</div>
+                <div class="status">Employed</div>
+            </div>
+        </div>
+        <div class="overview">
+            <div class="summary">
+                <div class="card">
+                    <div class="description">Total Views</div>
+                    <div class="value">309M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">666.67% growth</div>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label">Views</div>
+                            <div class="info-value">309,624,418</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Average Monthly Views</div>
+                            <div class="info-value">14,442,500</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">First Month Views</div>
+                            <div class="info-value">790,400</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Last Month Views</div>
+                            <div class="info-value">5,114,355</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Highest Monthly Views</div>
+                            <div class="info-value">43,655,483 </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="description">Watch Time</div>
+                    <div class="value">26M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Up Big!</div>
+                </div>
+                <div class="card">
+                    <div class="description">Subscribers Gained</div>
+                    <div class="value">1,09M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">178.3% Growth</div>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label">Total Subscribers Gained</div>
+                            <div class="info-value">1,090,418</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Average Monthly Subscribers</div>
+                            <div class="info-value">53,406</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">First Month Subscribers</div>
+                            <div class="info-value">566,000</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Last Month Subscribers</div>
+                            <div class="info-value">1,575,447</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Highest Monthly Subscribers</div>
+                            <div class="info-value">178,136</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart">
+                <div class="chart-header">
+                    <span>Views</span>
+                    <button class="see-more">See more</button>
+                </div>
+                <canvas id="viewsChart" class="chart-graph"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const monthlyViews = [
+            ["Jan 2023", 53868404],             // 53,077,981 + 790,423
+            ["Feb 2023", 54406332],             // + 537,928
+            ["Mar 2023", 57326239],             // + 2,919,907
+            ["Apr 2023", 66579393],             // + 9,253,154
+            ["May 2023", 77599259],             // + 11,019,866
+            ["Jun 2023", 84824351],             // + 7,225,092
+            ["Jul 2023", 95109034],             // + 10,284,683
+            ["Aug 2023", 105453589],            // + 10,344,555
+            ["Sep 2023", 119583140],            // + 14,129,551
+            ["Oct 2023", 134458293],            // + 14,875,153
+            ["Nov 2023", 169777882],            // + 35,319,589
+            ["Dec 2023", 213433365],            // + 43,655,483
+            ["Jan 2024", 240337293],            // + 26,903,928
+            ["Feb 2024", 263676616],            // + 23,339,323
+            ["Mar 2024", 273467757],            // + 9,791,141
+            ["Apr 2024", 284055957],            // + 10,588,200
+            ["May 2024", 296347030],            // + 12,291,073
+            ["Jun 2024", 302349546],            // + 6,002,516
+            ["Jul 2024", 310266455],            // + 7,916,909
+            ["Aug 2024", 318993230],            // + 8,726,775
+            ["Sep 2024", 325671027],            // + 6,677,797
+            ["Oct 2024", 334311425],            // + 8,640,398
+            ["Nov 2024", 340986902],            // + 6,675,477
+            ["Dec 2024", 345540190]             // + 4,553,288
+        ];
+
+        const labels = monthlyViews.map(item => item[0]);
+        const data = monthlyViews.map(item => item[1]);
+
+        const ctx = document.getElementById('viewsChart').getContext('2d');
+        const viewsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Monthly Views',
+                    data: data,
+                    borderColor: '#40B4D9',
+                    backgroundColor: 'rgba(64, 180, 217, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Views (in millions)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

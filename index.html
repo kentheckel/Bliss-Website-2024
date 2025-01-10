@@ -356,7 +356,7 @@
         <div id="ModalVideos" style="display: none;">
             <div id="modalHeaderVideos" class="window-controls">
                 <span>Choose Account</span>
-                <button id="VideosMinimize" class="window-btn">-</button>
+                
                 <button id="VideosClose" class="window-btn">X</button>
             </div>
             <div class="account-list">
@@ -382,7 +382,7 @@
                 <div class="account-item" data-channel="FunkyFriday" onclick="openChannelModals('FunkyFriday')">
                     <img src="images/funky.jpg" alt="Funky Friday with Cam Newton logo" class="account-img">
                     <div class="account-info">
-                        <b>Funky Friday</b>
+                        <b>Funky Friday Clips</b>
                         <p>@FunkyFriday<br>126k subscribers</p>
                     </div>
                     <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@FunkyFridayCamNewton', '_blank')">➔</button>
@@ -419,7 +419,7 @@
                 <button id="AnalyticsMinimizeCamNewton" class="window-btn-youtube">-</button>
                 <button id="AnalyticsCloseCamNewton" class="window-btn-youtube">X</button>
             </div>
-            <iframe src="analytics/indexYouTubeStudio.html" class="modal-iframe"></iframe>
+            <iframe src="analytics/indexYouTubeStudioCamNewton.html" class="modal-iframe"></iframe>
         </div>
         
         <div id="ModalTextBoxCamNewton" class="modal" style="display: none;">
@@ -428,7 +428,7 @@
                 <button id="TextBoxCloseCamNewton" class="window-btn">X</button>
             </div>
             <div class="modal-content">
-                <iframe src="analytics/CamNewtonYouTubeStrategies/CamNewtonYouTubeStrategiesNEW.html" 
+                <iframe src="analytics/CamNewtonYouTubeStrategies/Funky Friday Strategy/FunkyFridayStrategy.html" 
                         class="modal-iframe">
                 </iframe>
             </div>
@@ -457,78 +457,87 @@
             </div>
         </div>
 
-        <!-- Modal for Funky Friday -->
-        <div id="ModalTextBoxFunkyFriday" class="modal" style="display: none; width: 400px; height: 300px;">
-            <div id="modalHeaderTextBoxFunkyFriday" class="window-controls">
-                <span>Funky Friday Text Box</span>
-                <button id="TextBoxCloseFunkyFriday" class="window-btn">X</button>
-            </div>
-            <div class="modal-content">
-                <h2>Editable Content for Funky Friday</h2>
-                <textarea id="textBoxContentFunkyFriday" style="width: 100%; height: 200px;" placeholder="Add your text and images here"></textarea>
-            </div>
-        </div>
-
-        <div id="ModalAnalyticsFunkyFriday" class="modal" style="display: none; width: 400px; height: 300px;">
+        <!-- Modal for Funky Friday Analytics -->
+        <div id="ModalAnalyticsFunkyFriday" class="ModalYouTubeBorder" style="display: none;">
             <div id="modalHeaderAnalyticsFunkyFriday" class="window-controls">
-                <span>Funky Friday Analytics</span>
-                <button id="AnalyticsCloseFunkyFriday" class="window-btn">X</button>
-            </div>
-            <div class="modal-content">
-                <h2>Analytics Dashboard for Funky Friday</h2>
-                <div id="analyticsPlaceholderFunkyFriday" style="height: 200px; background-color: #f0f0f0; text-align: center; line-height: 200px;">
-                    Placeholder for analytics data
+                <span class="title">Funky Friday Analytics</span>
+                <div class="window-btn-container">
+                    <button id="AnalyticsMinimizeFunkyFriday" class="window-btn-youtube">-</button>
+                    <button id="AnalyticsCloseFunkyFriday" class="window-btn-youtube">X</button>
                 </div>
             </div>
+            <iframe src="analytics/indexYouTubeStudioFunkyFriday.html" class="modal-iframe"></iframe>
         </div>
 
-        <!-- Modal for Jim Gaffigan -->
-        <div id="ModalTextBoxJimGaffigan" class="modal" style="display: none; width: 400px; height: 300px;">
-            <div id="modalHeaderTextBoxJimGaffigan" class="window-controls">
-                <span>Jim Gaffigan Text Box</span>
-                <button id="TextBoxCloseJimGaffigan" class="window-btn">X</button>
+        <!-- Modal for Funky Friday Text Box -->
+        <div id="ModalTextBoxFunkyFriday" class="ModalTextBox" style="display: none;">
+            <div id="modalHeaderTextBoxFunkyFriday" class="window-controls">
+                <span class="title">Funky Friday Strategy</span>
+                <div class="window-btn-container">
+                    <button id="TextBoxMinimizeFunkyFriday" class="window-btn-youtube">-</button>
+                    <button id="TextBoxCloseFunkyFriday" class="window-btn-youtube">X</button>
+                </div>
             </div>
             <div class="modal-content">
-                <h2>Editable Content for Jim Gaffigan</h2>
-                <textarea id="textBoxContentJimGaffigan" style="width: 100%; height: 200px;" placeholder="Add your text and images here"></textarea>
+                <iframe src="analytics/Funky Friday Clips Strategy/FunkyFridayClipsStrategy.html" 
+                        class="modal-iframe">
+                </iframe>
             </div>
         </div>
 
-        <div id="ModalAnalyticsJimGaffigan" class="modal" style="display: none; width: 400px; height: 300px;">
+        <!-- Modal for Jim Gaffigan Analytics -->
+        <div id="ModalAnalyticsJimGaffigan" class="ModalYouTubeBorder" style="display: none;">
             <div id="modalHeaderAnalyticsJimGaffigan" class="window-controls">
-                <span>Jim Gaffigan Analytics</span>
-                <button id="AnalyticsCloseJimGaffigan" class="window-btn">X</button>
-            </div>
-            <div class="modal-content">
-                <h2>Analytics Dashboard for Jim Gaffigan</h2>
-                <div id="analyticsPlaceholderJimGaffigan" style="height: 200px; background-color: #f0f0f0; text-align: center; line-height: 200px;">
-                    Placeholder for analytics data
+                <span class="title">Jim Gaffigan Analytics</span>
+                <div class="window-btn-container">
+                    <button id="AnalyticsMinimizeJimGaffigan" class="window-btn-youtube">-</button>
+                    <button id="AnalyticsCloseJimGaffigan" class="window-btn-youtube">X</button>
                 </div>
             </div>
+            <iframe src="analytics/indexYouTubeStudioJimGaffigan.html" class="modal-iframe"></iframe>
         </div>
 
-        <!-- Modal for Kent Heckel -->
-        <div id="ModalTextBoxKentHeckel" class="modal" style="display: none; width: 400px; height: 300px;">
-            <div id="modalHeaderTextBoxKentHeckel" class="window-controls">
-                <span>Kent Heckel Text Box</span>
-                <button id="TextBoxCloseKentHeckel" class="window-btn">X</button>
+        <!-- Modal for Jim Gaffigan Text Box -->
+        <div id="ModalTextBoxJimGaffigan" class="ModalTextBox" style="display: none;">
+            <div id="modalHeaderTextBoxJimGaffigan" class="window-controls">
+                <span class="title">Jim Gaffigan Strategy</span>
+                <div class="window-btn-container">
+                    <button id="TextBoxMinimizeJimGaffigan" class="window-btn-youtube">-</button>
+                    <button id="TextBoxCloseJimGaffigan" class="window-btn-youtube">X</button>
+                </div>
             </div>
             <div class="modal-content">
-                <h2>Editable Content for Kent Heckel</h2>
-                <textarea id="textBoxContentKentHeckel" style="width: 100%; height: 200px;" placeholder="Add your text and images here"></textarea>
+                <iframe src="analytics/Jim Gaffigan’s YouTube Channel Strategy/JimGaffigansYouTubeChannelStrategy.html" 
+                        class="modal-iframe">
+                </iframe>
             </div>
         </div>
 
-        <div id="ModalAnalyticsKentHeckel" class="modal" style="display: none; width: 400px; height: 300px;">
+        <!-- Modal for Kent Heckel Analytics -->
+        <div id="ModalAnalyticsKentHeckel" class="ModalYouTubeBorder" style="display: none;">
             <div id="modalHeaderAnalyticsKentHeckel" class="window-controls">
-                <span>Kent Heckel Analytics</span>
-                <button id="AnalyticsCloseKentHeckel" class="window-btn">X</button>
+                <span class="title">Kent Heckel Analytics</span>
+                <div class="window-btn-container">
+                    <button id="AnalyticsMinimizeKentHeckel" class="window-btn-youtube">-</button>
+                    <button id="AnalyticsCloseKentHeckel" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <iframe src="analytics/indexYouTubeStudioKentHeckel.html" class="modal-iframe"></iframe>
+        </div>
+
+        <!-- Modal for Kent Heckel Text Box -->
+        <div id="ModalTextBoxKentHeckel" class="ModalTextBox" style="display: none;">
+            <div id="modalHeaderTextBoxKentHeckel" class="window-controls">
+                <span class="title">Kent Heckel Strategy</span>
+                <div class="window-btn-container">
+                    <button id="TextBoxMinimizeKentHeckel" class="window-btn-youtube">-</button>
+                    <button id="TextBoxCloseKentHeckel" class="window-btn-youtube">X</button>
+                </div>
             </div>
             <div class="modal-content">
-                <h2>Analytics Dashboard for Kent Heckel</h2>
-                <div id="analyticsPlaceholderKentHeckel" style="height: 200px; background-color: #f0f0f0; text-align: center; line-height: 200px;">
-                    Placeholder for analytics data
-                </div>
+                <iframe src="analytics/KentHeckelStrategy/KentHeckelStrategy.html" 
+                        class="modal-iframe">
+                </iframe>
             </div>
         </div>
 

@@ -1,0 +1,186 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        
+        <div class="logo">
+            <i class="fas fa-bars hamburger-menu"></i>
+            <i class="fab fa-youtube"></i>
+            <span>Studio</span>
+           
+        </div>
+        <ul class="menu">
+            <div class="profile">
+                <img src="jim.jpg"Jim Gaffigan Logo" class="profile-img">
+                <div class="profile-name">Jim Gaffigan</div>
+            </div>
+            <li><i class="fas fa-th"></i><span>Dashboard</span></li>
+            <li><i class="fas fa-video"></i><span>Content</span></li>
+            <li class="active"><i class="fas fa-chart-bar"></i><span>Analytics</span></li>
+            <li><i class="fas fa-users"></i><span>Community</span></li>
+            <li><i class="fas fa-closed-captioning"></i><span>Subtitles</span></li>
+            <li><i class="fas fa-copyright"></i><span>Copyright</span></li>
+            <li><i class="fas fa-dollar-sign"></i><span>Earn</span></li>
+            <li><i class="fas fa-paint-brush"></i><span>Customization</span></li>
+            <li><i class="fas fa-music"></i><span>Audio library</span></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-bar" placeholder="Search across your channel">
+            </div>
+        </div>
+        <div class="analytics-header">Channel analytics</div>
+        <div class="tabs">
+            <div class="tab-container">
+                <div class="tab active">Overview</div>
+                <div class="tab">Content</div>
+                <div class="tab">Audience</div>
+                <div class="tab">Trends</div>
+            </div>
+            <div class="date-range">
+                <div class="date">Feb 2020 – Jan 2021</div>
+                <div class="status">Employed</div>
+            </div>
+        </div>
+        <div class="overview">
+            <div class="summary">
+                <div class="card">
+                    <div class="description">Total Views</div>
+                    <div class="value">62M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">193 Uploads</div>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label">Views</div>
+                            <div class="info-value">62,089,710</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Average Monthly Views</div>
+                            <div class="info-value">5,174,142</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">First Month Views</div>
+                            <div class="info-value">95,540,764</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Last Month Views</div>
+                            <div class="info-value">159,142,001</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Highest Monthly Views</div>
+                            <div class="info-value">10,230,662</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="description">Revenue</div>
+                    <div class="value">$415k <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Yes, that's correct</div>
+                </div>
+                <div class="card">
+                    <div class="description">Subscribers Gained</div>
+                    <div class="value">385K <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">100k in 3 months</div>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label">Total Subscribers Gained</div>
+                            <div class="info-value">385,139</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Average Monthly Subscribers</div>
+                            <div class="info-value">32,094</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">First Month Subscribers</div>
+                            <div class="info-value">206,658</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Last Month Subscribers</div>
+                            <div class="info-value">597,774</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Highest Monthly Subscribers</div>
+                            <div class="info-value">90,323</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart">
+                <div class="chart-header">
+                    <span>Views</span>
+                    <button class="see-more">See more</button>
+                </div>
+                <canvas id="viewsChart" class="chart-graph"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const jimGaffiganMonthlyViews = [
+            ["Feb 2020", 97394342],             // 95,540,764 + 1,853,578
+            ["Mar 2020", 100256250],            // + 2,861,908
+            ["Apr 2020", 103724094],            // + 3,467,844
+            ["May 2020", 113816702],            // + 10,092,608
+            ["Jun 2020", 121970129],            // + 8,153,427
+            ["Jul 2020", 129969654],            // + 7,999,525
+            ["Aug 2020", 140200316],            // + 10,230,662
+            ["Sep 2020", 145776948],            // + 5,576,632
+            ["Oct 2020", 149842839],            // + 4,065,891
+            ["Nov 2020", 152024349],            // + 2,181,510
+            ["Dec 2020", 155263529],            // + 3,239,180
+            ["Jan 2021", 157630474]             // + 2,366,945
+        ];
+
+        const labels = jimGaffiganMonthlyViews.map(item => item[0]);
+        const data = jimGaffiganMonthlyViews.map(item => item[1]);
+
+        const ctx = document.getElementById('viewsChart').getContext('2d');
+        const viewsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Monthly Views',
+                    data: data,
+                    borderColor: '#40B4D9',
+                    backgroundColor: 'rgba(64, 180, 217, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Views (in millions)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
