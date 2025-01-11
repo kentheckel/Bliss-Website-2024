@@ -673,3 +673,21 @@ function downloadResume() {
     link.click();
     document.body.removeChild(link);
 }
+
+// Add this to your existing window.onload or document.ready function
+function checkIfMobile() {
+    if (window.innerWidth <= 768) {
+        document.getElementById('mobileWarningModal').style.display = 'block';
+    }
+}
+
+// Close modal when button is clicked
+document.getElementById('mobileWarningClose').addEventListener('click', function() {
+    document.getElementById('mobileWarningModal').style.display = 'none';
+});
+
+// Check on page load
+window.addEventListener('load', checkIfMobile);
+
+// Check on resize
+window.addEventListener('resize', checkIfMobile);
