@@ -42,12 +42,12 @@ document.querySelectorAll('.icon-btn').forEach(button => {
     'TextBoxCloseKentHeckel', 'AnalyticsCloseKentHeckel',
     'errorClose', 'socialClose', 'aimChatClose', 'gmailClose',
     'contactClose', 'VideosClose', 'trashClose', 'passwordsClose',
-    'passwordsTxtClose'
+    'passwordsTxtClose', 'resumeTxtClose', 'aboutClose', 'loginClose'
 ].forEach(id => {
     addClickListener(id, (event) => {
         event.stopPropagation();
         const modalId = id.replace('Close', '');
-        const modal = document.getElementById(`Modal${modalId}`);
+        const modal = document.getElementById(`Modal${modalId.charAt(0).toUpperCase() + modalId.slice(1)}`);
         if (modal) {
             modal.style.display = 'none';
             console.log(`Closed modal: ${modal.id}`);
@@ -65,13 +65,13 @@ document.querySelectorAll('.icon-btn').forEach(button => {
     'TextBoxMinimizeKentHeckel', 'AnalyticsMinimizeKentHeckel',
     'socialMinimize', 'aimChatMinimize', 'gmailMinimize',
     'contactMinimize', 'VideosMinimize', 'trashMinimize',
-    'passwordsMinimize', 'passwordsTxtMinimize'
+    'passwordsMinimize', 'passwordsTxtMinimize', 'resumeTxtMinimize', 'aboutMinimize'
 ].forEach(id => {
     addClickListener(id, (event) => {
         event.stopPropagation();
         const modalId = id.replace('Minimize', '');
         handleMinimize(
-            `Modal${modalId}`,
+            `Modal${modalId.charAt(0).toUpperCase() + modalId.slice(1)}`,
             `taskbar-${modalId}`,
             modalId
         );
@@ -642,3 +642,34 @@ function switchAnalyticsTab(tabName) {
 
 // Example usage: call this function with the tab name, e.g., 'overview', 'content', 'audience', or 'trends'
 // switchAnalyticsTab('overview'); // To switch to Overview tab
+
+// MARK: Resume Modal Handlers
+document.getElementById('resumeIcon').addEventListener('click', function() {
+    const modal = document.getElementById('ModalResumeTxt');
+    modal.style.display = 'block';
+    console.log('Opened modal: ModalResumeTxt');
+});
+
+document.getElementById('resumeTxtClose').addEventListener('click', function() {
+    const modal = document.getElementById('ModalResumeTxt');
+    modal.style.display = 'none';
+});
+
+document.getElementById('resumeTxtMinimize').addEventListener('click', function() {
+    minimizeWindow('Resume.txt', 'ModalResumeTxt');
+});
+
+// Add to your modal pairs array for draggable functionality
+makeModalDraggable('ModalResumeTxt', 'modalHeaderResumeTxt');
+
+function downloadResume() {
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = 'images/KentHeckelResume2025.pdf';
+    link.download = 'KentHeckelResume2025.pdf';
+    
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}

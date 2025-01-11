@@ -1,0 +1,221 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        
+        <div class="logo">
+            <i class="fas fa-bars hamburger-menu"></i>
+            <i class="fab fa-youtube"></i>
+            <span>Studio</span>
+           
+        </div>
+        <ul class="menu">
+            <div class="profile">
+                <img src="kent.jpg"Kent Heckel Logo" class="profile-img">
+                <div class="profile-name">Kent Heckel</div>
+            </div>
+            <li><i class="fas fa-th"></i><span>Dashboard</span></li>
+            <li><i class="fas fa-video"></i><span>Content</span></li>
+            <li class="active"><i class="fas fa-chart-bar"></i><span>Analytics</span></li>
+            <li><i class="fas fa-users"></i><span>Community</span></li>
+            <li><i class="fas fa-closed-captioning"></i><span>Subtitles</span></li>
+            <li><i class="fas fa-copyright"></i><span>Copyright</span></li>
+            <li><i class="fas fa-dollar-sign"></i><span>Earn</span></li>
+            <li><i class="fas fa-paint-brush"></i><span>Customization</span></li>
+            <li><i class="fas fa-music"></i><span>Audio library</span></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-bar" placeholder="Search across your channel">
+            </div>
+        </div>
+        <div class="analytics-header">Channel analytics</div>
+        <div class="tabs">
+            <div class="tab-container">
+                <div class="tab active">Overview</div>
+                <div class="tab">Content</div>
+                <div class="tab">Audience</div>
+                <div class="tab">Trends</div>
+            </div>
+            <div class="date-range">
+                <div class="date">Mar 2014 – Jan 2017</div>
+                <div class="status">Employed</div>
+            </div>
+        </div>
+        <div class="overview">
+            <div class="summary">
+                <div class="card">
+                    <div class="description">Total Views</div>
+                    <div class="value">4.3M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">7 Uploads per week</div>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label">Views</div>
+                            <div class="info-value">4,382,706</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Average Monthly Views</div>
+                            <div class="info-value">82,149</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">First Month Views</div>
+                            <div class="info-value">0</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Last Month Views</div>
+                            <div class="info-value">115878</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Highest Monthly Views</div>
+                            <div class="info-value">153,824</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="description">Total uplaods</div>
+                    <div class="value">1,036<i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Yes, that's correct</div>
+                </div>
+                <div class="card">
+                    <div class="description">Subscribers Gained</div>
+                    <div class="value">26K <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">26,895 Total</div>
+                    
+                </div>
+            </div>
+            <div class="chart">
+                <div class="chart-header">
+                    <span>Views</span>
+                    <button class="see-more">See more</button>
+                </div>
+                <canvas id="viewsChart" class="chart-graph"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const kentHeckelMonthlyViews = [
+            ["Mar 2014", 38844],             // 38,844
+            ["Apr 2014", 91829],             // + 52,985
+            ["May 2014", 215258],            // + 123,429
+            ["Jun 2014", 253790],            // + 38,532
+            ["Jul 2014", 277291],            // + 23,501
+            ["Aug 2014", 343968],            // + 66,677
+            ["Sep 2014", 397303],            // + 53,335
+            ["Oct 2014", 435336],            // + 38,033
+            ["Nov 2014", 490293],            // + 54,957
+            ["Dec 2014", 551023],            // + 60,730
+            ["Jan 2015", 606618],            // + 55,595
+            ["Feb 2015", 652757],            // + 46,139
+            ["Mar 2015", 717878],            // + 65,121
+            ["Apr 2015", 768025],            // + 50,147
+            ["May 2015", 819404],            // + 51,379
+            ["Jun 2015", 859674],            // + 40,270
+            ["Jul 2015", 916521],            // + 56,847
+            ["Aug 2015", 981219],            // + 64,698
+            ["Sep 2015", 1110847],           // + 129,628
+            ["Oct 2015", 1234222],           // + 123,375
+            ["Nov 2015", 1365804],           // + 131,582
+            ["Dec 2015", 1483382],           // + 117,578
+            ["Jan 2016", 1637206],           // + 153,824
+            ["Feb 2016", 1743856],           // + 106,650
+            ["Mar 2016", 1855241],           // + 111,385
+            ["Apr 2016", 1948290],           // + 93,049
+            ["May 2016", 2045463],           // + 97,173
+            ["Jun 2016", 2140770],           // + 95,307
+            ["Jul 2016", 2236019],           // + 95,249
+            ["Aug 2016", 2351442],           // + 115,423
+            ["Sep 2016", 2466372],           // + 114,930
+            ["Oct 2016", 2595464],           // + 129,092
+            ["Nov 2016", 2711342],           // + 115,878
+            ["Dec 2016", 2792401],           // + 81,059
+            ["Jan 2017", 2875221],           // + 82,820
+            ["Feb 2017", 2929495],           // + 54,274
+            ["Mar 2017", 2982183],           // + 52,688
+            ["Apr 2017", 3028991],           // + 46,808
+            ["May 2017", 3076024],           // + 47,033
+            ["Jun 2017", 3121878],           // + 45,854
+            ["Jul 2017", 3177265],           // + 55,387
+            ["Aug 2017", 3245123],           // + 67,858
+            ["Sep 2017", 3289450],           // + 44,327
+            ["Oct 2017", 3340242],           // + 50,792
+            ["Nov 2017", 3375015],           // + 34,773
+            ["Dec 2017", 3412276],           // + 37,261
+            ["Jan 2018", 3558206],           // + 145,930
+            ["Feb 2018", 3609883],           // + 51,677
+            ["Mar 2018", 3689151],           // + 79,268
+            ["Apr 2018", 3751912],           // + 62,761
+            ["May 2018", 3802377],           // + 50,465
+            ["Jun 2018", 3840833],           // + 38,456
+            ["Jul 2018", 3874886],           // + 34,053
+            ["Aug 2018", 3907936],           // + 33,050
+            ["Sep 2018", 3940263],           // + 32,327
+            ["Oct 2018", 3982481],           // + 42,218
+            ["Nov 2018", 4005425],           // + 22,944
+            ["Dec 2018", 4025208],           // + 19,783
+            ["Jan 2019", 4046802],           // + 21,594
+            ["Feb 2019", 4062716],           // + 15,914
+            ["Mar 2019", 4082110],           // + 19,394
+            ["Apr 2019", 4100822],           // + 18,712
+            ["May 2019", 4119702],           // + 18,880
+            ["Jun 2019", 4139717],           // + 20,015
+            ["Jul 2019", 4160563],           // + 20,846
+            ["Aug 2019", 4183049],           // + 22,486
+            ["Sep 2019", 4200418],           // + 17,369
+            ["Oct 2019", 4211848]            // + 11,430
+        ];
+
+        const labels = kentHeckelMonthlyViews.map(item => item[0]);
+        const data = kentHeckelMonthlyViews.map(item => item[1]);
+
+        const ctx = document.getElementById('viewsChart').getContext('2d');
+        const viewsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Monthly Views',
+                    data: data,
+                    borderColor: '#40B4D9',
+                    backgroundColor: 'rgba(64, 180, 217, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Views (in millions)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

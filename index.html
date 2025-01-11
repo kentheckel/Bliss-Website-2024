@@ -10,7 +10,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <title>Bliss Desktop - Kent Heckel</title>
+    <title>Kent Heckel's Website</title>
     <style>
         .email-label {
             font-size: 14px;
@@ -62,6 +62,13 @@
             <span>Videos</span>
         </button>
 
+        <!-- Resume Icon on Desktop -->
+        <!-- Change the Resume icon ID to match the pattern -->
+        <div class="icon-btn" id="resumeTxtBtn">
+            <img src="images/icons/txt.png" alt="Resume Text File">
+            <span>Resume.txt</span>
+        </div>
+
     </div>
 
     <!-- MARK: Taskbar Section -->
@@ -74,6 +81,7 @@
     <!-- Modal Section (hidden until triggered) -->
     <div id="modalContainer">
         <!-- About Modal (iframe to load HTML content) -->
+         <!-- MARK: About Modal -->
         <div id="ModalAbout" class="modal">
             <div id="modalHeaderAbout" class="window-controls">
                 <span class="title">About</span>
@@ -458,7 +466,7 @@
         </div>
 
         <!-- Modal for Funky Friday Analytics -->
-        <div id="ModalAnalyticsFunkyFriday" class="ModalYouTubeBorder" style="display: none;">
+        <div id="ModalAnalyticsFunkyFriday" class="modal ModalYouTubeBorder" style="display: none;">
             <div id="modalHeaderAnalyticsFunkyFriday" class="window-controls">
                 <span class="title">Funky Friday Analytics</span>
                 <div class="window-btn-container">
@@ -470,7 +478,7 @@
         </div>
 
         <!-- Modal for Funky Friday Text Box -->
-        <div id="ModalTextBoxFunkyFriday" class="ModalTextBox" style="display: none;">
+        <div id="ModalTextBoxFunkyFriday" class="modal ModalTextBox" style="display: none;">
             <div id="modalHeaderTextBoxFunkyFriday" class="window-controls">
                 <span class="title">Funky Friday Strategy</span>
                 <div class="window-btn-container">
@@ -486,7 +494,7 @@
         </div>
 
         <!-- Modal for Jim Gaffigan Analytics -->
-        <div id="ModalAnalyticsJimGaffigan" class="ModalYouTubeBorder" style="display: none;">
+        <div id="ModalAnalyticsJimGaffigan" class="modal ModalYouTubeBorder" style="display: none;">
             <div id="modalHeaderAnalyticsJimGaffigan" class="window-controls">
                 <span class="title">Jim Gaffigan Analytics</span>
                 <div class="window-btn-container">
@@ -498,7 +506,7 @@
         </div>
 
         <!-- Modal for Jim Gaffigan Text Box -->
-        <div id="ModalTextBoxJimGaffigan" class="ModalTextBox" style="display: none;">
+        <div id="ModalTextBoxJimGaffigan" class="modal ModalTextBox" style="display: none;">
             <div id="modalHeaderTextBoxJimGaffigan" class="window-controls">
                 <span class="title">Jim Gaffigan Strategy</span>
                 <div class="window-btn-container">
@@ -514,7 +522,7 @@
         </div>
 
         <!-- Modal for Kent Heckel Analytics -->
-        <div id="ModalAnalyticsKentHeckel" class="ModalYouTubeBorder" style="display: none;">
+        <div id="ModalAnalyticsKentHeckel" class="modal ModalYouTubeBorder" style="display: none;">
             <div id="modalHeaderAnalyticsKentHeckel" class="window-controls">
                 <span class="title">Kent Heckel Analytics</span>
                 <div class="window-btn-container">
@@ -526,7 +534,7 @@
         </div>
 
         <!-- Modal for Kent Heckel Text Box -->
-        <div id="ModalTextBoxKentHeckel" class="ModalTextBox" style="display: none;">
+        <div id="ModalTextBoxKentHeckel" class="modalModalTextBox" style="display: none;">
             <div id="modalHeaderTextBoxKentHeckel" class="window-controls">
                 <span class="title">Kent Heckel Strategy</span>
                 <div class="window-btn-container">
@@ -535,7 +543,7 @@
                 </div>
             </div>
             <div class="modal-content">
-                <iframe src="analytics/KentHeckelStrategy/KentHeckelStrategy.html" 
+                <iframe src="analytics/Kent Heckel’s YouTube Channel Strategy/KentHeckelsYouTubeChannelStrategy.html" 
                         class="modal-iframe">
                 </iframe>
             </div>
@@ -611,6 +619,30 @@
                 <textarea id="passwordTextArea">KIM PASSWORD: passw0rd</textarea>
             </div>
         </div>
+
+        <!-- MARK: Resume Modal -->
+        <!-- Add the Resume Modal (place with other modals) -->
+<div id="ModalResumeTxt" class="modal">
+    <div id="modalHeaderResumeTxt" class="window-controls">
+        <span>Resume.txt</span>
+        <div class="window-btn-container">
+            <button id="resumeTxtMinimize" class="window-btn">-</button>
+            <button id="resumeTxtClose" class="window-btn">X</button>
+        </div>
+    </div>
+    <div class="file-menu-bar">
+        <div class="menu-tab">File
+            <div class="dropdown-content">
+                <button onclick="downloadResume()" class="dropdown-item">Save</button>
+            </div>
+        </div>
+        <div class="menu-tab">Edit</div>
+        <div class="menu-tab">View</div>
+    </div>
+    <div class="txt-content" style="overflow-y: auto; max-height: calc(100vh - 200px); padding: 10px;">
+        <img src="images/KentHeckelResume2025.jpg" alt="Resume" style="width: 100%; height: auto;">
+    </div>
+</div>
 
         
 
