@@ -368,7 +368,7 @@ updateTimeDate(); // Initial call to set immediately
 // Open Gmail Modal and Contact Email Modal
 document.getElementById('contactBtn').addEventListener('click', () => {
     const gmailModal = document.getElementById('ModalGmail');
-    const contactModal = document.getElementById('ModalContact');
+    //const contactModal = document.getElementById('ModalContact');
 
     if (gmailModal) gmailModal.style.display = 'block';
     if (contactModal) contactModal.style.display = 'block';
