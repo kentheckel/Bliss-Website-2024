@@ -689,3 +689,15 @@ window.addEventListener('load', checkIfMobile);
 
 // Check on resize
 window.addEventListener('resize', checkIfMobile);
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Show modal on mobile devices
+    if (window.innerWidth <= 768) {
+        document.getElementById('mobileWarningModal').style.display = 'block';
+    }
+
+    // Close button functionality
+    document.getElementById('mobileWarningClose').addEventListener('click', () => {
+        document.getElementById('mobileWarningModal').style.display = 'none';
+    });
+});

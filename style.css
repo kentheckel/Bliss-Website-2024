@@ -1535,3 +1535,52 @@ body, html {
 #mobileWarningClose:hover {
     background-color: #0056b3;
 }
+
+.mobile-warning-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #181818;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+}
+
+.mobile-warning-content {
+    color: white;
+    padding-bottom: 20px;
+}
+
+.mobile-warning-content .window-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #181818;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.warning-text {
+    padding: 20px;
+    text-align: center;
+}
+
+.warning-text h2 {
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.warning-text p {
+    color: #ccc;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .mobile-warning-modal {
+        display: block;
+    }
+}
