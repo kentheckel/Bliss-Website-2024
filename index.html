@@ -279,24 +279,6 @@
             </div>
         </div>
 
-        <!-- MARK: AIM Chat Modal -->
-        <div id="ModalAIMChat" class="modal aim-chat-window">
-            <div id="modalHeaderAIMChat" class="window-controls">
-                <span>Instant Message - Kent Heckel</span>
-                <div class="window-btn-container">
-                    <button id="aimChatMinimize" class="window-btn">-</button>
-                    <button id="aimChatClose" class="window-btn">X</button>
-                </div>
-            </div>
-            <div id="chatHistory" class="aim-chat-history">
-                <div><strong style="color: red;">Kent Heckel:</strong> hey... you there?</div>
-            </div>
-            <div class="aim-chat-input-container">
-                <textarea id="chatInput" class="aim-chat-input" rows="3"></textarea>
-                <button id="sendChatButton" class="aim-chat-send-button">Send</button>
-            </div>
-        </div>
-
         <!-- MARK: Gmail Modal -->
         <div id="ModalGmail" class="modal"
             style="width: 1100px; height: 800px; top: 20px; left: 20px; position: absolute;">
@@ -665,17 +647,6 @@
             </audio>
 
             <script src="script.js"></script>
-            <script>
-                // JavaScript to update the span with the subject input
-                document.getElementById('subjectField').addEventListener('input', function () {
-                    document.getElementById('messageTitle').textContent = this.value || 'New Message';
-                });
-
-                // Add an event listener to the send button
-                document.getElementById('sendButton').addEventListener('click', function () {
-                    console.log('Send button clicked');
-                });
-            </script>
 </body>
 
 </html>

@@ -238,8 +238,6 @@ function appendMessage(sender, message) {
     chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to the bottom
 }
 
-const OPENAI_API_KEY = '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'; // Replace with your actual API key
-
 // Array to maintain the conversation history
 // Array to maintain the conversation history
 let conversationHistory = [
