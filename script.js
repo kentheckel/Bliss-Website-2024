@@ -679,25 +679,15 @@ function checkIfMobile() {
     }
 }
 
-// Close modal when button is clicked
-document.getElementById('mobileWarningClose').addEventListener('click', function() {
+// Show modal when page loads
+window.onload = function() {
+    document.getElementById('mobileWarningModal').style.display = 'block';
+}
+// Close modal when X or OK is clicked
+document.getElementById('mobileWarningClose').onclick = function() {
     document.getElementById('mobileWarningModal').style.display = 'none';
-});
+}
 
-// Check on page load
-window.addEventListener('load', checkIfMobile);
-
-// Check on resize
-window.addEventListener('resize', checkIfMobile);
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Show modal on mobile devices
-    if (window.innerWidth <= 768) {
-        document.getElementById('mobileWarningModal').style.display = 'block';
-    }
-
-    // Close button functionality
-    document.getElementById('mobileWarningClose').addEventListener('click', () => {
-        document.getElementById('mobileWarningModal').style.display = 'none';
-    });
-});
+document.getElementById('mobileWarningOkButton').onclick = function() {
+    document.getElementById('mobileWarningModal').style.display = 'none';
+}

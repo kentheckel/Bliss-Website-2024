@@ -1537,7 +1537,7 @@ body, html {
 }
 
 .mobile-warning-modal {
-    display: none;
+    display: block; /* Changed from 'none' to 'block' to show always */
     position: fixed;
     z-index: 9999;
     left: 50%;
