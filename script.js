@@ -77,6 +77,9 @@ function makeIconDraggable(icon) {
             hasMoved = true;
             icon.classList.add('dragging');
             
+            // Mark the icon as having been dragged (to prevent click from opening modal)
+            icon.dataset.wasDragged = 'true';
+            
             // Calculate new position
             let newX = iconStartX + deltaX;
             let newY = iconStartY + deltaY;
@@ -110,6 +113,12 @@ function makeIconDraggable(icon) {
         // Only save position if the icon actually moved
         if (hasMoved) {
             saveIconPosition(icon);
+            
+            // Clear the wasDragged flag after a short delay
+            // This allows the click event to check it first, then we clear it
+            setTimeout(() => {
+                icon.dataset.wasDragged = 'false';
+            }, 100);
         }
         hasMoved = false;
     });
@@ -172,8 +181,15 @@ if (document.readyState === 'loading') {
 
 // MARK: Open Functionality
 // Modal handling for opening modals
+// Only opens modal on click, NOT on drag (checks wasDragged flag)
 document.querySelectorAll('.icon-btn').forEach(button => {
     button.addEventListener('click', () => {
+        // If the icon was just dragged, don't open the modal
+        // The wasDragged flag is set by the drag handler and cleared after 100ms
+        if (button.dataset.wasDragged === 'true') {
+            return; // Skip opening modal - user was dragging, not clicking
+        }
+        
         const modalId = button.id.replace('Btn', '');
         if (modalId === 'social') {
             // Show login modal first for Social
