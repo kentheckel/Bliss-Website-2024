@@ -273,6 +273,19 @@ function handleMinimize(modalId, taskbarId, label) {
     }
 }
 // MARK: Draggable Functionality
+/**
+ * Wrapper function to make a modal draggable by its ID
+ * @param {string} modalId - The ID of the modal element
+ * @param {string} headerId - The ID of the modal header (drag handle)
+ */
+function makeModalDraggable(modalId, headerId) {
+    const modal = document.getElementById(modalId);
+    const header = document.getElementById(headerId);
+    if (modal && header) {
+        makeDraggable(modal, header);
+    }
+}
+
 function makeDraggable(element, handle) {
     let isDragging = false;
     let currentX;
@@ -546,22 +559,25 @@ document.getElementById('contactBtn').addEventListener('click', () => {
     });
 });
 
-// Send Email Button
-document.getElementById('sendEmailButton').addEventListener('click', () => {
-    const subject = document.getElementById('emailSubject').value.trim();
-    const body = document.getElementById('emailBody').value.trim();
+// Send Email Button - with null check to prevent script crash
+const sendEmailBtn1 = document.getElementById('sendEmailButton');
+if (sendEmailBtn1) {
+    sendEmailBtn1.addEventListener('click', () => {
+        const subject = document.getElementById('emailSubject').value.trim();
+        const body = document.getElementById('emailBody').value.trim();
 
-    if (subject === '' || body === '') {
-        alert('Please fill in the subject and message before sending.');
-        return;
-    }
-    // Mock email sending
-    console.log('Sending email...');
-    setTimeout(() => {
-        console.log('Email sent!');
-        showNotification('Message sent', 'Undo', 'View message');
-    }, 1000); // Simulate email sending delay
-});
+        if (subject === '' || body === '') {
+            alert('Please fill in the subject and message before sending.');
+            return;
+        }
+        // Mock email sending
+        console.log('Sending email...');
+        setTimeout(() => {
+            console.log('Email sent!');
+            showNotification('Message sent', 'Undo', 'View message');
+        }, 1000); // Simulate email sending delay
+    });
+}
 
 // Function to show notification
 function showNotification(mainText, undoText, viewText) {
@@ -628,19 +644,22 @@ document.addEventListener('DOMContentLoaded', () => {
 // Add draggable functionality to Contact Email Modal
 makeModalDraggable('ModalContact', 'modalHeaderContact');
 
-// Handle Send Button Click
-document.getElementById('sendEmailButton').addEventListener('click', () => {
-    const emailTo = document.getElementById('emailTo').value.trim();
-    const emailSubject = document.getElementById('emailSubject').value.trim();
-    const emailMessage = document.getElementById('emailMessage').value.trim();
+// Handle Send Button Click - with null check to prevent script crash
+const sendEmailBtn2 = document.getElementById('sendEmailButton');
+if (sendEmailBtn2) {
+    sendEmailBtn2.addEventListener('click', () => {
+        const emailTo = document.getElementById('emailTo').value.trim();
+        const emailSubject = document.getElementById('emailSubject').value.trim();
+        const emailMessage = document.getElementById('emailMessage').value.trim();
 
-    if (emailTo && emailMessage) {
-        alert(`Email sent to ${emailTo} with subject: "${emailSubject || '(No Subject)'}"`);
-        document.getElementById('ModalContact').style.display = 'none';
-    } else {
-        alert('Please enter a recipient and message before sending.');
-    }
-});
+        if (emailTo && emailMessage) {
+            alert(`Email sent to ${emailTo} with subject: "${emailSubject || '(No Subject)'}"`);
+            document.getElementById('ModalContact').style.display = 'none';
+        } else {
+            alert('Please enter a recipient and message before sending.');
+        }
+    });
+}
 
 function minimizeWindow(title, modalId) {
     const modal = document.getElementById(modalId);
@@ -658,67 +677,89 @@ function minimizeWindow(title, modalId) {
     document.getElementById('taskbar-windows').appendChild(taskbarWindow);
 }
 
-// Gmail minimize functionality
-document.getElementById('gmailMinimize').addEventListener('click', function() {
-    minimizeWindow('Gmail', 'ModalGmail');
-});
+// Gmail minimize functionality - with null check
+const gmailMinBtn = document.getElementById('gmailMinimize');
+if (gmailMinBtn) {
+    gmailMinBtn.addEventListener('click', function() {
+        minimizeWindow('Gmail', 'ModalGmail');
+    });
+}
 
-// Contact minimize functionality
-document.getElementById('contactMinimize').addEventListener('click', function() {
-    minimizeWindow('Contact', 'ModalContact');
-});
+// Contact minimize functionality - with null check
+const contactMinBtn = document.getElementById('contactMinimize');
+if (contactMinBtn) {
+    contactMinBtn.addEventListener('click', function() {
+        minimizeWindow('Contact', 'ModalContact');
+    });
+}
 
-document.getElementById('sendButton').addEventListener('click', () => {
-    const emailBody = document.getElementById('emailTextBody').value;
-    const subject = document.getElementById('subjectField').value;
+// Send button functionality - with null check
+const sendBtn = document.getElementById('sendButton');
+if (sendBtn) {
+    sendBtn.addEventListener('click', () => {
+        const emailBody = document.getElementById('emailTextBody')?.value || '';
+        const subject = document.getElementById('subjectField')?.value || '';
 
-    if (!emailBody.trim()) {
-        alert("Please write something in the email body.");
-        return;
-    }
+        if (!emailBody.trim()) {
+            alert("Please write something in the email body.");
+            return;
+        }
 
-    console.log("Email sent to:", "kent@kentheckel.com");
-    console.log("Subject:", subject);
-    console.log("Body:", emailBody);
+        console.log("Email sent to:", "kent@kentheckel.com");
+        console.log("Subject:", subject);
+        console.log("Body:", emailBody);
 
-    alert("Your message has been sent!");
-    // Optionally clear the form after sending
-    document.getElementById('emailTextBody').value = '';
-    document.getElementById('subjectField').value = '';
-});
+        alert("Your message has been sent!");
+        // Optionally clear the form after sending
+        const emailBodyEl = document.getElementById('emailTextBody');
+        const subjectEl = document.getElementById('subjectField');
+        if (emailBodyEl) emailBodyEl.value = '';
+        if (subjectEl) subjectEl.value = '';
+    });
+}
 
-// Add event listener to subject field
+// Add event listener to subject field - with null check
 document.addEventListener('DOMContentLoaded', () => {
     const subjectField = document.getElementById('subjectField');
     const headerText = document.querySelector('#modalHeaderContact span');
 
-    subjectField.addEventListener('input', function() {
-        headerText.textContent = this.value || 'New Message';
-    });
+    if (subjectField && headerText) {
+        subjectField.addEventListener('input', function() {
+            headerText.textContent = this.value || 'New Message';
+        });
+    }
 });
 
-document.getElementById('subjectField').addEventListener('input', function() {
-    const headerText = document.querySelector('#modalHeaderContact span');
-    headerText.textContent = this.value || 'New Message';
-});
+// Subject field input handler - with null check
+const subjectFieldEl = document.getElementById('subjectField');
+if (subjectFieldEl) {
+    subjectFieldEl.addEventListener('input', function() {
+        const headerText = document.querySelector('#modalHeaderContact span');
+        if (headerText) headerText.textContent = this.value || 'New Message';
+    });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('sendEmailButton').addEventListener('click', () => {
-        const subject = document.getElementById('emailSubject').value.trim();
-        const body = document.getElementById('emailBody').value.trim();
+    // Send Email Button - with null check to prevent script crash
+    const sendEmailBtn3 = document.getElementById('sendEmailButton');
+    if (sendEmailBtn3) {
+        sendEmailBtn3.addEventListener('click', () => {
+            const subject = document.getElementById('emailSubject').value.trim();
+            const body = document.getElementById('emailBody').value.trim();
 
-        if (subject === '' || body === '') {
-            alert('Please fill in the subject and message before sending.');
-            return;
-        }
+            if (subject === '' || body === '') {
+                alert('Please fill in the subject and message before sending.');
+                return;
+            }
 
-        // Mock email sending
-        console.log('Sending email...');
-        setTimeout(() => {
-            console.log('Email sent!');
-            showNotification('Message sent', 'Undo', 'View message');
-        }, 1000); // Simulate email sending delay
-    });
+            // Mock email sending
+            console.log('Sending email...');
+            setTimeout(() => {
+                console.log('Email sent!');
+                showNotification('Message sent', 'Undo', 'View message');
+            }, 1000); // Simulate email sending delay
+        });
+    }
 });
 
 // MARK: Videos Functionality
@@ -806,17 +847,25 @@ function switchAnalyticsTab(tabName) {
 // Example usage: call this function with the tab name, e.g., 'overview', 'content', 'audience', or 'trends'
 // switchAnalyticsTab('overview'); // To switch to Overview tab
 
-// MARK: Resume Modal Handlers
-document.getElementById('resumeIcon').addEventListener('click', function() {
-    const modal = document.getElementById('ModalResumeTxt');
-    modal.style.display = 'block';
-    console.log('Opened modal: ModalResumeTxt');
-});
+// MARK: Resume Modal Handlers - with null checks
+const resumeIcon = document.getElementById('resumeIcon');
+if (resumeIcon) {
+    resumeIcon.addEventListener('click', function() {
+        const modal = document.getElementById('ModalResumeTxt');
+        if (modal) {
+            modal.style.display = 'block';
+            console.log('Opened modal: ModalResumeTxt');
+        }
+    });
+}
 
-document.getElementById('resumeTxtClose').addEventListener('click', function() {
-    const modal = document.getElementById('ModalResumeTxt');
-    modal.style.display = 'none';
-});
+const resumeTxtCloseBtn = document.getElementById('resumeTxtClose');
+if (resumeTxtCloseBtn) {
+    resumeTxtCloseBtn.addEventListener('click', function() {
+        const modal = document.getElementById('ModalResumeTxt');
+        if (modal) modal.style.display = 'none';
+    });
+}
 
 document.getElementById('resumeTxtMinimize').addEventListener('click', function() {
     minimizeWindow('Resume.txt', 'ModalResumeTxt');
