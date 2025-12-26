@@ -1656,10 +1656,16 @@ body, html {
 
 /* Icon image in the modal - same as desktop icon */
 .colorsocial-icon {
-    width: 60px;
-    height: 60px;
+    width: 60px !important;
+    height: 60px !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
+    min-width: 60px;
+    min-height: 60px;
     border-radius: 10px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; /* Prevent icon from shrinking */
+    object-fit: contain;
 }
 
 /* Main title styling */
