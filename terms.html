@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+    ColorSocial Terms of Service Page
+    ==================================
+    This page displays the terms of service for the ColorSocial app ecosystem.
+    Styled to match kentheckel.com's retro Windows XP aesthetic while
+    remaining clean and readable for legal compliance.
+    
+    Required for Apple App Store compliance.
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <title>ColorSocial - Terms of Service</title>
+    
+    <style>
+        /* ============================================
+           TERMS OF SERVICE PAGE STYLES
+           Themed to match kentheckel.com aesthetic
+           while maintaining readability for legal docs
+           ============================================ */
+        
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Body styled like a Windows desktop background */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #008080; /* Classic Windows teal background */
+            background-image: linear-gradient(135deg, #008080 0%, #006666 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        /* Main container styled like a Windows application window */
+        .window-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+            border: 2px solid #0044c2;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Window title bar - classic Windows blue style */
+        .window-header {
+            background: linear-gradient(180deg, #0058e6 0%, #0044c2 50%, #003399 100%);
+            color: white;
+            padding: 8px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+        }
+        
+        /* Window control buttons (decorative) */
+        .window-controls {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .window-btn {
+            width: 20px;
+            height: 20px;
+            background-color: #c0c0c0;
+            border: 1px solid #808080;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+        }
+        
+        /* Menu bar like Windows Notepad */
+        .menu-bar {
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #cccccc;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        .menu-bar a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 20px;
+            padding: 3px 8px;
+        }
+        
+        .menu-bar a:hover {
+            background-color: #0044c2;
+            color: white;
+        }
+        
+        /* Main content area - white like a document */
+        .content {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            color: #333333;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        /* ColorSocial branding header */
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #FB7F25;
+        }
+        
+        /* Orange logo - using the actual SVG icon */
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+        
+        .brand-header h1 {
+            font-family: 'VT323', monospace;
+            font-size: 42px;
+            color: #FB7F25;
+        }
+        
+        .brand-header .subtitle {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        /* Last updated date */
+        .last-updated {
+            background-color: #fff3e0;
+            border-left: 4px solid #FB7F25;
+            padding: 10px 15px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Section headings */
+        h2 {
+            color: #FB7F25;
+            font-size: 22px;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        h3 {
+            color: #333;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+        
+        /* Paragraph styling */
+        p {
+            margin-bottom: 15px;
+            color: #444;
+        }
+        
+        /* List styling */
+        ul {
+            margin: 10px 0 20px 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            color: #444;
+        }
+        
+        /* Highlighted/important text */
+        .highlight {
+            background-color: #fff3e0;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        /* Warning/important notice box */
+        .warning-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffcc00;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning-box strong {
+            color: #e65100;
+        }
+        
+        /* Contact section styling */
+        .contact-section {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .contact-section a {
+            color: #FB7F25;
+            text-decoration: none;
+        }
+        
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer with navigation */
+        .page-footer {
+            background-color: #f0f0f0;
+            padding: 15px 20px;
+            border-top: 1px solid #cccccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        
+        .page-footer a {
+            color: #0044c2;
+            text-decoration: none;
+            padding: 5px 15px;
+            background-color: #e0e0e0;
+            border: 1px solid #999;
+            border-radius: 3px;
+        }
+        
+        .page-footer a:hover {
+            background-color: #d0d0d0;
+        }
+        
+        /* Multi-app ecosystem info box */
+        .ecosystem-box {
+            background-color: #e3f2fd;
+            border: 1px solid #90caf9;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .ecosystem-box .color-dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .ecosystem-box .dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 1px solid #333;
+        }
+        
+        /* Responsive design for mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .brand-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .brand-header h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main window container styled like a Windows application -->
+    <div class="window-container">
+        
+        <!-- Window title bar with classic Windows styling -->
+        <div class="window-header">
+            <span>📋 ColorSocial Terms of Service - Notepad</span>
+            <div class="window-controls">
+                <span class="window-btn">_</span>
+                <span class="window-btn">□</span>
+                <span class="window-btn">✕</span>
+            </div>
+        </div>
+        
+        <!-- Navigation menu bar -->
+        <div class="menu-bar">
+            <a href="index.html">🏠 Home</a>
+            <a href="privacy.html">📄 Privacy Policy</a>
+            <a href="terms.html">📋 Terms of Service</a>
+        </div>
+        
+        <!-- Main content area with terms of service -->
+        <div class="content">
+            
+            <!-- ColorSocial branding header with the orange square icon -->
+            <div class="brand-header">
+                <img src="images/icons/Icon_ColorSocial.svg" alt="ColorSocial Logo" class="logo-img">
+                <div>
+                    <h1>ColorSocial</h1>
+                    <p class="subtitle">Terms of Service</p>
+                </div>
+            </div>
+            
+            <!-- Last updated notice -->
+            <div class="last-updated">
+                <strong>Last Updated:</strong> December 26, 2024<br>
+                <strong>Effective Date:</strong> December 26, 2024
+            </div>
+            
+            <!-- Introduction -->
+            <p>
+                Welcome to ColorSocial! These Terms of Service ("Terms") govern your use of the 
+                ColorSocial mobile application ecosystem, operated by Kent Heckel ("we," "us," or "our"). 
+                By accessing or using ColorSocial, you agree to be bound by these Terms. 
+                If you do not agree to these Terms, please do not use our services.
+            </p>
+            
+            <!-- Section 1: Account Terms -->
+            <h2>1. Account Terms</h2>
+            
+            <h3>Eligibility</h3>
+            <ul>
+                <li>You must be <strong>13 years of age or older</strong> to create an account and use ColorSocial</li>
+                <li>By creating an account, you represent that you meet this age requirement</li>
+            </ul>
+            
+            <h3>Your Username</h3>
+            <ul>
+                <li>Your username is a valid <strong>6-digit hexadecimal color code</strong> (e.g., "FB7F25")</li>
+                <li>Each hex code can only be registered <strong>once per color app</strong></li>
+                <li>The same hex code may be used in different color apps (Orange, Blue, etc.) by different users</li>
+                <li>One person may own multiple hex codes across different accounts</li>
+            </ul>
+            
+            <h3>Account Security</h3>
+            <ul>
+                <li>You are responsible for maintaining the security of your password</li>
+                <li>You are responsible for all activities that occur under your account</li>
+                <li>You must notify us immediately of any unauthorized use of your account</li>
+            </ul>
+            
+            <!-- Section 2: User Conduct -->
+            <h2>2. User Conduct</h2>
+            <p>By using ColorSocial, you agree <strong>NOT</strong> to:</p>
+            <ul>
+                <li>Post illegal content or content that violates any applicable laws</li>
+                <li>Harass, bully, threaten, or intimidate other users</li>
+                <li>Post spam, misleading content, or engage in deceptive practices</li>
+                <li>Attempt to impersonate other users or public figures</li>
+                <li>Violate intellectual property rights of others</li>
+                <li>Attempt to circumvent security features or access unauthorized areas</li>
+                <li>Use the app for commercial advertising without prior written permission</li>
+                <li>Upload malware, viruses, or other harmful content</li>
+                <li>Collect user data without consent</li>
+                <li>Engage in any activity that disrupts or interferes with our services</li>
+            </ul>
+            
+            <div class="warning-box">
+                <strong>⚠️ Warning:</strong> Violation of these conduct rules may result in immediate 
+                suspension or permanent termination of your account without prior notice.
+            </div>
+            
+            <!-- Section 3: Content Ownership -->
+            <h2>3. Content Ownership</h2>
+            
+            <h3>Your Content</h3>
+            <ul>
+                <li>You <strong>retain ownership</strong> of all content you create and post on ColorSocial</li>
+                <li>By posting content, you grant ColorSocial a non-exclusive, worldwide, royalty-free license 
+                    to display, distribute, and reproduce your content within the platform</li>
+                <li>This license is solely for the purpose of operating and improving our services</li>
+            </ul>
+            
+            <h3>Your Responsibilities</h3>
+            <ul>
+                <li>You are responsible for ensuring you have the rights to any content you post</li>
+                <li>You represent that your content does not infringe on any third party's intellectual property rights</li>
+                <li>You are solely responsible for the content you share and its consequences</li>
+            </ul>
+            
+            <!-- Section 4: Content Moderation -->
+            <h2>4. Content Moderation</h2>
+            <ul>
+                <li>We reserve the right to <strong>remove any content</strong> that violates these Terms 
+                    or our community guidelines</li>
+                <li>We may <strong>suspend or terminate accounts</strong> for violations without prior notice</li>
+                <li>Users can <strong>report content</strong> they believe violates our Terms</li>
+                <li>Users can <strong>block or mute</strong> other users at their discretion</li>
+                <li>We are not obligated to monitor all content but may do so at our discretion</li>
+            </ul>
+            
+            <!-- Section 5: Service Availability -->
+            <h2>5. Service Availability</h2>
+            <ul>
+                <li>ColorSocial is provided <strong>"as is"</strong> and <strong>"as available"</strong></li>
+                <li>We do not guarantee uninterrupted or error-free service</li>
+                <li>We may modify, suspend, or discontinue any feature at any time</li>
+                <li>We may perform scheduled or unscheduled maintenance that affects availability</li>
+                <li>Features and functionality may change over time as we improve our services</li>
+            </ul>
+            
+            <!-- Section 6: Limitation of Liability -->
+            <h2>6. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by applicable law:</p>
+            <ul>
+                <li>ColorSocial and its developer shall not be liable for any indirect, incidental, 
+                    special, consequential, or punitive damages</li>
+                <li>We are <strong>not responsible for user-generated content</strong> or the actions of other users</li>
+                <li>We are <strong>not responsible for interactions between users</strong>, whether online or offline</li>
+                <li>Our total liability shall not exceed the amount you paid us (if any) in the 12 months 
+                    preceding the claim</li>
+                <li>Some jurisdictions do not allow limitation of liability, so these limitations may not apply to you</li>
+            </ul>
+            
+            <!-- Section 7: Account Termination -->
+            <h2>7. Account Termination</h2>
+            
+            <h3>By You</h3>
+            <ul>
+                <li>You may <strong>delete your account at any time</strong> through the app settings</li>
+                <li>Account deletion is <strong>permanent and irreversible</strong></li>
+                <li>All your data will be permanently removed upon account deletion</li>
+            </ul>
+            
+            <h3>By Us</h3>
+            <ul>
+                <li>We may terminate or suspend your account for violations of these Terms</li>
+                <li>We may terminate accounts that have been inactive for an extended period</li>
+                <li>We may terminate the service entirely with reasonable notice</li>
+            </ul>
+            
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> When your account is deleted (by you or us), all your data 
+                is permanently erased including posts, comments, messages, and profile information. 
+                This action cannot be undone.
+            </div>
+            
+            <!-- Section 8: Changes to Terms -->
+            <h2>8. Changes to Terms</h2>
+            <ul>
+                <li>We may update these Terms from time to time</li>
+                <li>We will notify users of significant changes through the app or by other means</li>
+                <li>The "Last Updated" date at the top of this page indicates when changes were made</li>
+                <li><strong>Continued use of ColorSocial after changes constitutes acceptance</strong> of the updated Terms</li>
+                <li>If you do not agree to updated Terms, you should stop using the service</li>
+            </ul>
+            
+            <!-- Section 9: Multi-App Ecosystem -->
+            <h2>9. Multi-App Ecosystem</h2>
+            <div class="ecosystem-box">
+                <p>
+                    <strong>ColorSocial consists of multiple color-themed apps:</strong> 
+                    Orange, Red, Yellow, Green, Blue, Purple, Pink, White, and Black.
+                </p>
+                <div class="color-dots">
+                    <span class="dot" style="background-color: #FB7F25;"></span>
+                    <span class="dot" style="background-color: #FF4444;"></span>
+                    <span class="dot" style="background-color: #FFD700;"></span>
+                    <span class="dot" style="background-color: #44BB44;"></span>
+                    <span class="dot" style="background-color: #4488FF;"></span>
+                    <span class="dot" style="background-color: #9944FF;"></span>
+                    <span class="dot" style="background-color: #FF66B2;"></span>
+                    <span class="dot" style="background-color: #FFFFFF;"></span>
+                    <span class="dot" style="background-color: #222222;"></span>
+                </div>
+                <ul style="margin-top: 15px;">
+                    <li>Each app is a <strong>separate, isolated community</strong></li>
+                    <li>Content posted in one app <strong>does NOT appear</strong> in other color apps</li>
+                    <li><strong>These Terms apply to all ColorSocial apps</strong> in the ecosystem</li>
+                    <li>Your account in one color app is separate from accounts in other color apps</li>
+                </ul>
+            </div>
+            
+            <!-- Section 10: Governing Law -->
+            <h2>10. Governing Law</h2>
+            <p>
+                These Terms shall be governed by and construed in accordance with the laws of the 
+                United States, without regard to its conflict of law provisions. Any disputes arising 
+                under these Terms shall be resolved in the appropriate courts.
+            </p>
+            
+            <!-- Section 11: Contact Information -->
+            <h2>11. Contact Us</h2>
+            <div class="contact-section">
+                <p>If you have any questions about these Terms of Service, please contact us:</p>
+                <ul>
+                    <li><strong>Developer:</strong> Kent Heckel</li>
+                    <li><strong>Website:</strong> <a href="https://kentheckel.com">kentheckel.com</a></li>
+                    <li><strong>Email:</strong> <a href="mailto:kent@kentheckel.com">kent@kentheckel.com</a></li>
+                </ul>
+            </div>
+            
+            <!-- Acceptance statement -->
+            <p style="margin-top: 30px; font-style: italic; color: #666;">
+                By using ColorSocial, you acknowledge that you have read, understood, and agree to be 
+                bound by these Terms of Service. Thank you for being part of the ColorSocial community!
+            </p>
+            
+        </div>
+        
+        <!-- Page footer with navigation -->
+        <div class="page-footer">
+            <a href="privacy.html">← Privacy Policy</a>
+            <span>© 2024 ColorSocial by Kent Heckel</span>
+            <a href="index.html">Back to Home →</a>
+        </div>
+        
+    </div>
+</body>
+
+</html>

@@ -12,16 +12,18 @@ body, html {
     font-size: 40px; /* Increased base font size */
 }
 
-/* Desktop Icons Section */
+/* Desktop Icons Section - Single Column Layout */
+/* Main icons stack vertically, with a couple positioned to the side */
 #desktop-icons {
     display: flex;
     flex-direction: column;
-    gap: 40px; /* Increase space between icons to avoid overlap */
+    gap: 25px;
     padding: 10px;
-    position: fixed; /* Position the icons on the left */
-    top: 50px; /* Distance from the top */
-    left: 20px; /* Distance from the left */
-    align-items: flex-start; /* Align icons to the left */
+    position: fixed;
+    top: 50px;
+    left: 20px;
+    /* Allow height to grow but leave room for taskbar */
+    max-height: calc(100vh - 150px);
 }
 
 /* Icon Button Styles */
@@ -34,9 +36,9 @@ body, html {
     flex-direction: column;
     align-items: center;
     transition: transform 0.2s ease-in-out;
-    width: 100px; /* Set consistent width */
+    width: 100px;
     font-family: 'VT323', monospace;
-    font-size: 24px; /* Text size for About and Social labels */
+    font-size: 24px; /* Text size for icon labels */
 }
 
 .icon-btn img, .icon-btn svg {
@@ -47,6 +49,28 @@ body, html {
 
 .icon-btn:hover {
     transform: scale(1.1);
+}
+
+/* Dragging state for icons */
+.icon-btn.dragging {
+    opacity: 0.8;
+    cursor: grabbing !important;
+    z-index: 1000;
+    transform: scale(1.05);
+}
+
+/* When an icon has been dragged, it gets fixed positioning */
+.icon-btn[style*="position: fixed"] {
+    /* Remove from normal flow once dragged */
+    margin: 0 !important;
+}
+
+/* Second column - default position for Color Social */
+/* Will be overridden if user drags it somewhere else */
+.icon-btn.second-column {
+    position: fixed;
+    left: 140px;
+    top: 50px;
 }
 
 
@@ -1583,4 +1607,176 @@ body, html {
     .mobile-warning-modal {
         display: block;
     }
+}
+
+/* ============================================
+   COLORSOCIAL MODAL STYLES
+   Styled as a notepad text file to match the
+   website's retro Windows XP aesthetic
+   ============================================ */
+
+/* Main modal container for ColorSocial */
+#ModalColorSocial {
+    position: fixed;
+    left: 25%;
+    top: 10%;
+    z-index: 3;
+    width: 500px;
+    height: 600px;
+    background-color: #ffffff;
+    border: 2px solid #0044c2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    overflow: hidden;
+    font-family: 'Tahoma', sans-serif;
+    cursor: grab;
+}
+
+/* Content area inside ColorSocial modal */
+.colorsocial-content {
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100% - 80px); /* Account for header and menu bar */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* Header section with logo and title */
+.colorsocial-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px dashed #cccccc;
+}
+
+/* Icon image in the modal - same as desktop icon */
+.colorsocial-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Main title styling */
+.colorsocial-title {
+    font-family: 'VT323', monospace;
+    font-size: 32px;
+    color: #FB7F25;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Description text area */
+.colorsocial-description {
+    margin-bottom: 20px;
+}
+
+.colorsocial-description p {
+    margin: 10px 0;
+}
+
+/* Tagline styling - emphasized text */
+.colorsocial-tagline {
+    font-weight: bold;
+    font-size: 15px;
+    color: #FB7F25;
+    font-style: italic;
+}
+
+/* Call to action text */
+.colorsocial-cta {
+    font-weight: bold;
+    color: #0066cc;
+    margin-top: 15px !important;
+}
+
+/* Color list showing all 9 color communities */
+.color-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.color-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    padding: 3px 0;
+}
+
+/* Individual color dots representing each community */
+.color-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    display: inline-block;
+    border: 1px solid #333;
+}
+
+/* Color dot variations for each community */
+.color-dot.orange { background-color: #FB7F25; }
+.color-dot.red { background-color: #FF4444; }
+.color-dot.yellow { background-color: #FFD700; }
+.color-dot.green { background-color: #44BB44; }
+.color-dot.blue { background-color: #4488FF; }
+.color-dot.purple { background-color: #9944FF; }
+.color-dot.pink { background-color: #FF66B2; }
+.color-dot.white { background-color: #FFFFFF; }
+.color-dot.black { background-color: #222222; }
+
+/* Legal links section */
+.colorsocial-links {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    border: 1px solid #dddddd;
+}
+
+.colorsocial-links p {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Individual legal link styling */
+.legal-link {
+    display: inline-block;
+    margin-right: 20px;
+    color: #0066cc;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.legal-link:hover {
+    background-color: #e6f0ff;
+    border-color: #0066cc;
+    text-decoration: underline;
+}
+
+/* Footer section with developer credits */
+.colorsocial-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px dashed #cccccc;
+    text-align: center;
+    font-size: 11px;
+    color: #666666;
+}
+
+.colorsocial-footer p {
+    margin: 5px 0;
 }

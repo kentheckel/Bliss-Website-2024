@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    ColorSocial Icon - Simple Orange Rounded Square
+    Color: #FB7F25 (ColorSocial Orange)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <!-- Simple orange rounded square - perfectly square -->
+    <rect fill="#FB7F25" x="10" y="10" width="80" height="80" rx="12" ry="12"/>
+</svg>

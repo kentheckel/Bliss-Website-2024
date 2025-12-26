@@ -57,6 +57,13 @@
             <span>About</span>
         </button>
 
+        <!-- ColorSocial Icon on Desktop - Positioned in second column next to About -->
+        <!-- This icon opens a modal with info about the ColorSocial app ecosystem -->
+        <button id="colorSocialBtn" class="icon-btn second-column">
+            <img src="images/icons/Icon_ColorSocial.svg" alt="ColorSocial App Icon">
+            <span>Color Social</span>
+        </button>
+
         <!-- Social Icon -->
         <button id="socialBtn" class="icon-btn">
             <img src="images/icons/Icon_Social.svg" alt="Social Icon">
@@ -650,8 +657,78 @@
 
         
 
+        <!-- MARK: ColorSocial Modal -->
+        <!-- This modal displays information about the ColorSocial app ecosystem -->
+        <!-- Styled as a notepad text file to match the website's retro Windows theme -->
+        <div id="ModalColorSocial" class="modal colorsocial-modal">
+            <!-- Window header with title and control buttons -->
+            <div id="modalHeaderColorSocial" class="window-controls">
+                <span>ColorSocial.txt</span>
+                <div class="window-btn-container">
+                    <button id="colorSocialMinimize" class="window-btn">-</button>
+                    <button id="colorSocialClose" class="window-btn">X</button>
+                </div>
+            </div>
+            
+            <!-- Notepad-style file menu bar -->
+            <div class="file-menu-bar">
+                <div class="menu-tab">File</div>
+                <div class="menu-tab">Edit</div>
+                <div class="menu-tab">View</div>
+            </div>
+            
+            <!-- Main content area styled like a text file -->
+            <div class="txt-content colorsocial-content">
+                <!-- App logo/branding area - using the same icon as desktop -->
+                <div class="colorsocial-header">
+                    <img src="images/icons/Icon_ColorSocial.svg" alt="ColorSocial Icon" class="colorsocial-icon">
+                    <h1 class="colorsocial-title">Color Social</h1>
+                </div>
+                
+                <!-- App description section - casual and personal -->
+                <div class="colorsocial-description">
+                    <p class="colorsocial-tagline">Your username is literally a color.</p>
+                    
+                    <p>So I built this app called Color Social. The idea is pretty simple - 
+                    instead of picking a username like everyone else, you just... are a color. 
+                    Like your username is a hex code. Mine is #FB7F25 (that's the orange you see).</p>
+                    
+                    <p>I'm building 9 different apps, each one is its own color community:</p>
+                    
+                    <ul class="color-list">
+                        <li><span class="color-dot orange"></span> Orange (out now!)</li>
+                        <li><span class="color-dot red"></span> Red</li>
+                        <li><span class="color-dot yellow"></span> Yellow</li>
+                        <li><span class="color-dot green"></span> Green</li>
+                        <li><span class="color-dot blue"></span> Blue</li>
+                        <li><span class="color-dot purple"></span> Purple</li>
+                        <li><span class="color-dot pink"></span> Pink</li>
+                        <li><span class="color-dot white"></span> White</li>
+                        <li><span class="color-dot black"></span> Black</li>
+                    </ul>
+                    
+                    <p>Each app is totally separate - what you post in Orange stays in Orange. 
+                    It's kind of like having 9 different social media worlds based on color.</p>
+                    
+                    <p>ColorSocial Orange is live on the iOS App Store if you wanna check it out!</p>
+                </div>
+                
+                <!-- Legal links section -->
+                <div class="colorsocial-links">
+                    <p>The boring legal stuff:</p>
+                    <a href="privacy.html" target="_blank" class="legal-link">📄 Privacy Policy</a>
+                    <a href="terms.html" target="_blank" class="legal-link">📋 Terms of Service</a>
+                </div>
+                
+                <!-- Footer with developer info -->
+                <div class="colorsocial-footer">
+                    <p>Made by Kent Heckel</p>
+                    <p>© 2024</p>
+                </div>
+            </div>
+        </div>
 
-            <!-- Add an audio element for the error sound -->
+        <!-- Add an audio element for the error sound -->
             <audio id="errorSound">
                 <source src="audio/error-sound.mp3" type="audio/mpeg">
             </audio>

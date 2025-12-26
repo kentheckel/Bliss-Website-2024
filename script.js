@@ -9,6 +9,167 @@ function addClickListener(id, callback) {
         element.addEventListener('click', callback);
     }
 }
+
+// MARK: Draggable Desktop Icons
+// Allows users to drag icons anywhere on the desktop
+// Positions are saved to localStorage so they persist across page reloads
+
+/**
+ * Initialize draggable functionality for all desktop icons
+ * Called when the DOM is fully loaded
+ */
+function initDraggableIcons() {
+    // Get all icon buttons in the desktop icons container
+    const icons = document.querySelectorAll('#desktop-icons .icon-btn');
+    
+    icons.forEach(icon => {
+        // Load saved position from localStorage if it exists
+        loadIconPosition(icon);
+        
+        // Add drag functionality to each icon
+        makeIconDraggable(icon);
+    });
+    
+    console.log('Draggable icons initialized');
+}
+
+/**
+ * Makes a single icon draggable
+ * @param {HTMLElement} icon - The icon element to make draggable
+ */
+function makeIconDraggable(icon) {
+    let isDragging = false;
+    let hasMoved = false; // Track if the icon actually moved (to distinguish from clicks)
+    let startX, startY;
+    let iconStartX, iconStartY;
+    
+    // Mouse down - start potential drag
+    icon.addEventListener('mousedown', (e) => {
+        // Only drag with left mouse button
+        if (e.button !== 0) return;
+        
+        isDragging = true;
+        hasMoved = false;
+        
+        // Get the current position of the icon
+        const rect = icon.getBoundingClientRect();
+        iconStartX = rect.left;
+        iconStartY = rect.top;
+        
+        // Get the mouse start position
+        startX = e.clientX;
+        startY = e.clientY;
+        
+        // Prevent text selection while dragging
+        e.preventDefault();
+    });
+    
+    // Mouse move - update position while dragging
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        // Calculate how far the mouse has moved
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        
+        // Only start visual drag if moved more than 5px (prevents accidental drags)
+        if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+            hasMoved = true;
+            icon.classList.add('dragging');
+            
+            // Calculate new position
+            let newX = iconStartX + deltaX;
+            let newY = iconStartY + deltaY;
+            
+            // Keep icon within screen bounds
+            // Don't let it go off the left or top
+            newX = Math.max(10, newX);
+            newY = Math.max(10, newY);
+            
+            // Don't let it go into the taskbar (bottom 80px) or off right edge
+            const maxX = window.innerWidth - icon.offsetWidth - 10;
+            const maxY = window.innerHeight - 80 - icon.offsetHeight;
+            newX = Math.min(maxX, newX);
+            newY = Math.min(maxY, newY);
+            
+            // Apply the new position
+            icon.style.position = 'fixed';
+            icon.style.left = newX + 'px';
+            icon.style.top = newY + 'px';
+            icon.style.margin = '0';
+        }
+    });
+    
+    // Mouse up - stop dragging and save position
+    document.addEventListener('mouseup', (e) => {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        icon.classList.remove('dragging');
+        
+        // Only save position if the icon actually moved
+        if (hasMoved) {
+            saveIconPosition(icon);
+        }
+        hasMoved = false;
+    });
+}
+
+/**
+ * Saves an icon's position to localStorage
+ * @param {HTMLElement} icon - The icon element to save
+ */
+function saveIconPosition(icon) {
+    const iconId = icon.id || icon.querySelector('span')?.textContent || 'unknown';
+    const position = {
+        left: icon.style.left,
+        top: icon.style.top
+    };
+    
+    // Get existing positions or create new object
+    let positions = JSON.parse(localStorage.getItem('desktopIconPositions') || '{}');
+    positions[iconId] = position;
+    
+    // Save back to localStorage
+    localStorage.setItem('desktopIconPositions', JSON.stringify(positions));
+    console.log(`Saved position for ${iconId}:`, position);
+}
+
+/**
+ * Loads an icon's saved position from localStorage
+ * @param {HTMLElement} icon - The icon element to load position for
+ */
+function loadIconPosition(icon) {
+    const iconId = icon.id || icon.querySelector('span')?.textContent || 'unknown';
+    const positions = JSON.parse(localStorage.getItem('desktopIconPositions') || '{}');
+    
+    if (positions[iconId]) {
+        // Apply saved position
+        icon.style.position = 'fixed';
+        icon.style.left = positions[iconId].left;
+        icon.style.top = positions[iconId].top;
+        icon.style.margin = '0';
+        console.log(`Loaded position for ${iconId}:`, positions[iconId]);
+    }
+}
+
+/**
+ * Resets all icons to their default positions
+ * Call this function from console: resetIconPositions()
+ */
+function resetIconPositions() {
+    localStorage.removeItem('desktopIconPositions');
+    location.reload(); // Reload to apply default positions
+}
+
+// Initialize draggable icons when DOM is ready
+// Check if DOM is already loaded (script might run after DOMContentLoaded)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDraggableIcons);
+} else {
+    initDraggableIcons();
+}
+
 // MARK: Open Functionality
 // Modal handling for opening modals
 document.querySelectorAll('.icon-btn').forEach(button => {
@@ -34,6 +195,7 @@ document.querySelectorAll('.icon-btn').forEach(button => {
 });
 // MARK: Close Functionality
 // Handling Close buttons for all modals
+// Added 'colorSocialClose' for the new ColorSocial app modal
 [
     'AnalyticsCloseCamNewton', 'TextBoxCloseCamNewton',
     'TextBoxClose4thand1', 'AnalyticsClose4thand1',
@@ -42,7 +204,8 @@ document.querySelectorAll('.icon-btn').forEach(button => {
     'TextBoxCloseKentHeckel', 'AnalyticsCloseKentHeckel',
     'errorClose', 'socialClose', 'aimChatClose', 'gmailClose',
     'contactClose', 'VideosClose', 'trashClose', 'passwordsClose',
-    'passwordsTxtClose', 'resumeTxtClose', 'aboutClose', 'loginClose'
+    'passwordsTxtClose', 'resumeTxtClose', 'aboutClose', 'loginClose',
+    'colorSocialClose' // ColorSocial app modal close button
 ].forEach(id => {
     addClickListener(id, (event) => {
         event.stopPropagation();
@@ -57,6 +220,7 @@ document.querySelectorAll('.icon-btn').forEach(button => {
 
 // MARK: Minimize Functionality
 // Handling Minimize buttons for all modals
+// Added 'colorSocialMinimize' for the new ColorSocial app modal
 [
     'AnalyticsMinimizeCamNewton', 'TextBoxMinimizeCamNewton',
     'TextBoxMinimize4thand1', 'AnalyticsMinimize4thand1',
@@ -65,7 +229,8 @@ document.querySelectorAll('.icon-btn').forEach(button => {
     'TextBoxMinimizeKentHeckel', 'AnalyticsMinimizeKentHeckel',
     'socialMinimize', 'aimChatMinimize', 'gmailMinimize',
     'contactMinimize', 'VideosMinimize', 'trashMinimize',
-    'passwordsMinimize', 'passwordsTxtMinimize', 'resumeTxtMinimize', 'aboutMinimize'
+    'passwordsMinimize', 'passwordsTxtMinimize', 'resumeTxtMinimize', 'aboutMinimize',
+    'colorSocialMinimize' // ColorSocial app modal minimize button
 ].forEach(id => {
     addClickListener(id, (event) => {
         event.stopPropagation();
@@ -691,3 +856,4 @@ document.getElementById('mobileWarningClose').onclick = function() {
 document.getElementById('mobileWarningOkButton').onclick = function() {
     document.getElementById('mobileWarningModal').style.display = 'none';
 }
+
