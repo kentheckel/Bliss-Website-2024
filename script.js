@@ -211,7 +211,8 @@ document.querySelectorAll('.icon-btn').forEach(button => {
 });
 // MARK: Close Functionality
 // Handling Close buttons for all modals
-// Added 'colorSocialClose' for the new ColorSocial app modal
+// Added 'colorSocialClose' for the ColorSocial app modal
+// Added 'channelTrackClose' for the ChannelTrack app modal
 [
     'AnalyticsCloseCamNewton', 'TextBoxCloseCamNewton',
     'TextBoxClose4thand1', 'AnalyticsClose4thand1',
@@ -221,7 +222,8 @@ document.querySelectorAll('.icon-btn').forEach(button => {
     'errorClose', 'socialClose', 'aimChatClose', 'gmailClose',
     'contactClose', 'VideosClose', 'trashClose', 'passwordsClose',
     'passwordsTxtClose', 'resumeTxtClose', 'aboutClose', 'loginClose',
-    'colorSocialClose' // ColorSocial app modal close button
+    'colorSocialClose', // ColorSocial app modal close button
+    'channelTrackClose' // ChannelTrack app modal close button
 ].forEach(id => {
     addClickListener(id, (event) => {
         event.stopPropagation();
@@ -236,7 +238,8 @@ document.querySelectorAll('.icon-btn').forEach(button => {
 
 // MARK: Minimize Functionality
 // Handling Minimize buttons for all modals
-// Added 'colorSocialMinimize' for the new ColorSocial app modal
+// Added 'colorSocialMinimize' for the ColorSocial app modal
+// Added 'channelTrackMinimize' for the ChannelTrack app modal
 [
     'AnalyticsMinimizeCamNewton', 'TextBoxMinimizeCamNewton',
     'TextBoxMinimize4thand1', 'AnalyticsMinimize4thand1',
@@ -246,7 +249,8 @@ document.querySelectorAll('.icon-btn').forEach(button => {
     'socialMinimize', 'aimChatMinimize', 'gmailMinimize',
     'contactMinimize', 'VideosMinimize', 'trashMinimize',
     'passwordsMinimize', 'passwordsTxtMinimize', 'resumeTxtMinimize', 'aboutMinimize',
-    'colorSocialMinimize' // ColorSocial app modal minimize button
+    'colorSocialMinimize', // ColorSocial app modal minimize button
+    'channelTrackMinimize' // ChannelTrack app modal minimize button
 ].forEach(id => {
     addClickListener(id, (event) => {
         event.stopPropagation();
@@ -902,22 +906,28 @@ function downloadResume() {
     document.body.removeChild(link);
 }
 
-// Add this to your existing window.onload or document.ready function
+// Function to check if the device is mobile based on screen width
+// Only displays the mobile warning modal if viewport width is 768px or less
 function checkIfMobile() {
     if (window.innerWidth <= 768) {
         document.getElementById('mobileWarningModal').style.display = 'block';
     }
 }
 
-// Show modal when page loads
+// Show modal only on mobile when page loads
+// This ensures desktop users don't see the mobile warning
 window.onload = function() {
-    document.getElementById('mobileWarningModal').style.display = 'block';
+    checkIfMobile(); // Only show if actually on mobile
 }
-// Close modal when X or OK is clicked
+
+// Close modal when X button is clicked
+// Hides the mobile warning modal
 document.getElementById('mobileWarningClose').onclick = function() {
     document.getElementById('mobileWarningModal').style.display = 'none';
 }
 
+// Close modal when OK button is clicked
+// Hides the mobile warning modal
 document.getElementById('mobileWarningOkButton').onclick = function() {
     document.getElementById('mobileWarningModal').style.display = 'none';
 }

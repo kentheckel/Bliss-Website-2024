@@ -1516,97 +1516,116 @@ body, html {
     font-weight: bold;
 }
 
-.mobile-warning-modal {
-    display: none; /* Hidden by default */
+/* ============================================
+   MOBILE WARNING MODAL STYLES
+   Styled to match Windows XP error dialogs
+   Only displays on mobile devices (<=768px)
+   ============================================ */
+
+/* Main mobile warning modal container */
+/* Centered on screen with fixed dimensions */
+#mobileWarningModal {
     position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-}
-
-.mobile-warning-content {
-    background-color: #fefefe;
-    margin: 20% auto;
-    padding: 20px;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.mobile-warning-content h2 {
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.mobile-warning-content p {
-    margin-bottom: 20px;
-    color: #666;
-}
-
-#mobileWarningClose {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#mobileWarningClose:hover {
-    background-color: #0056b3;
-}
-
-.mobile-warning-modal {
-    display: block; /* Changed from 'none' to 'block' to show always */
-    position: fixed;
-    z-index: 9999;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: #181818;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
+    z-index: 9999;
+    width: 320px; /* Compact size for mobile */
+    max-width: 90vw; /* Don't exceed 90% of viewport width */
+    height: auto; /* Auto height to fit content */
+    background-color: #e6e6e6; /* Classic Windows error background */
+    border: 2px solid #000080; /* Dark blue border like Windows errors */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: none; /* Hidden by default, shown by JavaScript */
+    overflow: hidden;
+    font-family: 'Tahoma', sans-serif;
 }
 
-.mobile-warning-content {
+/* Modal header for mobile warning */
+/* Matches the style of other error modals */
+#modalHeaderMobileWarning {
+    background-color: #0044c2; /* Windows blue header */
     color: white;
-    padding-bottom: 20px;
-}
-
-.mobile-warning-content .window-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #181818;
-    padding: 10px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* X button in the header */
+/* Properly styled to sit inside the blue header box */
+#mobileWarningClose {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 22px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+}
+
+#mobileWarningClose:hover {
+    background-color: #ff0000; /* Red background on hover */
+}
+
+/* Error layout specific to mobile warning modal */
+/* Ensures proper spacing and prevents content from being cut off */
+#mobileWarningModal .error-layout {
+    padding: 15px 20px 20px 20px; /* Extra bottom padding */
+    min-height: 180px; /* Minimum height to show all content */
+    height: auto; /* Auto height instead of calculated */
+}
+
+/* Error message in mobile warning modal */
+/* Adjust text size for better mobile readability */
+#mobileWarningModal .error-message {
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 0 5px;
+    margin: 10px 0 15px 0; /* More space below message */
+}
+
+/* Error icon in mobile warning modal */
+#mobileWarningModal .error-icon img {
+    width: 36px;
+    height: 36px;
+}
+
+/* OK button styling */
+/* Matches the error modal OK button */
+#mobileWarningOkButton {
+    padding: 6px 20px;
+    background-color: #e6e6e6;
+    border: 1px solid #000000;
+    color: black;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Tahoma', sans-serif;
+    min-width: 80px; /* Ensure button has minimum width */
+}
+
+#mobileWarningOkButton:hover {
+    background-color: #d0d0d0;
+}
+
+/* Legacy mobile warning classes (kept for compatibility) */
+.mobile-warning-modal {
+    display: none;
+}
+
+.mobile-warning-content {
+    display: none;
 }
 
 .warning-text {
-    padding: 20px;
-    text-align: center;
-}
-
-.warning-text h2 {
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-.warning-text p {
-    color: #ccc;
-    line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-    .mobile-warning-modal {
-        display: block;
-    }
+    display: none;
 }
 
 /* ============================================
@@ -1785,4 +1804,241 @@ body, html {
 
 .colorsocial-footer p {
     margin: 5px 0;
+}
+
+/* ============================================
+   CHANNELTRACK MODAL STYLES
+   Styled with a Notion-inspired theme featuring
+   clean, modern design with beige/cream colors
+   ============================================ */
+
+/* Main modal container for ChannelTrack */
+/* Using Notion's signature warm, neutral color palette */
+#ModalChannelTrack {
+    position: fixed;
+    left: 25%;
+    top: 10%;
+    z-index: 3;
+    width: 600px;
+    height: 700px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    display: none;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    cursor: grab;
+}
+
+/* Window header for ChannelTrack - Notion-themed */
+/* Using a subtle beige background like Notion's UI */
+#modalHeaderChannelTrack {
+    background-color: #FAFAF9;
+    color: #37352F;
+    border-bottom: 1px solid #E5E5E5;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Header content area - contains icon and title */
+.channeltrack-header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Small icon in the header bar */
+.channeltrack-header-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+/* Notion-style window control buttons */
+/* Using subtle hover states like Notion */
+.channeltrack-btn {
+    background: transparent;
+    border: none;
+    color: #6B6B6B;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.15s ease;
+}
+
+.channeltrack-btn:hover {
+    background-color: #F1F1EF;
+    color: #37352F;
+}
+
+/* Main content area inside ChannelTrack modal */
+/* Styled like a Notion page with clean typography */
+.channeltrack-content {
+    padding: 32px 40px;
+    overflow-y: auto;
+    height: calc(100% - 57px); /* Account for header height */
+    background-color: #FFFFFF;
+    color: #37352F;
+    line-height: 1.6;
+}
+
+/* Hero section with large icon and title */
+/* Centered layout similar to Notion's page headers */
+.channeltrack-hero {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+/* Large icon in the hero section */
+.channeltrack-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Main title styling - Notion's large heading style */
+.channeltrack-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #37352F;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+}
+
+/* Domain text below the title */
+/* Styled like a Notion link/breadcrumb */
+.channeltrack-domain {
+    font-size: 14px;
+    color: #2383E2;
+    margin: 0 0 12px 0;
+    font-weight: 500;
+    font-family: 'Courier New', monospace;
+}
+
+/* Subtitle below the domain */
+/* Using Notion's muted text color */
+.channeltrack-subtitle {
+    font-size: 16px;
+    color: #787774;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Personal story section */
+/* Styled like a Notion quote or callout with italics */
+.channeltrack-story {
+    background-color: #F7F6F3;
+    border-left: 3px solid #2383E2;
+    padding: 16px 20px;
+    border-radius: 4px;
+    margin: 0;
+}
+
+.channeltrack-story .channeltrack-text {
+    font-style: italic;
+    font-size: 15px;
+    color: #37352F;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Section container - adds spacing between content blocks */
+.channeltrack-section {
+    margin-bottom: 24px;
+}
+
+/* Section heading - Notion's heading 2 style */
+.channeltrack-heading {
+    font-size: 24px;
+    font-weight: 600;
+    color: #37352F;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+/* Body text - Notion's default text style */
+.channeltrack-text {
+    font-size: 16px;
+    color: #37352F;
+    margin: 0 0 12px 0;
+    line-height: 1.6;
+}
+
+/* Bulleted list - Notion-style with custom bullets */
+.channeltrack-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.channeltrack-list li {
+    font-size: 16px;
+    color: #37352F;
+    margin-bottom: 8px;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.6;
+}
+
+/* Custom bullet points - using a subtle dot like Notion */
+.channeltrack-list li::before {
+    content: '•';
+    position: absolute;
+    left: 8px;
+    color: #787774;
+    font-weight: bold;
+}
+
+/* Callout box - Notion's colored background block */
+/* Using a subtle blue background for the pricing info */
+.channeltrack-callout {
+    background-color: #F7F6F3;
+    border-left: 3px solid #4299E1;
+    padding: 16px 20px;
+    border-radius: 4px;
+    margin: 12px 0;
+}
+
+.channeltrack-callout .channeltrack-text {
+    margin: 0;
+    font-size: 15px;
+}
+
+/* Link styling - Notion's blue link color */
+.channeltrack-link {
+    color: #2383E2;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom-color 0.2s ease;
+}
+
+.channeltrack-link:hover {
+    border-bottom-color: #2383E2;
+}
+
+/* Footer section at bottom of modal */
+.channeltrack-footer {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid #E5E5E5;
+    text-align: center;
+    font-size: 14px;
+    color: #787774;
+}
+
+/* Strong emphasis in text */
+.channeltrack-text strong {
+    font-weight: 600;
+    color: #37352F;
 }

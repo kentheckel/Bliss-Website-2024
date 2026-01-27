@@ -64,6 +64,13 @@
             <span>Color Social</span>
         </button>
 
+        <!-- ChannelTrack Icon on Desktop - Positioned in second column below Color Social -->
+        <!-- This icon opens a modal with info about the ChannelTrack YouTube tracking tool -->
+        <button id="channelTrackBtn" class="icon-btn second-column" style="top: 160px;">
+            <img src="images/icons/Icon_ChannelTrack.svg" alt="ChannelTrack Icon">
+            <span>Channel<br>Track</span>
+        </button>
+
         <!-- Social Icon -->
         <button id="socialBtn" class="icon-btn">
             <img src="images/icons/Icon_Social.svg" alt="Social Icon">
@@ -724,6 +731,78 @@
                 <div class="colorsocial-footer">
                     <p>Made by Kent Heckel</p>
                     <p>© 2024</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARK: ChannelTrack Modal -->
+        <!-- This modal displays information about the ChannelTrack YouTube tracking tool -->
+        <!-- Styled with a Notion-inspired theme featuring clean, modern design -->
+        <div id="ModalChannelTrack" class="modal channeltrack-modal">
+            <!-- Window header with title and control buttons (Notion-themed) -->
+            <div id="modalHeaderChannelTrack" class="window-controls channeltrack-header">
+                <div class="channeltrack-header-content">
+                    <img src="images/icons/Icon_ChannelTrack.svg" alt="ChannelTrack Icon" class="channeltrack-header-icon">
+                    <span>channeltrack.xyz</span>
+                </div>
+                <div class="window-btn-container">
+                    <button id="channelTrackMinimize" class="window-btn channeltrack-btn">-</button>
+                    <button id="channelTrackClose" class="window-btn channeltrack-btn">X</button>
+                </div>
+            </div>
+            
+            <!-- Main content area styled like a Notion page -->
+            <div class="channeltrack-content">
+                <!-- Hero section with icon and title -->
+                <div class="channeltrack-hero">
+                    <img src="images/icons/Icon_ChannelTrack.svg" alt="ChannelTrack Icon" class="channeltrack-icon">
+                    <h1 class="channeltrack-title">ChannelTrack</h1>
+                    <p class="channeltrack-domain">channeltrack.xyz</p>
+                    <p class="channeltrack-subtitle">Automatically sync YouTube channel data into your Notion workspace</p>
+                </div>
+                
+                <!-- Personal story section -->
+                <div class="channeltrack-section">
+                    <div class="channeltrack-story">
+                        <p class="channeltrack-text">I've been asked a ton of times now how I track YouTube channels & put them into Notion. So I built this tool to let you do it yourself!</p>
+                    </div>
+                </div>
+                
+                <!-- Main description section with Notion-style formatting -->
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">What is ChannelTrack?</h2>
+                    <p class="channeltrack-text">ChannelTrack automatically syncs YouTube channel data into your Notion workspace - daily stats, growth metrics, and viral video detection, all updated automatically.</p>
+                </div>
+                
+                <!-- Features section with Notion-style bullet points -->
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">What it does:</h2>
+                    <ul class="channeltrack-list">
+                        <li>Tracks subscriber counts, views, and uploads for any YouTube channel</li>
+                        <li>Syncs fresh data to Notion databases every day (no manual work)</li>
+                        <li>Detects viral videos and trending content in real-time</li>
+                        <li>Analyzes growth patterns and competitive benchmarks</li>
+                        <li>Organizes everything in your Notion workspace for easy team collaboration</li>
+                    </ul>
+                </div>
+                
+                <!-- Benefits section -->
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">Why use it:</h2>
+                    <p class="channeltrack-text">Perfect for content creators, media teams, and agencies who need to monitor competitors, spot trends early, and make data-driven decisions. Stop manually copying YouTube stats into spreadsheets - let ChannelTrack handle it automatically.</p>
+                </div>
+                
+                <!-- Pricing section with Notion-style callout -->
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">Pricing:</h2>
+                    <div class="channeltrack-callout">
+                        <p class="channeltrack-text">Free plan available to try it out. Paid plans start at <strong>$9/month</strong> for tracking 5 channels with daily auto-sync.</p>
+                    </div>
+                </div>
+                
+                <!-- Footer with link -->
+                <div class="channeltrack-footer">
+                    <p>Learn more at <a href="https://channeltrack.xyz" target="_blank" class="channeltrack-link">channeltrack.xyz</a></p>
                 </div>
             </div>
         </div>
