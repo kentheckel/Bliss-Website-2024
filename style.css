@@ -2296,3 +2296,145 @@ body, html {
     user-select: none;
     text-shadow: 0 0 20px currentColor;
 }
+
+/* ===========================================
+   NETWORK STATS MONITOR MODAL
+   CRT-style retro display with green/amber
+   text on dark background
+   =========================================== */
+
+#ModalStats {
+    position: fixed;
+    width: 720px;
+    height: 500px;
+    background-color: #0d0d1a;
+    border: 2px solid var(--win95-blue);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    font-family: var(--win95-font);
+    cursor: grab;
+}
+
+/* Header bar — dark with CRT accent */
+#ModalStats .stats-header {
+    background: linear-gradient(to right, #0a0a2e, #1a1a3e);
+    color: #33ff99;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #33ff9944;
+}
+
+#ModalStats .stats-header .title {
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 6px #33ff9966;
+    letter-spacing: 1px;
+}
+
+/* Body area */
+.stats-body {
+    padding: 16px;
+    overflow-y: auto;
+    height: calc(100% - 44px);
+    background-color: #0d0d1a;
+}
+
+/* Stats table */
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--win95-font);
+    font-size: 15px;
+}
+
+.stats-table thead th {
+    color: #33ff99;
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #33ff9944;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.stats-table tbody tr {
+    border-bottom: 1px solid #1a2a3a;
+    transition: background-color 0.15s;
+}
+
+.stats-table tbody tr:hover {
+    background-color: #1a1a3e;
+}
+
+.stats-table td {
+    padding: 10px 10px;
+    color: #b0d0c0;
+    white-space: nowrap;
+}
+
+.stats-channel-name {
+    color: #ffffff !important;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.stats-platform {
+    color: #ff4444 !important;
+    font-size: 13px;
+}
+
+.stats-num {
+    font-family: var(--win95-font);
+    color: #33ff99 !important;
+    font-size: 15px;
+    text-shadow: 0 0 4px #33ff9933;
+}
+
+.stats-growth {
+    color: #44ff44 !important;
+    font-weight: bold;
+}
+
+/* Totals bar */
+#statsTotals {
+    margin-top: 16px;
+    border-top: 1px solid #33ff9944;
+    padding-top: 12px;
+}
+
+.stats-totals-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(to right, #1a1a3e, #0d1a2e);
+    padding: 12px 16px;
+    border-radius: 4px;
+    border: 1px solid #33ff9933;
+}
+
+.stats-totals-label {
+    color: #ffcc00;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px #ffcc0044;
+    min-width: 140px;
+}
+
+.stats-totals-item {
+    color: #8899aa;
+    font-size: 14px;
+}
+
+.stats-total-num {
+    color: #33ff99;
+    font-weight: bold;
+    text-shadow: 0 0 4px #33ff9933;
+}
+
+.stats-totals-item .stats-growth {
+    color: #44ff44;
+}

@@ -93,6 +93,12 @@
             <span>Videos</span>
         </button>
 
+        <!-- Stats Icon on Desktop -->
+        <button id="statsBtn" class="icon-btn">
+            <img src="images/icons/wrench.png" alt="Stats Icon">
+            <span>Stats</span>
+        </button>
+
         <!-- Resume Icon on Desktop -->
         <!-- Change the Resume icon ID to match the pattern -->
         <div class="icon-btn" id="resumeTxtBtn">
@@ -881,6 +887,21 @@
             </div>
         </div>
 
+        <!-- MARK: Stats Modal -->
+        <div id="ModalStats" class="modal" style="display: none;">
+            <div id="modalHeaderStats" class="window-controls stats-header">
+                <span class="title">Network Stats Monitor</span>
+                <div class="window-btn-container">
+                    <button class="window-btn">-</button>
+                    <button class="window-btn">X</button>
+                </div>
+            </div>
+            <div class="stats-body">
+                <div id="statsTableContainer"></div>
+                <div id="statsTotals"></div>
+            </div>
+        </div>
+
         <!-- Audio elements -->
             <audio id="errorSound">
                 <source src="audio/error-sound.mp3" type="audio/mpeg">
@@ -893,6 +914,7 @@
             <script src="js/icons.js"></script>
             <script src="js/videos.js"></script>
             <script src="js/misc.js"></script>
+            <script src="js/stats.js"></script>
             <script src="js/easter-eggs.js"></script>
 </body>
 

@@ -1,0 +1,9 @@
+{
+  "channels": [
+    { "name": "Cam Newton", "platform": "youtube", "handle": "@CamNewton", "subscribers": 1570000, "views": 450000000, "videos": 890, "growth30d": 12000 },
+    { "name": "4th&1 with Cam Newton", "platform": "youtube", "handle": "@4thand1CamNewton", "subscribers": 300000, "views": 85000000, "videos": 450, "growth30d": 8500 },
+    { "name": "Funky Friday Clips", "platform": "youtube", "handle": "@FunkyFridayCamNewton", "subscribers": 126000, "views": 32000000, "videos": 280, "growth30d": 3200 },
+    { "name": "Jim Gaffigan", "platform": "youtube", "handle": "@jimgaffigan", "subscribers": 955000, "views": 380000000, "videos": 620, "growth30d": 5800 },
+    { "name": "Kent Heckel", "platform": "youtube", "handle": "@KentHeckel", "subscribers": 27000, "views": 5200000, "videos": 95, "growth30d": 450 }
+  ]
+}
