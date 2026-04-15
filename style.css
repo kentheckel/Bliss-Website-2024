@@ -43,10 +43,10 @@ body, html {
 #desktop-icons {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 18px;
     padding: 10px;
     position: fixed;
-    top: 50px;
+    top: 30px;
     left: 20px;
     /* Allow height to grow but leave room for taskbar */
     max-height: calc(100vh - 150px);
@@ -62,15 +62,16 @@ body, html {
     flex-direction: column;
     align-items: center;
     transition: transform 0.2s ease-in-out;
-    width: 100px;
+    width: 80px;
     font-family: var(--win95-font);
-    font-size: 24px; /* Text size for icon labels */
+    font-size: 18px;
 }
 
 .icon-btn img, .icon-btn svg {
-    width: 80px; /* Set the size of the SVG or image */
-    height: 80px; /* Set consistent height for the icon */
-    margin-bottom: 5px; /* Space between the icon and the text label */
+    width: 56px;
+    height: 56px;
+    margin-bottom: 5px;
+    object-fit: contain;
 }
 
 .icon-btn:hover {
@@ -95,8 +96,8 @@ body, html {
 /* Will be overridden if user drags it somewhere else */
 .icon-btn.second-column {
     position: fixed;
-    left: 140px;
-    top: 50px;
+    left: 120px;
+    top: 30px;
 }
 
 
@@ -2160,11 +2161,11 @@ body, html {
 #clippy-container {
     position: fixed;
     bottom: 100px;
-    right: 30px;
+    left: 200px;
     z-index: 99998;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     animation: clippy-bounce 0.4s ease;
 }
 @keyframes clippy-bounce {
