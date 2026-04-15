@@ -1,10 +1,36 @@
+/* ===========================================
+   WIN95 THEME — CSS Custom Properties
+   All core colors and borders in one place
+   =========================================== */
+:root {
+    --win95-blue: #0049d1;
+    --win95-blue-dark: #0044c2;
+    --win95-blue-light: #0063e0;
+    --win95-gray: #c0c0c0;
+    --win95-gray-light: #dcdcdc;
+    --win95-gray-lighter: #e6e6e6;
+    --win95-gray-dark: #808080;
+    --win95-green: #60A75C;
+    --win95-green-dark: #568E51;
+    --win95-green-hover: #4e8e4d;
+    --win95-white: #f0f0f0;
+    --win95-black: #000000;
+    --win95-text: #000000;
+    --win95-link: #0000EE;
+    --win95-border-raised: 2px solid var(--win95-blue);
+    --win95-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --win95-font: 'VT323', monospace;
+    --win95-font-system: 'Tahoma', sans-serif;
+    --win95-taskbar-height: 70px;
+}
+
 /* General Styles */
 body, html {
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
     background-image: url('images/bliss_Website_Background.svg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -37,7 +63,7 @@ body, html {
     align-items: center;
     transition: transform 0.2s ease-in-out;
     width: 100px;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
     font-size: 24px; /* Text size for icon labels */
 }
 
@@ -80,28 +106,28 @@ body, html {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 70px;
-    background-color: #0049d1;
+    height: var(--win95-taskbar-height);
+    background-color: var(--win95-blue);
     padding: 5px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 10;
+    z-index: 99999;
 }
 
 #startButton {
     text-align: center;
     height: 54px;
     width: 150px;
-    background-color: #60A75C;
-    border: 3px solid #568E51;
+    background-color: var(--win95-green);
+    border: 3px solid var(--win95-green-dark);
     border-radius: 15px;
     margin: 0 10px;
     color: white;
     font-size: 20px;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
@@ -114,14 +140,14 @@ body, html {
 }
 
 .taskbar-window-button {
-    background-color: #60A75C;
+    background-color: var(--win95-green);
     color: white;
-    border: 2px solid #568E51;
+    border: 2px solid var(--win95-green-dark);
     border-radius: 5px;
     padding: 5px 10px;
     font-size: 16px;
     cursor: pointer;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
 }
 
 #taskbar::before {
@@ -131,13 +157,13 @@ body, html {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #0044c2;
+    background-color: var(--win95-blue-dark);
     z-index: -1;
     border-radius: 5px;
 }
 
 #startButton:hover {
-    background-color: #4e8e4d;
+    background-color: var(--win95-green-hover);
     transform: scale(1.05);
 }
 
@@ -148,7 +174,7 @@ body, html {
     color: white;
     font-size: 18px;
     line-height: 1.4;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
 }
 
 /* Modal Styles */
@@ -156,15 +182,15 @@ body, html {
     position: fixed;
     left: 15%;
     top: 10%;
-    z-index: 2;
+    z-index: 100;
     width: 70%;
     height: 80%;
-    background-color: #f0f0f0;
-    border: 2px solid #0049d1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--win95-white);
+    border: var(--win95-border-raised);
+    box-shadow: var(--win95-shadow);
     display: none;
     overflow: hidden;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
     cursor: grab;
 }
 
@@ -584,7 +610,7 @@ body, html {
 /* Modal Headers */
 /* Modal Headers for Passwords.txt */
 .window-controls {
-    background-color: #0044c2; /* Same blue as other windows */
+    background-color: var(--win95-blue-dark);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -2041,4 +2067,231 @@ body, html {
 .channeltrack-text strong {
     font-weight: 600;
     color: #37352F;
+}
+
+/* ===========================================
+   START MENU
+   =========================================== */
+.start-menu {
+    position: fixed;
+    bottom: var(--win95-taskbar-height);
+    left: 5px;
+    width: 240px;
+    background-color: var(--win95-gray-light);
+    border: 2px outset #fff;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+    z-index: 999999;
+    display: none;
+    font-family: var(--win95-font-system);
+    font-size: 14px;
+}
+.start-menu.visible { display: flex; }
+
+.start-menu-banner {
+    width: 30px;
+    background: linear-gradient(to top, var(--win95-blue), #0070E0);
+    display: flex;
+    align-items: flex-end;
+    padding: 8px 4px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    letter-spacing: 2px;
+}
+
+.start-menu-items {
+    flex: 1;
+    padding: 4px 0;
+}
+
+.start-menu-item {
+    padding: 8px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.start-menu-item:hover {
+    background-color: var(--win95-blue);
+    color: white;
+}
+
+.start-menu-icon {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+.start-menu-divider {
+    height: 1px;
+    background-color: var(--win95-gray-dark);
+    margin: 4px 8px;
+}
+
+/* ===========================================
+   BSOD SCREEN
+   =========================================== */
+#bsod-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0000AA;
+    z-index: 9999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+.bsod-content {
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    max-width: 700px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* ===========================================
+   CLIPPY
+   =========================================== */
+#clippy-container {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    z-index: 99998;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    animation: clippy-bounce 0.4s ease;
+}
+@keyframes clippy-bounce {
+    0% { transform: translateY(30px); opacity: 0; }
+    60% { transform: translateY(-5px); }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.clippy-bubble {
+    background: #FFFFCC;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 12px 16px;
+    max-width: 280px;
+    font-family: var(--win95-font-system);
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 8px;
+}
+.clippy-bubble p { margin: 0 0 10px 0; }
+.clippy-dismiss {
+    padding: 4px 16px;
+    background: var(--win95-gray-lighter);
+    border: 2px outset #fff;
+    cursor: pointer;
+    font-family: var(--win95-font-system);
+    font-size: 12px;
+}
+.clippy-dismiss:active { border-style: inset; }
+.clippy-character {
+    font-size: 64px;
+    line-height: 1;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+}
+
+/* ===========================================
+   KONAMI CODE SECRET SCREEN
+   =========================================== */
+#konami-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: 9999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: konami-fade 0.5s ease;
+}
+@keyframes konami-fade {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+.konami-content {
+    text-align: center;
+    color: white;
+    font-family: var(--win95-font);
+}
+.konami-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+.konami-content p {
+    font-size: 24px;
+    margin: 5px 0;
+}
+.konami-close {
+    margin-top: 20px;
+    padding: 12px 32px;
+    font-size: 20px;
+    font-family: var(--win95-font);
+    background: rgba(255,255,255,0.2);
+    border: 2px solid white;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+.konami-close:hover { background: rgba(255,255,255,0.3); }
+
+/* ===========================================
+   RIGHT-CLICK CONTEXT MENU
+   =========================================== */
+#context-menu {
+    position: fixed;
+    background: var(--win95-gray-lighter);
+    border: 2px outset #fff;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    z-index: 999999;
+    min-width: 160px;
+    font-family: var(--win95-font-system);
+    font-size: 13px;
+    padding: 2px;
+}
+.context-item {
+    padding: 6px 24px;
+    cursor: pointer;
+}
+.context-item:hover {
+    background-color: var(--win95-blue);
+    color: white;
+}
+.context-divider {
+    height: 1px;
+    background-color: var(--win95-gray-dark);
+    margin: 2px 4px;
+}
+
+/* ===========================================
+   SCREENSAVER (Bouncing ASFC Logo)
+   =========================================== */
+#screensaver {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 999998;
+    cursor: none;
+}
+.screensaver-logo {
+    position: absolute;
+    font-family: var(--win95-font);
+    font-size: 72px;
+    font-weight: bold;
+    color: #4ECDC4;
+    user-select: none;
+    text-shadow: 0 0 20px currentColor;
 }

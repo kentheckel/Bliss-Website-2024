@@ -463,11 +463,11 @@
         position: relative;
         display: inline-block;
     }
-    
+
     .red-overlay i {
-        color: red; /* Change the icon color to red */
+        color: red;
     }
-    
+
     .red-overlay::after {
         content: '';
         position: absolute;
@@ -475,6 +475,88 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(255, 0, 0, 0.5); /* Red overlay with transparency */
-        z-index: -1; /* Place the overlay behind the icon */
+        background-color: rgba(255, 0, 0, 0.5);
+        z-index: -1;
+    }
+
+/* Email hover effect */
+    .emailBox:hover {
+        background-color: #eaf1fb;
+        box-shadow: inset 0 -1px 0 #dadce0;
+    }
+
+/* Reading Pane */
+    #readingPane {
+        width: 97%;
+        margin-left: 0.75em;
+        font-family: 'Roboto', sans-serif;
+        overflow-y: auto;
+        height: calc(100% - 80px);
+    }
+
+    #readingPaneHeader {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-bottom: 1px solid #eceff1;
+    }
+
+    #backToInbox {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+    }
+    #backToInbox:hover {
+        background-color: #f1f3f4;
+    }
+    #backToInbox i {
+        color: #5f6368;
+        font-size: 20px;
+    }
+
+    #readingPaneSubject {
+        font-size: 22px;
+        font-weight: 400;
+        color: #202124;
+    }
+
+    #readingPaneBody {
+        padding: 20px 24px;
+        font-size: 14px;
+        color: #3c4043;
+        line-height: 1.6;
+    }
+
+    #readingPaneSender {
+        font-size: 14px;
+        color: #5f6368;
+        margin-bottom: 4px;
+    }
+    #readingPaneSender b { color: #202124; }
+
+    #readingPaneDate {
+        font-size: 12px;
+        color: #5f6368;
+        margin-bottom: 12px;
+    }
+
+    #readingPaneBody hr {
+        border: none;
+        border-top: 1px solid #eceff1;
+        margin: 12px 0;
+    }
+
+    #readingPaneContent {
+        font-size: 14px;
+        color: #3c4043;
+        line-height: 1.7;
+    }
+    #readingPaneContent ul, #readingPaneContent ol {
+        padding-left: 24px;
+    }
+    #readingPaneContent li {
+        margin-bottom: 6px;
     }

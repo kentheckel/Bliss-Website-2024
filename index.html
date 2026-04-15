@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link href="style.css?v=20241226" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <title>Kent Heckel's Website</title>
     <style>
         .email-label {
@@ -57,20 +57,22 @@
             <span>About</span>
         </button>
 
-        <!-- ColorSocial Icon on Desktop - COMMENTED OUT FOR NOW -->
-        <!-- This icon opens a modal with info about the ColorSocial app ecosystem -->
-        <!-- 
-        <button id="colorSocialBtn" class="icon-btn second-column">
-            <img src="images/icons/Icon_ColorSocial.svg" alt="ColorSocial App Icon">
-            <span>Color Social</span>
-        </button>
-        -->
-
-        <!-- ChannelTrack Icon on Desktop - Positioned in second column (moved to Color Social's spot) -->
-        <!-- This icon opens a modal with info about the ChannelTrack YouTube tracking tool -->
+        <!-- ChannelTrack Icon -->
         <button id="channelTrackBtn" class="icon-btn second-column">
             <img src="images/icons/Icon_ChannelTrack.svg" alt="ChannelTrack Icon">
             <span>Channel<br>Track</span>
+        </button>
+
+        <!-- ColorSocial Icon -->
+        <button id="colorSocialBtn" class="icon-btn second-column" style="top: 140px;">
+            <img src="images/icons/Icon_ColorSocial.svg" alt="ColorSocial App Icon">
+            <span>Color Social</span>
+        </button>
+
+        <!-- Uptides Icon -->
+        <button id="uptidesBtn" class="icon-btn second-column" style="top: 230px;">
+            <img src="images/icons/Icon_Uptides.svg" alt="Uptides.ai Icon">
+            <span>Uptides.ai</span>
         </button>
 
         <!-- Social Icon -->
@@ -104,6 +106,28 @@
             <span>Resume.txt</span>
         </div>
 
+    </div>
+
+    <!-- MARK: Start Menu -->
+    <div id="startMenu" class="start-menu">
+        <div class="start-menu-banner">
+            <span>Kent<b>OS</b>95</span>
+        </div>
+        <div class="start-menu-items">
+            <div class="start-menu-item" data-menu-modal="ModalVideos">
+                <span class="start-menu-icon">📹</span> Programs
+            </div>
+            <div class="start-menu-item" data-menu-modal="ModalResumeTxt">
+                <span class="start-menu-icon">📄</span> Documents
+            </div>
+            <div class="start-menu-item" data-menu-modal="ModalAbout">
+                <span class="start-menu-icon">⚙️</span> Settings
+            </div>
+            <div class="start-menu-divider"></div>
+            <div class="start-menu-item" id="menuShutDown">
+                <span class="start-menu-icon">🔌</span> Shut Down...
+            </div>
+        </div>
     </div>
 
     <!-- MARK: Taskbar Section -->
@@ -389,7 +413,7 @@
             </div>
             <div class="account-list">
                 <!-- Account 1 -->
-                <div class="account-item" data-channel="CamNewton" onclick="openChannelModals('CamNewton')">
+                <div class="account-item" data-channel="CamNewton">
                     <img src="images/cam.jpg" alt="Cam Newton" class="account-img">
                     <div class="account-info">
                         <b>Cam Newton</b>
@@ -398,7 +422,7 @@
                     <button class="arrow-btn" onclick="window.open('https://youtube.com/@CamNewton', '_blank')">➔</button>
                 </div>
                 <!-- Account 2 -->
-                <div class="account-item" data-channel="4thand1" onclick="openChannelModals('4thand1')">
+                <div class="account-item" data-channel="4thand1">
                     <img src="images/4th.jpg" alt="4th&1 with Cam Newton logo" class="account-img">
                     <div class="account-info">
                         <b>4th&1 with Cam Newton</b>
@@ -407,7 +431,7 @@
                     <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@4thand1CamNewton', '_blank')">➔</button>
                 </div>
                 <!-- Account 3 -->
-                <div class="account-item" data-channel="FunkyFriday" onclick="openChannelModals('FunkyFriday')">
+                <div class="account-item" data-channel="FunkyFriday">
                     <img src="images/funky.jpg" alt="Funky Friday with Cam Newton logo" class="account-img">
                     <div class="account-info">
                         <b>Funky Friday Clips</b>
@@ -417,7 +441,7 @@
                 </div>
                 <!-- Add more accounts as needed -->
                  <!-- Account 4 -->
-                <div class="account-item" data-channel="JimGaffigan" onclick="openChannelModals('JimGaffigan')">
+                <div class="account-item" data-channel="JimGaffigan">
                     <img src="images/jim.jpg" alt="Jim Gaffigan logo" class="account-img">
                     <div class="account-info">
                         <b>Jim Gaffigan</b>
@@ -427,7 +451,7 @@
                 </div>
 
                 <!-- Account 5 -->
-                <div class="account-item" data-channel="KentHeckel" onclick="openChannelModals('KentHeckel')">
+                <div class="account-item" data-channel="KentHeckel">
                     <img src="images/kent.jpg" alt="Kent Heckel logo" class="account-img">
                     <div class="account-info">
                         <b>Kent Heckel</b>
@@ -554,7 +578,7 @@
         </div>
 
         <!-- Modal for Kent Heckel Text Box -->
-        <div id="ModalTextBoxKentHeckel" class="modalModalTextBox" style="display: none;">
+        <div id="ModalTextBoxKentHeckel" class="modal ModalTextBox" style="display: none;">
             <div id="modalHeaderTextBoxKentHeckel" class="window-controls">
                 <span class="title">Kent Heckel Strategy</span>
                 <div class="window-btn-container">
@@ -809,12 +833,73 @@
             </div>
         </div>
 
-        <!-- Add an audio element for the error sound -->
+        <!-- MARK: Uptides Modal -->
+        <div id="ModalUptides" class="modal channeltrack-modal">
+            <div id="modalHeaderUptides" class="window-controls channeltrack-header">
+                <div class="channeltrack-header-content">
+                    <img src="images/icons/Icon_Uptides.svg" alt="Uptides Icon" class="channeltrack-header-icon">
+                    <span>uptides.ai</span>
+                </div>
+                <div class="window-btn-container">
+                    <button class="window-btn channeltrack-btn">-</button>
+                    <button class="window-btn channeltrack-btn">X</button>
+                </div>
+            </div>
+            <div class="channeltrack-content">
+                <div class="channeltrack-hero">
+                    <img src="images/icons/Icon_Uptides.svg" alt="Uptides Icon" class="channeltrack-icon">
+                    <h1 class="channeltrack-title">Uptides.ai</h1>
+                    <p class="channeltrack-domain">uptides.ai</p>
+                    <p class="channeltrack-subtitle">AI-powered trend detection for YouTube creators and media teams</p>
+                </div>
+                <div class="channeltrack-section">
+                    <div class="channeltrack-story">
+                        <p class="channeltrack-text">I got tired of manually scrolling through Twitter and Reddit trying to figure out what's trending. So I built an AI that does it for me and tells me what to make videos about.</p>
+                    </div>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">What is Uptides?</h2>
+                    <p class="channeltrack-text">Uptides uses AI to scan the internet for rising trends, viral moments, and breaking stories relevant to your niche — then tells you exactly what to create and when to post it.</p>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">What it does:</h2>
+                    <ul class="channeltrack-list">
+                        <li>Monitors social platforms, news, and search trends 24/7</li>
+                        <li>Identifies trending topics before they peak</li>
+                        <li>Generates video ideas, titles, and thumbnail concepts</li>
+                        <li>Sends real-time alerts when something in your niche is about to blow up</li>
+                        <li>Tracks competitor uploads and performance for strategic timing</li>
+                    </ul>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">Why use it:</h2>
+                    <p class="channeltrack-text">Stop guessing what to post. Uptides tells you what people are searching for right now, so you can ride the wave instead of chasing it. Built for creators who want to be first, not fifteenth.</p>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">Status:</h2>
+                    <div class="channeltrack-callout">
+                        <p class="channeltrack-text">Currently in private beta. Built by the same team behind ChannelTrack. Sign up for early access at <strong>uptides.ai</strong>.</p>
+                    </div>
+                </div>
+                <div class="channeltrack-footer">
+                    <p>Learn more at <a href="https://uptides.ai" target="_blank" class="channeltrack-link">uptides.ai</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audio elements -->
             <audio id="errorSound">
                 <source src="audio/error-sound.mp3" type="audio/mpeg">
             </audio>
+            <audio id="startupSound">
+                <source src="audio/startup.mp3" type="audio/mpeg">
+            </audio>
 
-            <script src="script.js?v=20241226b"></script>
+            <script src="js/core.js"></script>
+            <script src="js/icons.js"></script>
+            <script src="js/videos.js"></script>
+            <script src="js/misc.js"></script>
+            <script src="js/easter-eggs.js"></script>
 </body>
 
 </html>
