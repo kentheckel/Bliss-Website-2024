@@ -2305,8 +2305,8 @@ body, html {
 
 #ModalStats {
     position: fixed;
-    width: 720px;
-    height: 500px;
+    width: 740px;
+    height: 660px;
     background-color: #0d0d1a;
     border: 2px solid var(--win95-blue);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
@@ -2437,4 +2437,65 @@ body, html {
 
 .stats-totals-item .stats-growth {
     color: #44ff44;
+}
+
+/* Chart section */
+#statsChartSection {
+    margin-bottom: 16px;
+    border-bottom: 1px solid #1a2a3a;
+    padding-bottom: 12px;
+}
+
+.stats-chart-label {
+    color: #33ff9988;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+#statsLineChart {
+    display: block;
+    width: 100%;
+    border-radius: 2px;
+}
+
+/* Category rows */
+.stats-category-row {
+    background-color: #111130 !important;
+    border-bottom: 1px solid #33ff9933 !important;
+}
+
+.stats-category-row:hover {
+    background-color: #1a1a40 !important;
+}
+
+.stats-category-name {
+    color: #ffcc00 !important;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 4px #ffcc0033;
+    padding-left: 8px !important;
+}
+
+.stats-cat-num {
+    color: #ffcc00 !important;
+    text-shadow: 0 0 4px #ffcc0033 !important;
+}
+
+.stats-category-row .stats-growth {
+    color: #66ff66 !important;
+}
+
+/* Indent channel rows under categories */
+.stats-channel-row .stats-channel-name {
+    padding-left: 24px !important;
+    font-size: 13px;
+}
+
+.stats-sensitive {
+    color: #8899aa !important;
+    font-style: italic;
 }
