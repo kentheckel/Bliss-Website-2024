@@ -358,7 +358,9 @@
             </div>
             <form id="contactForm" action="https://formsubmit.co/kent@kentheckel.com" method="POST" target="_blank">
                 <input type="hidden" name="_captcha" value="true">
-                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_template" value="box">
+                <input type="hidden" name="_subject" value="New message from antisocialfriendsclub.com">
+                <input type="hidden" name="_replyto" id="hiddenReplyTo">
                 <div class="email-layout">
                     <div class="email-row">
                         <span class="email-label">To:</span>
@@ -366,14 +368,14 @@
                     </div>
                     <div class="email-row">
                         <span class="email-label">From:</span>
-                        <input id="fromField" class="email-input" type="email" name="email" placeholder="Your email" required>
+                        <input id="fromField" class="email-input" type="email" name="From Email" placeholder="Your email" required>
                     </div>
                     <div class="email-row">
                         <span class="email-label">Subject:</span>
-                        <input id="subjectField" class="email-input" type="text" name="_subject" placeholder="Subject">
+                        <input id="subjectField" class="email-input" type="text" name="Subject" placeholder="Subject">
                     </div>
                     <div class="email-body">
-                        <textarea id="emailTextBody" name="message" placeholder="Write your message here..." required></textarea>
+                        <textarea id="emailTextBody" name="Message" placeholder="Write your message here..." required></textarea>
                     </div>
                     <div class="email-tools">
                         <button type="submit" id="sendButton" class="send-btn">Send</button>

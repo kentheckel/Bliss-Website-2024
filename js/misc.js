@@ -92,6 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
             headerText.textContent = this.value || 'New Message';
         });
     }
+
+    // Sync From email into _replyto so Reply works in Gmail
+    const fromField = document.getElementById('fromField');
+    const replyTo = document.getElementById('hiddenReplyTo');
+    if (fromField && replyTo) {
+        fromField.addEventListener('input', function() {
+            replyTo.value = this.value;
+        });
+    }
 });
 
 // ---- Mobile Warning ----
