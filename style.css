@@ -43,7 +43,7 @@ body, html {
 #desktop-icons {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 12px;
     padding: 10px;
     position: fixed;
     top: 30px;
@@ -854,14 +854,19 @@ body, html {
     left: 35%;
     top: 15%;
     z-index: 2;
-    width: 400px; /* Compact width */
-    height: 550px; /* Tall enough to fit all content */
-    background-color: #ffffff; /* Full white background */
-    border: none; /* No visible border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 450px;
+    height: 550px;
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     display: none;
     overflow: hidden;
-    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+    font-family: 'Roboto', sans-serif;
+    border-radius: 8px;
+}
+
+#ModalContact form {
+    height: calc(100% - 40px);
 }
 
 /* Header Styling */
@@ -870,11 +875,28 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    font-size: 14px; /* Smaller font for "New Message" */
+    font-size: 14px;
     font-weight: bold;
-    color: #333333; /* Dark grey text */
-    background-color: #ffffff; /* Matches the rest of the modal */
-    border-bottom: 1px solid #e0e0e0; /* Light grey border for separation */
+    color: #ffffff;
+    background-color: #404040;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+}
+
+#modalHeaderContact .window-btn {
+    color: #ccc;
+}
+
+#modalHeaderContact .window-btn:hover {
+    color: #fff;
+    background-color: #555;
+}
+
+.vertical-divider {
+    width: 1px;
+    height: 20px;
+    background-color: #e0e0e0;
+    margin: 0 4px;
 }
 
 /* Minimize and Close Buttons */

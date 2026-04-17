@@ -224,10 +224,14 @@ function autoRegisterIcons() {
                 return;
             }
 
-            // Special case: contact opens Gmail (ModalContact is commented out)
+            // Contact icon opens both Gmail and the Compose modal
             if (btnId === 'contactBtn') {
                 const gmail = document.getElementById('ModalGmail');
                 if (gmail) openModal(gmail);
+                const contact = document.getElementById('ModalContact');
+                if (contact) {
+                    setTimeout(() => openModal(contact), 100);
+                }
                 return;
             }
 
@@ -245,6 +249,14 @@ function autoRegisterIcons() {
         });
     });
 }
+
+// ---- Listen for messages from iframes (e.g. Gmail compose button) ----
+window.addEventListener('message', (e) => {
+    if (e.data && e.data.action === 'openCompose') {
+        const contact = document.getElementById('ModalContact');
+        if (contact) openModal(contact);
+    }
+});
 
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {

@@ -191,16 +191,14 @@
 
 /* Left Sidebar */
     #sidebarLeft {
-        /*border-right: 1px solid #eceff1;*/
-
         /* Flexbox Styling */
         display: flex;
         flex-direction: column;
         align-content: center;
         flex-wrap: wrap;
         justify-content: flex-start;
-        flex-basis: 7%;
-        float: center;
+        flex: 0 0 74px;
+        min-width: 74px;
     }
 
     #gmailPlusButton {
@@ -242,10 +240,12 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        flex-basis: 100%;  
+        flex: 1;
+        min-width: 0;
         flex-wrap: wrap;
         align-items: flex-start;
         position: relative;
+        overflow: hidden;
     }
 
     .emailBox {
@@ -415,15 +415,15 @@
 /* Right Sidebar */
     #sidebarRight {
     border-left: 1px solid #eceff1;
-    width: 90%;
     color: #606469;
 
     /* Flexbox Styling */
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: flex-start;
-    flex-basis: 5%; 
+    flex: 0 0 56px;
+    min-width: 56px;
     }
 
     #calendarIcon {
