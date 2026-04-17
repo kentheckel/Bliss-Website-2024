@@ -2489,11 +2489,48 @@ body, html {
     margin-bottom: 6px;
 }
 
+.stats-chart-right-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .stats-chart-label {
     color: #33ff9988;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
+}
+
+/* Line/Bar toggle */
+.stats-chart-toggle {
+    display: flex;
+    gap: 2px;
+    border: 1px solid #33ff9933;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.stats-toggle-btn {
+    background: #1a1a3e;
+    color: #33ff9966;
+    border: none;
+    padding: 2px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--win95-font);
+    line-height: 1;
+}
+
+.stats-toggle-btn:hover {
+    background: #2a2a5e;
+    color: #33ff99;
+}
+
+.stats-toggle-btn.active {
+    background: #33ff99;
+    color: #0a0a1e;
 }
 
 .stats-range-btns {
