@@ -62,16 +62,30 @@ body, html {
     flex-direction: column;
     align-items: center;
     transition: transform 0.2s ease-in-out;
-    width: 80px;
+    width: auto;
+    min-width: 80px;
     font-family: var(--win95-font);
     font-size: 18px;
+    white-space: nowrap;
 }
 
 .icon-btn img, .icon-btn svg {
-    width: 56px;
-    height: 56px;
-    margin-bottom: 5px;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 2px;
     object-fit: contain;
+}
+
+/* Stats icon slightly smaller */
+#statsBtn img {
+    width: 58px;
+    height: 58px;
+}
+
+/* Channel Track icon larger */
+#channelTrackBtn img {
+    width: 72px;
+    height: 72px;
 }
 
 .icon-btn:hover {
@@ -2446,18 +2460,90 @@ body, html {
     padding-bottom: 12px;
 }
 
+.stats-chart-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
 .stats-chart-label {
     color: #33ff9988;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 6px;
+}
+
+.stats-range-btns {
+    display: flex;
+    gap: 4px;
+}
+
+.stats-range-btn {
+    background: #1a1a3e;
+    color: #33ff9988;
+    border: 1px solid #33ff9933;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-family: var(--win95-font);
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+}
+
+.stats-range-btn:hover {
+    background: #2a2a5e;
+    color: #33ff99;
+}
+
+.stats-range-btn.active {
+    background: #33ff99;
+    color: #0a0a1e;
+    font-weight: bold;
+    border-color: #33ff99;
 }
 
 #statsLineChart {
     display: block;
     width: 100%;
     border-radius: 2px;
+    cursor: crosshair;
+}
+
+/* Hover tooltip */
+.stats-tooltip {
+    position: absolute;
+    background: #0d0d2aee;
+    border: 1px solid #33ff9966;
+    padding: 6px 10px;
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 120px;
+}
+
+.stats-tooltip-date {
+    color: #33ff9988;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-family: var(--win95-font);
+}
+
+.stats-tooltip-val {
+    color: #33ff99;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 6px #33ff9944;
+    font-family: var(--win95-font);
+}
+
+/* Maximize button */
+.window-btn-max {
+    font-size: 16px;
+    line-height: 1;
 }
 
 /* Category rows */
@@ -2498,4 +2584,30 @@ body, html {
 .stats-sensitive {
     color: #8899aa !important;
     font-style: italic;
+}
+
+/* System tray stats widget */
+.stats-tray {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+    margin-right: 4px;
+    cursor: pointer;
+    border-left: 1px solid #888;
+    height: 100%;
+}
+
+.stats-tray-icon {
+    color: #33ff99;
+    font-size: 10px;
+    text-shadow: 0 0 4px #33ff9966;
+}
+
+.stats-tray-value {
+    color: #33ff99;
+    font-size: 11px;
+    font-family: var(--win95-font);
+    text-shadow: 0 0 4px #33ff9944;
+    white-space: nowrap;
 }
