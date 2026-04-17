@@ -84,30 +84,6 @@ function downloadResume() {
 
 // ---- Gmail / Contact ----
 document.addEventListener('DOMContentLoaded', () => {
-    // Send button in contact form
-    const sendBtn = document.getElementById('sendButton');
-    if (sendBtn) {
-        sendBtn.addEventListener('click', () => {
-            const emailBody = document.getElementById('emailTextBody')?.value || '';
-            const subject = document.getElementById('subjectField')?.value || '';
-
-            if (!emailBody.trim()) {
-                alert("Please write something in the email body.");
-                return;
-            }
-
-            console.log("Email sent to:", "kent@kentheckel.com");
-            console.log("Subject:", subject);
-            console.log("Body:", emailBody);
-
-            alert("Your message has been sent!");
-            const emailBodyEl = document.getElementById('emailTextBody');
-            const subjectEl = document.getElementById('subjectField');
-            if (emailBodyEl) emailBodyEl.value = '';
-            if (subjectEl) subjectEl.value = '';
-        });
-    }
-
     // Subject field updates header text
     const subjectField = document.getElementById('subjectField');
     const headerText = document.querySelector('#modalHeaderContact span');
