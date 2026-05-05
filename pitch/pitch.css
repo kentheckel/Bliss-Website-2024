@@ -4542,6 +4542,10 @@ html, body {
   grid-template-columns: 1fr 1fr;
   gap: 22px;
 }
+.slide-work .wpr-tracks-single {
+  grid-template-columns: minmax(0, 720px);
+  justify-content: center;
+}
 .slide-work .wpr-track {
   background: #c0c0c0;
   border: 2px solid #000;
@@ -4903,6 +4907,10 @@ html, body {
   justify-content: center;
   gap: 14px;
 }
+.slide-capacity .cap-slots-single .cap-slot {
+  flex: 0 1 240px;
+  max-width: 280px;
+}
 .slide-capacity .cap-slot {
   flex: 1;
   background: #f4f4f4;
@@ -5212,3 +5220,507 @@ html, body {
   .slide-contact .cc-icon { font-size: 22px; }
   .slide-contact .ctb-name { font-size: 12px; }
 }
+
+/* ============================================================
+   SLIDE — PRO SPORTS YOUTUBE LEADERBOARD
+   ============================================================ */
+.slide-leaderboard {
+  background: linear-gradient(180deg, #f6f6f6 0%, #e9ecf2 100%);
+  padding: 32px 48px 28px;
+  gap: 18px;
+}
+
+.slide-leaderboard .lb-header {
+  flex: 0 0 auto;
+}
+
+.slide-leaderboard h1 {
+  font-size: clamp(26px, 3.4vw, 44px);
+  margin: 0 0 10px;
+  letter-spacing: -1px;
+}
+
+.slide-leaderboard .lb-h1-strike {
+  text-decoration: line-through;
+  text-decoration-color: #ff3030;
+  text-decoration-thickness: 4px;
+  color: #606060;
+}
+
+.slide-leaderboard .lb-lead {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  margin: 0;
+  color: #303030;
+  max-width: 920px;
+}
+
+.slide-leaderboard .lb-lead-meta {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #808080;
+  text-transform: uppercase;
+}
+
+.slide-leaderboard .lb-grid {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  min-height: 0;
+}
+
+.slide-leaderboard .lb-card {
+  background: #fff;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  box-shadow: 2px 2px 0 #000;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.slide-leaderboard .lb-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 10px 14px 8px;
+  background: #c0c0c0;
+  border-bottom: 2px solid #808080;
+}
+
+.slide-leaderboard .lb-league {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #000;
+}
+
+.slide-leaderboard .lb-nba .lb-league { color: #c75300; }
+.slide-leaderboard .lb-nfl .lb-league { color: #0044c2; }
+
+.slide-leaderboard .lb-card-sub {
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #404040;
+  text-transform: uppercase;
+}
+
+.slide-leaderboard .lb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 13px;
+}
+
+.slide-leaderboard .lb-table thead th {
+  text-align: right;
+  padding: 8px 10px 6px;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #404040;
+  border-bottom: 2px solid #000;
+  background: #f0f0f0;
+}
+
+.slide-leaderboard .lb-table thead th.lb-rank,
+.slide-leaderboard .lb-table thead th.lb-team {
+  text-align: left;
+}
+
+.slide-leaderboard .lb-table tbody td {
+  padding: 7px 10px;
+  border-bottom: 1px dashed #c8c8c8;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.slide-leaderboard .lb-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.slide-leaderboard .lb-table tbody tr:nth-child(odd) td {
+  background: #fafafa;
+}
+
+.slide-leaderboard .lb-rank {
+  width: 36px;
+  text-align: left !important;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: #808080;
+}
+
+.slide-leaderboard .lb-team {
+  text-align: left !important;
+  font-weight: bold;
+  color: #000;
+}
+
+.slide-leaderboard .lb-num {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  color: #000;
+  font-variant-numeric: tabular-nums;
+}
+
+.slide-leaderboard .lb-peak {
+  color: #c75300;
+}
+
+.slide-leaderboard .lb-nfl .lb-peak {
+  color: #0044c2;
+}
+
+.slide-leaderboard .lb-table tbody td.lb-lead {
+  font-weight: bold;
+  color: #000;
+  font-size: 20px;
+}
+
+.slide-leaderboard .lb-table thead th.lb-lead {
+  color: #000;
+}
+
+.slide-leaderboard .lb-table tbody tr.lb-client td {
+  background: #fff8d8 !important;
+  border-top: 2px solid #ffd34d;
+  border-bottom: 2px solid #ffd34d !important;
+}
+
+.slide-leaderboard .lb-client-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 6px;
+  background: #ffd34d;
+  color: #000;
+  font-family: 'VT323', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  border: 1px solid #000;
+}
+
+.slide-leaderboard .lb-comp {
+  flex: 0 0 auto;
+  background: #000;
+  color: #00ff66;
+  border: 2px solid;
+  border-color: #c0c0c0 #404040 #404040 #c0c0c0;
+  padding: 12px 16px 14px;
+  font-family: 'VT323', monospace;
+}
+
+.slide-leaderboard .lb-comp-tag {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #ffd34d;
+  margin-bottom: 8px;
+}
+
+.slide-leaderboard .lb-comp-row {
+  display: grid;
+  grid-template-columns: minmax(120px, max-content) repeat(3, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #404040;
+  margin-bottom: 8px;
+}
+
+.slide-leaderboard .lb-comp-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: #ff6b00;
+  letter-spacing: 1px;
+}
+
+.slide-leaderboard .lb-comp-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.slide-leaderboard .lb-comp-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 20px;
+  color: #00ff66;
+  letter-spacing: 1px;
+}
+
+.slide-leaderboard .lb-comp-cap {
+  font-size: 13px;
+  color: #80d0ff;
+  letter-spacing: 2px;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+
+.slide-leaderboard .lb-comp-foot {
+  font-size: 16px;
+  color: #c8c8c8;
+  line-height: 1.45;
+  letter-spacing: 0.5px;
+}
+
+.slide-leaderboard .lb-comp-foot em {
+  font-style: italic;
+  color: #ffd34d;
+}
+
+.slide-leaderboard .lb-comp-foot strong {
+  color: #fff;
+  font-weight: normal;
+}
+
+@media (max-width: 1100px) {
+  .slide-leaderboard .lb-grid { grid-template-columns: 1fr; }
+  .slide-leaderboard .lb-comp-row { grid-template-columns: 1fr 1fr; }
+  .slide-leaderboard .lb-comp-name { grid-column: 1 / -1; }
+}
+
+@media (max-width: 700px) {
+  .slide-leaderboard .lb-table { font-size: 12px; }
+  .slide-leaderboard .lb-num { font-size: 16px; }
+  .slide-leaderboard .lb-comp-row { grid-template-columns: 1fr; }
+}
+
+/* =====================================================================
+   SLIDE — CHOOSE YOUR ADVENTURE
+   ===================================================================== */
+.slide-choose {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(0, 128, 128, 0.10) 0%, transparent 55%),
+    radial-gradient(circle at 80% 100%, rgba(255, 107, 0, 0.10) 0%, transparent 55%),
+    linear-gradient(180deg, #f4f4f4 0%, #e6e6e6 100%);
+  padding: 28px 50px 22px;
+}
+.slide-choose h1 {
+  margin-bottom: 8px;
+  font-size: clamp(28px, 3.5vw, 42px);
+}
+.slide-choose .choose-subtitle {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 16px;
+  color: #404040;
+  max-width: 880px;
+  margin-bottom: 26px;
+  line-height: 1.4;
+}
+.slide-choose .choose-subtitle em { color: #0044c2; font-style: italic; }
+
+.slide-choose .choose-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 18px;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.slide-choose .choose-card {
+  /* Reset button defaults */
+  appearance: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  /* Win95 window styling */
+  background: #c0c0c0;
+  border: 2px solid #000;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  box-shadow: 6px 6px 0 #000;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.slide-choose .choose-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 #000;
+}
+.slide-choose .choose-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.slide-choose .cc-window {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #008080 0%, #1ba8a8 100%);
+  color: #fff;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  padding: 4px 8px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #000;
+}
+.slide-choose .choose-athletes .cc-window {
+  background: linear-gradient(90deg, #ff6b00 0%, #ff9000 100%);
+}
+.slide-choose .cc-x {
+  background: #c0c0c0;
+  color: #000;
+  border: 1px solid #000;
+  width: 18px;
+  height: 16px;
+  text-align: center;
+  line-height: 14px;
+  font-size: 11px;
+}
+
+.slide-choose .cc-body {
+  background: #fafafa;
+  flex: 1;
+  padding: 22px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.slide-choose .cc-icon {
+  font-size: 56px;
+  line-height: 1;
+}
+.slide-choose .cc-tag {
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #008080;
+}
+.slide-choose .choose-athletes .cc-tag { color: #ff6b00; }
+
+.slide-choose .cc-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #000;
+  line-height: 1.1;
+  margin: 2px 0 4px;
+}
+.slide-choose .cc-desc {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #404040;
+  margin-bottom: 4px;
+}
+.slide-choose .cc-list {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #000;
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 8px;
+  flex: 1;
+}
+.slide-choose .cc-list li { margin: 2px 0; }
+.slide-choose .cc-list-tag {
+  display: inline-block;
+  background: #ffd54a;
+  color: #000;
+  font-family: 'VT323', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 1px 6px;
+  margin-left: 4px;
+  border: 1px solid #000;
+}
+
+.slide-choose .cc-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #008080;
+  color: #fff;
+  border: 2px solid #000;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  padding: 10px 14px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-top: 6px;
+}
+.slide-choose .choose-athletes .cc-cta { background: #ff6b00; }
+.slide-choose .cc-cta-arrow { font-size: 18px; }
+
+.slide-choose .choose-or {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 4px;
+}
+.slide-choose .cor-line {
+  flex: 1;
+  width: 2px;
+  background: repeating-linear-gradient(
+    180deg,
+    #000 0 6px,
+    transparent 6px 12px
+  );
+}
+.slide-choose .cor-bubble {
+  background: #ffd54a;
+  border: 2px solid #000;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  box-shadow: 3px 3px 0 #000;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  letter-spacing: 2px;
+  padding: 10px 12px;
+  color: #000;
+}
+
+.slide-choose .choose-footer {
+  margin-top: 18px;
+  background: #fffbe0;
+  border: 1px solid #000;
+  padding: 10px 14px;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 13px;
+  color: #000;
+  line-height: 1.45;
+}
+.slide-choose .choose-footer .chf-tag {
+  font-family: 'VT323', monospace;
+  letter-spacing: 2px;
+  color: #ff3030;
+  margin-right: 6px;
+}
+.slide-choose .choose-footer strong { font-weight: bold; }
+
+@media (max-width: 800px) {
+  .slide-choose .choose-grid { grid-template-columns: 1fr; }
+  .slide-choose .choose-or { flex-direction: row; padding: 4px 0; }
+  .slide-choose .cor-line {
+    flex: 1; height: 2px; width: auto;
+    background: repeating-linear-gradient(
+      90deg,
+      #000 0 6px,
+      transparent 6px 12px
+    );
+  }
+}
+
+/* Player Monitor variant (Teams tools card) — purple title bar so it
+   reads as "different" from competition-monitoring ChannelTrack */
+.slide-tools .tool-card-playermon .tool-window {
+  background: linear-gradient(90deg, #5a2da0 0%, #8849d2 100%);
+}
+.slide-tools .tool-card-playermon .tool-tag {
+  color: #5a2da0;
+}
+

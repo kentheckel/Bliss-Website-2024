@@ -1,0 +1,159 @@
+{
+  "snapshotDate": "2026-05-05",
+  "windowDays": 28,
+  "sort": "views28d desc",
+  "nbaTop10": [
+    {
+      "rank": 1,
+      "team": "Los Angeles Lakers",
+      "subs": 3390000,
+      "totalViews": 337716195,
+      "views28d": 16733610,
+      "peakMonthly": 31420548
+    },
+    {
+      "rank": 2,
+      "team": "San Antonio Spurs",
+      "subs": 184000,
+      "totalViews": 120033049,
+      "views28d": 11677497,
+      "peakMonthly": 15944196
+    },
+    {
+      "rank": 3,
+      "team": "Orlando Magic",
+      "subs": 877000,
+      "totalViews": 107895692,
+      "views28d": 11047420,
+      "peakMonthly": 12334553
+    },
+    {
+      "rank": 4,
+      "team": "Denver Nuggets",
+      "subs": 203000,
+      "totalViews": 109212692,
+      "views28d": 9862797,
+      "peakMonthly": 10538398
+    },
+    {
+      "rank": 5,
+      "team": "Golden State Warriors",
+      "subs": 2300000,
+      "totalViews": 856915685,
+      "views28d": 8227652,
+      "peakMonthly": 12160011
+    },
+    {
+      "rank": 6,
+      "team": "Minnesota Timberwolves",
+      "subs": 147000,
+      "totalViews": 61480678,
+      "views28d": 4613066,
+      "peakMonthly": 4613066
+    },
+    {
+      "rank": 7,
+      "team": "Oklahoma City Thunder",
+      "subs": 212000,
+      "totalViews": 51998394,
+      "views28d": 3541765,
+      "peakMonthly": 3643784
+    },
+    {
+      "rank": 8,
+      "team": "Cleveland Cavaliers",
+      "subs": 144000,
+      "totalViews": 25643221,
+      "views28d": 3455483,
+      "peakMonthly": 3455483
+    },
+    {
+      "rank": 9,
+      "team": "Atlanta Hawks",
+      "subs": 105000,
+      "totalViews": 38715877,
+      "views28d": 2694631,
+      "peakMonthly": 2694631
+    },
+    {
+      "rank": 10,
+      "team": "Phoenix Suns",
+      "subs": 143000,
+      "totalViews": 56893069,
+      "views28d": 2693502,
+      "peakMonthly": 5667560
+    }
+  ],
+  "nflTop10": [
+    {
+      "rank": 1,
+      "team": "Cleveland Browns",
+      "subs": 358000,
+      "totalViews": 234453156,
+      "views28d": 7673277
+    },
+    {
+      "rank": 2,
+      "team": "Philadelphia Eagles",
+      "subs": 924000,
+      "totalViews": 660773000,
+      "views28d": 7060962
+    },
+    {
+      "rank": 3,
+      "team": "Pittsburgh Steelers",
+      "subs": 368000,
+      "totalViews": 215080772,
+      "views28d": 6862433
+    },
+    {
+      "rank": 4,
+      "team": "Dallas Cowboys",
+      "subs": 518000,
+      "totalViews": 252217996,
+      "views28d": 6351162
+    },
+    {
+      "rank": 5,
+      "team": "Las Vegas Raiders",
+      "subs": 348000,
+      "totalViews": 167773854,
+      "views28d": 5916525
+    },
+    {
+      "rank": 6,
+      "team": "New York Giants",
+      "subs": 302000,
+      "totalViews": 193560088,
+      "views28d": 5538622
+    },
+    {
+      "rank": 7,
+      "team": "Los Angeles Rams",
+      "subs": 389000,
+      "totalViews": 139397119,
+      "views28d": 5316121
+    },
+    {
+      "rank": 8,
+      "team": "Kansas City Chiefs",
+      "subs": 1480000,
+      "totalViews": 350009588,
+      "views28d": 4428163
+    },
+    {
+      "rank": 9,
+      "team": "Los Angeles Chargers",
+      "subs": 448000,
+      "totalViews": 417787247,
+      "views28d": 4124142
+    },
+    {
+      "rank": 10,
+      "team": "Baltimore Ravens",
+      "subs": 358000,
+      "totalViews": 150821133,
+      "views28d": 3426748
+    }
+  ]
+}
