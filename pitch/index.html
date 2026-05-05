@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <title>ASFC Pitch.exe</title>
+  <link href="pitch.css?v=20260505l" rel="stylesheet">
+</head>
+<body>
+
+  <!-- =================================================== -->
+  <!-- BOOT SEQUENCE — full-screen BIOS                     -->
+  <!-- =================================================== -->
+  <div id="boot-screen">
+    <pre id="boot-text"></pre>
+    <button id="boot-skip">[ press any key to skip ▸ ]</button>
+  </div>
+
+  <!-- =================================================== -->
+  <!-- DESKTOP — appears after boot                         -->
+  <!-- =================================================== -->
+  <div id="desktop" class="hidden">
+
+    <!-- Single desktop icon: PITCH.exe -->
+    <button id="pitchExeIcon" class="desktop-icon">
+      <div class="icon-glyph">▶</div>
+      <span>PITCH.exe</span>
+    </button>
+
+    <!-- =============================================== -->
+    <!-- DECK WINDOW — the main slide container           -->
+    <!-- =============================================== -->
+    <div id="deck-window" class="hidden">
+      <div class="window-controls" id="deck-header">
+        <span class="title">
+          <span class="title-icon">▶</span>
+          ASFC_Pitch.exe — <span id="slide-title-display">Loading…</span>
+        </span>
+        <div class="window-buttons">
+          <button class="window-btn" id="deck-minimize" title="Minimize">_</button>
+          <button class="window-btn" id="deck-maximize" title="Maximize">▢</button>
+          <button class="window-btn" id="deck-close" title="Close">X</button>
+        </div>
+      </div>
+
+      <div id="deck-toolbar">
+        <span class="toolbar-item" id="toolbar-file">File</span>
+        <span class="toolbar-item" id="toolbar-view">View</span>
+        <span class="toolbar-item" id="toolbar-go">Go</span>
+        <span class="toolbar-item" id="toolbar-help">Help</span>
+        <span class="toolbar-spacer"></span>
+        <span class="toolbar-progress">
+          Slide <span id="slide-current">1</span> / <span id="slide-total">16</span>
+        </span>
+      </div>
+
+      <div id="slide-stage">
+        <!-- Slides are injected here by pitch.js -->
+      </div>
+
+      <div id="deck-nav">
+        <button class="nav-btn" id="nav-prev">◀ Back</button>
+        <div id="nav-chapters">
+          <!-- Chapter pips injected by JS -->
+        </div>
+        <button class="nav-btn" id="nav-next">Next ▶</button>
+      </div>
+    </div>
+
+    <!-- =============================================== -->
+    <!-- PERSISTENT TICKER — bottom marquee               -->
+    <!-- =============================================== -->
+    <div id="ticker" class="hidden">
+      <div class="ticker-label">📡 ASFC NETWORK · LIVE</div>
+      <div class="ticker-track">
+        <div class="ticker-content" id="ticker-content">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================== -->
+    <!-- TASKBAR — minimized windows + start              -->
+    <!-- =============================================== -->
+    <div id="pitch-taskbar">
+      <button id="start-btn">
+        <span class="start-icon">▣</span> Start
+      </button>
+      <div id="taskbar-windows"></div>
+      <div id="taskbar-clock">
+        <span id="clock-time">--:--</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =================================================== -->
+  <!-- AUDIO — startup chime (very short, opt-in)           -->
+  <!-- =================================================== -->
+  <audio id="boot-chime" preload="auto">
+    <source src="../audio/error-sound.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="pitch.js?v=20260505l"></script>
+</body>
+</html>
