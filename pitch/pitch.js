@@ -130,32 +130,65 @@
   }
 
   /* ----------------------------------------------------------
-     SLIDE REGISTRY — placeholder for slides we haven't built yet
+     SLIDE REGISTRY — branching deck (Choose Your Adventure)
+     Common intro → CYOA → (Teams | Athletes) → Common outro
      ---------------------------------------------------------- */
-  const SLIDES = [
+  const COMMON_INTRO = [
     { id: 'title',        title: 'Take YouTube to the Next Level', render: renderTitle },
     { id: 'who-we-are',   title: 'Who We Are',               render: renderWhoWeAre },
     { id: 'wins',         title: 'Proven Wins',              render: renderWins },
-    { id: 'cs-spurs',     title: 'Case Study: Spurs',        render: renderSpurs },
-    { id: 'cs-cam',       title: 'Case Study: Cam + Org',    render: renderCam },
-    { id: 'cs-ocho',      title: 'How We Launch From 0',     render: renderOcho, optional: true },
-    { id: 'strategy',     title: 'The Reverse Funnel',       render: renderStrategy },
-    { id: 'tools',        title: 'Proprietary Tools',        render: renderTools },
-    { id: 'post-career',  title: 'Post-Career Content Case Studies', render: renderPostCareer },
-    { id: 'nil',          title: 'NIL Frameworks',           render: renderNIL },
-    { id: 'wave',         title: 'The Untapped Wave',        render: renderWave },
-    { id: 'work',         title: 'How We Work',              render: renderWork },
-    { id: 'capacity',     title: 'Studio Capacity',          render: renderCapacity },
-    { id: 'contact',      title: 'Contact',                  render: renderContact },
+    { id: 'choose',       title: 'Choose Your Adventure',    render: renderChoose },
   ];
 
-  document.getElementById('slide-total').textContent = SLIDES.length;
+  const TEAMS_PATH = [
+    { id: 'leaderboard',    title: 'Pro Sports YouTube Leaderboard', render: renderLeaderboard },
+    { id: 'cs-spurs',       title: 'Case Study: Spurs',          render: renderSpurs },
+    { id: 'strategy-teams', title: 'The Reverse Funnel',         render: renderStrategyTeams },
+    { id: 'tools-teams',    title: 'Proprietary Tools',          render: renderToolsTeams },
+    { id: 'work-team',      title: 'How We Work · Teams',        render: renderWorkTeam },
+    { id: 'capacity-team',  title: 'Studio Capacity · Teams',    render: renderCapacityTeam },
+  ];
+
+  const ATHLETES_PATH = [
+    { id: 'post-career',      title: 'Post-Career Content Case Studies', render: renderPostCareer },
+    { id: 'cs-cam',           title: 'Case Study: Cam + Org',     render: renderCam },
+    { id: 'cs-ocho',          title: 'How We Launch From 0',      render: renderOcho },
+    { id: 'strategy',         title: 'The Reverse Funnel',        render: renderStrategy },
+    { id: 'nil',              title: 'NIL Frameworks',            render: renderNIL },
+    { id: 'wave',             title: 'The Untapped Wave',         render: renderWave },
+    { id: 'tools',            title: 'Proprietary Tools',         render: renderTools },
+    { id: 'work-athlete',     title: 'How We Work · Athletes',    render: renderWorkAthlete },
+    { id: 'capacity-athlete', title: 'Studio Capacity · Athletes',render: renderCapacityAthlete },
+  ];
+
+  const COMMON_OUTRO = [
+    { id: 'contact',  title: 'Contact',         render: renderContact },
+  ];
+
+  // Branch state. null = not yet chosen (only intro slides reachable).
+  // 'teams' or 'athletes' = chosen path.
+  let activeTrack = (TRACK === 'teams' || TRACK === 'athletes') ? TRACK : null;
+
+  function getActiveDeck() {
+    if (activeTrack === 'teams')    return [...COMMON_INTRO, ...TEAMS_PATH,    ...COMMON_OUTRO];
+    if (activeTrack === 'athletes') return [...COMMON_INTRO, ...ATHLETES_PATH, ...COMMON_OUTRO];
+    return COMMON_INTRO; // unchosen — only intro is reachable
+  }
+
+  function setTrack(track) {
+    activeTrack = track;
+    visited.clear();         // reset trail when switching paths
+    visited.add(currentIdx); // keep current slide marked as visited
+  }
+
+  document.getElementById('slide-total').textContent = COMMON_INTRO.length + ATHLETES_PATH.length + COMMON_OUTRO.length;
 
   let currentIdx = 0;
   const visited = new Set();
 
   function showSlide(idx) {
-    if (idx < 0 || idx >= SLIDES.length) return;
+    const deck = getActiveDeck();
+    if (idx < 0 || idx >= deck.length) return;
     const stage = document.getElementById('slide-stage');
 
     // Nuke any lingering slides from prior rapid navigation. querySelector('.slide')
@@ -166,8 +199,8 @@
 
     const newSlideEl = document.createElement('section');
     newSlideEl.className = 'slide';
-    newSlideEl.dataset.slideId = SLIDES[idx].id;
-    SLIDES[idx].render(newSlideEl, idx);
+    newSlideEl.dataset.slideId = deck[idx].id;
+    deck[idx].render(newSlideEl, idx);
 
     liveSlides.forEach(old => {
       old.classList.add('slide-out');
@@ -178,23 +211,37 @@
     currentIdx = idx;
     visited.add(idx);
     document.getElementById('slide-current').textContent = idx + 1;
-    document.getElementById('slide-title-display').textContent = SLIDES[idx].title;
+    document.getElementById('slide-total').textContent   = deck.length;
+    document.getElementById('slide-title-display').textContent = deck[idx].title;
     updateNavButtons();
     renderChapterPips();
   }
 
-  function nextSlide() { showSlide(Math.min(currentIdx + 1, SLIDES.length - 1)); }
+  function nextSlide() {
+    const deck = getActiveDeck();
+    showSlide(Math.min(currentIdx + 1, deck.length - 1));
+  }
   function prevSlide() { showSlide(Math.max(currentIdx - 1, 0)); }
 
+  // Called by CYOA buttons — pick a path then advance into it
+  function chooseTrack(track) {
+    setTrack(track);
+    showSlide(currentIdx + 1);
+  }
+
   function updateNavButtons() {
+    const deck = getActiveDeck();
     document.getElementById('nav-prev').disabled = currentIdx === 0;
-    document.getElementById('nav-next').disabled = currentIdx === SLIDES.length - 1;
+    // Disable next when we're at the end OR sitting on CYOA without a choice
+    const onChoosePending = deck[currentIdx]?.id === 'choose' && !activeTrack;
+    document.getElementById('nav-next').disabled = currentIdx === deck.length - 1 || onChoosePending;
   }
 
   function renderChapterPips() {
     const wrap = document.getElementById('nav-chapters');
+    const deck = getActiveDeck();
     wrap.innerHTML = '';
-    SLIDES.forEach((s, i) => {
+    deck.forEach((s, i) => {
       const pip = document.createElement('button');
       pip.className = 'chapter-pip';
       if (i === currentIdx) pip.classList.add('active');
@@ -692,6 +739,90 @@
         if (e.target.closest('.win-extra')) return;
         const url = card.getAttribute('data-url');
         if (url) window.open(url, '_blank', 'noopener');
+      });
+    });
+  }
+
+  /* ----------------------------------------------------------
+     SLIDE — CHOOSE YOUR ADVENTURE
+     Branch point: Teams or Athletes? Picking advances onto the
+     chosen path. Re-converges at "How We Work".
+     ---------------------------------------------------------- */
+  function renderChoose(el) {
+    el.classList.add('slide-choose');
+    el.innerHTML = `
+      <div class="eyebrow">▮ CHOOSE YOUR ADVENTURE ▮</div>
+      <h1>Who are we building this for?</h1>
+      <div class="choose-subtitle">
+        Pick a path &mdash; we'll route the rest of the deck to what's actually relevant.
+        Both routes re-converge at <em>How We Work</em>.
+      </div>
+
+      <div class="choose-grid">
+
+        <button class="choose-card choose-teams" data-track="teams">
+          <div class="cc-window">
+            <span class="cc-app">Teams_Path.exe</span>
+            <span class="cc-x">×</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-icon">🏟️</div>
+            <div class="cc-tag">PATH 01</div>
+            <div class="cc-name">TEAMS</div>
+            <div class="cc-desc">Pro franchises &amp; athletic departments.</div>
+            <ul class="cc-list">
+              <li>▸ Pro Sports YouTube Leaderboard</li>
+              <li>▸ Spurs case study (#17 → #1)</li>
+              <li>▸ The Reverse Funnel</li>
+              <li>▸ Proprietary tools <span class="cc-list-tag">+ Player Monitor</span></li>
+            </ul>
+            <div class="cc-cta">
+              <span class="cc-cta-text">RUN TEAMS PATH</span>
+              <span class="cc-cta-arrow">→</span>
+            </div>
+          </div>
+        </button>
+
+        <div class="choose-or">
+          <div class="cor-line"></div>
+          <div class="cor-bubble">OR</div>
+          <div class="cor-line"></div>
+        </div>
+
+        <button class="choose-card choose-athletes" data-track="athletes">
+          <div class="cc-window">
+            <span class="cc-app">Athletes_Path.exe</span>
+            <span class="cc-x">×</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-icon">🎙️</div>
+            <div class="cc-tag">PATH 02</div>
+            <div class="cc-name">ATHLETES</div>
+            <div class="cc-desc">Active &amp; post-career creators.</div>
+            <ul class="cc-list">
+              <li>▸ Career is just the beginning</li>
+              <li>▸ Cam Newton + How we launch from 0</li>
+              <li>▸ The Reverse Funnel + NIL frameworks</li>
+              <li>▸ The Untapped Wave + tools</li>
+            </ul>
+            <div class="cc-cta">
+              <span class="cc-cta-text">RUN ATHLETES PATH</span>
+              <span class="cc-cta-arrow">→</span>
+            </div>
+          </div>
+        </button>
+
+      </div>
+
+      <div class="choose-footer">
+        <span class="chf-tag">▸ HEADS UP</span>
+        Either path lands you at <strong>How We Work</strong>. Use ← to come back here and try the other if you want.
+      </div>
+    `;
+
+    el.querySelectorAll('.choose-card').forEach(btn => {
+      btn.addEventListener('click', () => {
+        chooseTrack(btn.dataset.track);
       });
     });
   }
@@ -1226,8 +1357,14 @@
   /* ----------------------------------------------------------
      SLIDE — THE REVERSE FUNNEL (Strategy Framework)
      ---------------------------------------------------------- */
-  function renderStrategy(el) {
+  function renderStrategy(el, idx, variant) {
     el.classList.add('slide-strategy');
+    const isTeams = variant === 'teams';
+    const heroDesc    = isTeams ? 'The full episode'                              : 'The full podcast episode';
+    const heroRuntime = isTeams ? '22:18'                                          : '1:52:34';
+    const heroNote    = isTeams
+      ? 'The owned IP. Long-form watch time on the team channel &mdash; the home base every clip routes back to. <em>This is the asset.</em>'
+      : 'The owned IP. Long-form watch time, mid-rolls + sponsor reads. <em>This is the business.</em>';
     el.innerHTML = `
       <div class="eyebrow">▮ STRATEGY FRAMEWORK ▮</div>
       <h1>The Reverse Funnel</h1>
@@ -1243,13 +1380,13 @@
           <div class="tier-row">
             <div class="funnel-card card-hero">
               <div class="card-type">"HERO"</div>
-              <div class="card-desc">The full podcast episode</div>
-              <div class="card-runtime">1:52:34</div>
+              <div class="card-desc">${heroDesc}</div>
+              <div class="card-runtime">${heroRuntime}</div>
             </div>
           </div>
           <div class="tier-note sticky-note sticky-note-1">
             <div class="note-body">
-              The owned IP. Long-form watch time, mid-rolls + sponsor reads. <em>This is the business.</em>
+              ${heroNote}
             </div>
           </div>
         </div>
@@ -1348,7 +1485,9 @@
           </div>
           <div class="tier-note sticky-note sticky-note-3">
             <div class="note-body">
-              Fun, high-energy moments only. Recruits viewers who'd never click a 2-hour pod &mdash; and tests which hooks earn next week's clips.
+              ${isTeams
+                ? `Fun, high-energy moments only. Recruits viewers who'd never sit through a long-form episode &mdash; and tests which hooks earn next week's clips.`
+                : `Fun, high-energy moments only. Recruits viewers who'd never click a 2-hour pod &mdash; and tests which hooks earn next week's clips.`}
             </div>
           </div>
         </div>
@@ -1391,20 +1530,43 @@
     `;
   }
 
+  function renderStrategyTeams(el, idx) { renderStrategy(el, idx, 'teams'); }
+
   /* ----------------------------------------------------------
      SLIDE — PROPRIETARY TOOLS
      ---------------------------------------------------------- */
-  function renderTools(el) {
+  function renderTools(el, idx, variant) {
     el.classList.add('slide-tools');
-    el.innerHTML = `
-      <div class="eyebrow">▮ THE REAL DIFFERENTIATOR ▮</div>
-      <h1>We were never just a clips agency.</h1>
-      <div class="tools-subtitle">
-        Three tools built in-house. Each one ships standalone on subscription &mdash; capacity isn't gated by humans.
-      </div>
-
-      <div class="tools-grid">
-
+    const isTeams = variant === 'teams';
+    const firstCard = isTeams ? `
+        <div class="tool-card tool-card-playermon">
+          <div class="tool-window">
+            <span class="tool-app">PlayerMonitor.exe</span>
+            <span class="tool-x">×</span>
+          </div>
+          <div class="tool-body">
+            <div class="tool-icon">🛰️</div>
+            <div class="tool-name">PLAYER MONITOR</div>
+            <div class="tool-tag">ROSTER-WIDE LISTENING · NIGHTLY</div>
+            <ul class="tool-bullets">
+              <li>Tracks <strong>every player on the roster</strong> across every social platform</li>
+              <li>Pulls every Google News article mentioning the player &mdash; nightly</li>
+              <li>Comments, replies, Instagram stories, Reddit chatter, fan-cam clips</li>
+              <li>Surfaces the moments fans are <em>already</em> talking about &mdash; before the team posts</li>
+              <li><em>Story radar for content, PR, and brand &mdash; one dashboard</em></li>
+            </ul>
+            <div class="tool-stat-row">
+              <div class="tool-stat">
+                <div class="tool-stat-num">100%</div>
+                <div class="tool-stat-lbl">roster coverage</div>
+              </div>
+              <div class="tool-stat">
+                <div class="tool-stat-num">24h</div>
+                <div class="tool-stat-lbl">refresh cycle</div>
+              </div>
+            </div>
+          </div>
+        </div>` : `
         <div class="tool-card">
           <div class="tool-window">
             <span class="tool-app">ChannelTrack.exe</span>
@@ -1432,7 +1594,17 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>`;
+
+    el.innerHTML = `
+      <div class="eyebrow">▮ THE REAL DIFFERENTIATOR ▮</div>
+      <h1>We were never just a clips agency.</h1>
+      <div class="tools-subtitle">
+        Three tools built in-house. Each one ships standalone on subscription &mdash; capacity isn't gated by humans.
+      </div>
+
+      <div class="tools-grid">
+        ${firstCard}
 
         <div class="tool-card tool-card-mid">
           <div class="tool-window">
@@ -1499,6 +1671,8 @@
       </div>
     `;
   }
+
+  function renderToolsTeams(el, idx) { renderTools(el, idx, 'teams'); }
 
   /* ----------------------------------------------------------
      SLIDE — NIL CREATOR FRAMEWORKS
@@ -1680,11 +1854,74 @@
   /* ----------------------------------------------------------
      SLIDE — HOW WE WORK
      ---------------------------------------------------------- */
-  function renderWork(el) {
-    el.classList.add('slide-work');
+  const PRICING_BLOCKS = {
+    athlete: `
+      <div class="wpr-track wpr-track-athlete">
+        <div class="wpr-window">
+          <span class="wpr-app">Athlete_Pricing.exe</span>
+          <span class="wpr-x">×</span>
+        </div>
+        <div class="wpr-body">
+          <div class="wpr-headrow">
+            <div class="wpr-icon">🎙️</div>
+            <div class="wpr-headcol">
+              <div class="wpr-tag">ATHLETE TRACK</div>
+              <div class="wpr-name">Athletes</div>
+            </div>
+          </div>
+          <div class="wpr-tiers">
+            <div class="wpr-tier">
+              <div class="wpr-tier-price">$10,000<span class="wpr-tier-per">/mo</span></div>
+              <div class="wpr-tier-name">YouTube Strategist</div>
+              <div class="wpr-tier-detail">Dedicated strategist running the channel.</div>
+            </div>
+            <div class="wpr-tier wpr-tier-plus">
+              <div class="wpr-tier-price">$16,000<span class="wpr-tier-per">/mo</span></div>
+              <div class="wpr-tier-name">Strategist + Vertical Editor + Thumbnail Designer</div>
+              <div class="wpr-tier-detail">Full creative pod &mdash; strategist, dedicated vertical video editor, dedicated thumbnail designer.</div>
+            </div>
+          </div>
+          <div class="wpr-asterisk">* with AdSense + brand deal rev share</div>
+        </div>
+      </div>
+    `,
+    team: `
+      <div class="wpr-track wpr-track-team">
+        <div class="wpr-window">
+          <span class="wpr-app">Team_Pricing.exe</span>
+          <span class="wpr-x">×</span>
+        </div>
+        <div class="wpr-body">
+          <div class="wpr-headrow">
+            <div class="wpr-icon">🏟️</div>
+            <div class="wpr-headcol">
+              <div class="wpr-tag">TEAM TRACK</div>
+              <div class="wpr-name">Teams / Athletic Departments</div>
+            </div>
+          </div>
+          <div class="wpr-tiers">
+            <div class="wpr-tier">
+              <div class="wpr-tier-price">$30,000<span class="wpr-tier-per">/mo</span></div>
+              <div class="wpr-tier-name">Strategy &amp; Execution</div>
+              <div class="wpr-tier-detail">Custom strategies for every tentpole event, game-over-game strategy, in-person workshops, on-site support.</div>
+            </div>
+            <div class="wpr-tier wpr-tier-plus">
+              <div class="wpr-tier-price">$45,000<span class="wpr-tier-per">/mo</span></div>
+              <div class="wpr-tier-name">+ Dedicated Vertical Team + Thumbnail Expert</div>
+              <div class="wpr-tier-detail">Vertical team remotely present at every game producing 100+ verticals/mo. Dedicated thumbnail expert executing across all projects.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+  };
+
+  function renderWork(el, track) {
+    el.classList.add('slide-work', 'slide-work-' + track);
+    const trackLabel = track === 'team' ? 'Teams &amp; Athletic Departments' : 'Athletes';
     el.innerHTML = `
-      <div class="eyebrow">▮ HOW WE'D WORK TOGETHER ▮</div>
-      <h1>Two-part model. Designed so YouTube referrals can land at any commitment.</h1>
+      <div class="eyebrow">▮ HOW WE'D WORK TOGETHER · ${track.toUpperCase()} TRACK ▮</div>
+      <h1>Two-part model for ${trackLabel}.</h1>
 
       <div class="work-twocol">
         <div class="work-phase work-phase-launch">
@@ -1726,71 +1963,16 @@
         </div>
       </div>
 
-      <div class="work-pricing">
-        <div class="wpr-head">▮ PRICING LOGIC BY TRACK ▮</div>
-        <div class="wpr-tracks">
-
-          <div class="wpr-track wpr-track-athlete">
-            <div class="wpr-window">
-              <span class="wpr-app">Athlete_Pricing.exe</span>
-              <span class="wpr-x">×</span>
-            </div>
-            <div class="wpr-body">
-              <div class="wpr-headrow">
-                <div class="wpr-icon">🎙️</div>
-                <div class="wpr-headcol">
-                  <div class="wpr-tag">TRACK 01</div>
-                  <div class="wpr-name">Athletes</div>
-                </div>
-              </div>
-              <div class="wpr-tiers">
-                <div class="wpr-tier">
-                  <div class="wpr-tier-price">$10,000<span class="wpr-tier-per">/mo</span></div>
-                  <div class="wpr-tier-name">YouTube Strategist</div>
-                  <div class="wpr-tier-detail">Dedicated strategist running the channel.</div>
-                </div>
-                <div class="wpr-tier wpr-tier-plus">
-                  <div class="wpr-tier-price">$16,000<span class="wpr-tier-per">/mo</span></div>
-                  <div class="wpr-tier-name">Strategist + Vertical Editor + Thumbnail Designer</div>
-                  <div class="wpr-tier-detail">Full creative pod &mdash; strategist, dedicated vertical video editor, dedicated thumbnail designer.</div>
-                </div>
-              </div>
-              <div class="wpr-asterisk">* with AdSense + brand deal rev share</div>
-            </div>
-          </div>
-
-          <div class="wpr-track wpr-track-team">
-            <div class="wpr-window">
-              <span class="wpr-app">Team_Pricing.exe</span>
-              <span class="wpr-x">×</span>
-            </div>
-            <div class="wpr-body">
-              <div class="wpr-headrow">
-                <div class="wpr-icon">🏟️</div>
-                <div class="wpr-headcol">
-                  <div class="wpr-tag">TRACK 02</div>
-                  <div class="wpr-name">Teams / Athletic Departments</div>
-                </div>
-              </div>
-              <div class="wpr-tiers">
-                <div class="wpr-tier">
-                  <div class="wpr-tier-price">$30,000<span class="wpr-tier-per">/mo</span></div>
-                  <div class="wpr-tier-name">Strategy &amp; Execution</div>
-                  <div class="wpr-tier-detail">Custom strategies for every tentpole event, game-over-game strategy, in-person workshops.</div>
-                </div>
-                <div class="wpr-tier wpr-tier-plus">
-                  <div class="wpr-tier-price">$45,000<span class="wpr-tier-per">/mo</span></div>
-                  <div class="wpr-tier-name">+ Dedicated Vertical Team + Thumbnail Expert</div>
-                  <div class="wpr-tier-detail">Vertical team remotely present at every game producing 100+ verticals/mo. Dedicated thumbnail expert executing across all projects.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+      <div class="work-pricing work-pricing-single">
+        <div class="wpr-head">▮ PRICING ▮</div>
+        <div class="wpr-tracks wpr-tracks-single">
+          ${PRICING_BLOCKS[track]}
         </div>
       </div>
     `;
   }
+  function renderWorkTeam(el)    { renderWork(el, 'team'); }
+  function renderWorkAthlete(el) { renderWork(el, 'athlete'); }
 
   /* ----------------------------------------------------------
      SLIDE — SUCCESS FEE / ACHIEVEMENTS
@@ -1877,10 +2059,14 @@
   /* ----------------------------------------------------------
      SLIDE — STUDIO CAPACITY
      ---------------------------------------------------------- */
-  function renderCapacity(el) {
-    el.classList.add('slide-capacity');
+  function renderCapacity(el, track) {
+    el.classList.add('slide-capacity', 'slide-capacity-' + track);
+    const cfg = track === 'team'
+      ? { icon: '🏟️', lbl: 'teams',    nowNum: '2',     futureNum: '4&ndash;8',   trackLabel: 'Team Track' }
+      : { icon: '🎙️', lbl: 'athletes', nowNum: '2&ndash;4', futureNum: '8&ndash;16', trackLabel: 'Athlete Track' };
+
     el.innerHTML = `
-      <div class="eyebrow">▮ STUDIO CAPACITY ▮</div>
+      <div class="eyebrow">▮ STUDIO CAPACITY · ${cfg.trackLabel.toUpperCase()} ▮</div>
       <h1>Quality bar, held.</h1>
       <div class="cap-subtitle">
         We scale the team in lockstep with the volume YouTube wants to drive. <em>Not before.</em>
@@ -1895,17 +2081,11 @@
           </div>
           <div class="cap-body">
             <div class="cap-tag">CURRENT (MAY 2026)</div>
-            <div class="cap-slots">
+            <div class="cap-slots cap-slots-single">
               <div class="cap-slot">
-                <div class="cap-slot-icon">🏟️</div>
-                <div class="cap-slot-num">2</div>
-                <div class="cap-slot-lbl">teams</div>
-              </div>
-              <div class="cap-slot-plus">+</div>
-              <div class="cap-slot">
-                <div class="cap-slot-icon">🎙️</div>
-                <div class="cap-slot-num">2&ndash;4</div>
-                <div class="cap-slot-lbl">athletes</div>
+                <div class="cap-slot-icon">${cfg.icon}</div>
+                <div class="cap-slot-num">${cfg.nowNum}</div>
+                <div class="cap-slot-lbl">${cfg.lbl}</div>
               </div>
             </div>
             <div class="cap-team">
@@ -1929,17 +2109,11 @@
           </div>
           <div class="cap-body cap-body-future">
             <div class="cap-tag cap-tag-future">FORECAST · 2&times; TO 4&times;</div>
-            <div class="cap-slots">
+            <div class="cap-slots cap-slots-single">
               <div class="cap-slot cap-slot-future">
-                <div class="cap-slot-icon">🏟️</div>
-                <div class="cap-slot-num">4&ndash;8</div>
-                <div class="cap-slot-lbl">teams</div>
-              </div>
-              <div class="cap-slot-plus">+</div>
-              <div class="cap-slot cap-slot-future">
-                <div class="cap-slot-icon">🎙️</div>
-                <div class="cap-slot-num">8&ndash;16</div>
-                <div class="cap-slot-lbl">athletes</div>
+                <div class="cap-slot-icon">${cfg.icon}</div>
+                <div class="cap-slot-num">${cfg.futureNum}</div>
+                <div class="cap-slot-lbl">${cfg.lbl}</div>
               </div>
             </div>
             <div class="cap-team cap-team-future">
@@ -1959,6 +2133,8 @@
       </div>
     `;
   }
+  function renderCapacityTeam(el)    { renderCapacity(el, 'team'); }
+  function renderCapacityAthlete(el) { renderCapacity(el, 'athlete'); }
 
   /* ----------------------------------------------------------
      SLIDE — CONTACT
@@ -2032,6 +2208,158 @@
         window.location.href = `mailto:kent@kentheckel.com?subject=${subject}`;
       });
     });
+  }
+
+  /* ----------------------------------------------------------
+     SLIDE — PRO SPORTS YOUTUBE LEADERBOARD
+     NBA + NFL top 10 by subscribers, last-28-day views,
+     and (NBA) historical peak monthly views.
+     Data sourced from Kent's Notion trackers, snapshot 2026-05-05.
+     NFL 28-day window: 2026-04-07 → 2026-05-05.
+     ---------------------------------------------------------- */
+  const LEADERBOARD = {
+    snapshotDate: '2026-05-05',
+    nba: [
+      { rank: 1,  team: 'Los Angeles Lakers',     subs: 3390000, views28d: 16733610, peakMo: 31420548 },
+      { rank: 2,  team: 'San Antonio Spurs',      subs:  184000, views28d: 11677497, peakMo: 15944196 },
+      { rank: 3,  team: 'Orlando Magic',          subs:  877000, views28d: 11047420, peakMo: 12334553 },
+      { rank: 4,  team: 'Denver Nuggets',         subs:  203000, views28d:  9862797, peakMo: 10538398 },
+      { rank: 5,  team: 'Golden State Warriors',  subs: 2300000, views28d:  8227652, peakMo: 12160011 },
+      { rank: 6,  team: 'Minnesota Timberwolves', subs:  147000, views28d:  4613066, peakMo:  4613066 },
+      { rank: 7,  team: 'Oklahoma City Thunder',  subs:  212000, views28d:  3541765, peakMo:  3643784 },
+      { rank: 8,  team: 'Cleveland Cavaliers',    subs:  144000, views28d:  3455483, peakMo:  3455483 },
+      { rank: 9,  team: 'Atlanta Hawks',          subs:  105000, views28d:  2694631, peakMo:  2694631 },
+      { rank: 10, team: 'Phoenix Suns',           subs:  143000, views28d:  2693502, peakMo:  5667560 },
+    ],
+    nfl: [
+      { rank: 1,  team: 'Cleveland Browns',       subs:  358000, views28d: 7673277,  total: 234453156 },
+      { rank: 2,  team: 'Philadelphia Eagles',    subs:  924000, views28d: 7060962,  total: 660773000 },
+      { rank: 3,  team: 'Pittsburgh Steelers',    subs:  368000, views28d: 6862433,  total: 215080772 },
+      { rank: 4,  team: 'Dallas Cowboys',         subs:  518000, views28d: 6351162,  total: 252217996 },
+      { rank: 5,  team: 'Las Vegas Raiders',      subs:  348000, views28d: 5916525,  total: 167773854 },
+      { rank: 6,  team: 'New York Giants',        subs:  302000, views28d: 5538622,  total: 193560088 },
+      { rank: 7,  team: 'Los Angeles Rams',       subs:  389000, views28d: 5316121,  total: 139397119 },
+      { rank: 8,  team: 'Kansas City Chiefs',     subs: 1480000, views28d: 4428163,  total: 350009588 },
+      { rank: 9,  team: 'Los Angeles Chargers',   subs:  448000, views28d: 4124142,  total: 417787247 },
+      { rank: 10, team: 'Baltimore Ravens',       subs:  358000, views28d: 3426748,  total: 150821133 },
+    ],
+    // ASFC network comp — pulled from network-stats.json
+    network: {
+      subs: 14250000,
+      views30d: 33068630,
+      lifetime: 2690410657,
+    },
+  };
+
+  function renderLeaderboard(el) {
+    el.classList.add('slide-leaderboard');
+
+    const fmtSubs = n => {
+      if (n >= 1e6) return (n / 1e6).toFixed(n >= 10e6 ? 1 : 2).replace(/\.?0+$/, '') + 'M';
+      if (n >= 1e3) return Math.round(n / 1e3) + 'K';
+      return String(n);
+    };
+    const fmtViews = n => {
+      if (n >= 1e9) return (n / 1e9).toFixed(2) + 'B';
+      if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+      if (n >= 1e3) return Math.round(n / 1e3) + 'K';
+      return String(n);
+    };
+
+    const nbaRows = LEADERBOARD.nba.map(r => {
+      const isClient = r.team === 'San Antonio Spurs';
+      return `
+      <tr${isClient ? ' class="lb-client"' : ''}>
+        <td class="lb-rank">${String(r.rank).padStart(2, '0')}</td>
+        <td class="lb-team">${r.team}${isClient ? ' <span class="lb-client-badge">ASFC client · ↑ from #17 last season</span>' : ''}</td>
+        <td class="lb-num lb-lead">${fmtViews(r.views28d)}</td>
+        <td class="lb-num">${fmtSubs(r.subs)}</td>
+        <td class="lb-num lb-peak">${fmtViews(r.peakMo)}</td>
+      </tr>
+    `;}).join('');
+
+    const nflRows = LEADERBOARD.nfl.map(r => `
+      <tr>
+        <td class="lb-rank">${String(r.rank).padStart(2, '0')}</td>
+        <td class="lb-team">${r.team}</td>
+        <td class="lb-num lb-lead">${fmtViews(r.views28d)}</td>
+        <td class="lb-num">${fmtSubs(r.subs)}</td>
+        <td class="lb-num lb-peak">${fmtViews(r.total)}</td>
+      </tr>
+    `).join('');
+
+    const N = LEADERBOARD.network;
+
+    el.innerHTML = `
+      <div class="lb-header">
+        <div class="eyebrow">▮ THE OPPORTUNITY ▮</div>
+        <h1>Pro teams are <span class="lb-h1-strike">sleeping</span> on YouTube.</h1>
+        <p class="lb-lead">Top 10 NBA &amp; NFL franchises by views in the last 28 days — who's actually winning the platform right now. Season-cumulative growth tells a different story (see Spurs case study). <span class="lb-lead-meta">Snapshot ${LEADERBOARD.snapshotDate} · ASFC YouTube tracker</span></p>
+      </div>
+
+      <div class="lb-grid">
+        <div class="lb-card lb-nba">
+          <div class="lb-card-head">
+            <span class="lb-league">🏀 NBA</span>
+            <span class="lb-card-sub">ranked by 28d views · top 10 of 30</span>
+          </div>
+          <table class="lb-table">
+            <thead>
+              <tr>
+                <th class="lb-rank">#</th>
+                <th class="lb-team">TEAM</th>
+                <th class="lb-num lb-lead">28d VIEWS</th>
+                <th class="lb-num">SUBS</th>
+                <th class="lb-num lb-peak">PEAK MO</th>
+              </tr>
+            </thead>
+            <tbody>${nbaRows}</tbody>
+          </table>
+        </div>
+
+        <div class="lb-card lb-nfl">
+          <div class="lb-card-head">
+            <span class="lb-league">🏈 NFL</span>
+            <span class="lb-card-sub">ranked by 28d views · top 10 of 32</span>
+          </div>
+          <table class="lb-table">
+            <thead>
+              <tr>
+                <th class="lb-rank">#</th>
+                <th class="lb-team">TEAM</th>
+                <th class="lb-num lb-lead">28d VIEWS</th>
+                <th class="lb-num">SUBS</th>
+                <th class="lb-num lb-peak">LIFETIME</th>
+              </tr>
+            </thead>
+            <tbody>${nflRows}</tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="lb-comp">
+        <div class="lb-comp-tag">▮ MEANWHILE — THE CREATOR PLAYBOOK ▮</div>
+        <div class="lb-comp-row">
+          <div class="lb-comp-name">ASFC&nbsp;NETWORK</div>
+          <div class="lb-comp-stat">
+            <span class="lb-comp-num">${fmtSubs(N.subs)}</span>
+            <span class="lb-comp-cap">subscribers</span>
+          </div>
+          <div class="lb-comp-stat">
+            <span class="lb-comp-num">${fmtViews(N.views30d)}</span>
+            <span class="lb-comp-cap">views / 30d</span>
+          </div>
+          <div class="lb-comp-stat">
+            <span class="lb-comp-num">${fmtViews(N.lifetime)}</span>
+            <span class="lb-comp-cap">lifetime views</span>
+          </div>
+        </div>
+        <div class="lb-comp-foot">
+          More subs than any single team in either league. 33M views every 30 days &mdash; matching the Lakers' best month <em>ever</em>.
+          <strong>We've already built the creator network the leagues are missing.</strong>
+        </div>
+      </div>
+    `;
   }
 
   function placeholder(el, idx) {
