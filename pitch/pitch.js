@@ -144,7 +144,9 @@
     { id: 'leaderboard',    title: 'Pro Sports YouTube Leaderboard', render: renderLeaderboard },
     { id: 'cs-spurs',       title: 'Case Study: Spurs',          render: renderSpurs },
     { id: 'strategy-teams', title: 'The Reverse Funnel',         render: renderStrategyTeams },
-    { id: 'tools-teams',    title: 'Proprietary Tools',          render: renderToolsTeams },
+    { id: 'tool-playermon', title: 'Player Monitor',             render: renderToolPlayerMonitor },
+    { id: 'tool-postgame',  title: 'Postgame Analytics',         render: renderToolPostgame },
+    { id: 'tool-uptides',   title: 'Uptides.ai',                 render: renderToolUptides },
     { id: 'work-team',      title: 'How We Work · Teams',        render: renderWorkTeam },
     { id: 'capacity-team',  title: 'Studio Capacity · Teams',    render: renderCapacityTeam },
   ];
@@ -1672,7 +1674,302 @@
     `;
   }
 
-  function renderToolsTeams(el, idx) { renderTools(el, idx, 'teams'); }
+  /* ----------------------------------------------------------
+     SLIDE — TOOL DETAIL (one slide per proprietary tool, teams path)
+     ---------------------------------------------------------- */
+  function renderToolDetail(el, cfg) {
+    el.classList.add('slide-tool-solo', 'slide-tool-solo-' + cfg.themeKey);
+
+    const renderItem = (it) => typeof it === 'string'
+      ? `<li>${it}</li>`
+      : `<li><span class="ts-blt-h">${it.h}</span><span class="ts-blt-sub">${it.s}</span></li>`;
+
+    const featureBlocks = cfg.features.map(f => `
+      <div class="ts-feature">
+        <div class="ts-feature-label">▸ ${f.label}</div>
+        <ul class="ts-feature-list">
+          ${f.items.map(renderItem).join('')}
+        </ul>
+      </div>`).join('');
+
+    const statsRow = cfg.stats.map(s => `
+      <div class="ts-stat">
+        <div class="ts-stat-num">${s.num}</div>
+        <div class="ts-stat-lbl">${s.lbl}</div>
+      </div>`).join('');
+
+    const receipt = cfg.receipt ? `
+      <div class="ts-receipt">
+        <span class="ts-receipt-tag">▸ RECEIPT</span>
+        ${cfg.receipt}
+      </div>` : '';
+
+    const screenshot = cfg.screenshot ? `
+      <div class="ts-screenshot">
+        <div class="ts-screenshot-frame">
+          <img src="${cfg.screenshot.src}" alt="${cfg.screenshot.alt}">
+        </div>
+        <div class="ts-screenshot-cap">▸ ${cfg.screenshot.caption}</div>
+      </div>` : (cfg.screenshotPlaceholder ? `
+      <div class="ts-screenshot ts-screenshot-placeholder">
+        <div class="ts-screenshot-frame">
+          <div class="ts-ss-ph-inner">
+            <div class="ts-ss-ph-title">// ${cfg.screenshotPlaceholder.title}</div>
+            <div class="ts-ss-ph-body">${cfg.screenshotPlaceholder.body}</div>
+          </div>
+        </div>
+      </div>` : '');
+
+    const heroIcon = cfg.logo
+      ? `<img class="ts-logo" src="${cfg.logo}" alt="${cfg.name.replace(/<[^>]*>/g, '')} logo">`
+      : `<div class="ts-icon">${cfg.icon}</div>`;
+
+    el.innerHTML = `
+      <div class="eyebrow">▮ PROPRIETARY STACK · ${cfg.position} ▮</div>
+      <h1>${cfg.headline}</h1>
+      <div class="ts-subtitle">${cfg.subtitle}</div>
+
+      <div class="ts-window">
+        <div class="ts-window-bar">
+          <span class="ts-window-app">${cfg.app}</span>
+          <span class="ts-window-x">×</span>
+        </div>
+        <div class="ts-window-body">
+
+          <div class="ts-hero">
+            <div class="ts-hero-left">
+              ${heroIcon}
+              <div class="ts-hero-meta">
+                <div class="ts-name">${cfg.name}</div>
+                <div class="ts-tag">${cfg.tag}</div>
+              </div>
+            </div>
+            <div class="ts-price">
+              <div class="ts-price-num">${cfg.price}</div>
+              <div class="ts-price-unit">${cfg.priceUnit}</div>
+            </div>
+          </div>
+
+          <div class="ts-desc">${cfg.description}</div>
+
+          <div class="ts-features">
+            ${featureBlocks}
+          </div>
+
+          ${screenshot}
+
+          <div class="ts-stat-row">
+            ${statsRow}
+          </div>
+
+          ${receipt}
+
+        </div>
+      </div>
+    `;
+  }
+
+  function renderToolPlayerMonitor(el) {
+    renderToolDetail(el, {
+      themeKey: 'playermon',
+      position: '01 / 03',
+      app: 'PlayerMonitor.exe',
+      icon: '🛰️',
+      name: 'PLAYER MONITOR',
+      tag: 'ROSTER-WIDE LISTENING · DAILY DIGEST',
+      headline: 'Every player. Every platform. Every night.',
+      subtitle: 'Plug in your roster. We listen to everything tied to those names so you don&rsquo;t have to.',
+      price: '$5,000',
+      priceUnit: '/ MONTH',
+      description: `Tracks every post, comment, reply, Reddit thread, X mention, and Google News article tied to your roster &mdash; <strong>nightly</strong>. The moments fans are already talking about land in your inbox <em>before</em> your team posts about them.`,
+      features: [
+        {
+          label: 'WHAT WE LISTEN TO',
+          items: [
+            { h: 'EVERY POST',    s: 'Across every platform on the roster' },
+            { h: 'EVERY COMMENT', s: 'Replies + sentiment, in volume' },
+            { h: 'EVERY MENTION', s: 'News, Reddit, X, fan cams, podcasts' },
+            { h: 'EVERY EVENT',   s: 'Surfaced from public chatter' },
+          ],
+        },
+        {
+          label: 'HOW IT&rsquo;S DELIVERED',
+          items: [
+            { h: 'DAILY DIGEST', s: 'One inbox, every morning' },
+            { h: 'POSTS ONLY',   s: 'Just what dropped' },
+            { h: 'RED FLAGS',    s: 'PR risk surfacing' },
+            { h: 'FULL FEED',    s: 'Everything we caught' },
+          ],
+        },
+      ],
+      stats: [
+        { num: '100%',  lbl: 'roster coverage' },
+        { num: '24h',   lbl: 'refresh cycle' },
+        { num: 'Daily', lbl: 'digest delivery' },
+      ],
+    });
+  }
+
+  function renderToolPostgame(el) {
+    el.classList.add('slide-tool-solo', 'slide-tool-solo-postgame');
+
+    // Raw values size the proportional bars. Spurs swept 8/8.
+    const rows = [
+      { label: 'TOTAL POSTS',       lDisp: '72',     rDisp: '126',    l: 72,      r: 126     },
+      { label: 'TOTAL VIEWS',       lDisp: '2.0M',   rDisp: '5.8M',   l: 2000000, r: 5800000 },
+      { label: 'TOTAL REACH',       lDisp: '63.2K',  rDisp: '1.2M',   l: 63200,   r: 1200000 },
+      { label: 'TOTAL ENGAGEMENTS', lDisp: '144.7K', rDisp: '947.8K', l: 144700,  r: 947800  },
+      { label: 'TOTAL LIKES',       lDisp: '134.6K', rDisp: '917.4K', l: 134600,  r: 917400  },
+      { label: 'TOTAL COMMENTS',    lDisp: '7.7K',   rDisp: '10.1K',  l: 7700,    r: 10100   },
+      { label: 'AVG ENGAGEMENT',    lDisp: '0.5%',   rDisp: '1.1%',   l: 0.5,     r: 1.1     },
+      { label: 'TOTAL SHARES',      lDisp: '1.8K',   rDisp: '15.9K',  l: 1800,    r: 15900   },
+    ];
+
+    const rowsHtml = rows.map(r => `
+      <div class="bs-row">
+        <div class="bs-val bs-val-left">${r.lDisp}</div>
+        <div class="bs-cat">${r.label}</div>
+        <div class="bs-val bs-val-right">${r.rDisp}</div>
+        <div class="bs-bar">
+          <div class="bs-bar-left"  style="flex: ${r.l};"></div>
+          <div class="bs-bar-right" style="flex: ${r.r};"></div>
+        </div>
+      </div>`).join('');
+
+    el.innerHTML = `
+      <div class="eyebrow">▮ PROPRIETARY STACK · 02 / 03 ▮</div>
+      <h1>Read every team’s social strategy like a box score.</h1>
+      <div class="ts-subtitle">Pick any matchup. See who played the social game best &mdash; and how.</div>
+
+      <div class="ts-window">
+        <div class="ts-window-bar">
+          <span class="ts-window-app">postgameanalytics.exe</span>
+          <span class="ts-window-x">×</span>
+        </div>
+        <div class="ts-window-body">
+
+          <div class="ts-hero">
+            <div class="ts-hero-left">
+              <div class="ts-icon">📊</div>
+              <div class="ts-hero-meta">
+                <div class="ts-name">POSTGAME ANALYTICS</div>
+                <div class="ts-tag">LEAGUE BENCHMARKING · BOX-SCORE FORMAT</div>
+              </div>
+            </div>
+            <div class="ts-price">
+              <div class="ts-price-num">$10,000</div>
+              <div class="ts-price-unit">/ MONTH</div>
+            </div>
+          </div>
+
+          <div class="ts-desc">
+            Every team&rsquo;s social activity laid out in <strong>box-score form</strong>. Here, <em>Spurs vs. Trail Blazers</em>. <strong>300+ teams</strong> ingested nightly. <strong>3 years</strong> of history, every post mapped to its game.
+          </div>
+
+          <div class="ts-split">
+            <div class="ts-split-left">
+              <div class="ts-feature">
+                <div class="ts-feature-label">▸ WHAT YOU SEE</div>
+                <ul class="ts-feature-list">
+                  <li><span class="ts-blt-h">TOP POSTS</span><span class="ts-blt-sub">Per team, per game, per platform</span></li>
+                  <li><span class="ts-blt-h">PLATFORM MIX</span><span class="ts-blt-sub">Where teams actually show up</span></li>
+                  <li><span class="ts-blt-h">FORMAT SPLIT</span><span class="ts-blt-sub">Short-form, long-form, live</span></li>
+                  <li><span class="ts-blt-h">ENGAGEMENT</span><span class="ts-blt-sub">Normalized by reach</span></li>
+                </ul>
+              </div>
+              <div class="ts-receipt">
+                <span class="ts-receipt-tag">▸ RECEIPT</span>
+                Directly responsible for our climb in NBA social rankings &mdash; we read every competitor's strategy like a box score, nightly.
+              </div>
+              <div class="ts-stat-row">
+                <div class="ts-stat"><div class="ts-stat-num">300+</div><div class="ts-stat-lbl">teams</div></div>
+                <div class="ts-stat"><div class="ts-stat-num">3yr</div><div class="ts-stat-lbl">history</div></div>
+                <div class="ts-stat"><div class="ts-stat-num">24h</div><div class="ts-stat-lbl">refresh</div></div>
+              </div>
+            </div>
+
+            <div class="ts-split-right">
+              <div class="ts-shot">
+                <div class="ts-shot-bar">
+                  <span class="ts-shot-bar-dots"><span></span><span></span><span></span></span>
+                  <span class="ts-shot-bar-app">postgameanalytics.com / nba / por @ sas</span>
+                  <span class="ts-shot-bar-spacer"></span>
+                </div>
+                <div class="ts-shot-body">
+                  <div class="bs-header">
+                    <div class="bs-eyebrow">SOCIAL BOX SCORE</div>
+                    <div class="bs-matchup-tag">▸ NBA · 1 GAME</div>
+                  </div>
+                  <div class="bs-teams">
+                    <div class="bs-team bs-team-left">
+                      <div class="bs-team-mark bs-team-mark-blazers">TB</div>
+                      <div class="bs-team-info">
+                        <div class="bs-team-name">Portland Trail Blazers</div>
+                        <div class="bs-team-cats">0 categories won</div>
+                      </div>
+                    </div>
+                    <div class="bs-vs">VS</div>
+                    <div class="bs-team bs-team-right">
+                      <div class="bs-team-info">
+                        <div class="bs-team-name">San Antonio Spurs</div>
+                        <div class="bs-team-cats"><strong>8 categories won</strong></div>
+                      </div>
+                      <div class="bs-team-mark bs-team-mark-spurs">SAS</div>
+                    </div>
+                  </div>
+                  <div class="bs-rows">
+                    ${rowsHtml}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    `;
+  }
+
+  function renderToolUptides(el) {
+    renderToolDetail(el, {
+      themeKey: 'uptides',
+      position: '03 / 03',
+      app: 'Uptides.ai',
+      logo: 'images/uptides-mark.png',
+      name: 'UPTIDES<span class="ts-name-tld">.ai</span>',
+      tag: 'BACK-CATALOG OPTIMIZER · DBI-READY',
+      headline: 'Your back catalog, working &mdash; not collecting dust.',
+      subtitle: 'A massive data play on the videos you already wrote off. Compounds from day one.',
+      price: '$2,000',
+      priceUnit: '/ MONTH',
+      description: `Re-optimizes <strong>titles and thumbnails</strong> on your back catalog every two weeks. Winners stay. Losers retest. Every result feeds back to your strategist &mdash; so what works on old content compounds your <em>forward</em> strategy too.`,
+      features: [
+        {
+          label: 'HOW IT WORKS',
+          items: [
+            { h: '2-WEEK CYCLE',    s: 'Titles + thumbs, on rotation' },
+            { h: 'KEEP OR SWAP',    s: 'Winners stay, losers retest' },
+            { h: 'STRATEGIST LOOP', s: 'Every result feeds forward' },
+            { h: 'DAY ONE',         s: 'No onboarding, no studio slot' },
+          ],
+        },
+        {
+          label: 'WHY IT MATTERS',
+          items: [
+            { h: 'CATALOG GOLD',     s: 'Videos you already wrote off' },
+            { h: 'OLD-CONTENT LIFT', s: '6+ months, still climbing' },
+            { h: 'DBI-READY',        s: 'Built for dynamic brand insertion' },
+            { h: 'ALWAYS ON',        s: 'Not a one-shot audit' },
+          ],
+        },
+      ],
+      stats: [
+        { num: '800%+', lbl: 'avg lift on 6+ mo content' },
+        { num: '2 wk',  lbl: 'optimization cycle' },
+        { num: 'Day 1', lbl: 'time to value' },
+      ],
+    });
+  }
 
   /* ----------------------------------------------------------
      SLIDE — NIL CREATOR FRAMEWORKS
@@ -2128,7 +2425,7 @@
 
       <div class="cap-footer">
         <span class="cf-tag">▸ THE PRINCIPLE</span>
-        Tools (Channel Track, League Bench, Uptides) ship on subscription &mdash;
+        Tools (${track === 'team' ? 'Player Monitor, Postgame Analytics, Uptides' : 'Channel Track, League Bench, Uptides'}) ship on subscription &mdash;
         <strong>those don't wait for a studio slot.</strong> The referral pipeline stays unblocked.
       </div>
     `;
