@@ -942,22 +942,22 @@
             <span class="sf-num" data-counter="42e6" data-format="m">+0</span>
             <span class="sf-kind">video views</span>
           </a>
-          <a class="sf-cell" href="https://instagram.com/spurs" target="_blank" rel="noopener">
+          <a class="sf-cell" href="https://www.instagram.com/spurs/reels/" target="_blank" rel="noopener">
             <span class="sf-plat">${PLAT_SVG.ig}<span class="sf-pname">Instagram</span><span class="sf-arrow">↗</span></span>
             <span class="sf-num" data-counter="1.5e9" data-format="b">+0</span>
             <span class="sf-kind">media views</span>
           </a>
-          <a class="sf-cell" href="https://tiktok.com/@spurs" target="_blank" rel="noopener">
+          <a class="sf-cell" href="https://www.tiktok.com/@spurs?lang=en" target="_blank" rel="noopener">
             <span class="sf-plat">${PLAT_SVG.tt}<span class="sf-pname">TikTok</span><span class="sf-arrow">↗</span></span>
             <span class="sf-num" data-counter="25e6" data-format="m">+0</span>
             <span class="sf-kind">video views</span>
           </a>
-          <a class="sf-cell" href="https://youtube.com/@spurs" target="_blank" rel="noopener">
+          <a class="sf-cell" href="https://www.youtube.com/channel/UCEZHE-0CoHqeL1LGFa2EmQw" target="_blank" rel="noopener">
             <span class="sf-plat">${PLAT_SVG.yt}<span class="sf-pname">YouTube</span><span class="sf-arrow">↗</span></span>
             <span class="sf-num" data-counter="64e6" data-format="m">+0</span>
             <span class="sf-kind">video views</span>
           </a>
-          <a class="sf-cell" href="https://facebook.com/sanantoniospurs" target="_blank" rel="noopener">
+          <a class="sf-cell" href="https://www.facebook.com/Spurs/" target="_blank" rel="noopener">
             <span class="sf-plat">${PLAT_SVG.fb}<span class="sf-pname">Facebook</span><span class="sf-arrow">↗</span></span>
             <span class="sf-num" data-counter="800e6" data-format="m">+0</span>
             <span class="sf-kind">media views</span>
@@ -2143,7 +2143,7 @@
     el.classList.add('slide-contact');
     el.innerHTML = `
       <div class="eyebrow">▮ END OF DECK · LET'S BUILD ▮</div>
-      <h1>Anti-Social Friends Club. Let's Grow Together.</h1>
+      <h1>Antisocial Friends Club. Let's Grow Together.</h1>
       <div class="contact-subtitle">
         Tell us which track fits and we'll route you to the right starting point.
       </div>
@@ -2186,7 +2186,7 @@
             <span class="ctb-name">I run a team</span>
             <span class="ctb-arrow">→</span>
           </button>
-          <button class="ct-btn ct-btn-dept" data-track="dept">
+          <button class="ct-btn ct-btn-dept" data-track="team">
             <span class="ctb-icon">🎓</span>
             <span class="ctb-name">I lead an athletic department</span>
             <span class="ctb-arrow">→</span>
