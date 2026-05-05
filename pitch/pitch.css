@@ -437,7 +437,8 @@ html, body {
   letter-spacing: 1px;
 }
 
-/* Slide stage — pitch decks never scroll. If a slide overflows, it's a bug. */
+/* Slide stage — clips the slide-in animation. Slides themselves scroll
+   their own content when it overflows (e.g. on small or zoomed-in screens). */
 #slide-stage {
   flex: 1;
   background: #fff;
@@ -454,10 +455,31 @@ html, body {
   padding: 40px 60px;
   display: flex;
   flex-direction: column;
+  /* Allow vertical scrolling within a slide when its content is taller
+     than the slide stage (zoomed-in browsers, short viewports). */
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
   animation: slideIn 0.35s ease-out;
   font-family: 'Tahoma', sans-serif;
   color: #000;
 }
+
+/* Win95-style scrollbar for slide content (WebKit/Chromium). */
+.slide::-webkit-scrollbar {
+  width: 16px;
+}
+.slide::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #fff;
+}
+.slide::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #dfdfdf;
+}
+.slide::-webkit-scrollbar-thumb:hover { background: #d8d8d8; }
 
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(20px); }
