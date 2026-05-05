@@ -232,11 +232,73 @@
   });
 
   document.getElementById('deck-close').addEventListener('click', () => {
-    if (confirm('Close the pitch?\n\nYou can re-launch from the desktop.')) {
-      deckWindow.classList.add('hidden');
-      pitchExeIcon.classList.add('pulse');
-    }
+    runShutdown();
   });
+
+  function runShutdown() {
+    if (document.getElementById('shutdown-screen')) return;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'shutdown-screen';
+    overlay.innerHTML = `
+      <div class="sd-stage sd-stage-1">
+        <pre id="sd-log"></pre>
+      </div>
+      <div class="sd-stage sd-stage-2 hidden">
+        <div class="sd-bluebox">
+          <div class="sd-bluebox-title">▮ ASFC_Pitch.exe</div>
+          <div class="sd-bluebox-body">
+            Shutting down...
+            <div class="sd-bar"><div class="sd-bar-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="sd-stage sd-stage-3 hidden">
+        <div class="sd-final">
+          It is now safe to return to the desktop.
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const log = overlay.querySelector('#sd-log');
+    const lines = [
+      { text: '> close ASFC_Pitch.exe',                        cls: 'warn',   delay: 80  },
+      { text: 'Saving session state ............. OK',          cls: 'ok',     delay: 220 },
+      { text: 'Closing slide engine .............. OK',         cls: 'ok',     delay: 220 },
+      { text: 'Unmounting /pitch ................. OK',         cls: 'ok',     delay: 240 },
+      { text: 'Stopping ticker ................... OK',         cls: 'ok',     delay: 200 },
+      { text: '',                                                              delay: 120 },
+      { text: 'Returning to desktop...',                cls: 'brand',  delay: 320 },
+    ];
+
+    let i = 0;
+    function step() {
+      if (i >= lines.length) {
+        setTimeout(toBlueScreen, 200);
+        return;
+      }
+      const ln = lines[i++];
+      const span = document.createElement('span');
+      if (ln.cls) span.className = ln.cls;
+      span.textContent = ln.text + '\n';
+      log.appendChild(span);
+      setTimeout(step, ln.delay);
+    }
+    step();
+
+    function toBlueScreen() {
+      overlay.querySelector('.sd-stage-1').classList.add('hidden');
+      overlay.querySelector('.sd-stage-2').classList.remove('hidden');
+      setTimeout(() => {
+        overlay.querySelector('.sd-stage-2').classList.add('hidden');
+        overlay.querySelector('.sd-stage-3').classList.remove('hidden');
+        setTimeout(() => {
+          window.location.href = '../';
+        }, 850);
+      }, 1400);
+    }
+  }
 
   function addTaskbarWindow(label, onClick) {
     const tb = document.getElementById('taskbar-windows');
