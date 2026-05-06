@@ -2705,21 +2705,21 @@
         </div>
 
         <div class="contact-tracks">
-          <div class="ct-head">▸ ROUTE ME TO</div>
-          <button class="ct-btn ct-btn-athlete" data-track="athlete">
+          <div class="ct-head">▸ JUMP BACK INTO THE DECK</div>
+          <button class="ct-btn ct-btn-athlete" data-jump-track="athletes" data-jump-slide="post-career">
             <span class="ctb-icon">🎙️</span>
             <span class="ctb-name">I'm an athlete</span>
-            <span class="ctb-arrow">→</span>
+            <span class="ctb-arrow">↺</span>
           </button>
-          <button class="ct-btn ct-btn-team" data-track="team">
+          <button class="ct-btn ct-btn-team" data-jump-track="teams" data-jump-slide="leaderboard">
             <span class="ctb-icon">🏟️</span>
             <span class="ctb-name">I run a team</span>
-            <span class="ctb-arrow">→</span>
+            <span class="ctb-arrow">↺</span>
           </button>
-          <button class="ct-btn ct-btn-dept" data-track="team">
+          <button class="ct-btn ct-btn-dept" data-jump-track="teams" data-jump-slide="leaderboard">
             <span class="ctb-icon">🎓</span>
             <span class="ctb-name">I lead an athletic department</span>
-            <span class="ctb-arrow">→</span>
+            <span class="ctb-arrow">↺</span>
           </button>
         </div>
 
@@ -2734,8 +2734,12 @@
 
     el.querySelectorAll('.ct-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        const subject = encodeURIComponent('ASFC × ' + btn.dataset.track);
-        window.location.href = `mailto:kent@kentheckel.com?subject=${subject}`;
+        const jumpTrack = btn.dataset.jumpTrack;
+        const jumpSlide = btn.dataset.jumpSlide;
+        if (!jumpTrack || !jumpSlide) return;
+        if (activeTrack !== jumpTrack) setTrack(jumpTrack);
+        const idx = getActiveDeck().findIndex(s => s.id === jumpSlide);
+        if (idx >= 0) showSlide(idx);
       });
     });
   }
