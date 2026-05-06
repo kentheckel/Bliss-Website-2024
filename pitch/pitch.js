@@ -2185,46 +2185,32 @@
     'AG1', 'Skillshare', 'DeleteMe', 'Manscaped', 'Squarespace',
   ];
 
-  const BRAND_BRACKETS = {
-    columns: ['250K / mo', '1M / mo', '5M / mo', '10M+ / mo'],
-    rows: [
-      { type: 'Pre-roll read',         note: '15–30s, top of episode',         vals: ['$400',   '$1,500',  '$7,500',  '$20,000'] },
-      { type: 'Mid-roll read',         note: '60s, mid-video',                 vals: ['$600',   '$3,000',  '$12,000', '$28,000'] },
-      { type: 'Dedicated episode',     note: 'one full episode w/ brand',      vals: ['$1,500', '$7,500',  '$30,000', '$65,000'] },
-      { type: 'Series sponsor (4 ep)', note: 'multi-episode flight',           vals: ['$4,000', '$20,000', '$80,000', '$200,000'] },
-      { type: 'Product integration',   note: 'in-show usage, native placement',vals: ['$750',   '$4,000',  '$18,000', '$42,000'] },
-    ],
-  };
+  const BRAND_BRACKETS = [
+    { size: '250K / mo', total: '$3K – $8K' },
+    { size: '1M / mo',   total: '$15K – $40K' },
+    { size: '5M / mo',   total: '$75K – $175K' },
+    { size: '10M+ / mo', total: '$200K – $500K' },
+  ];
 
   function renderBrandBracketTable() {
-    const { columns, rows } = BRAND_BRACKETS;
     return `
-      <div class="bb-window">
-        <span class="bb-app">Brand_Rate_Card.exe</span>
-        <span class="bb-x">×</span>
-      </div>
-      <div class="bb-body">
-        <table class="bb-table">
-          <thead>
+      <table class="bb-table">
+        <thead>
+          <tr>
+            <th>Channel size</th>
+            <th>Blended brand revenue / mo</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${BRAND_BRACKETS.map(b => `
             <tr>
-              <th class="bb-rowhead">Integration</th>
-              ${columns.map(c => `<th>${c}</th>`).join('')}
+              <td class="bb-size">${b.size}</td>
+              <td class="bb-val">${b.total}</td>
             </tr>
-          </thead>
-          <tbody>
-            ${rows.map(r => `
-              <tr>
-                <td class="bb-rowhead">
-                  <div class="bb-type">${r.type}</div>
-                  <div class="bb-note">${r.note}</div>
-                </td>
-                ${r.vals.map(v => `<td class="bb-val">${v}</td>`).join('')}
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-        <div class="bb-foot">Industry-typical rates per placement. Final pricing depends on category fit, exclusivity, and audience demo.</div>
-      </div>
+          `).join('')}
+        </tbody>
+      </table>
+      <div class="bb-foot">Blended mix of pre-roll, mid-roll, dedicated episodes, and integrations.</div>
     `;
   }
 
@@ -2289,8 +2275,9 @@
         <span class="mz-x">×</span>
       </div>
       <div class="mz-body mz-forecast">
-        <div class="mz-section-tag">▮ 03 · MOST-LIKELY FORECAST ▮</div>
-        <h3 class="mz-h3">Broad averages. ${track === 'team' ? 'Team-track ramp.' : 'Athlete-track ramp.'}</h3>
+        <div class="fc-headrow">
+          <div class="mz-section-tag">▮ 03 · MOST-LIKELY FORECAST ▮ <span class="fc-sub">Broad averages, ${track === 'team' ? 'team-track' : 'athlete-track'} ramp.</span></div>
+        </div>
         <div class="fc-grid">
           ${rows.map(r => `
             <div class="fc-card">
@@ -2302,7 +2289,6 @@
             </div>
           `).join('')}
         </div>
-        <div class="fc-foot">Median outcomes across ASFC launches. Not a guarantee &mdash; ranges reflect category, cadence, and brand fit.</div>
       </div>
     `;
   }
@@ -2310,18 +2296,17 @@
   function renderBrandNetworkBlock() {
     return `
       <div class="mz-window">
-        <span class="mz-app">ASFC_Brand_Network.exe</span>
+        <span class="mz-app">Brand_Network.exe</span>
         <span class="mz-x">×</span>
       </div>
       <div class="mz-body mz-brands">
-        <div class="mz-section-tag">▮ 04 · ASFC BRAND NETWORK ▮</div>
-        <h3 class="mz-h3">Brands we've placed.</h3>
+        <div class="mz-section-tag">▮ ASFC BRAND NETWORK ▮</div>
         <div class="bn-strip">
           ${ASFC_BRANDS.map(b => `<span class="bn-chip">${b}</span>`).join('')}
         </div>
         <div class="bn-philosophy">
-          <span class="bn-phi-tag">▸ PRODUCT MATCH</span>
-          <span class="bn-phi-text">We deep-dive on creator-to-brand fit before pitching. The target: extremely on-the-nose, hyper-targeted sponsorships that benefit the audience as much as the brand.</span>
+          <span class="bn-phi-tag">▸ PRODUCT MATCH:</span>
+          <span class="bn-phi-text">deep dive on creator-to-brand fit so sponsorships hit the audience as hard as they hit the brand.</span>
         </div>
       </div>
     `;
@@ -2330,19 +2315,17 @@
   function renderAgilityCallout() {
     return `
       <div class="mz-window mz-window-accent">
-        <span class="mz-app">Agility_Advantage.exe</span>
+        <span class="mz-app">Agility.exe</span>
         <span class="mz-x">×</span>
       </div>
       <div class="mz-body mz-agility">
         <div class="mz-section-tag mz-section-tag-accent">▮ TEAM AGILITY ADVANTAGE ▮</div>
-        <h3 class="mz-h3">Year-over-year sells the season. We sell the moment.</h3>
+        <div class="agi-line">Year-over-year sells the season. <strong>We sell the moment.</strong></div>
         <ul class="agi-list">
-          <li><span class="agi-bullet">▸</span> Spin up a new piece of content in days, not seasons.</li>
-          <li><span class="agi-bullet">▸</span> Integrate brands at the speed of a news cycle &mdash; not the speed of a media kit.</li>
-          <li><span class="agi-bullet">▸</span> Follow the nose: when something pops, we make more of it and bring brands to it.</li>
-          <li><span class="agi-bullet">▸</span> Treat YouTube like a creator does &mdash; not like a TV channel.</li>
+          <li><span class="agi-bullet">▸</span> Spin up content in days, integrate brands at news-cycle speed.</li>
+          <li><span class="agi-bullet">▸</span> Follow the nose &mdash; what pops gets multiplied, brands attached.</li>
+          <li><span class="agi-bullet">▸</span> Incremental yield on top of your annual partner book.</li>
         </ul>
-        <div class="agi-foot">Incremental yield on top of existing partnerships. Doesn't replace your annual partner book &mdash; multiplies it.</div>
       </div>
     `;
   }
@@ -2358,22 +2341,19 @@
       <div class="eyebrow">▮ HOW THE CHANNEL MAKES MONEY · ${trackLabel} ▮</div>
       <h1>${headline}</h1>
 
-      <div class="mz-grid">
+      <div class="mz-grid mz-grid-${track}">
         <div class="mz-cell mz-cell-rpm">${renderRPMCard()}</div>
 
         <div class="mz-cell mz-cell-bracket">
           <div class="mz-window">
-            <span class="mz-app">Brand_Integration_Menu.exe</span>
+            <span class="mz-app">Brand_Revenue.exe</span>
             <span class="mz-x">×</span>
           </div>
           <div class="mz-body mz-bracket">
-            <div class="mz-section-tag">▮ 02 · BRAND INTEGRATION MENU ▮</div>
-            <h3 class="mz-h3">Find your view bracket. Read across.</h3>
+            <div class="mz-section-tag">▮ 02 · BRAND REVENUE BY CHANNEL SIZE ▮</div>
             ${renderBrandBracketTable()}
           </div>
         </div>
-
-        <div class="mz-cell mz-cell-forecast">${renderForecastBlock(track)}</div>
 
         <div class="mz-cell mz-cell-brands">${renderBrandNetworkBlock()}</div>
 
@@ -2501,11 +2481,8 @@
         </div>
       </div>
 
-      <div class="work-pricing work-pricing-single">
-        <div class="wpr-head">▮ PRICING ▮</div>
-        <div class="wpr-tracks wpr-tracks-single">
-          ${PRICING_BLOCKS[track]}
-        </div>
+      <div class="work-pricing-flat">
+        ${PRICING_BLOCKS[track]}
       </div>
     `;
   }
