@@ -5020,22 +5020,33 @@ html, body {
    ============================================================ */
 .slide-monetize {
   background: #f4f4f4;
-  padding: 22px 50px 22px;
+  padding: 18px 40px 18px;
+  overflow: hidden;
 }
 .slide-monetize h1 {
-  margin-bottom: 14px;
-  font-size: clamp(22px, 2.8vw, 32px);
+  margin-bottom: 10px;
+  font-size: clamp(20px, 2.4vw, 28px);
 }
 .slide-monetize .mz-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
-.slide-monetize .mz-cell-rpm      { grid-column: span 1; }
-.slide-monetize .mz-cell-forecast { grid-column: span 1; }
-.slide-monetize .mz-cell-bracket  { grid-column: span 2; }
-.slide-monetize .mz-cell-brands   { grid-column: span 2; }
-.slide-monetize .mz-cell-agility  { grid-column: span 2; }
+.slide-monetize .mz-grid-team {
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "rpm     bracket"
+    "brands  agility";
+}
+.slide-monetize .mz-grid-athlete {
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "rpm     bracket"
+    "brands  brands";
+}
+.slide-monetize .mz-cell-rpm      { grid-area: rpm; }
+.slide-monetize .mz-cell-bracket  { grid-area: bracket; }
+.slide-monetize .mz-cell-brands   { grid-area: brands; }
+.slide-monetize .mz-cell-agility  { grid-area: agility; }
 
 /* win95 panel chrome reused for every monetize block */
 .slide-monetize .mz-window {
@@ -5073,15 +5084,15 @@ html, body {
 }
 .slide-monetize .mz-section-tag {
   font-family: 'Press Start 2P', monospace;
-  font-size: 9px;
+  font-size: 10px;
   color: #000080;
   letter-spacing: 1.5px;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 .slide-monetize .mz-section-tag-accent { color: #c84500; }
 .slide-monetize .mz-h3 {
   font-family: 'Tahoma', sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
   color: #000;
   margin: 0 0 8px;
@@ -5089,7 +5100,7 @@ html, body {
 }
 .slide-monetize .mz-lede {
   font-family: 'Tahoma', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   color: #404040;
   margin: 0 0 10px;
   line-height: 1.4;
@@ -5100,17 +5111,20 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .slide-monetize .rpm-row {
   display: grid;
-  grid-template-columns: 1.4fr 1.6fr 1fr;
+  grid-template-columns: 1.4fr 1.4fr 1fr;
   align-items: center;
   gap: 10px;
-  padding: 5px 8px;
+  padding: 6px 10px;
   background: #f4f4f4;
   border: 1px solid #808080;
 }
+.slide-monetize .rpm-label { font-size: 12px; }
+.slide-monetize .rpm-bar { height: 14px; }
+.slide-monetize .rpm-val { font-size: 11px; }
 .slide-monetize .rpm-label {
   font-family: 'Tahoma', sans-serif;
   font-size: 11px;
@@ -5146,9 +5160,9 @@ html, body {
   background: #000;
   color: #00ff66;
   border: 2px solid #000;
-  padding: 8px 10px;
+  padding: 9px 12px;
   font-family: 'VT323', monospace;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.5px;
   margin-bottom: 10px;
 }
@@ -5188,92 +5202,61 @@ html, body {
   line-height: 1.4;
 }
 
-/* ----- BRACKET TABLE ----- */
-.slide-monetize .bb-window {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3px 8px;
-  background: #c0c0c0;
-  border: 1px solid #000;
-  font-family: 'VT323', monospace;
-  font-size: 13px;
-  margin-top: 4px;
-}
-.slide-monetize .bb-x {
-  background: #c0c0c0;
-  color: #000;
-  border: 1px solid #000;
-  width: 16px;
-  height: 14px;
-  text-align: center;
-  line-height: 12px;
-  font-size: 10px;
-}
-.slide-monetize .bb-body {
-  border: 1px solid #000;
-  border-top: none;
-  background: #fff;
-  padding: 10px;
-}
+/* ----- BRACKET TABLE (simple) ----- */
 .slide-monetize .bb-table {
   width: 100%;
   border-collapse: collapse;
   font-family: 'Tahoma', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
+  margin-top: 2px;
 }
 .slide-monetize .bb-table th {
   background: #000080;
   color: #fff;
   font-family: 'Press Start 2P', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 1px;
-  padding: 7px 6px;
+  padding: 9px 10px;
   border: 1px solid #000;
-  text-align: center;
-}
-.slide-monetize .bb-table th.bb-rowhead {
-  background: #404040;
   text-align: left;
 }
+.slide-monetize .bb-table th + th { text-align: right; }
 .slide-monetize .bb-table td {
-  padding: 7px 8px;
+  padding: 10px 12px;
   border: 1px solid #808080;
-  text-align: center;
-  vertical-align: middle;
 }
-.slide-monetize .bb-table td.bb-rowhead {
-  text-align: left;
-  background: #f0f0f0;
-}
-.slide-monetize .bb-type {
-  font-weight: bold;
+.slide-monetize .bb-size {
+  font-family: 'Press Start 2P', monospace;
   font-size: 12px;
   color: #000;
-}
-.slide-monetize .bb-note {
-  font-family: 'VT323', monospace;
-  font-size: 12px;
-  color: #606060;
   letter-spacing: 0.5px;
-  margin-top: 1px;
+  background: #f0f0f0;
 }
 .slide-monetize .bb-val {
   font-family: 'Press Start 2P', monospace;
-  font-size: 11px;
-  color: #000080;
+  font-size: 14px;
+  color: #00a040;
   letter-spacing: 0.5px;
+  text-align: right;
 }
 .slide-monetize .bb-foot {
   font-family: 'VT323', monospace;
-  font-size: 13px;
+  font-size: 14px;
   color: #404040;
-  margin-top: 8px;
+  margin-top: 10px;
   letter-spacing: 0.5px;
   text-align: center;
 }
 
 /* ----- FORECAST ----- */
+.slide-monetize .fc-headrow { margin-bottom: 6px; }
+.slide-monetize .fc-sub {
+  font-family: 'VT323', monospace;
+  font-size: 12px;
+  color: #404040;
+  letter-spacing: 0.5px;
+  text-transform: none;
+}
 .slide-monetize .fc-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -5282,20 +5265,20 @@ html, body {
 .slide-monetize .fc-card {
   border: 2px solid #000;
   background: #f4f4f4;
-  padding: 8px 10px;
+  padding: 6px 9px;
 }
 .slide-monetize .fc-mo {
   font-family: 'Press Start 2P', monospace;
   font-size: 10px;
   color: #c84500;
   letter-spacing: 1px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 .slide-monetize .fc-view {
   font-family: 'Press Start 2P', monospace;
-  font-size: 11px;
+  font-size: 10px;
   color: #000;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   letter-spacing: 0.5px;
 }
 .slide-monetize .fc-line {
@@ -5304,7 +5287,7 @@ html, body {
   align-items: baseline;
   font-family: 'Tahoma', sans-serif;
   font-size: 11px;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 .slide-monetize .fc-line-l { color: #404040; }
 .slide-monetize .fc-line-r { color: #000; font-weight: bold; }
@@ -5312,8 +5295,8 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-top: 6px;
-  padding-top: 6px;
+  margin-top: 4px;
+  padding-top: 4px;
   border-top: 1px dashed #808080;
 }
 .slide-monetize .fc-tot-l {
@@ -5324,16 +5307,8 @@ html, body {
 }
 .slide-monetize .fc-tot-r {
   font-family: 'Press Start 2P', monospace;
-  font-size: 11px;
+  font-size: 10px;
   color: #00a040;
-}
-.slide-monetize .fc-foot {
-  font-family: 'VT323', monospace;
-  font-size: 13px;
-  color: #404040;
-  margin-top: 8px;
-  letter-spacing: 0.5px;
-  text-align: center;
 }
 
 /* ----- BRAND NETWORK ----- */
@@ -5341,87 +5316,80 @@ html, body {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .slide-monetize .bn-chip {
   font-family: 'Press Start 2P', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.5px;
   color: #fff;
   background: linear-gradient(180deg, #404040 0%, #000 100%);
   border: 1px solid #000;
   box-shadow: 2px 2px 0 #808080;
-  padding: 6px 10px;
+  padding: 7px 11px;
 }
 .slide-monetize .bn-philosophy {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
   background: #fffaf0;
   border-left: 4px solid #c84500;
-  padding: 8px 12px;
+  padding: 9px 13px;
 }
 .slide-monetize .bn-phi-tag {
   font-family: 'Press Start 2P', monospace;
   font-size: 10px;
   color: #c84500;
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 .slide-monetize .bn-phi-text {
   font-family: 'Tahoma', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   color: #000;
   line-height: 1.4;
+  flex: 1;
 }
 
 /* ----- AGILITY (team-only) ----- */
+.slide-monetize .agi-line {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 16px;
+  color: #000;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.slide-monetize .agi-line strong { color: #c84500; }
 .slide-monetize .agi-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 8px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px 18px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 .slide-monetize .agi-list li {
   font-family: 'Tahoma', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   color: #000;
   line-height: 1.4;
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 .slide-monetize .agi-bullet { color: #c84500; font-weight: bold; }
-.slide-monetize .agi-foot {
-  font-family: 'VT323', monospace;
-  font-size: 14px;
-  color: #404040;
-  letter-spacing: 0.5px;
-  border-top: 1px dashed #808080;
-  padding-top: 6px;
-}
-
-@media (max-width: 1100px) {
-  .slide-monetize .mz-grid { grid-template-columns: 1fr; }
-  .slide-monetize .mz-cell-rpm,
-  .slide-monetize .mz-cell-forecast,
-  .slide-monetize .mz-cell-bracket,
-  .slide-monetize .mz-cell-brands,
-  .slide-monetize .mz-cell-agility { grid-column: span 1; }
-  .slide-monetize .fc-grid { grid-template-columns: 1fr; }
-  .slide-monetize .agi-list { grid-template-columns: 1fr; }
-}
 
 .slide-work {
   background: #f4f4f4;
-  padding: 22px 50px 18px;
+  padding: 18px 50px 18px;
+  overflow: hidden;
 }
-.slide-work h1 { margin-bottom: 12px; font-size: clamp(22px, 2.8vw, 32px); }
+.slide-work h1 { margin-bottom: 10px; font-size: clamp(20px, 2.5vw, 28px); }
 .slide-work .work-twocol {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin-bottom: 14px;
+  gap: 14px;
+  margin-bottom: 10px;
 }
 .slide-work .work-phase {
   background: #c0c0c0;
@@ -5455,27 +5423,27 @@ html, body {
 }
 .slide-work .wp-body {
   background: #fff;
-  padding: 12px 16px 14px;
+  padding: 10px 14px 12px;
 }
-.slide-work .wp-icon { font-size: 26px; line-height: 1; margin-bottom: 2px; }
+.slide-work .wp-icon { font-size: 22px; line-height: 1; margin-bottom: 2px; }
 .slide-work .wp-tag {
   font-family: 'VT323', monospace;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 3px;
   color: #ff6b00;
 }
 .slide-work .wp-h2 {
   font-family: 'Press Start 2P', monospace;
-  font-size: 18px;
-  margin: 4px 0 6px;
+  font-size: 16px;
+  margin: 3px 0 5px;
   color: #000;
 }
 .slide-work .wp-desc {
   font-family: 'Tahoma', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   color: #404040;
-  margin-bottom: 10px;
-  line-height: 1.4;
+  margin-bottom: 6px;
+  line-height: 1.35;
 }
 .slide-work .wp-list {
   list-style: none;
@@ -5507,24 +5475,14 @@ html, body {
   color: #00ff66;
 }
 
-.slide-work .work-pricing {
+.slide-work .work-pricing-flat {
   margin-top: 4px;
-}
-.slide-work .wpr-head {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 13px;
-  letter-spacing: 2px;
-  color: #c84500;
-  margin-bottom: 10px;
-}
-.slide-work .wpr-tracks {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-}
-.slide-work .wpr-tracks-single {
-  grid-template-columns: minmax(0, 720px);
+  display: flex;
   justify-content: center;
+}
+.slide-work .work-pricing-flat > * {
+  width: 100%;
+  max-width: 720px;
 }
 .slide-work .wpr-track {
   background: #c0c0c0;
