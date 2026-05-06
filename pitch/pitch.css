@@ -3171,6 +3171,69 @@ html, body {
 .slide-ocho .oy-points strong { color: #000; }
 
 /* CLOSER — single-line tagline replacing the why-stick block */
+.slide-ocho .ocho-timeline {
+  margin-top: 14px;
+  border: 2px solid #000;
+  background: #fffaf0;
+  box-shadow: 4px 4px 0 #000;
+  padding: 10px 14px 12px;
+  flex-shrink: 0;
+}
+.slide-ocho .ot-head {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #c84500;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.slide-ocho .ot-strip {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 6px;
+}
+.slide-ocho .ot-step {
+  flex: 1;
+  border: 2px solid #000;
+  background: #fff;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 0;
+}
+.slide-ocho .ot-when {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: #000080;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.slide-ocho .ot-what {
+  font-family: 'VT323', monospace;
+  font-size: 15px;
+  color: #000;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+}
+.slide-ocho .ot-arrow {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: #ff6b00;
+  align-self: center;
+}
+.slide-ocho .ot-foot {
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  color: #404040;
+  margin-top: 8px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
 .slide-ocho .ocho-closer {
   background: #000;
   color: #fff;
@@ -4952,6 +5015,403 @@ html, body {
 /* ============================================================
    SLIDE — HOW WE WORK
    ============================================================ */
+/* ============================================================
+   SLIDE — MONETIZATION (Athlete + Team)
+   ============================================================ */
+.slide-monetize {
+  background: #f4f4f4;
+  padding: 22px 50px 22px;
+}
+.slide-monetize h1 {
+  margin-bottom: 14px;
+  font-size: clamp(22px, 2.8vw, 32px);
+}
+.slide-monetize .mz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.slide-monetize .mz-cell-rpm      { grid-column: span 1; }
+.slide-monetize .mz-cell-forecast { grid-column: span 1; }
+.slide-monetize .mz-cell-bracket  { grid-column: span 2; }
+.slide-monetize .mz-cell-brands   { grid-column: span 2; }
+.slide-monetize .mz-cell-agility  { grid-column: span 2; }
+
+/* win95 panel chrome reused for every monetize block */
+.slide-monetize .mz-window {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  background: linear-gradient(90deg, #000080 0%, #1080d0 100%);
+  color: #fff;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border: 2px solid #000;
+  border-bottom: none;
+}
+.slide-monetize .mz-window-accent {
+  background: linear-gradient(90deg, #c84500 0%, #ff8030 100%);
+}
+.slide-monetize .mz-x {
+  background: #c0c0c0;
+  color: #000;
+  border: 1px solid #000;
+  width: 18px;
+  height: 16px;
+  text-align: center;
+  line-height: 14px;
+  font-size: 11px;
+}
+.slide-monetize .mz-body {
+  background: #fff;
+  border: 2px solid #000;
+  border-top: none;
+  box-shadow: 4px 4px 0 #000;
+  padding: 14px 18px 16px;
+}
+.slide-monetize .mz-section-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #000080;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+.slide-monetize .mz-section-tag-accent { color: #c84500; }
+.slide-monetize .mz-h3 {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+.slide-monetize .mz-lede {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 12px;
+  color: #404040;
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+
+/* ----- RPM CARD ----- */
+.slide-monetize .rpm-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.slide-monetize .rpm-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1.6fr 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 8px;
+  background: #f4f4f4;
+  border: 1px solid #808080;
+}
+.slide-monetize .rpm-label {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  color: #000;
+  font-weight: bold;
+}
+.slide-monetize .rpm-bar {
+  height: 12px;
+  background: #e0e0e0;
+  border: 1px solid #808080;
+  position: relative;
+  overflow: hidden;
+}
+.slide-monetize .rpm-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--lo);
+  width: calc(var(--hi) - var(--lo));
+  background: repeating-linear-gradient(45deg, #00a040 0 4px, #00c050 4px 8px);
+}
+.slide-monetize .rpm-fill-shorts {
+  background: repeating-linear-gradient(45deg, #c84500 0 4px, #ff6b00 4px 8px);
+}
+.slide-monetize .rpm-val {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #000080;
+  text-align: right;
+  letter-spacing: 0.5px;
+}
+.slide-monetize .rpm-math {
+  background: #000;
+  color: #00ff66;
+  border: 2px solid #000;
+  padding: 8px 10px;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+.slide-monetize .rpm-math-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: baseline;
+}
+.slide-monetize .rpm-math-line + .rpm-math-line { margin-top: 4px; }
+.slide-monetize .rpm-eq { color: #80d0ff; }
+.slide-monetize .rpm-tot {
+  color: #ffd34d;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  margin-left: 4px;
+}
+.slide-monetize .rpm-tot-low { color: #ff6b00; }
+.slide-monetize .rpm-strat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: #fffaf0;
+  border-left: 4px solid #c84500;
+  padding: 6px 10px;
+}
+.slide-monetize .rpm-strat-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #c84500;
+  letter-spacing: 1px;
+}
+.slide-monetize .rpm-strat-text {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  color: #000;
+  line-height: 1.4;
+}
+
+/* ----- BRACKET TABLE ----- */
+.slide-monetize .bb-window {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 8px;
+  background: #c0c0c0;
+  border: 1px solid #000;
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  margin-top: 4px;
+}
+.slide-monetize .bb-x {
+  background: #c0c0c0;
+  color: #000;
+  border: 1px solid #000;
+  width: 16px;
+  height: 14px;
+  text-align: center;
+  line-height: 12px;
+  font-size: 10px;
+}
+.slide-monetize .bb-body {
+  border: 1px solid #000;
+  border-top: none;
+  background: #fff;
+  padding: 10px;
+}
+.slide-monetize .bb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 12px;
+}
+.slide-monetize .bb-table th {
+  background: #000080;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 7px 6px;
+  border: 1px solid #000;
+  text-align: center;
+}
+.slide-monetize .bb-table th.bb-rowhead {
+  background: #404040;
+  text-align: left;
+}
+.slide-monetize .bb-table td {
+  padding: 7px 8px;
+  border: 1px solid #808080;
+  text-align: center;
+  vertical-align: middle;
+}
+.slide-monetize .bb-table td.bb-rowhead {
+  text-align: left;
+  background: #f0f0f0;
+}
+.slide-monetize .bb-type {
+  font-weight: bold;
+  font-size: 12px;
+  color: #000;
+}
+.slide-monetize .bb-note {
+  font-family: 'VT323', monospace;
+  font-size: 12px;
+  color: #606060;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+.slide-monetize .bb-val {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: #000080;
+  letter-spacing: 0.5px;
+}
+.slide-monetize .bb-foot {
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  color: #404040;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* ----- FORECAST ----- */
+.slide-monetize .fc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+.slide-monetize .fc-card {
+  border: 2px solid #000;
+  background: #f4f4f4;
+  padding: 8px 10px;
+}
+.slide-monetize .fc-mo {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #c84500;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.slide-monetize .fc-view {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: #000;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+.slide-monetize .fc-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+.slide-monetize .fc-line-l { color: #404040; }
+.slide-monetize .fc-line-r { color: #000; font-weight: bold; }
+.slide-monetize .fc-tot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed #808080;
+}
+.slide-monetize .fc-tot-l {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #000080;
+  letter-spacing: 1px;
+}
+.slide-monetize .fc-tot-r {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: #00a040;
+}
+.slide-monetize .fc-foot {
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  color: #404040;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* ----- BRAND NETWORK ----- */
+.slide-monetize .bn-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.slide-monetize .bn-chip {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: linear-gradient(180deg, #404040 0%, #000 100%);
+  border: 1px solid #000;
+  box-shadow: 2px 2px 0 #808080;
+  padding: 6px 10px;
+}
+.slide-monetize .bn-philosophy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: #fffaf0;
+  border-left: 4px solid #c84500;
+  padding: 8px 12px;
+}
+.slide-monetize .bn-phi-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #c84500;
+  letter-spacing: 1px;
+}
+.slide-monetize .bn-phi-text {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 12px;
+  color: #000;
+  line-height: 1.4;
+}
+
+/* ----- AGILITY (team-only) ----- */
+.slide-monetize .agi-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 18px;
+}
+.slide-monetize .agi-list li {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 12px;
+  color: #000;
+  line-height: 1.4;
+  display: flex;
+  gap: 6px;
+}
+.slide-monetize .agi-bullet { color: #c84500; font-weight: bold; }
+.slide-monetize .agi-foot {
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  color: #404040;
+  letter-spacing: 0.5px;
+  border-top: 1px dashed #808080;
+  padding-top: 6px;
+}
+
+@media (max-width: 1100px) {
+  .slide-monetize .mz-grid { grid-template-columns: 1fr; }
+  .slide-monetize .mz-cell-rpm,
+  .slide-monetize .mz-cell-forecast,
+  .slide-monetize .mz-cell-bracket,
+  .slide-monetize .mz-cell-brands,
+  .slide-monetize .mz-cell-agility { grid-column: span 1; }
+  .slide-monetize .fc-grid { grid-template-columns: 1fr; }
+  .slide-monetize .agi-list { grid-template-columns: 1fr; }
+}
+
 .slide-work {
   background: #f4f4f4;
   padding: 22px 50px 18px;
@@ -5555,7 +6015,60 @@ html, body {
   font-family: 'Tahoma', sans-serif;
   font-size: 17px;
   color: #404040;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
+}
+.slide-contact .contact-download {
+  margin-bottom: 22px;
+}
+.slide-contact .cd-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  background: linear-gradient(180deg, #ffd34d 0%, #ff9c00 100%);
+  border: 2px solid #000;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  box-shadow: 4px 4px 0 #000;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+}
+.slide-contact .cd-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+}
+.slide-contact .cd-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 #000;
+}
+.slide-contact .cd-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+.slide-contact .cd-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.slide-contact .cd-label-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #000;
+}
+.slide-contact .cd-label-file {
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #404040;
+}
+.slide-contact .cd-arrow {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: #c84500;
+  margin-left: 4px;
 }
 .slide-contact .contact-shell {
   display: grid;
@@ -6242,5 +6755,85 @@ html, body {
 }
 .slide-tools .tool-card-playermon .tool-tag {
   color: #5a2da0;
+}
+
+/* ============================================================
+   PRINT MODE — flatten deck for PDF export (?print=1)
+   Each slide becomes its own fixed-size page; chrome is hidden.
+   ============================================================ */
+body.print-mode {
+  background: #fff !important;
+  overflow: visible !important;
+  height: auto !important;
+}
+
+html.print-mode,
+body.print-mode #desktop {
+  background: #fff !important;
+  height: auto !important;
+  overflow: visible !important;
+  position: static !important;
+  inset: auto !important;
+}
+
+body.print-mode #desktop::before {
+  display: none !important;
+}
+
+body.print-mode #boot-screen,
+body.print-mode #ticker,
+body.print-mode #pitch-taskbar,
+body.print-mode #deck-window > .window-controls,
+body.print-mode #deck-toolbar,
+body.print-mode #deck-nav,
+body.print-mode #pitchExeIcon {
+  display: none !important;
+}
+
+body.print-mode #deck-window {
+  position: static !important;
+  transform: none !important;
+  width: 1600px !important;
+  height: auto !important;
+  border: none !important;
+  box-shadow: none !important;
+  animation: none !important;
+  margin: 0 !important;
+  background: #fff !important;
+  display: block !important;
+}
+
+body.print-mode #slide-stage {
+  flex: none !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  position: static !important;
+  height: auto !important;
+  background: #fff !important;
+  display: block !important;
+}
+
+body.print-mode .slide.print-page {
+  position: relative !important;
+  inset: auto !important;
+  width: 1600px !important;
+  height: 900px !important;
+  overflow: hidden !important;
+  animation: none !important;
+  page-break-after: always !important;
+  break-after: page !important;
+  /* Render at native size — Chrome will scale via @page */
+}
+
+body.print-mode .slide.print-page:last-child {
+  page-break-after: auto !important;
+  break-after: auto !important;
+}
+
+@page {
+  size: 1600px 900px;
+  margin: 0;
 }
 

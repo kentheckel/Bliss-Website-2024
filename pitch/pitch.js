@@ -13,6 +13,7 @@
   const AUDIENCE = params.get('audience') || 'default'; // youtube|brand|team|athlete|default
   const TRACK    = params.get('track')    || null;       // athletes|teams|departments|null
   const SKIP_BOOT = params.get('skipboot') === '1';
+  const PRINT    = params.get('print') === '1';          // flatten deck for PDF export
 
   /* ----------------------------------------------------------
      BOOT SEQUENCE
@@ -147,6 +148,7 @@
     { id: 'tool-playermon', title: 'Player Monitor',             render: renderToolPlayerMonitor },
     { id: 'tool-postgame',  title: 'Postgame Analytics',         render: renderToolPostgame },
     { id: 'tool-uptides',   title: 'Uptides.ai',                 render: renderToolUptides },
+    { id: 'monetize-team',  title: 'Monetization · Teams',       render: renderMonetizeTeam },
     { id: 'work-team',      title: 'How We Work · Teams',        render: renderWorkTeam },
     { id: 'capacity-team',  title: 'Studio Capacity · Teams',    render: renderCapacityTeam },
   ];
@@ -159,6 +161,7 @@
     { id: 'nil',              title: 'NIL Frameworks',            render: renderNIL },
     { id: 'wave',             title: 'The Untapped Wave',         render: renderWave },
     { id: 'tools',            title: 'Proprietary Tools',         render: renderTools },
+    { id: 'monetize-athlete', title: 'Monetization · Athletes',   render: renderMonetizeAthlete },
     { id: 'work-athlete',     title: 'How We Work · Athletes',    render: renderWorkAthlete },
     { id: 'capacity-athlete', title: 'Studio Capacity · Athletes',render: renderCapacityAthlete },
   ];
@@ -1255,6 +1258,32 @@
         </a>
       </div>
 
+      <div class="ocho-timeline">
+        <div class="ot-head">▮ TYPICAL COLD-START TIMELINE ▮</div>
+        <div class="ot-strip">
+          <div class="ot-step">
+            <div class="ot-when">DAY 0</div>
+            <div class="ot-what">Channel live · pillow primed</div>
+          </div>
+          <div class="ot-arrow">▸</div>
+          <div class="ot-step">
+            <div class="ot-when">WEEK 3</div>
+            <div class="ot-what">YPP on · AdSense flowing</div>
+          </div>
+          <div class="ot-arrow">▸</div>
+          <div class="ot-step">
+            <div class="ot-when">MONTH 3</div>
+            <div class="ot-what">1M+ views / month</div>
+          </div>
+          <div class="ot-arrow">▸</div>
+          <div class="ot-step">
+            <div class="ot-when">MONTH 6</div>
+            <div class="ot-what">Algo tipping point · brand-ready</div>
+          </div>
+        </div>
+        <div class="ot-foot">Median across our launches. Cam, Chad, and Ring Champs all hit these markers without paid spend.</div>
+      </div>
+
       <div class="ocho-closer">
         <span class="oc-stat">3 launches</span>
         <span class="oc-dot">·</span>
@@ -2149,6 +2178,213 @@
   }
 
   /* ----------------------------------------------------------
+     SLIDE — MONETIZATION (Athlete + Team)
+     ---------------------------------------------------------- */
+  const ASFC_BRANDS = [
+    'Storyblocks', 'Huckberry', 'Shopify', 'NordVPN', 'BetterHelp',
+    'AG1', 'Skillshare', 'DeleteMe', 'Manscaped', 'Squarespace',
+  ];
+
+  const BRAND_BRACKETS = {
+    columns: ['250K / mo', '1M / mo', '5M / mo', '10M+ / mo'],
+    rows: [
+      { type: 'Pre-roll read',         note: '15–30s, top of episode',         vals: ['$400',   '$1,500',  '$7,500',  '$20,000'] },
+      { type: 'Mid-roll read',         note: '60s, mid-video',                 vals: ['$600',   '$3,000',  '$12,000', '$28,000'] },
+      { type: 'Dedicated episode',     note: 'one full episode w/ brand',      vals: ['$1,500', '$7,500',  '$30,000', '$65,000'] },
+      { type: 'Series sponsor (4 ep)', note: 'multi-episode flight',           vals: ['$4,000', '$20,000', '$80,000', '$200,000'] },
+      { type: 'Product integration',   note: 'in-show usage, native placement',vals: ['$750',   '$4,000',  '$18,000', '$42,000'] },
+    ],
+  };
+
+  function renderBrandBracketTable() {
+    const { columns, rows } = BRAND_BRACKETS;
+    return `
+      <div class="bb-window">
+        <span class="bb-app">Brand_Rate_Card.exe</span>
+        <span class="bb-x">×</span>
+      </div>
+      <div class="bb-body">
+        <table class="bb-table">
+          <thead>
+            <tr>
+              <th class="bb-rowhead">Integration</th>
+              ${columns.map(c => `<th>${c}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map(r => `
+              <tr>
+                <td class="bb-rowhead">
+                  <div class="bb-type">${r.type}</div>
+                  <div class="bb-note">${r.note}</div>
+                </td>
+                ${r.vals.map(v => `<td class="bb-val">${v}</td>`).join('')}
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        <div class="bb-foot">Industry-typical rates per placement. Final pricing depends on category fit, exclusivity, and audience demo.</div>
+      </div>
+    `;
+  }
+
+  function renderRPMCard() {
+    return `
+      <div class="mz-window">
+        <span class="mz-app">YouTube_Paycheck.exe</span>
+        <span class="mz-x">×</span>
+      </div>
+      <div class="mz-body mz-rpm">
+        <div class="mz-section-tag">▮ 01 · THE YOUTUBE PAYCHECK ▮</div>
+        <h3 class="mz-h3">RPM is the math.</h3>
+        <p class="mz-lede">Revenue Per Mille = what YouTube pays you per 1,000 monetized views, after their cut.</p>
+
+        <div class="rpm-rows">
+          <div class="rpm-row">
+            <div class="rpm-label">Long-form sports · mature channel</div>
+            <div class="rpm-bar"><div class="rpm-fill" style="--lo:30%; --hi:70%;"></div></div>
+            <div class="rpm-val">$6 – $14 / 1K</div>
+          </div>
+          <div class="rpm-row">
+            <div class="rpm-label">Long-form sports · new channel</div>
+            <div class="rpm-bar"><div class="rpm-fill" style="--lo:15%; --hi:30%;"></div></div>
+            <div class="rpm-val">$3 – $6 / 1K</div>
+          </div>
+          <div class="rpm-row">
+            <div class="rpm-label">YouTube Shorts</div>
+            <div class="rpm-bar"><div class="rpm-fill rpm-fill-shorts" style="--lo:0.5%; --hi:1.5%;"></div></div>
+            <div class="rpm-val">$0.20 – $0.25 / 1K</div>
+          </div>
+        </div>
+
+        <div class="rpm-math">
+          <div class="rpm-math-line"><span class="rpm-eq">5M long-form views</span> × <span class="rpm-eq">$8 RPM</span> = <span class="rpm-tot">$40,000 / mo</span></div>
+          <div class="rpm-math-line"><span class="rpm-eq">5M Shorts views</span> × <span class="rpm-eq">$0.22 RPM</span> = <span class="rpm-tot rpm-tot-low">$1,100 / mo</span></div>
+        </div>
+
+        <div class="rpm-strat">
+          <span class="rpm-strat-tag">▸ STRATEGIST'S JOB</span>
+          <span class="rpm-strat-text">Lean into long-form &mdash; longer videos, higher ad density, repeat watchers. Shorts feed the funnel, but long-form pays the bills.</span>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderForecastBlock(track) {
+    const rows = track === 'team'
+      ? [
+          { mo: 'MONTH 03', view: '2M – 4M / mo',   ads: '$10K – $25K',  brand: '$15K – $40K',  total: '$25K – $65K' },
+          { mo: 'MONTH 06', view: '8M – 15M / mo',  ads: '$48K – $105K', brand: '$60K – $150K', total: '$108K – $255K' },
+          { mo: 'MONTH 12', view: '20M – 40M / mo', ads: '$120K – $280K',brand: '$150K – $400K',total: '$270K – $680K' },
+        ]
+      : [
+          { mo: 'MONTH 03', view: '750K – 1.5M / mo', ads: '$4K – $9K',    brand: '$2K – $6K',    total: '$6K – $15K' },
+          { mo: 'MONTH 06', view: '2M – 5M / mo',     ads: '$12K – $35K',  brand: '$15K – $50K',  total: '$27K – $85K' },
+          { mo: 'MONTH 12', view: '5M – 15M / mo',    ads: '$30K – $105K', brand: '$60K – $200K', total: '$90K – $305K' },
+        ];
+
+    return `
+      <div class="mz-window">
+        <span class="mz-app">Forecast.exe</span>
+        <span class="mz-x">×</span>
+      </div>
+      <div class="mz-body mz-forecast">
+        <div class="mz-section-tag">▮ 03 · MOST-LIKELY FORECAST ▮</div>
+        <h3 class="mz-h3">Broad averages. ${track === 'team' ? 'Team-track ramp.' : 'Athlete-track ramp.'}</h3>
+        <div class="fc-grid">
+          ${rows.map(r => `
+            <div class="fc-card">
+              <div class="fc-mo">${r.mo}</div>
+              <div class="fc-view">${r.view}</div>
+              <div class="fc-line"><span class="fc-line-l">AdSense</span><span class="fc-line-r">${r.ads}</span></div>
+              <div class="fc-line"><span class="fc-line-l">Brand</span><span class="fc-line-r">${r.brand}</span></div>
+              <div class="fc-tot"><span class="fc-tot-l">RUN-RATE</span><span class="fc-tot-r">${r.total}</span></div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="fc-foot">Median outcomes across ASFC launches. Not a guarantee &mdash; ranges reflect category, cadence, and brand fit.</div>
+      </div>
+    `;
+  }
+
+  function renderBrandNetworkBlock() {
+    return `
+      <div class="mz-window">
+        <span class="mz-app">ASFC_Brand_Network.exe</span>
+        <span class="mz-x">×</span>
+      </div>
+      <div class="mz-body mz-brands">
+        <div class="mz-section-tag">▮ 04 · ASFC BRAND NETWORK ▮</div>
+        <h3 class="mz-h3">Brands we've placed.</h3>
+        <div class="bn-strip">
+          ${ASFC_BRANDS.map(b => `<span class="bn-chip">${b}</span>`).join('')}
+        </div>
+        <div class="bn-philosophy">
+          <span class="bn-phi-tag">▸ PRODUCT MATCH</span>
+          <span class="bn-phi-text">We deep-dive on creator-to-brand fit before pitching. The target: extremely on-the-nose, hyper-targeted sponsorships that benefit the audience as much as the brand.</span>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderAgilityCallout() {
+    return `
+      <div class="mz-window mz-window-accent">
+        <span class="mz-app">Agility_Advantage.exe</span>
+        <span class="mz-x">×</span>
+      </div>
+      <div class="mz-body mz-agility">
+        <div class="mz-section-tag mz-section-tag-accent">▮ TEAM AGILITY ADVANTAGE ▮</div>
+        <h3 class="mz-h3">Year-over-year sells the season. We sell the moment.</h3>
+        <ul class="agi-list">
+          <li><span class="agi-bullet">▸</span> Spin up a new piece of content in days, not seasons.</li>
+          <li><span class="agi-bullet">▸</span> Integrate brands at the speed of a news cycle &mdash; not the speed of a media kit.</li>
+          <li><span class="agi-bullet">▸</span> Follow the nose: when something pops, we make more of it and bring brands to it.</li>
+          <li><span class="agi-bullet">▸</span> Treat YouTube like a creator does &mdash; not like a TV channel.</li>
+        </ul>
+        <div class="agi-foot">Incremental yield on top of existing partnerships. Doesn't replace your annual partner book &mdash; multiplies it.</div>
+      </div>
+    `;
+  }
+
+  function renderMonetize(el, track) {
+    el.classList.add('slide-monetize', 'slide-monetize-' + track);
+    const trackLabel = track === 'team' ? 'TEAM TRACK' : 'ATHLETE TRACK';
+    const headline = track === 'team'
+      ? 'Two revenue streams. Year-round velocity.'
+      : 'Two revenue streams. One strategy.';
+
+    el.innerHTML = `
+      <div class="eyebrow">▮ HOW THE CHANNEL MAKES MONEY · ${trackLabel} ▮</div>
+      <h1>${headline}</h1>
+
+      <div class="mz-grid">
+        <div class="mz-cell mz-cell-rpm">${renderRPMCard()}</div>
+
+        <div class="mz-cell mz-cell-bracket">
+          <div class="mz-window">
+            <span class="mz-app">Brand_Integration_Menu.exe</span>
+            <span class="mz-x">×</span>
+          </div>
+          <div class="mz-body mz-bracket">
+            <div class="mz-section-tag">▮ 02 · BRAND INTEGRATION MENU ▮</div>
+            <h3 class="mz-h3">Find your view bracket. Read across.</h3>
+            ${renderBrandBracketTable()}
+          </div>
+        </div>
+
+        <div class="mz-cell mz-cell-forecast">${renderForecastBlock(track)}</div>
+
+        <div class="mz-cell mz-cell-brands">${renderBrandNetworkBlock()}</div>
+
+        ${track === 'team' ? `<div class="mz-cell mz-cell-agility">${renderAgilityCallout()}</div>` : ''}
+      </div>
+    `;
+  }
+  function renderMonetizeAthlete(el) { renderMonetize(el, 'athlete'); }
+  function renderMonetizeTeam(el)    { renderMonetize(el, 'team'); }
+
+  /* ----------------------------------------------------------
      SLIDE — HOW WE WORK
      ---------------------------------------------------------- */
   const PRICING_BLOCKS = {
@@ -2197,6 +2433,11 @@
             </div>
           </div>
           <div class="wpr-tiers">
+            <div class="wpr-tier">
+              <div class="wpr-tier-price">$12,000<span class="wpr-tier-per">/mo</span></div>
+              <div class="wpr-tier-name">Education &amp; Workshops</div>
+              <div class="wpr-tier-detail">Monthly in-person or remote workshop, dedicated college sports analytics study session, quarterly content audit + roadmap, strategist office hours, read-only access to Channel Track + Post-Game Analytics.</div>
+            </div>
             <div class="wpr-tier">
               <div class="wpr-tier-price">$30,000<span class="wpr-tier-per">/mo</span></div>
               <div class="wpr-tier-name">Strategy &amp; Execution</div>
@@ -2438,11 +2679,26 @@
      ---------------------------------------------------------- */
   function renderContact(el) {
     el.classList.add('slide-contact');
+    const pdfFile = activeTrack === 'teams'
+      ? 'exports/ASFC-Pitch-Teams.pdf'
+      : 'exports/ASFC-Pitch-Athletes.pdf';
+    const pdfLabel = activeTrack === 'teams' ? 'Teams' : 'Athletes';
     el.innerHTML = `
       <div class="eyebrow">▮ END OF DECK · LET'S BUILD ▮</div>
       <h1>Antisocial Friends Club. Let's Grow Together.</h1>
       <div class="contact-subtitle">
         Tell us which track fits and we'll route you to the right starting point.
+      </div>
+
+      <div class="contact-download">
+        <a class="cd-btn" href="${pdfFile}" download>
+          <span class="cd-icon">💾</span>
+          <span class="cd-label">
+            <span class="cd-label-tag">DOWNLOAD DECK</span>
+            <span class="cd-label-file">ASFC-Pitch-${pdfLabel}.pdf</span>
+          </span>
+          <span class="cd-arrow">↓</span>
+        </a>
       </div>
 
       <div class="contact-shell">
@@ -2676,9 +2932,55 @@
   }
 
   /* ==========================================================
+     PRINT MODE — flatten deck into stacked pages for PDF export
+     ========================================================== */
+  function runPrintMode() {
+    if (!activeTrack) activeTrack = 'teams'; // default if track not provided
+    document.documentElement.classList.add('print-mode');
+    document.body.classList.add('print-mode');
+    bootScreen.classList.add('hidden');
+    desktop.classList.remove('hidden');
+    pitchExeIcon.style.display = 'none';
+    deckWindow.classList.remove('hidden');
+
+    const stage = document.getElementById('slide-stage');
+    stage.innerHTML = '';
+    const deck = getActiveDeck();
+    deck.forEach((slide, i) => {
+      const el = document.createElement('section');
+      el.className = 'slide print-page';
+      el.dataset.slideId = slide.id;
+      slide.render(el, i);
+      stage.appendChild(el);
+    });
+
+    // Resolve live numbers + countdown once (no intervals — keeps headless quiet)
+    loadStats().then(() => {
+      document.querySelectorAll('[data-live="total"]').forEach(el => el.textContent = fmt(liveTotal));
+      document.querySelectorAll('[data-live="last30"]').forEach(el => el.textContent = fmt(liveLast30));
+      document.querySelectorAll('[data-live="subs"]').forEach(el => el.textContent = fmt(liveSubs));
+      document.querySelectorAll('[data-live="uploads"]').forEach(el => el.textContent = fmt(liveUploads));
+    }).catch(() => {});
+    const now = Date.now();
+    let diff = Math.max(0, LA28_OPENING - now);
+    const days = Math.floor(diff / 86400000); diff -= days * 86400000;
+    const hours = Math.floor(diff / 3600000); diff -= hours * 3600000;
+    const mins = Math.floor(diff / 60000);    diff -= mins * 60000;
+    const secs = Math.floor(diff / 1000);
+    const pad = (n, w) => String(Math.max(0, n)).padStart(w, '0');
+    document.querySelectorAll('[data-countdown="days"]').forEach(el => el.textContent = pad(days, 3));
+    document.querySelectorAll('[data-countdown="hours"]').forEach(el => el.textContent = pad(hours, 2));
+    document.querySelectorAll('[data-countdown="minutes"]').forEach(el => el.textContent = pad(mins, 2));
+    document.querySelectorAll('[data-countdown="seconds"]').forEach(el => el.textContent = pad(secs, 2));
+
+    // Signal readiness once layout settles + counter animations finish
+    setTimeout(() => { document.body.classList.add('print-ready'); }, 2500);
+  }
+
+  /* ==========================================================
      KICKOFF
      ========================================================== */
-  runBoot();
+  if (PRINT) runPrintMode(); else runBoot();
 
   // Util
   function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
