@@ -610,6 +610,16 @@ body, html {
     left: 10px;
 }
 
+.second-txt {
+    position: absolute;
+    top: 40px;
+    left: 110px;
+}
+
+.second-txt .txt-btn span {
+    white-space: nowrap;
+}
+
 .folder-btn, .txt-btn {
     background: none;
     border: none;

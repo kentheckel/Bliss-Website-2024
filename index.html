@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link href="style.css?v=20241226" rel="stylesheet">
+    <link href="style.css?v=20260515a" rel="stylesheet">
     <title>Kent Heckel's Website</title>
     <style>
         .email-label {
@@ -610,6 +610,12 @@
                         <span>passwords.txt</span>
                     </button>
                 </div>
+                <div class="second-txt">
+                    <button id="doNotShareTxtBtn" class="txt-btn">
+                        <img src="images/icons/txt.png" alt="Do Not Share Text File Icon">
+                        <span>do-not-share.txt</span>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -643,6 +649,30 @@
             </div>
             <div class="txt-content">
                 <textarea id="passwordTextArea">KIM PASSWORD: passw0rd</textarea>
+            </div>
+        </div>
+
+        <!-- MARK: Do Not Share Text File Modal -->
+        <div id="ModalDoNotShareTxt" class="modal large-modal">
+            <div id="modalHeaderDoNotShareTxt" class="window-controls">
+                <span>do-not-share.txt</span>
+                <div class="window-btn-container">
+                    <button id="doNotShareTxtMinimize" class="window-btn">-</button>
+                    <button id="doNotShareTxtClose" class="window-btn">X</button>
+                </div>
+            </div>
+            <div class="file-menu-bar">
+                <div class="menu-tab">File</div>
+                <div class="menu-tab">Edit</div>
+                <div class="menu-tab">View</div>
+            </div>
+            <div class="txt-content">
+                <textarea id="doNotShareTextArea">internal — do not share
+
+asfc pitch deck pricing password: ASFC2026
+
+(if you found this, you're either nosy or very good at clicking around.
+either way, the deck is yours — let's chat. kent@kentheckel.com)</textarea>
             </div>
         </div>
 

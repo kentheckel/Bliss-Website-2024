@@ -542,6 +542,12 @@
     el.classList.add('slide-title');
     el.innerHTML = `
       <div class="stamp">CONFIDENTIAL</div>
+      <div class="title-sticky" aria-hidden="true">
+        password:<br>
+        <strong>ASFC2026</strong><br>
+        <em>delete before sending</em><br>
+        — kent
+      </div>
       <div class="eyebrow">Antisocial Friends Club</div>
       <h1>Let's take YouTube<br>to the next level.</h1>
       <div class="live-counter">
@@ -2367,6 +2373,105 @@
   /* ----------------------------------------------------------
      SLIDE — HOW WE WORK
      ---------------------------------------------------------- */
+
+  // Soft gate on pricing. Anyone who view-sources can find the password,
+  // but it keeps casual visitors from seeing rates without asking.
+  const PRICING_PASSWORD = 'ASFC2026';
+  const PRICING_UNLOCK_KEY = 'asfc-pricing-unlocked-v1';
+  const PRICING_REQUEST_EMAIL = 'kent@kentheckel.com';
+
+  function isPricingUnlocked() {
+    try { return localStorage.getItem(PRICING_UNLOCK_KEY) === '1'; }
+    catch (_) { return false; }
+  }
+  function setPricingUnlocked() {
+    try { localStorage.setItem(PRICING_UNLOCK_KEY, '1'); } catch (_) {}
+  }
+
+  function pricingLockBlock(track) {
+    const trackClass = track === 'team' ? 'wpr-track-team' : 'wpr-track-athlete';
+    const mailSubject = encodeURIComponent('ASFC pitch — pricing password request');
+    const mailBody = encodeURIComponent(
+      "Hi Kent,\n\nI'd love to see the pricing on the ASFC pitch deck. " +
+      "Could you send over the password?\n\nThanks!"
+    );
+    const mailto = `mailto:${PRICING_REQUEST_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
+    return `
+      <div class="wpr-track ${trackClass} wpr-locked" data-pricing-lock="${track}">
+        <div class="wpr-window">
+          <span class="wpr-app">Pricing_Locked.exe</span>
+          <span class="wpr-x">×</span>
+        </div>
+        <div class="wpr-body wpr-lock-body">
+          <div class="wpr-lock-headrow">
+            <div class="wpr-lock-icon">🔒</div>
+            <div class="wpr-lock-headcol">
+              <div class="wpr-tag">PASSWORD REQUIRED</div>
+              <div class="wpr-name">Do you have the pricing password?</div>
+            </div>
+          </div>
+          <div class="wpr-lock-desc">
+            Pricing is shared on request. Enter the password below, or ping Kent and he'll send it over.
+          </div>
+          <form class="wpr-lock-form" autocomplete="off">
+            <label class="wpr-lock-label" for="wpr-lock-input-${track}">▸ PASSWORD</label>
+            <div class="wpr-lock-row">
+              <input
+                type="password"
+                class="wpr-lock-input"
+                id="wpr-lock-input-${track}"
+                placeholder="••••••••"
+                spellcheck="false"
+                autocapitalize="off"
+                autocorrect="off"
+              />
+              <button type="submit" class="wpr-lock-enter">Enter ▸</button>
+            </div>
+            <div class="wpr-lock-msg" aria-live="polite"></div>
+          </form>
+          <div class="wpr-lock-divider">— or —</div>
+          <a class="wpr-lock-request" href="${mailto}">
+            <span class="wpr-lock-request-icon">✉</span>
+            <span class="wpr-lock-request-text">Request the password</span>
+            <span class="wpr-lock-request-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  function wirePricingLock(slideEl, track) {
+    const lock = slideEl.querySelector('.wpr-locked');
+    if (!lock) return;
+    const form = lock.querySelector('.wpr-lock-form');
+    const input = lock.querySelector('.wpr-lock-input');
+    const msg = lock.querySelector('.wpr-lock-msg');
+    if (!form || !input || !msg) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const entered = (input.value || '').trim().toLowerCase();
+      if (entered === PRICING_PASSWORD.toLowerCase()) {
+        setPricingUnlocked();
+        msg.textContent = '✓ Access granted. Loading rates…';
+        msg.classList.add('wpr-lock-msg-ok');
+        lock.classList.add('wpr-lock-unlocking');
+        setTimeout(() => {
+          const slot = slideEl.querySelector('.work-pricing-flat');
+          if (slot) slot.innerHTML = PRICING_BLOCKS[track];
+        }, 320);
+      } else {
+        msg.textContent = '✗ Incorrect password. Try again or request access.';
+        msg.classList.remove('wpr-lock-msg-ok');
+        lock.classList.remove('wpr-lock-shake');
+        // force reflow to restart animation
+        void lock.offsetWidth;
+        lock.classList.add('wpr-lock-shake');
+        input.select();
+      }
+    });
+  }
+
   const PRICING_BLOCKS = {
     athlete: `
       <div class="wpr-track wpr-track-athlete">
@@ -2482,9 +2587,10 @@
       </div>
 
       <div class="work-pricing-flat">
-        ${PRICING_BLOCKS[track]}
+        ${isPricingUnlocked() ? PRICING_BLOCKS[track] : pricingLockBlock(track)}
       </div>
     `;
+    wirePricingLock(el, track);
   }
   function renderWorkTeam(el)    { renderWork(el, 'team'); }
   function renderWorkAthlete(el) { renderWork(el, 'athlete'); }

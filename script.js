@@ -221,7 +221,7 @@ document.querySelectorAll('.icon-btn').forEach(button => {
     'TextBoxCloseKentHeckel', 'AnalyticsCloseKentHeckel',
     'errorClose', 'socialClose', 'aimChatClose', 'gmailClose',
     'contactClose', 'VideosClose', 'trashClose', 'passwordsClose',
-    'passwordsTxtClose', 'resumeTxtClose', 'aboutClose', 'loginClose',
+    'passwordsTxtClose', 'doNotShareTxtClose', 'resumeTxtClose', 'aboutClose', 'loginClose',
     'colorSocialClose', // ColorSocial app modal close button
     'channelTrackClose' // ChannelTrack app modal close button
 ].forEach(id => {
@@ -248,7 +248,7 @@ document.querySelectorAll('.icon-btn').forEach(button => {
     'TextBoxMinimizeKentHeckel', 'AnalyticsMinimizeKentHeckel',
     'socialMinimize', 'aimChatMinimize', 'gmailMinimize',
     'contactMinimize', 'VideosMinimize', 'trashMinimize',
-    'passwordsMinimize', 'passwordsTxtMinimize', 'resumeTxtMinimize', 'aboutMinimize',
+    'passwordsMinimize', 'passwordsTxtMinimize', 'doNotShareTxtMinimize', 'resumeTxtMinimize', 'aboutMinimize',
     'colorSocialMinimize', // ColorSocial app modal minimize button
     'channelTrackMinimize' // ChannelTrack app modal minimize button
 ].forEach(id => {
@@ -535,6 +535,11 @@ addClickListener('passwordsFolderBtn', () => {
 // Add an event listener to the text file button inside the Passwords modal
 addClickListener('passwordsTxtBtn', () => {
     showModal('ModalPasswordsTxt'); // Open the PasswordsTxt modal when the text file button is clicked
+});
+
+// do-not-share.txt easter egg — holds the ASFC pitch deck pricing password
+addClickListener('doNotShareTxtBtn', () => {
+    showModal('ModalDoNotShareTxt');
 });
 
 
