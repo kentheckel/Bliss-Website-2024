@@ -25,6 +25,9 @@ const WALL = 8;
 const PLUNGER_W = 26;
 const PLUNGER_X = W - WALL - PLUNGER_W;
 const PLAY_W = PLUNGER_X - WALL;
+// Plunger lane opens at this Y — divider only exists below it so the ball
+// can crest into the playfield. Declared up here because `guides` uses it.
+const LANE_TOP_Y = 90;
 
 const game = {
   score: 0,
@@ -96,9 +99,6 @@ const ball = {
 const GRAVITY = 0.32;
 const FRICTION = 0.995;
 const BALL_MAX_V = 30;       // raised so plunger launches aren't clamped flat on frame 1
-// Plunger lane geometry — divider only exists below LANE_TOP_Y so the ball
-// can crest the top and arc back into the playfield.
-const LANE_TOP_Y = 90;
 const BUMPER_KICK = 1.6;     // additive impulse, not multiplicative — keeps bounces predictable
 const SLING_KICK = 2.2;
 
