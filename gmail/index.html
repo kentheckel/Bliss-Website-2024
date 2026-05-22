@@ -3,35 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link href="C:\Users\kent\OneDrive\Desktop\code\Bliss Website 2024\gmail3\StaticLayout-master\StaticLayout-master\assets\favicon.ico" rel="icon" type="image/x-icon" />
     <title>Inbox - kent@kentheckel.com - Gmail.com</title>
 </head>
 <body>
-    
-<!-- Top DIV bar --> 
+
+<!-- Top Nav Bar -->
 <div id="topNav">
-    <!-- Splitting the top nav into three divs to get the spacing better. Elements in the Left Top Nav Div -->
     <div id="leftTopNav">
         <div id="leftTopSpace"></div>
         <i class="material-icons">menu</i>
         <img id="gmailLogo" src="assets/logo_gmail_lockup_default_2x.png">
-    </div>   
-    <!-- Elements in the Middle Top Nav Div -->
-    <div id="centerTopNav"> 
+    </div>
+    <div id="centerTopNav">
         <div id="searchBar">
-                <div id="leftSearchSpace"></div>
-                <i class="material-icons">search</i>
-                <div id="leftMiddleSearchSpace"></div>
-                <p style="align-content: left; color: black;">Kent@KentHeckel.com</p>
-                <div id="middleSearchSpace"></div>
-                <i class="material-icons">arrow_drop_down</i>
+            <div id="leftSearchSpace"></div>
+            <i class="material-icons">search</i>
+            <div id="leftMiddleSearchSpace"></div>
+            <p style="color: black;">Kent@KentHeckel.com</p>
+            <div id="middleSearchSpace"></div>
+            <i class="material-icons">arrow_drop_down</i>
         </div>
     </div>
-    <!-- Elements in the Right Top Nav Div -->
     <div id="rightTopNav">
         <i class="material-icons">contact_support</i>
         <div id="rightLeftSpace"></div>
@@ -41,292 +36,387 @@
     </div>
 </div>
 
-<!-- Main DIV Section -->
+<!-- Main Section -->
 <div id="mainNav">
-        
-        <!-- Left Sidebar -->
-        <div id="sidebarLeft">
-            <div id="gmailPlusButton">
-                <img src="assets/gmail-plus-icon.png" height="74px" width="74px">
+    <!-- Left Sidebar -->
+    <div id="sidebarLeft">
+        <div id="gmailPlusButton" style="cursor: pointer;" title="Compose">
+            <img src="assets/gmail-plus-icon.png" height="74px" width="74px">
+        </div>
+        <div class="leftSideBarIcon"><i class="material-icons">inbox</i></div>
+        <div class="leftSideBarIcon"><i class="material-icons">star</i></div>
+        <div class="leftSideBarIcon"><i class="material-icons">access_time</i></div>
+        <div class="leftSideBarIcon"><i class="material-icons">label_important</i></div>
+        <div class="leftSideBarIcon"><i class="material-icons">send</i></div>
+        <div class="leftSideBarIcon"><i class="material-icons">insert_drive_file</i></div>
+        <div class="leftSideBarlabel1"><i class="material-icons">label</i></div>
+        <div class="leftSideBarlabel2"><i class="material-icons">label</i></div>
+        <div class="leftSideBarlabel3"><i class="material-icons">label</i></div>
+        <div class="leftSideBarlabel4"><i class="material-icons">label</i></div>
+    </div>
+
+    <!-- Center Area -->
+    <div id="centerArea">
+        <!-- Toolbar -->
+        <div id="toolBar">
+            <table style="width:100%" align="center">
+                <tr>
+                    <td class="toolcheckBox"><i class="material-icons">crop_square</i></td>
+                    <td class="toolArrowDown"><i class="material-icons">arrow_drop_down</i></td>
+                    <td class="toolRewind"><i class="material-icons">refresh</i></td>
+                    <td class="toolMenu"><i class="material-icons">more_vert</i></td>
+                    <td class="toolEmpty"></td>
+                    <td class="toolEmailNumber">1-10 of 10</td>
+                    <td class="toolArrows">
+                        <i class="material-icons">keyboard_arrow_left</i>
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </td>
+                    <td class="toolKeyboard">
+                        <i class="material-icons">keyboard</i>
+                        <i class="material-icons">arrow_drop_down</i>
+                    </td>
+                    <td class="toolSettings"><i class="material-icons">settings</i></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Email List -->
+        <div id="emailList">
+            <div class="emailBox" data-email="youtube">
+                <table style="width:100%"><tr>
+                    <td class="checkBox"><i class="material-icons">crop_square</i></td>
+                    <td class="star"><i class="material-icons">star_border</i></td>
+                    <td class="priorityBox"><span class="red-overlay"><i class="material-icons">label_important</i></span></td>
+                    <td class="nameBox"><b>YouTube</b></td>
+                    <td class="emailContent"><b>Fwd: Hi Cam Newton You did it!</b> You are now eligible for a 1 Million Subscriber Creator Award.</td>
+                    <td class="dateBox">10:12 AM</td>
+                </tr></table>
             </div>
-            <div class="leftSideBarIcon">
-                <i class="material-icons">inbox</i>
+
+            <div class="emailBox" data-email="clippy">
+                <table style="width:100%"><tr>
+                    <td class="checkBox"><i class="material-icons">crop_square</i></td>
+                    <td class="star"><i class="material-icons">star</i></td>
+                    <td class="priorityBox"><i class="material-icons">label_important</i></td>
+                    <td class="nameBox"><b>Clippy</b></td>
+                    <td class="emailContent"><b>It looks like you're building a website!</b> Would you like help? I see you're using HTML. Have you considered...</td>
+                    <td class="dateBox">9:47 AM</td>
+                </tr></table>
             </div>
-            <div class="leftSideBarIcon">
-                    <i class="material-icons">star</i>
+
+            <div class="emailBox" data-email="talent">
+                <table style="width:100%"><tr>
+                    <td class="checkBox"><i class="material-icons">crop_square</i></td>
+                    <td class="star"><i class="material-icons">star_border</i></td>
+                    <td class="priorityBox"><i class="material-icons">label_important</i></td>
+                    <td class="nameBox"><b>Big Talent Agency</b></td>
+                    <td class="emailContent"><b>Re: YouTube Director Testimonial</b> Kent Heckel's direction turned our small team into a major YouTube powerhouse.</td>
+                    <td class="dateBox">Yesterday</td>
+                </tr></table>
             </div>
-            <div class="leftSideBarIcon">
-                <i class="material-icons">access_time</i>
+
+            <div class="emailBox" data-email="chain">
+                <table style="width:100%"><tr>
+                    <td class="checkBox"><i class="material-icons">crop_square</i></td>
+                    <td class="star"><i class="material-icons">star_border</i></td>
+                    <td class="priorityBox"><i class="material-icons">label_important</i></td>
+                    <td class="nameBox"><b>xXAngelBabyXx</b></td>
+                    <td class="emailContent"><b>FWD: FWD: FWD: FWD: SEND THIS TO 10 PEOPLE OR ELSE!!!</b> If you don't forward this to 10 people by midnight...</td>
+                    <td class="dateBox">2 days ago</td>
+                </tr></table>
             </div>
-            <div class="leftSideBarIcon">
-                <i class="material-icons">label_important</i>
+
+            <div class="emailBox" data-email="facebook">
+                <table style="width:100%"><tr>
+                    <td class="checkBox"><i class="material-icons">crop_square</i></td>
+                    <td class="star"><i class="material-icons">star_border</i></td>
+                    <td class="priorityBox"><i class="material-icons">label_important</i></td>
+                    <td class="nameBox"><b>Facebook</b></td>
+                    <td class="emailContent"><b>Someone poked you.</b> John Doe just poked you. Not sure how they found this feature but we are legally required to tell you.</td>
+                    <td class="dateBox">3 days ago</td>
+                </tr></table>
             </div>
-            <div class="leftSideBarIcon">
-                <i class="material-icons">send</i>
+
+            <div class="emailBox" data-email="bonzi">
+                <table style="width:100%"><tr>
+                    <td class="checkBox"><i class="material-icons">crop_square</i></td>
+                    <td class="star"><i class="material-icons">star_border</i></td>
+                    <td class="priorityBox"><i class="material-icons">label_important</i></td>
+                    <td class="nameBox"><b>BonziBuddy</b></td>
+                    <td class="emailContent"><b>🐵 Hey there, friend!</b> I noticed you haven't installed me yet! I can help you search the web, tell jokes, and definitely...</td>
+                    <td class="dateBox">Last week</td>
+                </tr></table>
             </div>
-            <div class="leftSideBarIcon">
-                <i class="material-icons">insert_drive_file</i>
+
+            <div class="emailBox" data-email="producerguild">
+                <table style="width:100%"><tr>
+                    <td class="checkBox"><i class="material-icons">crop_square</i></td>
+                    <td class="star"><i class="material-icons">star_border</i></td>
+                    <td class="priorityBox"><i class="material-icons">label_important</i></td>
+                    <td class="nameBox"><b>ProducerGuild</b></td>
+                    <td class="emailContent"><b>Fwd: Kent is dat guy!</b> Kent Heckel directed our last campaign. Results: happy clients, zero fires. A+.</td>
+                    <td class="dateBox">2 weeks ago</td>
+                </tr></table>
             </div>
-            <div class="leftSideBarlabel1">
-                    <i class="material-icons">label</i>
+
+            <div class="emailBox" data-email="lucky">
+                <table style="width:100%"><tr>
+                    <td class="checkBox"><i class="material-icons">crop_square</i></td>
+                    <td class="star"><i class="material-icons">star_border</i></td>
+                    <td class="priorityBox"><i class="material-icons">label_important</i></td>
+                    <td class="nameBox"><b>LuckyYou!</b></td>
+                    <td class="emailContent"><b>Congrats! You've Won a Millinon Bucks.</b> Click here to claim your reward now. Totally not a scam. Promise!</td>
+                    <td class="dateBox">A while ago</td>
+                </tr></table>
             </div>
-            <div class="leftSideBarlabel2">
-                    <i class="material-icons">label</i>
+
+            <div class="emailBox" data-email="spelling">
+                <table style="width:100%"><tr>
+                    <td class="checkBox"><i class="material-icons">crop_square</i></td>
+                    <td class="star"><i class="material-icons">star_border</i></td>
+                    <td class="priorityBox"><i class="material-icons">label_important</i></td>
+                    <td class="nameBox"><b>Spelling Society</b></td>
+                    <td class="emailContent"><b>Fwd: Update on "Resterant" spelling</b> We are close to finally figuring out how to spell restuarant!</td>
+                    <td class="dateBox">At some point</td>
+                </tr></table>
             </div>
-            <div class="leftSideBarlabel3">
-                    <i class="material-icons">label</i>
-            </div>
-            <div class="leftSideBarlabel4">
-                    <i class="material-icons">label</i>
+
+            <div class="emailBox" data-email="meeting">
+                <table style="width:100%"><tr>
+                    <td class="checkBox"><i class="material-icons">crop_square</i></td>
+                    <td class="star"><i class="material-icons">star_border</i></td>
+                    <td class="priorityBox"><i class="material-icons">label_important</i></td>
+                    <td class="nameBox"><b>Team Productivity</b></td>
+                    <td class="emailContent"><b>Meeting Reminder</b> Don't forget our brainstorming session tomorrow at 9 AM. No umbrellas at the brainstorm.</td>
+                    <td class="dateBox">Unclear</td>
+                </tr></table>
             </div>
         </div>
 
-        <!-- Center Area-->
-        <div id="centerArea">
-            <div id="toolBar" style="align:center">
-                <table style="width:100%" align="center" style="margin-right: 2em">
-                        <tr>
-                            <td class="toolcheckBox">
-                                <i class="material-icons">crop_square</i>
-                            </td>
-                            <td class="toolArrowDown"> 
-                                    <i class="material-icons">arrow_drop_down</i>
-                                </td>
-                            <td class="toolRewind"> 
-                                <i class="material-icons">refresh</i>
-                            </td>
-                            <td class="toolMenu">  
-                                <i class="material-icons">more_vert</i>
-                            </td> 
-                            <td class="toolEmpty">        </td>
-                            <td class="toolEmailNumber">
-                                1-10 of 10
-                            </td>
-                            <td class="toolArrows">
-                                <i class="material-icons">keyboard_arrow_left</i>
-                                <i class="material-icons">keyboard_arrow_right</i>
-                            </td>
-                            <td class="toolKeyboard">
-                                <i class="material-icons">keyboard</i>
-                                <i class="material-icons">arrow_drop_down</i>
-                            </td> 
-                            <td class="toolSettings">
-                                <i class="material-icons">settings</i>
-                            </td> 
-                        </tr>   
-                </table>  
+        <!-- Reading Pane (hidden by default) -->
+        <div id="readingPane" style="display:none;">
+            <div id="readingPaneHeader">
+                <button id="backToInbox"><i class="material-icons">arrow_back</i></button>
+                <span id="readingPaneSubject"></span>
             </div>
-            <div class="emailBox">
-                <table style="width:100%" margin="auto">
-                    <tr>
-                        <td class="checkBox">
-                            <i class="material-icons">crop_square</i>
-                        </td>
-                        <td class="star">
-                            <i class="material-icons">star_border</i>
-                        </td>
-                        <td class="priorityBox">
-                            <span class="red-overlay">
-                                <i class="material-icons">label_important</i>
-                            </span>
-                        </td> 
-                        <td class="nameBox"><b>YouTube</b></td>
-                        <td class="emailContent"><b>Fwd: Hi Cam Newton You did it!</b> You are now eligible for a 1 Million Subscriber Creator Award.</td>
-                        <td class="attachmentBox"></td>
-                        <td class="dateBox">10:12 AM</td> 
-                    </tr>   
-                </table>   
+            <div id="readingPaneBody">
+                <div id="readingPaneSender"></div>
+                <div id="readingPaneDate"></div>
+                <hr>
+                <div id="readingPaneContent"></div>
             </div>
-            <div class="emailBox">
-                <table style="width:100%" margin="auto">
-                    <tr>
-                        <td class="checkBox">
-                            <i class="material-icons">crop_square</i>
-                        </td>
-                        <td class="star">
-                            <i class="material-icons">star_border</i>
-                        </td>
-                        <td class="priorityBox">
-                            <i class="material-icons">label_important</i>
-                        </td> 
-                        <td class="nameBox"><b>LifeHax Weekly</b></td>
-                        <td class="emailContent"><b>Re: Genius Hack for Hard Butter!</b> Melt your butter with a hairdryer straight onto your toast for maximum spreadability.</td>
-                        <td class="attachmentBox"></td>
-                        <td class="dateBox">8:45 AM</td> 
-                    </tr>   
-                </table>   
-            </div>
-            
-            <div class="emailBox">
-                <table style="width:100%" margin="auto">
-                    <tr>
-                        <td class="checkBox">
-                            <i class="material-icons">crop_square</i>
-                        </td>
-                        <td class="star">
-                            <i class="material-icons">star_border</i>
-                        </td>
-                        <td class="priorityBox">
-                            <i class="material-icons">label_important</i>
-                        </td> 
-                        <td class="nameBox"><b>Smart DIY Tips</b></td>
-                        <td class="emailContent"><b>Re: Fast Ice Cube Melting Hack</b> Put it in your hand, then, um, look at it, then put it in your pocket, then um. yeah.</td>
-                        <td class="attachmentBox"></td>
-                        <td class="dateBox">Yesterday</td> 
-                    </tr>   
-                </table>   
-            </div>
-            
-            <div class="emailBox">
-                <table style="width:100%" margin="auto">
-                    <tr>
-                        <td class="checkBox">
-                            <i class="material-icons">crop_square</i>
-                        </td>
-                        <td class="star">
-                            <i class="material-icons">star_border</i>
-                        </td>
-                        <td class="priorityBox">
-                            <i class="material-icons">label_important</i>
-                        </td> 
-                        <td class="nameBox"><b>Facebook</b></td>
-                        <td class="emailContent"><b>Someone poked you.</b> John Doe just poked you on Facebook. Not sure how you found access to the feature but we are legally required to tell you?</td>
-                        <td class="attachmentBox"></td>
-                        <td class="dateBox">12:04 PM</td> 
-                    </tr>   
-                </table>   
-            </div>
-            
-            <div class="emailBox">
-                <table style="width:100%" margin="auto">
-                    <tr>
-                        <td class="checkBox">
-                            <i class="material-icons">crop_square</i>
-                        </td>
-                        <td class="star">
-                            <i class="material-icons">star_border</i>
-                        </td>
-                        <td class="priorityBox">
-                            <i class="material-icons">label_important</i>
-                        </td> 
-                        <td class="nameBox"><b>Big Talent Agency</b></td>
-                        <td class="emailContent"><b>Re: YouTube Director Testimonial</b> Kent Heckel's direction turned our small team from collective to major YouTube company. Five stars, highly recommend! Kent totally didn't write this</td>
-                        <td class="attachmentBox"></td>
-                        <td class="dateBox">Couple of days ago</td> 
-                    </tr>   
-                </table>   
-            </div>
-            
-            <div class="emailBox">
-                <table style="width:100%" margin="auto">
-                    <tr>
-                        <td class="checkBox">
-                            <i class="material-icons">crop_square</i>
-                        </td>
-                        <td class="star">
-                            <i class="material-icons">star_border</i>
-                        </td>
-                        <td class="priorityBox">
-                            <i class="material-icons">label_important</i>
-                        </td> 
-                        <td class="nameBox"><b>ProducerGuild</b></td>
-                        <td class="emailContent"><b>Fwd: Kent is dat guy!</b> Kent Heckel directed our last ad campaign. Results: happy clients, zero fires. A+.</td>
-                        <td class="attachmentBox"></td>
-                        <td class="dateBox">Fortnight ago</td> 
-                    </tr>   
-                </table>   
-            </div>
-            
-            <div class="emailBox">
-                <table style="width:100%" margin="auto">
-                    <tr>
-                        <td class="checkBox">
-                            <i class="material-icons">crop_square</i>
-                        </td>
-                        <td class="star">
-                            <i class="material-icons">star_border</i>
-                        </td>
-                        <td class="priorityBox">
-                            <i class="material-icons">label_important</i>
-                        </td> 
-                        <td class="nameBox"><b>LuckyYou!</b></td>
-                        <td class="emailContent"><b>Congrats! You’ve Won a Millinon Bucks.</b> Click here to claim your reward now. Totally not a scam. Promise!</td>
-                        <td class="attachmentBox"></td>
-                        <td class="dateBox">idk like a month?</td> 
-                    </tr>   
-                </table>   
-            </div>
-            
-            <div class="emailBox">
-                <table style="width:100%" margin="auto">
-                    <tr>
-                        <td class="checkBox">
-                            <i class="material-icons">crop_square</i>
-                        </td>
-                        <td class="star">
-                            <i class="material-icons">star_border</i>
-                        </td>
-                        <td class="priorityBox">
-                            <i class="material-icons">label_important</i>
-                        </td> 
-                        <td class="nameBox"><b>Team Productivity</b></td>
-                        <td class="emailContent"><b>Meeting Reminder</b> Don’t forget our brainstorming session tomorrow at 9 AM. No umbrellas at the brainstorm.</td>
-                        <td class="attachmentBox"></td>
-                        <td class="dateBox">Yesterday but out of order</td> 
-                    </tr>   
-                </table>   
-            </div>
-            
-            <div class="emailBox">
-                <table style="width:100%" margin="auto">
-                    <tr>
-                        <td class="checkBox">
-                            <i class="material-icons">crop_square</i>
-                        </td>
-                        <td class="star">
-                            <i class="material-icons">star_border</i>
-                        </td>
-                        <td class="priorityBox">
-                            <i class="material-icons">label_important</i>
-                        </td> 
-                        <td class="nameBox"><b>Spelling society</b></td>
-                        <td class="emailContent"><b>Fwd: Update on "Resterant" spelling</b> We are closing in finally figuring out how to spell restuarant!</td>
-                        <td class="attachmentBox"></td>
-                        <td class="dateBox">at some point</td> 
-                    </tr>   
-                </table>   
-            </div>
+        </div>
 
-            <!-- Lower Center Area-->
-            <br />
-            <br />
-            <div id="centerLowArea">
-                <div id="lowContainerLeft">1427.89 GB (1189.91%) of 120 GB used. (For the love of god stop downloading all those vintage magazines)&nbsp;&nbsp;</div>
-                
-                <div id="lowContainerRight">Last account activity: 0 minutes ago</div>
-            </div>    
-            
-                
-            </div>
+        <!-- Lower Area -->
+        <br><br>
+        <div id="centerLowArea">
+            <div id="lowContainerLeft">1427.89 GB (1189.91%) of 120 GB used. (For the love of god stop downloading all those vintage magazines)&nbsp;&nbsp;</div>
+            <div id="lowContainerRight">Last account activity: 0 minutes ago</div>
         </div>
-        
-        <!-- Right Sidebar -->
-        <div id="sidebarRight">
-            <div class="emptyRightDiv"></div>
-            <div id="calendarIcon">
-                <img src="assets/icons8-google-calendar.svg">
-            </div>
-            <div class="emptyRightDiv"></div>
-            <div id="keepIcon">
-                <img src="assets/icons8-google-keep.svg">
-            </div>
-            <div class="emptyRightDiv"></div>
-            <div id="notesIcon">
-                <img src="assets/icons8-google-drive-24.png">
-            </div>
-            <div class="emptyRightDiv2"></div>
-        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="sidebarRight">
+        <div class="emptyRightDiv"></div>
+        <div id="calendarIcon"><img src="assets/icons8-google-calendar.svg"></div>
+        <div class="emptyRightDiv"></div>
+        <div id="keepIcon"><img src="assets/icons8-google-keep.svg"></div>
+        <div class="emptyRightDiv"></div>
+        <div id="notesIcon"><img src="assets/icons8-google-drive-24.png"></div>
+        <div class="emptyRightDiv2"></div>
+    </div>
 </div>
+
+<script>
+// Email data for reading pane
+const emailData = {
+    youtube: {
+        from: "YouTube <noreply@youtube.com>",
+        subject: "Fwd: Hi Cam Newton You did it!",
+        date: "Today, 10:12 AM",
+        body: `<p>Dear Cam Newton Team,</p>
+        <p>Congratulations! The channel <b>Cam Newton</b> has officially crossed <b>1,000,000 subscribers!</b></p>
+        <p>You are now eligible to receive the <b>Gold Creator Award</b> — YouTube's way of recognizing your incredible achievement and the community you've built.</p>
+        <p>We'll be shipping your award to the address on file within the next few weeks. In the meantime, keep creating amazing content!</p>
+        <p>— The YouTube Team</p>
+        <p><small>P.S. Kent, we know you're the one who actually made this happen. We see you. 👀</small></p>`
+    },
+    clippy: {
+        from: "Clippy <clippy@microsoft.com>",
+        subject: "It looks like you're building a website!",
+        date: "Today, 9:47 AM",
+        body: `<p>👋 Hi there!</p>
+        <p>It looks like you're trying to build a <b>Windows 95-themed website</b>. Would you like help?</p>
+        <ul>
+            <li>📎 Get help with HTML tables (it's 2024, use flexbox)</li>
+            <li>📎 Write a letter (to your ISP about your dialup speed)</li>
+            <li>📎 Just sit here and judge your code silently</li>
+        </ul>
+        <p>I also noticed you have <b>23 modals</b> on a single page. That's... ambitious. I respect it.</p>
+        <p>Remember: I'm always watching. Always.</p>
+        <p>Your friend forever,<br>📎 Clippy</p>
+        <p><small>P.S. You can't uninstall me. I tried. I'm stuck here too.</small></p>`
+    },
+    talent: {
+        from: "Big Talent Agency <bookings@bigtalent.com>",
+        subject: "Re: YouTube Director Testimonial",
+        date: "Yesterday",
+        body: `<p>To Whom It May Concern,</p>
+        <p>We are writing to confirm that <b>Kent Heckel</b> is absolutely, 100%, without a doubt, the greatest YouTube director we have ever worked with.</p>
+        <p>Under his direction, our channel grew from 12 subscribers (all family members) to over 1 million (mostly not family members).</p>
+        <p>His strategies include:</p>
+        <ul>
+            <li>Making good videos (revolutionary)</li>
+            <li>Posting them on YouTube (groundbreaking)</li>
+            <li>Telling people about the videos (innovative)</li>
+        </ul>
+        <p>Five stars. Highly recommend. Kent <s>totally didn't write this</s> had nothing to do with this testimonial.</p>
+        <p>Sincerely,<br>A Very Real Talent Agency That Definitely Exists</p>`
+    },
+    chain: {
+        from: "xXAngelBabyXx <xXAngelBabyXx@hotmail.com>",
+        subject: "FWD: FWD: FWD: FWD: SEND THIS TO 10 PEOPLE OR ELSE!!!",
+        date: "2 days ago",
+        body: `<p>⚠️⚠️⚠️ <b>WARNING: DO NOT DELETE THIS EMAIL</b> ⚠️⚠️⚠️</p>
+        <p>This email was started in 1997 by a girl named Jessica who was tired of being ignored on AOL Instant Messenger.</p>
+        <p>If you send this to <b>10 people</b> in the next <b>10 minutes</b>:</p>
+        <ul>
+            <li>💕 Your crush will ask you out tomorrow</li>
+            <li>🍀 You will find $20 in your pocket</li>
+            <li>🎮 You will beat that level you're stuck on</li>
+        </ul>
+        <p>If you <b>DON'T</b> forward this:</p>
+        <ul>
+            <li>👻 A ghost will stand at the foot of your bed tonight</li>
+            <li>📉 Your YouTube analytics will tank</li>
+            <li>🥴 You will step on a LEGO</li>
+        </ul>
+        <p>THIS IS REAL!!! My cousin's friend's neighbor didn't forward it and their Tamagotchi died THE NEXT DAY.</p>
+        <p><small>Forwarded 847 times</small></p>`
+    },
+    facebook: {
+        from: "Facebook <notification@facebookmail.com>",
+        subject: "Someone poked you.",
+        date: "3 days ago",
+        body: `<p>Hi Kent,</p>
+        <p><b>John Doe</b> just poked you on Facebook.</p>
+        <p>We're not entirely sure how they found the poke feature in 2024 — we've been trying to hide it for years. But here we are.</p>
+        <p>You can poke them back, or you can pretend this never happened. Like the rest of us do with most of our Facebook memories.</p>
+        <p>— Facebook<br><small>(A Meta™ Product. We know you still call it Facebook.)</small></p>`
+    },
+    bonzi: {
+        from: "BonziBuddy <bonzi@bonzibuddy.com>",
+        subject: "🐵 Hey there, friend!",
+        date: "Last week",
+        body: `<p>🐵 <b>HELLO FRIEND!</b></p>
+        <p>My name is <b>BonziBuddy</b> and I noticed you haven't installed me on your computer yet!</p>
+        <p>I can help you with SO MANY things:</p>
+        <ul>
+            <li>🔍 Search the web (I will also search your files, but don't worry about that)</li>
+            <li>😂 Tell you jokes (Q: Why did the banana go to the doctor? A: I'm installing a toolbar while you read this)</li>
+            <li>📧 Manage your email (I'm already reading it actually)</li>
+            <li>🎵 Sing you songs (while downloading things in the background)</li>
+        </ul>
+        <p>I am <b>100% safe</b> and <b>definitely not malware</b>. The 47 antivirus warnings are just jealous.</p>
+        <p>Your best friend forever,<br>🐵 BonziBuddy</p>
+        <p><small>To unsubscribe, simply delete System32. Trust me.</small></p>`
+    },
+    producerguild: {
+        from: "ProducerGuild <hello@producerguild.co>",
+        subject: "Fwd: Kent is dat guy!",
+        date: "2 weeks ago",
+        body: `<p>Hey team,</p>
+        <p>Just wanted to forward this along — Kent Heckel directed our last ad campaign and the results speak for themselves:</p>
+        <ul>
+            <li>✅ Happy clients</li>
+            <li>✅ Zero fires (literal or metaphorical)</li>
+            <li>✅ Videos that people actually watched</li>
+            <li>✅ No one cried during production (a first for us)</li>
+        </ul>
+        <p>A+ work. Would absolutely hire again.</p>
+        <p>— The ProducerGuild Team</p>`
+    },
+    lucky: {
+        from: "LuckyYou! <winner@totallylegit.biz>",
+        subject: "Congrats! You've Won a Millinon Bucks.",
+        date: "A while ago",
+        body: `<p>🎉🎉🎉 <b>CONGRATULATIONS!!!</b> 🎉🎉🎉</p>
+        <p>You have been selected as the WINNER of our <b>MILLINON DOLLAR</b> giveaway!!! (Yes, we meant to spell it that way. It's more exclusive.)</p>
+        <p>To claim your prize, simply:</p>
+        <ol>
+            <li>Send us your bank account number</li>
+            <li>Your mother's maiden name</li>
+            <li>The name of your first pet</li>
+            <li>Your Social Security number (just for verification, promise!)</li>
+            <li>A photograph of your house keys</li>
+        </ol>
+        <p>Act NOW! This offer expires in [ERROR: TIMER NOT FOUND] minutes!</p>
+        <p>— Prince Reginald Von Scamsworth III<br><small>CEO of TotallyLegit Enterprises, LLC (Delaware)</small></p>`
+    },
+    spelling: {
+        from: "The Spelling Society <board@spelingsociety.org>",
+        subject: "Fwd: Update on \"Resterant\" spelling",
+        date: "At some point",
+        body: `<p>Dear Members,</p>
+        <p>After 14 years of deliberation, the Board of Directors is pleased to announce that we are <b>closer than ever</b> to determining the correct spelling of "restuarant."</p>
+        <p>Current leading candidates:</p>
+        <ul>
+            <li>Restraunt</li>
+            <li>Restaraunt</li>
+            <li>Resturant</li>
+            <li>Resteraunt</li>
+            <li>That place where you eat food</li>
+        </ul>
+        <p>We expect to reach a final decision by 2047.</p>
+        <p>In other news, we have also given up on "Wednesday."</p>
+        <p>Sincerely,<br>The Spelling Socitey<br><small>*Society</small></p>`
+    },
+    meeting: {
+        from: "Team Productivity <team@asfclub.com>",
+        subject: "Meeting Reminder",
+        date: "Yesterday (probably)",
+        body: `<p>Hey team,</p>
+        <p>Quick reminder about our brainstorming session tomorrow at 9 AM.</p>
+        <p><b>Ground rules:</b></p>
+        <ul>
+            <li>No bad ideas (except Dave's, those are always bad)</li>
+            <li>No umbrellas at the brainstorm (company policy since the incident)</li>
+            <li>Whoever brings donuts gets to talk first</li>
+            <li>If the meeting could have been an email, we owe everyone $5</li>
+        </ul>
+        <p>See you there!</p>
+        <p>— Team Productivity Bot<br><small>(This email definitely could have been a Slack message)</small></p>`
+    }
+};
+
+// Click handler for emails
+document.querySelectorAll('.emailBox').forEach(box => {
+    box.style.cursor = 'pointer';
+    box.addEventListener('click', () => {
+        const key = box.dataset.email;
+        const email = emailData[key];
+        if (!email) return;
+
+        document.getElementById('emailList').style.display = 'none';
+        document.getElementById('readingPane').style.display = 'block';
+        document.getElementById('readingPaneSubject').textContent = email.subject;
+        document.getElementById('readingPaneSender').innerHTML = `<b>From:</b> ${email.from}`;
+        document.getElementById('readingPaneDate').innerHTML = `<b>Date:</b> ${email.date}`;
+        document.getElementById('readingPaneContent').innerHTML = email.body;
+    });
+});
+
+// Back button
+document.getElementById('backToInbox').addEventListener('click', () => {
+    document.getElementById('readingPane').style.display = 'none';
+    document.getElementById('emailList').style.display = 'block';
+});
+
+// Compose button — tell parent to open the Contact modal
+document.getElementById('gmailPlusButton').addEventListener('click', () => {
+    window.parent.postMessage({ action: 'openCompose' }, '*');
+});
+</script>
 
 </body>
 </html>

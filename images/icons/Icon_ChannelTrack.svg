@@ -7,7 +7,7 @@
   
   The icon works well at small sizes (16x16, 32x32) and on both light/dark backgrounds.
 -->
-<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="80" height="80" viewBox="12 12 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- 
     Smaller white background rounded rectangle - more compact
     Provides a clean white base for the icon

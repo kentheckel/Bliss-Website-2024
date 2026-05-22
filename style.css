@@ -1,10 +1,36 @@
+/* ===========================================
+   WIN95 THEME — CSS Custom Properties
+   All core colors and borders in one place
+   =========================================== */
+:root {
+    --win95-blue: #0049d1;
+    --win95-blue-dark: #0044c2;
+    --win95-blue-light: #0063e0;
+    --win95-gray: #c0c0c0;
+    --win95-gray-light: #dcdcdc;
+    --win95-gray-lighter: #e6e6e6;
+    --win95-gray-dark: #808080;
+    --win95-green: #60A75C;
+    --win95-green-dark: #568E51;
+    --win95-green-hover: #4e8e4d;
+    --win95-white: #f0f0f0;
+    --win95-black: #000000;
+    --win95-text: #000000;
+    --win95-link: #0000EE;
+    --win95-border-raised: 2px solid var(--win95-blue);
+    --win95-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --win95-font: 'VT323', monospace;
+    --win95-font-system: 'Tahoma', sans-serif;
+    --win95-taskbar-height: 70px;
+}
+
 /* General Styles */
 body, html {
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
     background-image: url('images/bliss_Website_Background.svg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,10 +43,10 @@ body, html {
 #desktop-icons {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 12px;
     padding: 10px;
     position: fixed;
-    top: 50px;
+    top: 30px;
     left: 20px;
     /* Allow height to grow but leave room for taskbar */
     max-height: calc(100vh - 150px);
@@ -36,15 +62,30 @@ body, html {
     flex-direction: column;
     align-items: center;
     transition: transform 0.2s ease-in-out;
-    width: 100px;
-    font-family: 'VT323', monospace;
-    font-size: 24px; /* Text size for icon labels */
+    width: auto;
+    min-width: 80px;
+    font-family: var(--win95-font);
+    font-size: 18px;
+    white-space: nowrap;
 }
 
 .icon-btn img, .icon-btn svg {
-    width: 80px; /* Set the size of the SVG or image */
-    height: 80px; /* Set consistent height for the icon */
-    margin-bottom: 5px; /* Space between the icon and the text label */
+    width: 64px;
+    height: 64px;
+    margin-bottom: 2px;
+    object-fit: contain;
+}
+
+/* Stats icon slightly smaller */
+#statsBtn img {
+    width: 58px;
+    height: 58px;
+}
+
+/* Channel Track icon larger */
+#channelTrackBtn img {
+    width: 72px;
+    height: 72px;
 }
 
 .icon-btn:hover {
@@ -69,8 +110,8 @@ body, html {
 /* Will be overridden if user drags it somewhere else */
 .icon-btn.second-column {
     position: fixed;
-    left: 140px;
-    top: 50px;
+    left: 120px;
+    top: 30px;
 }
 
 /* Second column row 2 — default slot beneath ChannelTrack (Paint.exe lives here) */
@@ -88,28 +129,28 @@ body, html {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 70px;
-    background-color: #0049d1;
+    height: var(--win95-taskbar-height);
+    background-color: var(--win95-blue);
     padding: 5px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 10;
+    z-index: 99999;
 }
 
 #startButton {
     text-align: center;
     height: 54px;
     width: 150px;
-    background-color: #60A75C;
-    border: 3px solid #568E51;
+    background-color: var(--win95-green);
+    border: 3px solid var(--win95-green-dark);
     border-radius: 15px;
     margin: 0 10px;
     color: white;
     font-size: 20px;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
@@ -122,14 +163,14 @@ body, html {
 }
 
 .taskbar-window-button {
-    background-color: #60A75C;
+    background-color: var(--win95-green);
     color: white;
-    border: 2px solid #568E51;
+    border: 2px solid var(--win95-green-dark);
     border-radius: 5px;
     padding: 5px 10px;
     font-size: 16px;
     cursor: pointer;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
 }
 
 #taskbar::before {
@@ -139,13 +180,13 @@ body, html {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #0044c2;
+    background-color: var(--win95-blue-dark);
     z-index: -1;
     border-radius: 5px;
 }
 
 #startButton:hover {
-    background-color: #4e8e4d;
+    background-color: var(--win95-green-hover);
     transform: scale(1.05);
 }
 
@@ -156,7 +197,7 @@ body, html {
     color: white;
     font-size: 18px;
     line-height: 1.4;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
 }
 
 /* Modal Styles */
@@ -164,15 +205,15 @@ body, html {
     position: fixed;
     left: 15%;
     top: 10%;
-    z-index: 2;
+    z-index: 100;
     width: 70%;
     height: 80%;
-    background-color: #f0f0f0;
-    border: 2px solid #0049d1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--win95-white);
+    border: var(--win95-border-raised);
+    box-shadow: var(--win95-shadow);
     display: none;
     overflow: hidden;
-    font-family: 'VT323', monospace;
+    font-family: var(--win95-font);
     cursor: grab;
 }
 
@@ -592,7 +633,7 @@ body, html {
 /* Modal Headers */
 /* Modal Headers for Passwords.txt */
 .window-controls {
-    background-color: #0044c2; /* Same blue as other windows */
+    background-color: var(--win95-blue-dark);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -831,14 +872,19 @@ body, html {
     left: 35%;
     top: 15%;
     z-index: 2;
-    width: 400px; /* Compact width */
-    height: 550px; /* Tall enough to fit all content */
-    background-color: #ffffff; /* Full white background */
-    border: none; /* No visible border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 450px;
+    height: 550px;
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     display: none;
     overflow: hidden;
-    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+    font-family: 'Roboto', sans-serif;
+    border-radius: 8px;
+}
+
+#ModalContact form {
+    height: calc(100% - 40px);
 }
 
 /* Header Styling */
@@ -847,11 +893,73 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    font-size: 14px; /* Smaller font for "New Message" */
+    font-size: 14px;
     font-weight: bold;
-    color: #333333; /* Dark grey text */
-    background-color: #ffffff; /* Matches the rest of the modal */
-    border-bottom: 1px solid #e0e0e0; /* Light grey border for separation */
+    color: #ffffff;
+    background-color: #404040;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+}
+
+#modalHeaderContact .window-btn {
+    color: #ccc;
+}
+
+#modalHeaderContact .window-btn:hover {
+    color: #fff;
+    background-color: #555;
+}
+
+.contact-status {
+    position: absolute;
+    inset: 40px 0 0 0;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    gap: 12px;
+}
+
+.contact-status-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #1a73e8;
+    color: #fff;
+    font-size: 36px;
+    line-height: 60px;
+    font-weight: bold;
+}
+
+.contact-status-icon.error {
+    background: #d93025;
+}
+
+.contact-status-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #202124;
+}
+
+.contact-status-body {
+    font-size: 14px;
+    color: #5f6368;
+    max-width: 320px;
+    line-height: 1.5;
+}
+
+#contactStatusNew {
+    margin-top: 8px;
+}
+
+.vertical-divider {
+    width: 1px;
+    height: 20px;
+    background-color: #e0e0e0;
+    margin: 0 4px;
 }
 
 /* Minimize and Close Buttons */
@@ -2060,6 +2168,572 @@ body, html {
     font-weight: 600;
     color: #37352F;
 }
+
+/* ===========================================
+   START MENU
+   =========================================== */
+.start-menu {
+    position: fixed;
+    bottom: var(--win95-taskbar-height);
+    left: 5px;
+    width: 240px;
+    background-color: var(--win95-gray-light);
+    border: 2px outset #fff;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+    z-index: 999999;
+    display: none;
+    font-family: var(--win95-font-system);
+    font-size: 14px;
+}
+.start-menu.visible { display: flex; }
+
+.start-menu-banner {
+    width: 30px;
+    background: linear-gradient(to top, var(--win95-blue), #0070E0);
+    display: flex;
+    align-items: flex-end;
+    padding: 8px 4px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    letter-spacing: 2px;
+}
+
+.start-menu-items {
+    flex: 1;
+    padding: 4px 0;
+}
+
+.start-menu-item {
+    padding: 8px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.start-menu-item:hover {
+    background-color: var(--win95-blue);
+    color: white;
+}
+
+.start-menu-icon {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+.start-menu-divider {
+    height: 1px;
+    background-color: var(--win95-gray-dark);
+    margin: 4px 8px;
+}
+
+/* ===========================================
+   BSOD SCREEN
+   =========================================== */
+#bsod-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0000AA;
+    z-index: 9999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+.bsod-content {
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    max-width: 700px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* ===========================================
+   CLIPPY
+   =========================================== */
+#clippy-container {
+    position: fixed;
+    bottom: 100px;
+    left: 200px;
+    z-index: 99998;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    animation: clippy-bounce 0.4s ease;
+}
+@keyframes clippy-bounce {
+    0% { transform: translateY(30px); opacity: 0; }
+    60% { transform: translateY(-5px); }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.clippy-bubble {
+    background: #FFFFCC;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 12px 16px;
+    max-width: 280px;
+    font-family: var(--win95-font-system);
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 8px;
+}
+.clippy-bubble p { margin: 0 0 10px 0; }
+.clippy-dismiss {
+    padding: 4px 16px;
+    background: var(--win95-gray-lighter);
+    border: 2px outset #fff;
+    cursor: pointer;
+    font-family: var(--win95-font-system);
+    font-size: 12px;
+}
+.clippy-dismiss:active { border-style: inset; }
+.clippy-character {
+    font-size: 64px;
+    line-height: 1;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+}
+
+/* ===========================================
+   KONAMI CODE SECRET SCREEN
+   =========================================== */
+#konami-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: 9999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: konami-fade 0.5s ease;
+}
+@keyframes konami-fade {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+.konami-content {
+    text-align: center;
+    color: white;
+    font-family: var(--win95-font);
+}
+.konami-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+.konami-content p {
+    font-size: 24px;
+    margin: 5px 0;
+}
+.konami-close {
+    margin-top: 20px;
+    padding: 12px 32px;
+    font-size: 20px;
+    font-family: var(--win95-font);
+    background: rgba(255,255,255,0.2);
+    border: 2px solid white;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+.konami-close:hover { background: rgba(255,255,255,0.3); }
+
+/* ===========================================
+   RIGHT-CLICK CONTEXT MENU
+   =========================================== */
+#context-menu {
+    position: fixed;
+    background: var(--win95-gray-lighter);
+    border: 2px outset #fff;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    z-index: 999999;
+    min-width: 160px;
+    font-family: var(--win95-font-system);
+    font-size: 13px;
+    padding: 2px;
+}
+.context-item {
+    padding: 6px 24px;
+    cursor: pointer;
+}
+.context-item:hover {
+    background-color: var(--win95-blue);
+    color: white;
+}
+.context-divider {
+    height: 1px;
+    background-color: var(--win95-gray-dark);
+    margin: 2px 4px;
+}
+
+/* ===========================================
+   SCREENSAVER (Bouncing ASFC Logo)
+   =========================================== */
+#screensaver {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 999998;
+    cursor: none;
+}
+.screensaver-logo {
+    position: absolute;
+    font-family: var(--win95-font);
+    font-size: 72px;
+    font-weight: bold;
+    color: #4ECDC4;
+    user-select: none;
+    text-shadow: 0 0 20px currentColor;
+}
+
+/* ===========================================
+   NETWORK STATS MONITOR MODAL
+   CRT-style retro display with green/amber
+   text on dark background
+   =========================================== */
+
+#ModalStats {
+    position: fixed;
+    width: 740px;
+    height: 660px;
+    background-color: #0d0d1a;
+    border: 2px solid var(--win95-blue);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    font-family: var(--win95-font);
+    cursor: grab;
+}
+
+/* Header bar — dark with CRT accent */
+#ModalStats .stats-header {
+    background: linear-gradient(to right, #0a0a2e, #1a1a3e);
+    color: #33ff99;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #33ff9944;
+}
+
+#ModalStats .stats-header .title {
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 6px #33ff9966;
+    letter-spacing: 1px;
+}
+
+/* Body area */
+.stats-body {
+    padding: 16px;
+    overflow-y: auto;
+    height: calc(100% - 44px);
+    background-color: #0d0d1a;
+}
+
+/* Stats table */
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--win95-font);
+    font-size: 15px;
+}
+
+.stats-table thead th {
+    color: #33ff99;
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #33ff9944;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.stats-table tbody tr {
+    border-bottom: 1px solid #1a2a3a;
+    transition: background-color 0.15s;
+}
+
+.stats-table tbody tr:hover {
+    background-color: #1a1a3e;
+}
+
+.stats-table td {
+    padding: 10px 10px;
+    color: #b0d0c0;
+    white-space: nowrap;
+}
+
+.stats-channel-name {
+    color: #ffffff !important;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.stats-platform {
+    color: #ff4444 !important;
+    font-size: 13px;
+}
+
+.stats-num {
+    font-family: var(--win95-font);
+    color: #33ff99 !important;
+    font-size: 15px;
+    text-shadow: 0 0 4px #33ff9933;
+}
+
+.stats-growth {
+    color: #44ff44 !important;
+    font-weight: bold;
+}
+
+/* Totals bar */
+#statsTotals {
+    margin-top: 16px;
+    border-top: 1px solid #33ff9944;
+    padding-top: 12px;
+}
+
+.stats-totals-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(to right, #1a1a3e, #0d1a2e);
+    padding: 12px 16px;
+    border-radius: 4px;
+    border: 1px solid #33ff9933;
+}
+
+.stats-totals-label {
+    color: #ffcc00;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px #ffcc0044;
+    min-width: 140px;
+}
+
+.stats-totals-item {
+    color: #8899aa;
+    font-size: 14px;
+}
+
+.stats-total-num {
+    color: #33ff99;
+    font-weight: bold;
+    text-shadow: 0 0 4px #33ff9933;
+}
+
+.stats-totals-item .stats-growth {
+    color: #44ff44;
+}
+
+/* Chart section */
+#statsChartSection {
+    margin-bottom: 16px;
+    border-bottom: 1px solid #1a2a3a;
+    padding-bottom: 12px;
+}
+
+.stats-chart-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.stats-chart-right-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats-chart-label {
+    color: #33ff9988;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Line/Bar toggle */
+.stats-chart-toggle {
+    display: flex;
+    gap: 2px;
+    border: 1px solid #33ff9933;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.stats-toggle-btn {
+    background: #1a1a3e;
+    color: #33ff9966;
+    border: none;
+    padding: 2px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--win95-font);
+    line-height: 1;
+}
+
+.stats-toggle-btn:hover {
+    background: #2a2a5e;
+    color: #33ff99;
+}
+
+.stats-toggle-btn.active {
+    background: #33ff99;
+    color: #0a0a1e;
+}
+
+.stats-range-btns {
+    display: flex;
+    gap: 4px;
+}
+
+.stats-range-btn {
+    background: #1a1a3e;
+    color: #33ff9988;
+    border: 1px solid #33ff9933;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-family: var(--win95-font);
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+}
+
+.stats-range-btn:hover {
+    background: #2a2a5e;
+    color: #33ff99;
+}
+
+.stats-range-btn.active {
+    background: #33ff99;
+    color: #0a0a1e;
+    font-weight: bold;
+    border-color: #33ff99;
+}
+
+#statsLineChart {
+    display: block;
+    width: 100%;
+    border-radius: 2px;
+    cursor: crosshair;
+}
+
+/* Hover tooltip */
+.stats-tooltip {
+    position: absolute;
+    background: #0d0d2aee;
+    border: 1px solid #33ff9966;
+    padding: 6px 10px;
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 120px;
+}
+
+.stats-tooltip-date {
+    color: #33ff9988;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-family: var(--win95-font);
+}
+
+.stats-tooltip-val {
+    color: #33ff99;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 6px #33ff9944;
+    font-family: var(--win95-font);
+}
+
+/* Maximize button */
+.window-btn-max {
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* Category rows */
+.stats-category-row {
+    background-color: #111130 !important;
+    border-bottom: 1px solid #33ff9933 !important;
+}
+
+.stats-category-row:hover {
+    background-color: #1a1a40 !important;
+}
+
+.stats-category-name {
+    color: #ffcc00 !important;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 4px #ffcc0033;
+    padding-left: 8px !important;
+}
+
+.stats-cat-num {
+    color: #ffcc00 !important;
+    text-shadow: 0 0 4px #ffcc0033 !important;
+}
+
+.stats-category-row .stats-growth {
+    color: #66ff66 !important;
+}
+
+/* Indent channel rows under categories */
+.stats-channel-row .stats-channel-name {
+    padding-left: 24px !important;
+    font-size: 13px;
+}
+
+.stats-sensitive {
+    color: #8899aa !important;
+    font-style: italic;
+}
+
+/* System tray stats widget */
+.stats-tray {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+    margin-right: 4px;
+    cursor: pointer;
+    border-left: 1px solid #888;
+    height: 100%;
+}
+
+.stats-tray-icon {
+    color: #33ff99;
+    font-size: 10px;
+    text-shadow: 0 0 4px #33ff9966;
+}
+
+.stats-tray-value {
+    color: #33ff99;
+    font-size: 11px;
+    font-family: var(--win95-font);
+    text-shadow: 0 0 4px #33ff9944;
+    white-space: nowrap;
+}
+
 /* ============================================
    GAMES FOLDER MODAL
    Win95-style folder window listing arcade games

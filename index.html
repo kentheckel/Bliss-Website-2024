@@ -57,20 +57,16 @@
             <span>Team</span>
         </button>
 
-        <!-- ColorSocial Icon on Desktop - COMMENTED OUT FOR NOW -->
-        <!-- This icon opens a modal with info about the ColorSocial app ecosystem -->
-        <!-- 
-        <button id="colorSocialBtn" class="icon-btn second-column">
-            <img src="images/icons/Icon_ColorSocial.svg" alt="ColorSocial App Icon">
-            <span>Color Social</span>
-        </button>
-        -->
-
-        <!-- ChannelTrack Icon on Desktop - Positioned in second column (moved to Color Social's spot) -->
-        <!-- This icon opens a modal with info about the ChannelTrack YouTube tracking tool -->
+        <!-- ChannelTrack Icon -->
         <button id="channelTrackBtn" class="icon-btn second-column">
             <img src="images/icons/Icon_ChannelTrack.svg" alt="ChannelTrack Icon">
-            <span>Channel<br>Track</span>
+            <span>Channel<br>Track.XYZ</span>
+        </button>
+
+        <!-- Uptides Icon -->
+        <button id="uptidesBtn" class="icon-btn second-column" style="top: 155px;">
+            <img src="images/icons/Icon_Uptides.svg" alt="Uptides.ai Icon">
+            <span>Uptides.ai</span>
         </button>
 
         <!-- Social Icon -->
@@ -97,6 +93,19 @@
             <span>Videos</span>
         </button>
 
+        <!-- Stats Icon on Desktop -->
+        <button id="statsBtn" class="icon-btn">
+            <img src="images/icons/wrench.png" alt="Stats Icon">
+            <span>Stats</span>
+        </button>
+
+        <!-- Resume Icon on Desktop -->
+        <!-- Change the Resume icon ID to match the pattern -->
+        <div class="icon-btn" id="resumeTxtBtn">
+            <img src="images/icons/txt.png" alt="Resume Text File">
+            <span>Resume.txt</span>
+        </div>
+
         <!-- Pitch.exe Icon on Desktop - opens the ASFC pitch deck -->
         <a id="pitchBtn" class="icon-btn" href="pitch/index.html" style="text-decoration: none; color: inherit;">
             <img src="images/icons/Icon_Pitch.svg?v=20260503a" alt="Pitch.exe Icon">
@@ -118,10 +127,36 @@
 
     </div>
 
+    <!-- MARK: Start Menu -->
+    <div id="startMenu" class="start-menu">
+        <div class="start-menu-banner">
+            <span>Kent<b>OS</b>95</span>
+        </div>
+        <div class="start-menu-items">
+            <div class="start-menu-item" data-menu-modal="ModalVideos">
+                <span class="start-menu-icon">📹</span> Programs
+            </div>
+            <div class="start-menu-item" data-menu-modal="ModalResumeTxt">
+                <span class="start-menu-icon">📄</span> Documents
+            </div>
+            <div class="start-menu-item" data-menu-modal="ModalAbout">
+                <span class="start-menu-icon">⚙️</span> Settings
+            </div>
+            <div class="start-menu-divider"></div>
+            <div class="start-menu-item" id="menuShutDown">
+                <span class="start-menu-icon">🔌</span> Shut Down...
+            </div>
+        </div>
+    </div>
+
     <!-- MARK: Taskbar Section -->
     <div id="taskbar">
         <button id="startButton" class="start-btn">Start</button>
         <div id="taskbar-windows" class="taskbar-windows"></div>
+        <div id="stats-tray" class="stats-tray" title="Network Stats">
+            <span class="stats-tray-icon">&#9632;</span>
+            <span id="statsTrayViews" class="stats-tray-value">--</span>
+        </div>
         <div id="time-date" class="time-date"></div>
     </div>
 
@@ -319,7 +354,7 @@
 
         <!-- MARK: Gmail Modal -->
         <div id="ModalGmail" class="modal"
-            style="width: 1100px; height: 800px; top: 20px; left: 20px; position: absolute;">
+            style="width: 1100px; height: calc(100vh - 110px); top: 10px; left: 20px; position: absolute;">
             <div id="modalHeaderGmail" class="window-controls">
                 <span class="title">Gmail</span>
                 <button id="gmailMinimize" class="window-btn">-</button>
@@ -332,7 +367,6 @@
 
 
         <!-- MARK: Contact Email Modal -->
-        <!--
         <div id="ModalContact" class="modal">
             <div id="modalHeaderContact" class="window-controls">
                 <span id="messageTitle">New Message</span>
@@ -341,55 +375,53 @@
                     <button id="contactClose" class="window-btn">X</button>
                 </div>
             </div>
-            <div class="email-layout">
-                <div class="email-row">
-                    <input id="toField" class="email-input" type="email" value="kent@kentheckel.com" readonly>
-                </div>
-                <div class="email-row">
-                    <input id="subjectField" class="email-input" type="text" placeholder="Subject">
-                </div>
-                <div class="email-body">
-                    <textarea id="emailTextBody" placeholder="Write your email here..."></textarea>
-                </div>
-                <div class="email-tools">
-                    <button id="sendButton" class="send-btn">Send</button>
-                    <div class="tools-section">
-                        <button class="tool-btn">
-                            <img src="gmail/assets/paperclip.png" alt="Attach File" class="tool-icon">
-                        </button>
-                        <button class="tool-btn">
-                            <img src="gmail/assets/link.svg" alt="Insert Link" class="tool-icon">
-                        </button>
-                        <button class="tool-btn">
-                            <img src="gmail/assets/smile.svg" alt="Insert Link" class="tool-icon">
-                        </button>
-                        <button class="tool-btn">
-                            <img src="gmail/assets/image.svg" alt="Insert Link" class="tool-icon">
-                        </button>
-                        <button class="tool-btn">
-                            <img src="gmail/assets/lock.svg" alt="Insert Link" class="tool-icon">
-                        </button>
-                        <button class="tool-btn">
-                            <img src="gmail/assets/link.svg" alt="Insert Link" class="tool-icon">
-                        </button>
-                        <button class="tool-btn">
-                            <img src="gmail/assets/pen.svg" alt="Insert Emoji" class="tool-icon">
-                        </button>
-                        <div class="vertical-divider"></div>
-                        <button class="tool-btn">
-                            <img src="gmail/assets/dots.svg" alt="Insert Link" class="tool-icon">
-                        </button>
-                        <button class="tool-btn">
-                            <img src="gmail/assets/trash.svg" alt="Insert Link" class="tool-icon">
-                        </button>
-
-
+            <form id="contactForm" action="https://formsubmit.co/ajax/kent@kentheckel.com" method="POST">
+                <input type="hidden" name="_subject" value="New message from antisocialfriendsclub.com">
+                <input type="hidden" name="_replyto" id="hiddenReplyTo">
+                <div class="email-layout">
+                    <div class="email-row">
+                        <span class="email-label">To:</span>
+                        <input class="email-input" type="email" value="kent@kentheckel.com" readonly>
+                    </div>
+                    <div class="email-row">
+                        <span class="email-label">From:</span>
+                        <input id="fromField" class="email-input" type="email" name="From Email" placeholder="Your email" required>
+                    </div>
+                    <div class="email-row">
+                        <span class="email-label">Subject:</span>
+                        <input id="subjectField" class="email-input" type="text" name="Subject" placeholder="Subject">
+                    </div>
+                    <div class="email-body">
+                        <textarea id="emailTextBody" name="Message" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <div class="email-tools">
+                        <button type="submit" id="sendButton" class="send-btn">Send</button>
+                        <div class="tools-section">
+                            <button type="button" class="tool-btn">
+                                <img src="gmail/assets/paperclip.png" alt="Attach File" class="tool-icon">
+                            </button>
+                            <button type="button" class="tool-btn">
+                                <img src="gmail/assets/link.svg" alt="Insert Link" class="tool-icon">
+                            </button>
+                            <button type="button" class="tool-btn">
+                                <img src="gmail/assets/smile.svg" alt="Emoji" class="tool-icon">
+                            </button>
+                            <div class="vertical-divider"></div>
+                            <button type="button" class="tool-btn">
+                                <img src="gmail/assets/trash.svg" alt="Discard" class="tool-icon">
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </form>
+            <div id="contactStatus" class="contact-status" style="display:none;">
+                <div class="contact-status-icon">✓</div>
+                <div id="contactStatusTitle" class="contact-status-title">Message sent!</div>
+                <div id="contactStatusBody" class="contact-status-body">Kent will get back to you soon.</div>
+                <button type="button" id="contactStatusNew" class="send-btn">Send another</button>
             </div>
         </div>
-    -->
-    
+
 
 
             <!-- MARK: Videos Modal -->
@@ -401,7 +433,7 @@
             </div>
             <div class="account-list">
                 <!-- Account 1 -->
-                <div class="account-item" data-channel="CamNewton" onclick="openChannelModals('CamNewton')">
+                <div class="account-item" data-channel="CamNewton">
                     <img src="images/cam.jpg" alt="Cam Newton" class="account-img">
                     <div class="account-info">
                         <b>Cam Newton</b>
@@ -410,7 +442,7 @@
                     <button class="arrow-btn" onclick="window.open('https://youtube.com/@CamNewton', '_blank')">➔</button>
                 </div>
                 <!-- Account 2 -->
-                <div class="account-item" data-channel="4thand1" onclick="openChannelModals('4thand1')">
+                <div class="account-item" data-channel="4thand1">
                     <img src="images/4th.jpg" alt="4th&1 with Cam Newton logo" class="account-img">
                     <div class="account-info">
                         <b>4th&1 with Cam Newton</b>
@@ -419,7 +451,7 @@
                     <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@4thand1CamNewton', '_blank')">➔</button>
                 </div>
                 <!-- Account 3 -->
-                <div class="account-item" data-channel="FunkyFriday" onclick="openChannelModals('FunkyFriday')">
+                <div class="account-item" data-channel="FunkyFriday">
                     <img src="images/funky.jpg" alt="Funky Friday with Cam Newton logo" class="account-img">
                     <div class="account-info">
                         <b>Funky Friday Clips</b>
@@ -429,7 +461,7 @@
                 </div>
                 <!-- Add more accounts as needed -->
                  <!-- Account 4 -->
-                <div class="account-item" data-channel="JimGaffigan" onclick="openChannelModals('JimGaffigan')">
+                <div class="account-item" data-channel="JimGaffigan">
                     <img src="images/jim.jpg" alt="Jim Gaffigan logo" class="account-img">
                     <div class="account-info">
                         <b>Jim Gaffigan</b>
@@ -439,7 +471,7 @@
                 </div>
 
                 <!-- Account 5 -->
-                <div class="account-item" data-channel="KentHeckel" onclick="openChannelModals('KentHeckel')">
+                <div class="account-item" data-channel="KentHeckel">
                     <img src="images/kent.jpg" alt="Kent Heckel logo" class="account-img">
                     <div class="account-info">
                         <b>Kent Heckel</b>
@@ -566,7 +598,7 @@
         </div>
 
         <!-- Modal for Kent Heckel Text Box -->
-        <div id="ModalTextBoxKentHeckel" class="modalModalTextBox" style="display: none;">
+        <div id="ModalTextBoxKentHeckel" class="modal ModalTextBox" style="display: none;">
             <div id="modalHeaderTextBoxKentHeckel" class="window-controls">
                 <span class="title">Kent Heckel Strategy</span>
                 <div class="window-btn-container">
@@ -825,6 +857,98 @@ either way, the deck is yours — let's chat. kent@kentheckel.com)</textarea>
             </div>
         </div>
 
+        <!-- MARK: Uptides Modal -->
+        <div id="ModalUptides" class="modal channeltrack-modal">
+            <div id="modalHeaderUptides" class="window-controls channeltrack-header">
+                <div class="channeltrack-header-content">
+                    <img src="images/icons/Icon_Uptides.svg" alt="Uptides Icon" class="channeltrack-header-icon">
+                    <span>uptides.ai</span>
+                </div>
+                <div class="window-btn-container">
+                    <button class="window-btn channeltrack-btn">-</button>
+                    <button class="window-btn channeltrack-btn">X</button>
+                </div>
+            </div>
+            <div class="channeltrack-content">
+                <div class="channeltrack-hero">
+                    <img src="images/icons/Icon_Uptides.svg" alt="Uptides Icon" class="channeltrack-icon" style="border-radius: 16px;">
+                    <h1 class="channeltrack-title">Uptides</h1>
+                    <p class="channeltrack-domain">uptides.ai</p>
+                    <p class="channeltrack-subtitle">AI-powered trend detection for YouTube creators and media teams</p>
+                </div>
+                <div class="channeltrack-section">
+                    <div class="channeltrack-story">
+                        <p class="channeltrack-text">I got tired of manually scrolling through Twitter and Reddit trying to figure out what's trending. So I built an AI that does it for me and tells me what to make videos about.</p>
+                    </div>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">What is Uptides?</h2>
+                    <p class="channeltrack-text">Uptides uses AI to scan the internet for rising trends, viral moments, and breaking stories relevant to your niche — then tells you exactly what to create and when to post it.</p>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">What it does:</h2>
+                    <ul class="channeltrack-list">
+                        <li>Monitors social platforms, news, and search trends 24/7</li>
+                        <li>Identifies trending topics before they peak</li>
+                        <li>Generates video ideas, titles, and thumbnail concepts</li>
+                        <li>Sends real-time alerts when something in your niche is about to blow up</li>
+                        <li>Tracks competitor uploads and performance for strategic timing</li>
+                    </ul>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">Why use it:</h2>
+                    <p class="channeltrack-text">Stop guessing what to post. Uptides tells you what people are searching for right now, so you can ride the wave instead of chasing it. Built for creators who want to be first, not fifteenth.</p>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">Status:</h2>
+                    <div class="channeltrack-callout">
+                        <p class="channeltrack-text">Currently in private beta. Built by the same team behind ChannelTrack. Sign up for early access at <strong>uptides.ai</strong>.</p>
+                    </div>
+                </div>
+                <div class="channeltrack-footer">
+                    <p>Learn more at <a href="https://uptides.ai" target="_blank" class="channeltrack-link">uptides.ai</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARK: Stats Modal -->
+        <div id="ModalStats" class="modal" style="display: none;">
+            <div id="modalHeaderStats" class="window-controls stats-header">
+                <span class="title">Network Stats Monitor</span>
+                <div class="window-btn-container">
+                    <button class="window-btn">-</button>
+                    <button class="window-btn window-btn-max" title="Maximize">&#9633;</button>
+                    <button class="window-btn">X</button>
+                </div>
+            </div>
+            <div class="stats-body">
+                <div id="statsChartSection">
+                    <div class="stats-chart-controls">
+                        <span class="stats-chart-label">DAILY VIEWS</span>
+                        <div class="stats-chart-right-controls">
+                            <div class="stats-chart-toggle">
+                                <button class="stats-toggle-btn active" data-mode="line" title="Line chart">&#9135;</button>
+                                <button class="stats-toggle-btn" data-mode="bar" title="Bar chart (monthly)">&#9646;</button>
+                            </div>
+                            <div class="stats-range-btns">
+                                <button class="stats-range-btn" data-range="7">1W</button>
+                                <button class="stats-range-btn active" data-range="30">1M</button>
+                                <button class="stats-range-btn" data-range="90">3M</button>
+                                <button class="stats-range-btn" data-range="365">1Y</button>
+                                <button class="stats-range-btn" data-range="0">ALL</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="statsChartWrap" style="position:relative;">
+                        <canvas id="statsLineChart" width="680" height="160"></canvas>
+                        <div id="statsTooltip" class="stats-tooltip" style="display:none;"></div>
+                    </div>
+                </div>
+                <div id="statsTableContainer"></div>
+                <div id="statsTotals"></div>
+            </div>
+        </div>
+
         <!-- MARK: Games Folder Modal -->
         <!-- Win95-style folder window listing available games -->
         <div id="ModalGames" class="modal games-modal">
@@ -961,14 +1085,22 @@ either way, the deck is yours — let's chat. kent@kentheckel.com)</textarea>
             </div>
         </div>
 
-        <!-- Add an audio element for the error sound -->
+        <!-- Audio elements -->
             <audio id="errorSound">
                 <source src="audio/error-sound.mp3" type="audio/mpeg">
             </audio>
+            <audio id="startupSound">
+                <source src="audio/startup.mp3" type="audio/mpeg">
+            </audio>
 
             <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            <script src="js/core.js"></script>
+            <script src="js/icons.js"></script>
+            <script src="js/videos.js"></script>
+            <script src="js/misc.js"></script>
+            <script src="js/stats.js"></script>
+            <script src="js/easter-eggs.js"></script>
             <script src="paint.js?v=20260521b"></script>
-            <script src="script.js?v=20241226b"></script>
 </body>
 
 </html>
