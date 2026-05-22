@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <title>Viral Surfer — Antisocial Friends Club</title>
+  <link href="../leaderboard.css?v=20260522a" rel="stylesheet">
+  <link href="viral-surfer.css?v=20260521a" rel="stylesheet">
+</head>
+<body>
+
+  <div class="vs-window">
+
+    <div class="vs-titlebar">
+      <div class="vs-title">
+        <span>🌊</span><span>Viral Surfer</span>
+      </div>
+      <div class="vs-controls">
+        <a class="win-btn" href="../../index.html">_</a>
+        <a class="win-btn" href="../../index.html">X</a>
+      </div>
+    </div>
+
+    <div class="vs-menubar">
+      <span class="menu-item" id="newGameMenu"><u>G</u>ame</span>
+      <span class="menu-item" id="helpMenu"><u>H</u>elp</span>
+      <span class="menu-item"><a href="../../index.html">Back to Desktop</a></span>
+    </div>
+
+    <div class="vs-body">
+
+      <div class="vs-hud">
+        <div class="vs-stat"><span>Score</span><strong id="scoreLcd">0</strong></div>
+        <div class="vs-stat"><span>Likes</span><strong id="likesLcd">0</strong></div>
+        <div class="vs-stat"><span>Best</span><strong id="bestLcd">0</strong></div>
+      </div>
+
+      <div class="vs-canvas-wrap">
+        <canvas id="board" width="720" height="320"></canvas>
+        <div class="vs-overlay-tip" id="startTip">Press <kbd>Space</kbd> or tap to surf</div>
+      </div>
+
+      <div class="vs-help">
+        <strong>Controls:</strong> <kbd>Space</kbd>/<kbd>↑</kbd>/tap = jump · <kbd>↓</kbd> = duck · grab 👍 for combo bonuses · dodge 👎 — jump the ones on the ground, duck the ones in the air.
+      </div>
+
+      <div id="vsLeaderboard"></div>
+
+    </div>
+
+    <div class="vs-statusbar">
+      <span id="vsStatus">Ready</span>
+      <span class="vs-spacer"></span>
+      <span>antisocialfriendsclub.com</span>
+    </div>
+
+  </div>
+
+  <div class="overlay hidden" id="endOverlay">
+    <div class="modal-95">
+      <div class="modal-95-titlebar">
+        <span>Cancelled</span>
+        <button class="win-btn" id="endClose">X</button>
+      </div>
+      <div class="modal-95-body">
+        <div class="end-emoji" id="endEmoji">📉</div>
+        <p id="endMessage">…</p>
+        <p class="reveal">Final score: <strong id="endScore">0</strong></p>
+        <div id="endLeaderboard"></div>
+        <button class="btn-95" id="endPlayAgain">Surf Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../leaderboard.js?v=20260522a"></script>
+  <script src="viral-surfer.js?v=20260522c"></script>
+</body>
+</html>

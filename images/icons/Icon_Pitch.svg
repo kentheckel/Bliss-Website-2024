@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" shape-rendering="crispEdges">
+  <!-- Outer black border (chunky) -->
+  <rect x="4" y="4" width="72" height="72" fill="#000"/>
+
+  <!-- White inner highlight (Win95 bevel top/left) -->
+  <rect x="6" y="6" width="68" height="2" fill="#ffffff"/>
+  <rect x="6" y="6" width="2" height="68" fill="#ffffff"/>
+
+  <!-- Dark grey bevel bottom/right -->
+  <rect x="6" y="72" width="68" height="2" fill="#808080"/>
+  <rect x="72" y="6" width="2" height="68" fill="#808080"/>
+
+  <!-- Yellow screen background -->
+  <rect x="8" y="8" width="64" height="50" fill="#ffd34d"/>
+
+  <!-- Scanline subtle stripes on screen -->
+  <rect x="8" y="14" width="64" height="2" fill="#f0c038" opacity="0.6"/>
+  <rect x="8" y="22" width="64" height="2" fill="#f0c038" opacity="0.6"/>
+  <rect x="8" y="30" width="64" height="2" fill="#f0c038" opacity="0.6"/>
+  <rect x="8" y="38" width="64" height="2" fill="#f0c038" opacity="0.6"/>
+  <rect x="8" y="46" width="64" height="2" fill="#f0c038" opacity="0.6"/>
+  <rect x="8" y="54" width="64" height="2" fill="#f0c038" opacity="0.6"/>
+
+  <!-- Chunky play triangle (8-bit feel) -->
+  <polygon points="28,18 28,48 56,33" fill="#000"/>
+  <polygon points="30,22 30,44 50,33" fill="#ff6b00"/>
+
+  <!-- Stand / base (projector body) -->
+  <rect x="8" y="58" width="64" height="14" fill="#c0c0c0"/>
+  <rect x="8" y="58" width="64" height="2" fill="#ffffff"/>
+  <rect x="8" y="70" width="64" height="2" fill="#808080"/>
+
+  <!-- LED indicator dots on base -->
+  <rect x="14" y="63" width="4" height="4" fill="#00ff66"/>
+  <rect x="22" y="63" width="4" height="4" fill="#ff3030"/>
+  <rect x="30" y="63" width="4" height="4" fill="#80d0ff"/>
+
+  <!-- Label tag on base -->
+  <rect x="42" y="62" width="26" height="6" fill="#000"/>
+  <text x="55" y="67" font-family="monospace" font-size="6" font-weight="bold" fill="#ffd34d" text-anchor="middle">PITCH</text>
+</svg>

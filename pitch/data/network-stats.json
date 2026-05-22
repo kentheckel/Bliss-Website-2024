@@ -1,0 +1,15 @@
+{
+  "totalViews": 2690410657,
+  "viewsLast30Days": 33068630,
+  "viewsPerSecond": 12.76,
+  "youtubeChannelCount": 12,
+  "socialChannelCount": 38,
+  "subscriberCount": 14250000,
+  "subscribersPerHour": 38,
+  "totalUploads": 12426,
+  "uploadsPerDay": 20,
+  "contentRevenueLifetime": 1000000,
+  "brandRevenueLifetime": 2000000,
+  "lastUpdated": "2026-05-03T00:00:00Z",
+  "_notes": "Update these manually before each pitch, or wire to Kent's stats project. viewsPerSecond drives the live ticker between fetches: viewsLast30Days / 2,592,000 seconds. uploadsPerDay drives the totalUploads ticker: ~20/day = ~0.00023/sec, so the displayed integer barely moves during a pitch but compounds correctly over time."
+}
