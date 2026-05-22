@@ -73,6 +73,9 @@ const plunger = {
   charging: false,
   released: false
 };
+const PLUNGER_CHARGE_RATE = 0.035;   // full charge in ~30 frames
+const PLUNGER_MIN_VY = 22;           // even an instant tap clears the lane
+const PLUNGER_MAX_BONUS = 12;        // full pull adds this much on top
 
 // Ball
 const ball = {
@@ -86,7 +89,7 @@ const ball = {
 
 const GRAVITY = 0.32;
 const FRICTION = 0.995;
-const BALL_MAX_V = 14;
+const BALL_MAX_V = 30;       // raised so plunger launches aren't clamped flat on frame 1
 // Plunger lane geometry — divider only exists below LANE_TOP_Y so the ball
 // can crest the top and arc back into the playfield.
 const LANE_TOP_Y = 90;
@@ -150,8 +153,9 @@ function launchBall() {
   if (game.balls <= 0 || ball.alive) return;
   resetBallToPlunger();
   ball.alive = true;
-  ball.vy = -(13 + Math.random() * 3);
-  ball.vx = -(0.4 + Math.random() * 0.4);
+  // One-click launch — strong enough to comfortably clear the lane and hit play.
+  ball.vy = -(PLUNGER_MIN_VY + 6 + Math.random() * 3);
+  ball.vx = -(0.5 + Math.random() * 0.4);
   game.ballInPlay = true;
   statusEl.textContent = "Ball in play";
 }
@@ -218,12 +222,12 @@ function addScore(n) {
 // --- Update loop ---
 function step() {
   // Plunger charge
-  if (plunger.charging) plunger.charge = Math.min(1, plunger.charge + 0.02);
+  if (plunger.charging) plunger.charge = Math.min(1, plunger.charge + PLUNGER_CHARGE_RATE);
   if (plunger.released) {
     if (!ball.alive && game.balls > 0) {
       ball.alive = true;
-      ball.vy = -(9 + plunger.charge * 11);
-      ball.vx = -(0.4 + Math.random() * 0.4);
+      ball.vy = -(PLUNGER_MIN_VY + plunger.charge * PLUNGER_MAX_BONUS);
+      ball.vx = -(0.5 + Math.random() * 0.4);
       game.ballInPlay = true;
       statusEl.textContent = "Ball in play";
     }
