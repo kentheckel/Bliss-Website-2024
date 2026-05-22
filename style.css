@@ -2052,3 +2052,178 @@ body, html {
     font-weight: 600;
     color: #37352F;
 }
+/* ============================================
+   GAMES FOLDER MODAL
+   Win95-style folder window listing arcade games
+   ============================================ */
+
+#ModalGames {
+    width: 580px;
+    max-width: 92vw;
+    height: auto;
+    max-height: 80vh;
+    left: 18%;
+    top: 12%;
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+    box-shadow: 3px 3px 0 #000;
+    font-family: "MS Sans Serif", "Tahoma", "Geneva", sans-serif;
+    font-size: 12px;
+    color: #000;
+    overflow: hidden;
+    display: none;
+}
+
+.games-titlebar-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+.games-menubar {
+    background: #c0c0c0;
+    padding: 3px 8px;
+    border-bottom: 1px solid #808080;
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+}
+.games-menu-item {
+    padding: 1px 6px;
+    cursor: default;
+    color: #000;
+}
+.games-menu-item:hover {
+    background: #000080;
+    color: #fff;
+}
+
+.games-addressbar {
+    background: #c0c0c0;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #808080;
+}
+.games-addr-label {
+    color: #555;
+    font-size: 11px;
+}
+.games-addr-input {
+    flex: 1;
+    background: #ffffff;
+    border-top: 1.5px solid #404040;
+    border-left: 1.5px solid #404040;
+    border-right: 1.5px solid #ffffff;
+    border-bottom: 1.5px solid #ffffff;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.games-body {
+    background: #ffffff;
+    padding: 20px 14px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+    gap: 12px;
+    min-height: 240px;
+    max-height: 50vh;
+    overflow-y: auto;
+    border-top: 1.5px solid #404040;
+    border-left: 1.5px solid #404040;
+    border-right: 1.5px solid #ffffff;
+    border-bottom: 1.5px solid #ffffff;
+}
+
+.games-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    padding: 8px 4px;
+    cursor: pointer;
+    position: relative;
+    border: 1px dotted transparent;
+    font-family: "MS Sans Serif", "Tahoma", sans-serif;
+}
+.games-tile:hover {
+    background: rgba(0, 0, 128, 0.08);
+}
+.games-tile:focus,
+.games-tile:active {
+    outline: none;
+    border: 1px dotted #404040;
+    background: rgba(0, 0, 128, 0.15);
+}
+
+.games-tile-img {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 6px;
+}
+.games-tile-img svg { width: 100%; height: 100%; }
+
+.games-tile-name {
+    font-size: 12px;
+    line-height: 1.2;
+    word-break: break-word;
+    max-width: 100px;
+    padding: 1px 3px;
+}
+.games-tile:hover .games-tile-name,
+.games-tile:focus .games-tile-name {
+    background: #000080;
+    color: #fff;
+}
+
+.games-tile.disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+.games-tile.disabled:hover { background: transparent; }
+.games-tile.disabled:hover .games-tile-name {
+    background: transparent;
+    color: #000;
+}
+
+.games-tile-badge {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    background: #ffe066;
+    color: #000;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 1px 4px;
+    border: 1px solid #000;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.games-statusbar {
+    background: #c0c0c0;
+    padding: 3px 8px;
+    display: flex;
+    gap: 12px;
+    border-top: 1.5px solid #ffffff;
+    font-size: 11px;
+    color: #333;
+}
+.games-status-spacer { flex: 1; }
+
+@media (max-width: 600px) {
+    #ModalGames {
+        width: 94vw;
+        left: 3vw;
+    }
+    .games-body {
+        grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    }
+}

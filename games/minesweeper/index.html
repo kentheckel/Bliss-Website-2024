@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <title>Minesweeper — Antisocial Friends Club</title>
+  <link href="../leaderboard.css?v=20260522a" rel="stylesheet">
+  <link href="minesweeper.css?v=20260521a" rel="stylesheet">
+</head>
+<body>
+
+  <div class="ms-window">
+
+    <div class="ms-titlebar">
+      <div class="ms-title">
+        <span class="ms-title-glyph">💣</span>
+        <span>Minesweeper</span>
+      </div>
+      <div class="ms-controls">
+        <a class="win-btn" href="../../index.html">_</a>
+        <a class="win-btn" href="../../index.html">X</a>
+      </div>
+    </div>
+
+    <div class="ms-menubar">
+      <span class="menu-item" id="newGameMenu"><u>G</u>ame</span>
+      <span class="menu-item" id="helpMenu"><u>H</u>elp</span>
+      <span class="menu-item"><a href="../../index.html">Back to Desktop</a></span>
+    </div>
+
+    <div class="ms-body">
+
+      <div class="ms-diff-row">
+        <label>
+          <input type="radio" name="diff" value="easy"> Easy <span class="ms-diff-meta">9×9 · 10 mines</span>
+        </label>
+        <label>
+          <input type="radio" name="diff" value="medium" checked> Medium <span class="ms-diff-meta">12×12 · 24 mines</span>
+        </label>
+        <label>
+          <input type="radio" name="diff" value="hard"> Hard <span class="ms-diff-meta">16×16 · 50 mines</span>
+        </label>
+      </div>
+
+      <div class="ms-frame">
+        <div class="ms-hud">
+          <div class="ms-counter" id="mineCounter">010</div>
+          <button class="ms-smiley" id="smileyBtn" title="New game">🙂</button>
+          <div class="ms-counter" id="timeCounter">000</div>
+        </div>
+
+        <div class="ms-board-wrap">
+          <div class="ms-board" id="board"></div>
+        </div>
+      </div>
+
+      <div class="ms-instructions">
+        <strong>Left-click</strong> to reveal · <strong>Right-click</strong> (or long-press) to flag · clear all non-mine cells to win.
+      </div>
+
+      <div id="msLeaderboard"></div>
+
+    </div>
+
+    <div class="ms-statusbar">
+      <span id="msStatus">Ready</span>
+      <span class="ms-spacer"></span>
+      <span>antisocialfriendsclub.com</span>
+    </div>
+
+  </div>
+
+  <div class="overlay hidden" id="endOverlay">
+    <div class="modal-95">
+      <div class="modal-95-titlebar">
+        <span id="endTitle">Result</span>
+        <button class="win-btn" id="endClose">X</button>
+      </div>
+      <div class="modal-95-body">
+        <div class="end-emoji" id="endEmoji">🙂</div>
+        <p id="endMessage">…</p>
+        <p id="endTime" class="reveal"></p>
+        <div id="endLeaderboard"></div>
+        <button class="btn-95" id="endPlayAgain">New Game</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../leaderboard.js?v=20260522a"></script>
+  <script src="minesweeper.js?v=20260521a"></script>
+</body>
+</html>
