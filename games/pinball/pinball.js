@@ -51,10 +51,12 @@ const slings = [
   { x1: PLUNGER_X - 8, y1: 380, x2: PLUNGER_X - 80, y2: 420, points: 50, glow: 0 }
 ];
 
-// Passive lane guides — angled walls that deflect the ball into the playfield
-// when it cresting the plunger lane. No points, no kick — pure reflection.
+// Passive lane guide — angled bar that catches the ball as it crests the
+// plunger lane and deflects it left into the playfield. Right end sits just
+// inside the right wall above the chute exit; left end is well into the
+// playfield, sloped down so the ball reflects down-and-left.
 const guides = [
-  { x1: W - WALL - 2, y1: 28, x2: PLUNGER_X - 28, y2: LANE_TOP_Y + 6 }
+  { x1: W - WALL - 3, y1: 62, x2: PLUNGER_X - 80, y2: 32 }
 ];
 
 // Drop targets — top row of "viral" letters
@@ -288,18 +290,29 @@ function step() {
     }
 
     // Lane guides — passive angled walls that send the ball into play.
+    // Use the bar's geometric normal (perpendicular to its tangent) so the
+    // ball always reflects across the bar, not back along its approach.
     guides.forEach((g) => {
       const hit = pointToSegment(ball.x, ball.y, g.x1, g.y1, g.x2, g.y2);
       if (hit.dist < ball.r + 3) {
-        const nx = ball.x - hit.px;
-        const ny = ball.y - hit.py;
-        const m = Math.hypot(nx, ny) || 1;
-        const nnx = nx / m, nny = ny / m;
+        const tx = g.x2 - g.x1;
+        const ty = g.y2 - g.y1;
+        const tl = Math.hypot(tx, ty) || 1;
+        // Perpendicular to the bar
+        let nnx = -ty / tl;
+        let nny = tx / tl;
+        // Pick whichever side the ball is currently on
+        if ((ball.x - hit.px) * nnx + (ball.y - hit.py) * nny < 0) {
+          nnx = -nnx;
+          nny = -nny;
+        }
         ball.x = hit.px + nnx * (ball.r + 3);
         ball.y = hit.py + nny * (ball.r + 3);
         const dot = ball.vx * nnx + ball.vy * nny;
-        ball.vx = (ball.vx - 2 * dot * nnx) * 0.9;
-        ball.vy = (ball.vy - 2 * dot * nny) * 0.9;
+        if (dot < 0) {
+          ball.vx = (ball.vx - 2 * dot * nnx) * 0.92;
+          ball.vy = (ball.vy - 2 * dot * nny) * 0.92;
+        }
       }
     });
 
