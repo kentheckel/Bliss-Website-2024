@@ -1,0 +1,358 @@
+/* SHADOWBAN.exe - Hangman game styles */
+
+:root {
+  --win95-gray: #c0c0c0;
+  --win95-dark: #808080;
+  --win95-darker: #404040;
+  --win95-light: #dfdfdf;
+  --win95-lighter: #ffffff;
+  --win95-blue: #000080;
+  --win95-teal: #008080;
+  --win95-text: #000;
+  --accent-red: #c00000;
+  --accent-green: #008000;
+  --accent-yellow: #ffe066;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--win95-teal);
+  font-family: "MS Sans Serif", "Tahoma", "Geneva", sans-serif;
+  font-size: 13px;
+  color: var(--win95-text);
+}
+
+body {
+  padding: 24px 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.hidden { display: none !important; }
+
+/* ----- Window chrome ----- */
+.game-window {
+  width: 100%;
+  max-width: 640px;
+  background: var(--win95-gray);
+  border-top: 2px solid var(--win95-lighter);
+  border-left: 2px solid var(--win95-lighter);
+  border-right: 2px solid var(--win95-darker);
+  border-bottom: 2px solid var(--win95-darker);
+  box-shadow: 3px 3px 0 #000;
+}
+
+.game-titlebar {
+  background: linear-gradient(90deg, var(--win95-blue), #1084d0);
+  color: #fff;
+  padding: 3px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+.game-title { display: flex; align-items: center; gap: 6px; }
+.title-glyph { font-size: 14px; }
+
+.game-controls { display: flex; gap: 2px; }
+
+.win-btn {
+  background: var(--win95-gray);
+  border-top: 1.5px solid var(--win95-lighter);
+  border-left: 1.5px solid var(--win95-lighter);
+  border-right: 1.5px solid var(--win95-darker);
+  border-bottom: 1.5px solid var(--win95-darker);
+  width: 20px;
+  height: 18px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+.win-btn:active {
+  border-top-color: var(--win95-darker);
+  border-left-color: var(--win95-darker);
+  border-right-color: var(--win95-lighter);
+  border-bottom-color: var(--win95-lighter);
+}
+
+.game-menubar {
+  background: var(--win95-gray);
+  padding: 3px 8px;
+  border-bottom: 1px solid var(--win95-dark);
+  display: flex;
+  gap: 16px;
+}
+.menu-item { cursor: pointer; padding: 1px 6px; }
+.menu-item:hover { background: var(--win95-blue); color: #fff; }
+.menu-item a { color: inherit; text-decoration: none; }
+
+/* ----- Game body ----- */
+.game-body {
+  padding: 16px;
+  background: var(--win95-gray);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--win95-lighter);
+  border-top: 1.5px solid var(--win95-darker);
+  border-left: 1.5px solid var(--win95-darker);
+  border-right: 1.5px solid var(--win95-lighter);
+  border-bottom: 1.5px solid var(--win95-lighter);
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.strikes { display: flex; align-items: center; gap: 8px; }
+.strikes-label { font-weight: bold; }
+.strike-dots { display: flex; gap: 3px; }
+.strike-dot {
+  width: 12px;
+  height: 12px;
+  border-top: 1px solid var(--win95-darker);
+  border-left: 1px solid var(--win95-darker);
+  border-right: 1px solid var(--win95-lighter);
+  border-bottom: 1px solid var(--win95-lighter);
+  background: var(--win95-gray);
+}
+.strike-dot.lit {
+  background: var(--accent-red);
+  box-shadow: inset 1px 1px 0 #ff5050;
+}
+.strikes-count { color: var(--accent-red); font-weight: bold; }
+
+.prompt-tag {
+  background: var(--accent-yellow);
+  border: 1px solid #000;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+}
+
+.streak-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #d0ffd0;
+  border: 1px solid #008000;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #003300;
+}
+.streak-tag strong { font-size: 13px; }
+
+/* ----- Hangman stage (ASCII) ----- */
+.stage {
+  background: #000;
+  color: #00ff80;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.1;
+  white-space: pre;
+  padding: 14px 18px;
+  min-height: 168px;
+  border-top: 1.5px solid var(--win95-darker);
+  border-left: 1.5px solid var(--win95-darker);
+  border-right: 1.5px solid var(--win95-lighter);
+  border-bottom: 1.5px solid var(--win95-lighter);
+  overflow-x: auto;
+}
+
+/* ----- Word row ----- */
+.word-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 6px;
+}
+.letter-box {
+  width: 28px;
+  height: 36px;
+  background: var(--win95-lighter);
+  border-top: 1.5px solid var(--win95-darker);
+  border-left: 1.5px solid var(--win95-darker);
+  border-right: 1.5px solid var(--win95-lighter);
+  border-bottom: 1.5px solid var(--win95-lighter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #000 !important;
+}
+.letter-box.space {
+  background: transparent;
+  border: none !important;
+  width: 12px;
+}
+.letter-box.revealed {
+  background: #d0f0d0;
+  color: #003300;
+}
+.letter-box.miss-reveal {
+  background: #f0d0d0;
+  color: var(--accent-red);
+}
+
+/* ----- Message ----- */
+.message {
+  text-align: center;
+  background: var(--win95-lighter);
+  border-top: 1.5px solid var(--win95-darker);
+  border-left: 1.5px solid var(--win95-darker);
+  border-right: 1.5px solid var(--win95-lighter);
+  border-bottom: 1.5px solid var(--win95-lighter);
+  padding: 8px 12px;
+  font-size: 12px;
+  min-height: 32px;
+}
+
+/* ----- Keyboard ----- */
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 4px;
+}
+.key {
+  background: var(--win95-gray);
+  border-top: 1.5px solid var(--win95-lighter);
+  border-left: 1.5px solid var(--win95-lighter);
+  border-right: 1.5px solid var(--win95-darker);
+  border-bottom: 1.5px solid var(--win95-darker);
+  padding: 8px 0;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--win95-text);
+}
+.key:hover:not(:disabled) { background: var(--win95-light); }
+.key:active:not(:disabled) {
+  border-top-color: var(--win95-darker);
+  border-left-color: var(--win95-darker);
+  border-right-color: var(--win95-lighter);
+  border-bottom-color: var(--win95-lighter);
+}
+.key:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.key.hit {
+  background: var(--accent-green);
+  color: #fff;
+}
+.key.miss {
+  background: var(--accent-red);
+  color: #fff;
+}
+
+/* ----- Actions ----- */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-95 {
+  background: var(--win95-gray);
+  border-top: 2px solid var(--win95-lighter);
+  border-left: 2px solid var(--win95-lighter);
+  border-right: 2px solid var(--win95-darker);
+  border-bottom: 2px solid var(--win95-darker);
+  padding: 6px 18px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--win95-text);
+}
+.btn-95:active {
+  border-top-color: var(--win95-darker);
+  border-left-color: var(--win95-darker);
+  border-right-color: var(--win95-lighter);
+  border-bottom-color: var(--win95-lighter);
+}
+
+/* ----- Status bar ----- */
+.game-statusbar {
+  background: var(--win95-gray);
+  padding: 3px 8px;
+  display: flex;
+  gap: 12px;
+  border-top: 1.5px solid var(--win95-lighter);
+  font-size: 11px;
+  color: #333;
+}
+.status-spacer { flex: 1; }
+
+/* ----- Overlay / dialog ----- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.modal-95 {
+  background: var(--win95-gray);
+  border-top: 2px solid var(--win95-lighter);
+  border-left: 2px solid var(--win95-lighter);
+  border-right: 2px solid var(--win95-darker);
+  border-bottom: 2px solid var(--win95-darker);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.6);
+  width: min(460px, 94vw);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+}
+.modal-95-body {
+  overflow-y: auto;
+}
+.modal-95-titlebar {
+  background: linear-gradient(90deg, var(--win95-blue), #1084d0);
+  color: #fff;
+  padding: 3px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+.modal-95-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+.modal-95-body p { margin: 0; line-height: 1.45; }
+.end-emoji { font-size: 36px; }
+.reveal { font-size: 13px; }
+
+/* ----- Mobile ----- */
+@media (max-width: 520px) {
+  .keyboard { grid-template-columns: repeat(7, 1fr); }
+  .stage { font-size: 12px; padding: 10px; min-height: 150px; }
+  .letter-box { width: 22px; height: 30px; font-size: 14px; }
+  .status-row { flex-direction: column; gap: 6px; align-items: flex-start; }
+}

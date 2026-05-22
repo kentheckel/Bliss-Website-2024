@@ -853,6 +853,51 @@ html, body {
   letter-spacing: 2px;
 }
 
+/* Easter-egg sticky note — looks like Kent forgot to peel it off */
+.slide-title .title-sticky {
+  position: absolute;
+  top: 28px;
+  left: 30px;
+  width: 168px;
+  padding: 12px 12px 14px;
+  background: #fff59a;
+  background-image: linear-gradient(180deg, #fff59a 0%, #fff09a 100%);
+  font-family: 'Permanent Marker', 'Bradley Hand', 'Comic Sans MS', cursive;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #2a2a2a;
+  letter-spacing: 0.3px;
+  text-align: left;
+  transform: rotate(-3.2deg);
+  box-shadow:
+    2px 3px 0 rgba(0, 0, 0, 0.18),
+    6px 8px 14px rgba(0, 0, 0, 0.22);
+  z-index: 5;
+}
+.slide-title .title-sticky::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(255, 255, 255, 0.4) 70%
+  );
+}
+.slide-title .title-sticky strong {
+  color: #c84545;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.slide-title .title-sticky em {
+  font-style: italic;
+  color: #0044c2;
+}
+
 /* ============================================================
    PLACEHOLDER SLIDE (for slides not yet built)
    ============================================================ */
@@ -5600,6 +5645,139 @@ html, body {
   color: #006633;
   text-align: right;
 }
+
+/* ----------------------------------------
+   Pricing lock — Win95 password gate
+   ---------------------------------------- */
+.slide-work .wpr-locked .wpr-lock-body {
+  padding: 14px 16px 14px;
+  gap: 10px;
+}
+.slide-work .wpr-lock-headrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.slide-work .wpr-lock-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+.slide-work .wpr-lock-headcol { display: flex; flex-direction: column; }
+.slide-work .wpr-lock-desc {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 12px;
+  color: #303030;
+  line-height: 1.45;
+  margin-bottom: 4px;
+}
+.slide-work .wpr-lock-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 2px;
+}
+.slide-work .wpr-lock-label {
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #000080;
+}
+.slide-work .wpr-lock-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.slide-work .wpr-lock-input {
+  flex: 1;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  padding: 6px 10px;
+  background: #fff;
+  border: 2px solid #000;
+  border-right-color: #c0c0c0;
+  border-bottom-color: #c0c0c0;
+  color: #000;
+  outline: none;
+  letter-spacing: 2px;
+}
+.slide-work .wpr-lock-input:focus {
+  background: #ffffe0;
+  border-color: #000080;
+  border-right-color: #000080;
+  border-bottom-color: #000080;
+}
+.slide-work .wpr-lock-enter {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  padding: 0 14px;
+  background: #c0c0c0;
+  color: #000;
+  border: 2px solid #fff;
+  border-right-color: #000;
+  border-bottom-color: #000;
+  box-shadow: 2px 2px 0 #000;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.slide-work .wpr-lock-enter:hover { background: #d0d0d0; }
+.slide-work .wpr-lock-enter:active {
+  border-color: #000;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+.slide-work .wpr-lock-msg {
+  min-height: 16px;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #c00000;
+}
+.slide-work .wpr-lock-msg.wpr-lock-msg-ok { color: #006633; }
+.slide-work .wpr-lock-divider {
+  text-align: center;
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #606060;
+  margin: 6px 0 2px;
+}
+.slide-work .wpr-lock-request {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #fff8e0;
+  border: 2px solid #c84500;
+  color: #000;
+  text-decoration: none;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  transition: background 0.15s;
+}
+.slide-work .wpr-lock-request:hover { background: #ffe8b0; }
+.slide-work .wpr-lock-request-icon { font-size: 16px; color: #c84500; }
+.slide-work .wpr-lock-request-text { flex: 1; }
+.slide-work .wpr-lock-request-arrow {
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  color: #c84500;
+}
+.slide-work .wpr-lock-unlocking {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+@keyframes wprLockShake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-6px, 0); }
+  40% { transform: translate(6px, 0); }
+  60% { transform: translate(-4px, 0); }
+  80% { transform: translate(4px, 0); }
+}
+.slide-work .wpr-lock-shake { animation: wprLockShake 0.35s ease-in-out; }
 
 /* ============================================================
    SLIDE — SUCCESS FEE / ACHIEVEMENTS

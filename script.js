@@ -221,9 +221,10 @@ document.querySelectorAll('.icon-btn').forEach(button => {
     'TextBoxCloseKentHeckel', 'AnalyticsCloseKentHeckel',
     'errorClose', 'socialClose', 'aimChatClose', 'gmailClose',
     'contactClose', 'VideosClose', 'trashClose', 'passwordsClose',
-    'passwordsTxtClose', 'resumeTxtClose', 'aboutClose', 'loginClose',
+    'passwordsTxtClose', 'doNotShareTxtClose', 'aboutClose', 'loginClose',
     'colorSocialClose', // ColorSocial app modal close button
-    'channelTrackClose' // ChannelTrack app modal close button
+    'channelTrackClose', // ChannelTrack app modal close button
+    'gamesClose' // Games folder modal close button
 ].forEach(id => {
     addClickListener(id, (event) => {
         event.stopPropagation();
@@ -248,9 +249,10 @@ document.querySelectorAll('.icon-btn').forEach(button => {
     'TextBoxMinimizeKentHeckel', 'AnalyticsMinimizeKentHeckel',
     'socialMinimize', 'aimChatMinimize', 'gmailMinimize',
     'contactMinimize', 'VideosMinimize', 'trashMinimize',
-    'passwordsMinimize', 'passwordsTxtMinimize', 'resumeTxtMinimize', 'aboutMinimize',
+    'passwordsMinimize', 'passwordsTxtMinimize', 'doNotShareTxtMinimize', 'aboutMinimize',
     'colorSocialMinimize', // ColorSocial app modal minimize button
-    'channelTrackMinimize' // ChannelTrack app modal minimize button
+    'channelTrackMinimize', // ChannelTrack app modal minimize button
+    'gamesMinimize' // Games folder modal minimize button
 ].forEach(id => {
     addClickListener(id, (event) => {
         event.stopPropagation();
@@ -535,6 +537,11 @@ addClickListener('passwordsFolderBtn', () => {
 // Add an event listener to the text file button inside the Passwords modal
 addClickListener('passwordsTxtBtn', () => {
     showModal('ModalPasswordsTxt'); // Open the PasswordsTxt modal when the text file button is clicked
+});
+
+// do-not-share.txt easter egg — holds the ASFC pitch deck pricing password
+addClickListener('doNotShareTxtBtn', () => {
+    showModal('ModalDoNotShareTxt');
 });
 
 
@@ -866,45 +873,6 @@ function switchAnalyticsTab(tabName) {
 
 // Example usage: call this function with the tab name, e.g., 'overview', 'content', 'audience', or 'trends'
 // switchAnalyticsTab('overview'); // To switch to Overview tab
-
-// MARK: Resume Modal Handlers - with null checks
-const resumeIcon = document.getElementById('resumeIcon');
-if (resumeIcon) {
-    resumeIcon.addEventListener('click', function() {
-        const modal = document.getElementById('ModalResumeTxt');
-        if (modal) {
-            modal.style.display = 'block';
-            console.log('Opened modal: ModalResumeTxt');
-        }
-    });
-}
-
-const resumeTxtCloseBtn = document.getElementById('resumeTxtClose');
-if (resumeTxtCloseBtn) {
-    resumeTxtCloseBtn.addEventListener('click', function() {
-        const modal = document.getElementById('ModalResumeTxt');
-        if (modal) modal.style.display = 'none';
-    });
-}
-
-document.getElementById('resumeTxtMinimize').addEventListener('click', function() {
-    minimizeWindow('Resume.txt', 'ModalResumeTxt');
-});
-
-// Add to your modal pairs array for draggable functionality
-makeModalDraggable('ModalResumeTxt', 'modalHeaderResumeTxt');
-
-function downloadResume() {
-    // Create a link element
-    const link = document.createElement('a');
-    link.href = 'images/KentHeckelResume2025.pdf';
-    link.download = 'KentHeckelResume2025.pdf';
-    
-    // Append to body, click, and remove
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
 
 // Function to check if the device is mobile based on screen width
 // Only displays the mobile warning modal if viewport width is 768px or less

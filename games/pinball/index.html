@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <title>Pinball — Antisocial Friends Club</title>
+  <link href="../leaderboard.css?v=20260522a" rel="stylesheet">
+  <link href="pinball.css?v=20260521a" rel="stylesheet">
+</head>
+<body>
+
+  <div class="pb-window">
+
+    <div class="pb-titlebar">
+      <div class="pb-title">
+        <span>⚪</span><span>Space Antisocial — Pinball</span>
+      </div>
+      <div class="pb-controls">
+        <a class="win-btn" href="../../index.html">_</a>
+        <a class="win-btn" href="../../index.html">X</a>
+      </div>
+    </div>
+
+    <div class="pb-menubar">
+      <span class="menu-item" id="newGameMenu"><u>G</u>ame</span>
+      <span class="menu-item" id="helpMenu"><u>H</u>elp</span>
+      <span class="menu-item"><a href="../../index.html">Back to Desktop</a></span>
+    </div>
+
+    <div class="pb-body">
+
+      <div class="pb-stage">
+        <div class="pb-canvas-wrap">
+          <canvas id="board" width="360" height="540"></canvas>
+        </div>
+        <aside class="pb-side">
+          <div class="pb-stat">
+            <span>Score</span>
+            <strong id="scoreLcd">0</strong>
+          </div>
+          <div class="pb-stat">
+            <span>Balls</span>
+            <strong id="ballsLcd">3</strong>
+          </div>
+          <div class="pb-stat">
+            <span>Best</span>
+            <strong id="bestLcd">0</strong>
+          </div>
+          <button class="btn-95" id="launchBtn">Launch Ball</button>
+          <button class="btn-95" id="newGameBtn">New Game</button>
+          <div class="pb-help">
+            <strong>Controls</strong>
+            <ul>
+              <li><kbd>←</kbd> left flipper</li>
+              <li><kbd>→</kbd> right flipper</li>
+              <li><kbd>Space</kbd> launch / nudge</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <div id="pbLeaderboard"></div>
+
+    </div>
+
+    <div class="pb-statusbar">
+      <span id="pbStatus">Ready — press Space or Launch Ball</span>
+      <span class="pb-spacer"></span>
+      <span>antisocialfriendsclub.com</span>
+    </div>
+
+  </div>
+
+  <div class="overlay hidden" id="endOverlay">
+    <div class="modal-95">
+      <div class="modal-95-titlebar">
+        <span>Game Over</span>
+        <button class="win-btn" id="endClose">X</button>
+      </div>
+      <div class="modal-95-body">
+        <div class="end-emoji">🎯</div>
+        <p id="endMessage">…</p>
+        <p class="reveal">Final score: <strong id="endScore">0</strong></p>
+        <div id="endLeaderboard"></div>
+        <button class="btn-95" id="endPlayAgain">New Game</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../leaderboard.js?v=20260522a"></script>
+  <script src="pinball.js?v=20260521a"></script>
+</body>
+</html>

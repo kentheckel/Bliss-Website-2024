@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link href="style.css?v=20241226" rel="stylesheet">
+    <link href="style.css?v=20260515a" rel="stylesheet">
     <title>Kent Heckel's Website</title>
     <style>
         .email-label {
@@ -98,17 +98,16 @@
         </button>
 
         <!-- Pitch.exe Icon on Desktop - opens the ASFC pitch deck -->
-        <a id="pitchBtn" class="icon-btn" href="pitch/" style="text-decoration: none; color: inherit;">
+        <a id="pitchBtn" class="icon-btn" href="pitch/index.html" style="text-decoration: none; color: inherit;">
             <img src="images/icons/Icon_Pitch.svg?v=20260503a" alt="Pitch.exe Icon">
             <span>Pitch.exe</span>
         </a>
 
-        <!-- Resume Icon on Desktop -->
-        <!-- Change the Resume icon ID to match the pattern -->
-        <div class="icon-btn" id="resumeTxtBtn">
-            <img src="images/icons/txt.png" alt="Resume Text File">
-            <span>Resume.txt</span>
-        </div>
+        <!-- Games Folder Icon on Desktop - opens ModalGames popup -->
+        <button id="gamesBtn" class="icon-btn">
+            <img src="images/icons/Icon_Games.svg?v=20260521a" alt="Games Folder Icon">
+            <span>Games</span>
+        </button>
 
     </div>
 
@@ -610,6 +609,12 @@
                         <span>passwords.txt</span>
                     </button>
                 </div>
+                <div class="second-txt">
+                    <button id="doNotShareTxtBtn" class="txt-btn">
+                        <img src="images/icons/txt.png" alt="Do Not Share Text File Icon">
+                        <span>do-not-share.txt</span>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -646,31 +651,29 @@
             </div>
         </div>
 
-        <!-- MARK: Resume Modal -->
-        <!-- Add the Resume Modal (place with other modals) -->
-<div id="ModalResumeTxt" class="modal">
-    <div id="modalHeaderResumeTxt" class="window-controls">
-        <span>Resume.txt</span>
-        <div class="window-btn-container">
-            <button id="resumeTxtMinimize" class="window-btn">-</button>
-            <button id="resumeTxtClose" class="window-btn">X</button>
-        </div>
-    </div>
-    <div class="file-menu-bar">
-        <div class="menu-tab">File
-            <div class="dropdown-content">
-                <button onclick="downloadResume()" class="dropdown-item">Save</button>
+        <!-- MARK: Do Not Share Text File Modal -->
+        <div id="ModalDoNotShareTxt" class="modal large-modal">
+            <div id="modalHeaderDoNotShareTxt" class="window-controls">
+                <span>do-not-share.txt</span>
+                <div class="window-btn-container">
+                    <button id="doNotShareTxtMinimize" class="window-btn">-</button>
+                    <button id="doNotShareTxtClose" class="window-btn">X</button>
+                </div>
+            </div>
+            <div class="file-menu-bar">
+                <div class="menu-tab">File</div>
+                <div class="menu-tab">Edit</div>
+                <div class="menu-tab">View</div>
+            </div>
+            <div class="txt-content">
+                <textarea id="doNotShareTextArea">internal — do not share
+
+asfc pitch deck pricing password: ASFC2026
+
+(if you found this, you're either nosy or very good at clicking around.
+either way, the deck is yours — let's chat. kent@kentheckel.com)</textarea>
             </div>
         </div>
-        <div class="menu-tab">Edit</div>
-        <div class="menu-tab">View</div>
-    </div>
-    <div class="txt-content" style="overflow-y: auto; max-height: calc(100vh - 200px); padding: 10px;">
-        <img src="images/KentHeckelResume2025.jpg" alt="Resume" style="width: 100%; height: auto;">
-    </div>
-</div>
-
-        
 
         <!-- MARK: ColorSocial Modal -->
         <!-- This modal displays information about the ColorSocial app ecosystem -->
@@ -812,6 +815,114 @@
                 <div class="channeltrack-footer">
                     <p>Learn more at <a href="https://channeltrack.xyz" target="_blank" class="channeltrack-link">channeltrack.xyz</a></p>
                 </div>
+            </div>
+        </div>
+
+        <!-- MARK: Games Folder Modal -->
+        <!-- Win95-style folder window listing available games -->
+        <div id="ModalGames" class="modal games-modal">
+            <div id="modalHeaderGames" class="window-controls">
+                <span class="title">
+                    <img src="images/icons/Icon_Games.svg" alt="" class="games-titlebar-icon">
+                    C:\GAMES
+                </span>
+                <div class="window-btn-container">
+                    <button id="gamesMinimize" class="window-btn">-</button>
+                    <button id="gamesClose" class="window-btn">X</button>
+                </div>
+            </div>
+
+            <div class="games-menubar">
+                <span class="games-menu-item"><u>F</u>ile</span>
+                <span class="games-menu-item"><u>E</u>dit</span>
+                <span class="games-menu-item"><u>V</u>iew</span>
+                <span class="games-menu-item"><u>H</u>elp</span>
+            </div>
+
+            <div class="games-addressbar">
+                <span class="games-addr-label">Address</span>
+                <div class="games-addr-input">C:\GAMES</div>
+            </div>
+
+            <div class="games-body">
+
+                <a href="games/hangman/index.html" class="games-tile">
+                    <div class="games-tile-img">
+                        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="58" width="52" height="3" fill="#5a3a1a"/>
+                            <rect x="14" y="8" width="3" height="50" fill="#5a3a1a"/>
+                            <rect x="14" y="8" width="28" height="3" fill="#5a3a1a"/>
+                            <rect x="39" y="8" width="3" height="8" fill="#5a3a1a"/>
+                            <circle cx="40.5" cy="22" r="6" fill="none" stroke="#000" stroke-width="2"/>
+                            <line x1="40.5" y1="28" x2="40.5" y2="42" stroke="#000" stroke-width="2"/>
+                            <line x1="40.5" y1="32" x2="34" y2="38" stroke="#000" stroke-width="2"/>
+                            <line x1="40.5" y1="32" x2="47" y2="38" stroke="#000" stroke-width="2"/>
+                            <line x1="40.5" y1="42" x2="34" y2="50" stroke="#000" stroke-width="2"/>
+                            <line x1="40.5" y1="42" x2="47" y2="50" stroke="#000" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <span class="games-tile-name">Shadowban<br>(Hangman)</span>
+                </a>
+
+                <a href="games/minesweeper/index.html" class="games-tile">
+                    <div class="games-tile-img">
+                        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="6" width="52" height="52" fill="#bdbdbd" stroke="#000" stroke-width="2"/>
+                            <g fill="#7f7f7f">
+                                <rect x="10" y="10" width="10" height="10"/>
+                                <rect x="22" y="10" width="10" height="10"/>
+                                <rect x="34" y="10" width="10" height="10"/>
+                                <rect x="46" y="10" width="8" height="10"/>
+                                <rect x="10" y="22" width="10" height="10"/>
+                                <rect x="34" y="22" width="10" height="10"/>
+                                <rect x="46" y="22" width="8" height="10"/>
+                                <rect x="10" y="34" width="10" height="10"/>
+                                <rect x="22" y="34" width="10" height="10"/>
+                                <rect x="46" y="34" width="8" height="10"/>
+                                <rect x="10" y="46" width="10" height="8"/>
+                                <rect x="22" y="46" width="10" height="8"/>
+                                <rect x="34" y="46" width="10" height="8"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <span class="games-tile-name">Minesweeper</span>
+                </a>
+
+                <a href="games/pinball/index.html" class="games-tile">
+                    <div class="games-tile-img">
+                        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="6" width="52" height="52" fill="#000" stroke="#7d7d7d" stroke-width="2"/>
+                            <circle cx="32" cy="20" r="5" fill="#ff0033"/>
+                            <circle cx="20" cy="38" r="4" fill="#ffea00"/>
+                            <circle cx="44" cy="38" r="4" fill="#22c1ff"/>
+                            <path d="M14 54 L20 48 L26 54 Z" fill="#7d7d7d"/>
+                            <path d="M38 54 L44 48 L50 54 Z" fill="#7d7d7d"/>
+                            <circle cx="32" cy="48" r="3" fill="#fff"/>
+                        </svg>
+                    </div>
+                    <span class="games-tile-name">Pinball</span>
+                </a>
+
+                <a href="games/viral-surfer/index.html" class="games-tile">
+                    <div class="games-tile-img">
+                        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="46" width="60" height="16" fill="#22c1ff"/>
+                            <path d="M2 46 Q16 38 32 46 T62 46 L62 50 Q46 42 32 50 T2 50 Z" fill="#0080c0"/>
+                            <rect x="22" y="20" width="16" height="22" fill="#ffce63"/>
+                            <rect x="22" y="14" width="16" height="6" fill="#a86b2a"/>
+                            <circle cx="30" cy="32" r="2" fill="#000"/>
+                            <path d="M20 20 L42 20 L38 14 L24 14 Z" fill="#a86b2a"/>
+                        </svg>
+                    </div>
+                    <span class="games-tile-name">Viral Surfer</span>
+                </a>
+
+            </div>
+
+            <div class="games-statusbar">
+                <span>4 object(s)</span>
+                <span class="games-status-spacer"></span>
+                <span>4 ready · leaderboards live</span>
             </div>
         </div>
 

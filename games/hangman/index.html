@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <title>Shadowban — Antisocial Friends Club</title>
+  <link href="../leaderboard.css?v=20260522a" rel="stylesheet">
+  <link href="hangman.css?v=20260521b" rel="stylesheet">
+</head>
+<body>
+
+  <div class="game-window">
+
+    <div class="game-titlebar">
+      <div class="game-title">
+        <span class="title-glyph">█</span>
+        <span>SHADOWBAN.exe</span>
+      </div>
+      <div class="game-controls">
+        <a class="win-btn" href="../../index.html">_</a>
+        <a class="win-btn" href="../../index.html">X</a>
+      </div>
+    </div>
+
+    <div class="game-menubar">
+      <span class="menu-item" id="newGameMenu"><u>N</u>ew Game</span>
+      <span class="menu-item" id="howToPlayMenu"><u>H</u>ow to play</span>
+      <span class="menu-item"><a href="../../index.html">Back to Desktop</a></span>
+    </div>
+
+    <div class="game-body">
+
+      <div class="status-row">
+        <div class="strikes">
+          <span class="strikes-label">Community Strikes</span>
+          <div class="strike-dots" id="strikeDots"></div>
+          <span class="strikes-count" id="strikeCount">0 / 6</span>
+        </div>
+        <div class="streak-tag">
+          <span>Streak:</span>
+          <strong id="streakCount">0</strong>
+        </div>
+        <div class="prompt-tag" id="promptTag">CATEGORY: ?</div>
+      </div>
+
+      <div class="stage" id="stage">
+        <!-- ASCII hangman renders here -->
+      </div>
+
+      <div class="word-row" id="wordRow">
+        <!-- Letter boxes render here -->
+      </div>
+
+      <div class="message" id="message">Guess the term before your channel gets shadowbanned.</div>
+
+      <div class="keyboard" id="keyboard">
+        <!-- A-Z buttons render here -->
+      </div>
+
+      <div class="actions">
+        <button class="btn-95" id="newGameBtn">New Game</button>
+      </div>
+
+    </div>
+
+    <div class="game-statusbar">
+      <span id="statusText">Ready</span>
+      <span class="status-spacer"></span>
+      <span>antisocialfriendsclub.com</span>
+    </div>
+
+  </div>
+
+  <!-- How-to-play modal -->
+  <div class="overlay hidden" id="howToOverlay">
+    <div class="modal-95">
+      <div class="modal-95-titlebar">
+        <span>How to play</span>
+        <button class="win-btn" id="howToClose">X</button>
+      </div>
+      <div class="modal-95-body">
+        <p>You are a creator. The algorithm wants to shadowban you.</p>
+        <p>Guess letters to reveal the social-media term. Wrong guesses earn a <strong>Community Strike</strong>. Six strikes and you're shadowbanned.</p>
+        <p>Hint: the category gives away the vibe.</p>
+        <button class="btn-95" id="howToOk">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game over modal -->
+  <div class="overlay hidden" id="endOverlay">
+    <div class="modal-95">
+      <div class="modal-95-titlebar">
+        <span id="endTitle">Result</span>
+        <button class="win-btn" id="endClose">X</button>
+      </div>
+      <div class="modal-95-body">
+        <div class="end-emoji" id="endEmoji">📉</div>
+        <p id="endMessage">…</p>
+        <p class="reveal">The term was: <strong id="endWord">—</strong></p>
+        <div id="endLeaderboard"></div>
+        <button class="btn-95" id="endPlayAgain">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../leaderboard.js?v=20260522a"></script>
+  <script src="hangman.js?v=20260521c"></script>
+</body>
+</html>
