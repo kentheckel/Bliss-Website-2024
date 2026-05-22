@@ -81,16 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ---- Resume Download ----
-function downloadResume() {
-    const link = document.createElement('a');
-    link.href = 'images/KentHeckelResume2025.pdf';
-    link.download = 'KentHeckelResume2025.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-
 // ---- Gmail / Contact ----
 document.addEventListener('DOMContentLoaded', () => {
     // Subject field updates header text
