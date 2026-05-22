@@ -124,7 +124,7 @@ function endGame(cause) {
     localStorage.setItem(BEST_KEY, String(state.best));
   }
   statusEl.textContent = `Cancelled — ${state.score} pts`;
-  endEmoji.textContent = cause === "hater" ? "👎" : (cause === "strike" ? "⚠️" : "📉");
+  endEmoji.textContent = "👎";
   endMessage.textContent = randomFrom([
     "You got rate-limited.",
     "The algorithm has unsubscribed.",
@@ -154,22 +154,23 @@ function updateHud() {
 
 // --- World ---
 function spawnObstacle() {
-  // 60/40 mix of haters (jumpable) vs copyright strikes (duckable)
-  const isStrike = Math.random() < 0.4;
-  if (isStrike) {
+  // 60/40 mix of ground haters (jumpable) vs flying haters (duckable).
+  // Both are 👎 — the algorithm only knows one feeling about you.
+  const isFlying = Math.random() < 0.4;
+  if (isFlying) {
     state.obstacles.push({
-      type: "strike",
+      kind: "bad",
+      type: "flyer",
       x: W + 20,
-      y: GROUND_Y - 60, // flies high — must duck
-      w: 36, h: 28,
-      icon: "⚠️"
+      y: GROUND_Y - 70, // flies high — must duck
+      w: 30, h: 30,
+      icon: "👎"
     });
   } else {
-    // Ground hater(s) — sometimes a double
     const double = Math.random() < 0.18 && state.speed > 5;
-    state.obstacles.push({ type: "hater", x: W + 20, y: GROUND_Y - 26, w: 26, h: 26, icon: "👎" });
+    state.obstacles.push({ kind: "bad", type: "hater", x: W + 20, y: GROUND_Y - 28, w: 28, h: 28, icon: "👎" });
     if (double) {
-      state.obstacles.push({ type: "hater", x: W + 50, y: GROUND_Y - 26, w: 26, h: 26, icon: "👎" });
+      state.obstacles.push({ kind: "bad", type: "hater", x: W + 52, y: GROUND_Y - 28, w: 28, h: 28, icon: "👎" });
     }
   }
 }
@@ -178,9 +179,10 @@ function spawnPickup() {
   // Floating 👍 — sometimes higher (requires jump)
   const high = Math.random() < 0.5;
   state.pickups.push({
+    kind: "good",
     x: W + 20,
-    y: high ? GROUND_Y - 80 : GROUND_Y - 30,
-    w: 24, h: 24,
+    y: high ? GROUND_Y - 90 : GROUND_Y - 34,
+    w: 28, h: 28,
     icon: "👍",
     points: high ? 20 : 10
   });
@@ -331,10 +333,22 @@ function drawCloud(x, y) {
 }
 
 function drawEmojiBox(item) {
-  ctx.font = "26px 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif";
+  const cx = item.x + item.w / 2;
+  const cy = item.y + item.h / 2;
+  const r = Math.max(item.w, item.h) / 2 + 4;
+  // Opaque backdrop bubble so the thumb pops against the sky/water.
+  ctx.fillStyle = item.kind === "good" ? "#dfffd6" : "#ffd6d6";
+  ctx.strokeStyle = item.kind === "good" ? "#2e8b22" : "#a01818";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+  // Emoji on top
+  ctx.font = "26px 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillText(item.icon, item.x + item.w / 2, item.y + item.h / 2);
+  ctx.fillText(item.icon, cx, cy + 1);
 }
 
 function drawSurfer() {

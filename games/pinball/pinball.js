@@ -87,6 +87,11 @@ const ball = {
 const GRAVITY = 0.32;
 const FRICTION = 0.995;
 const BALL_MAX_V = 14;
+// Plunger lane geometry — divider only exists below LANE_TOP_Y so the ball
+// can crest the top and arc back into the playfield.
+const LANE_TOP_Y = 90;
+const BUMPER_KICK = 1.6;     // additive impulse, not multiplicative — keeps bounces predictable
+const SLING_KICK = 2.2;
 
 // --- Input ---
 const keys = { left: false, right: false, space: false };
@@ -145,8 +150,8 @@ function launchBall() {
   if (game.balls <= 0 || ball.alive) return;
   resetBallToPlunger();
   ball.alive = true;
-  ball.vy = -(9 + Math.random() * 4);
-  ball.vx = -(0.2 + Math.random() * 0.4);
+  ball.vy = -(13 + Math.random() * 3);
+  ball.vx = -(0.4 + Math.random() * 0.4);
   game.ballInPlay = true;
   statusEl.textContent = "Ball in play";
 }
@@ -217,8 +222,8 @@ function step() {
   if (plunger.released) {
     if (!ball.alive && game.balls > 0) {
       ball.alive = true;
-      ball.vy = -(7 + plunger.charge * 10);
-      ball.vx = -(0.2 + Math.random() * 0.5);
+      ball.vy = -(9 + plunger.charge * 11);
+      ball.vx = -(0.4 + Math.random() * 0.4);
       game.ballInPlay = true;
       statusEl.textContent = "Ball in play";
     }
@@ -242,42 +247,54 @@ function step() {
     ball.x += ball.vx;
     ball.y += ball.vy;
 
-    // Walls
-    if (ball.x < WALL + ball.r) { ball.x = WALL + ball.r; ball.vx = -ball.vx * 0.85; }
-    if (ball.x > PLUNGER_X - ball.r && ball.y < H - 80) {
-      ball.x = PLUNGER_X - ball.r;
-      ball.vx = -ball.vx * 0.85;
-    }
-    if (ball.x > W - WALL - ball.r) { ball.x = W - WALL - ball.r; ball.vx = -ball.vx * 0.85; }
-    if (ball.y < WALL + ball.r + 30) { ball.y = WALL + ball.r + 30; ball.vy = -ball.vy * 0.85; }
+    // Outer walls
+    if (ball.x < WALL + ball.r) { ball.x = WALL + ball.r; ball.vx = Math.abs(ball.vx) * 0.85; }
+    if (ball.x > W - WALL - ball.r) { ball.x = W - WALL - ball.r; ball.vx = -Math.abs(ball.vx) * 0.85; }
+    if (ball.y < WALL + ball.r + 20) { ball.y = WALL + ball.r + 20; ball.vy = Math.abs(ball.vy) * 0.85; }
 
-    // Plunger lane right wall opens at top so ball can enter playfield (one-way gate)
-    if (ball.x > PLUNGER_X - ball.r && ball.y >= H - 80) {
-      // Inside plunger lane region — ball stays here until launched then moves up
-      // No left bound check, but block right
-      if (ball.x > W - WALL - ball.r) { ball.x = W - WALL - ball.r; ball.vx = -ball.vx * 0.5; }
+    // Plunger-lane divider — only exists below LANE_TOP_Y, opens at the top
+    // so the ball can crest into the playfield. Two-sided wall based on
+    // which side of the divider the ball center currently sits on.
+    if (ball.y > LANE_TOP_Y) {
+      if (ball.x < PLUNGER_X) {
+        // Playfield side — wall on the right
+        if (ball.x + ball.r > PLUNGER_X) {
+          ball.x = PLUNGER_X - ball.r;
+          ball.vx = -Math.abs(ball.vx) * 0.85;
+        }
+      } else {
+        // Lane side — wall on the left
+        if (ball.x - ball.r < PLUNGER_X) {
+          ball.x = PLUNGER_X + ball.r;
+          ball.vx = Math.abs(ball.vx) * 0.85;
+        }
+      }
+    } else {
+      // Above the lane opening — gentle nudge leftward so the ball
+      // reliably arcs into the playfield instead of falling straight back.
+      if (ball.x > PLUNGER_X - 10 && ball.vy < 2) {
+        ball.vx -= 0.18;
+      }
     }
 
-    // Bumpers
+    // Bumpers — reflect, then add a fixed outward impulse (predictable).
     bumpers.forEach((b) => {
       const dx = ball.x - b.x;
       const dy = ball.y - b.y;
-      const d = Math.hypot(dx, dy);
+      const d = Math.hypot(dx, dy) || 1;
       if (d < b.r + ball.r) {
         const nx = dx / d, ny = dy / d;
-        // Push out and reflect with extra zip
         ball.x = b.x + nx * (b.r + ball.r);
         ball.y = b.y + ny * (b.r + ball.r);
         const dot = ball.vx * nx + ball.vy * ny;
-        ball.vx -= 2 * dot * nx;
-        ball.vy -= 2 * dot * ny;
-        ball.vx *= 1.05; ball.vy *= 1.05;
+        ball.vx = (ball.vx - 2 * dot * nx) * 0.85 + nx * BUMPER_KICK;
+        ball.vy = (ball.vy - 2 * dot * ny) * 0.85 + ny * BUMPER_KICK;
         b.glow = 12;
         addScore(b.points);
       } else if (b.glow > 0) b.glow--;
     });
 
-    // Slingshots (line segments) — simple distance-to-segment check
+    // Slingshots (line segments) — reflect, then fixed outward kick.
     slings.forEach((s) => {
       const hit = pointToSegment(ball.x, ball.y, s.x1, s.y1, s.x2, s.y2);
       if (hit.dist < ball.r + 4) {
@@ -287,8 +304,8 @@ function step() {
         ball.x = hit.px + nnx * (ball.r + 4);
         ball.y = hit.py + nny * (ball.r + 4);
         const dot = ball.vx * nnx + ball.vy * nny;
-        ball.vx = (ball.vx - 2 * dot * nnx) * 1.1;
-        ball.vy = (ball.vy - 2 * dot * nny) * 1.1;
+        ball.vx = (ball.vx - 2 * dot * nnx) * 0.85 + nnx * SLING_KICK;
+        ball.vy = (ball.vy - 2 * dot * nny) * 0.85 + nny * SLING_KICK;
         s.glow = 10;
         addScore(s.points);
       } else if (s.glow > 0) s.glow--;
@@ -365,9 +382,15 @@ function draw() {
   ctx.fillStyle = "#2a3550";
   ctx.fillRect(0, 0, WALL, H);
   ctx.fillRect(W - WALL, 0, WALL, H);
-  ctx.fillRect(0, 0, W, WALL + 24);
-  // Plunger lane divider
-  ctx.fillRect(PLUNGER_X - 2, 0, 2, H - 80);
+  ctx.fillRect(0, 0, W, WALL + 12);
+  // Plunger lane divider — opens at the top so the ball can enter the playfield
+  ctx.fillRect(PLUNGER_X - 2, LANE_TOP_Y, 2, H - LANE_TOP_Y);
+  // Curved kicker visual at the top of the lane
+  ctx.strokeStyle = "#2a3550";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(PLUNGER_X, LANE_TOP_Y, 22, -Math.PI / 2, 0);
+  ctx.stroke();
 
   // Drop targets (V I R A L)
   targets.forEach((t) => {
