@@ -109,6 +109,13 @@
             <span>Games</span>
         </button>
 
+        <!-- Paint Icon on Desktop - opens collaborative pixel canvas -->
+        <!-- Positioned in the second column directly under ChannelTrack via .second-column-row2 -->
+        <button id="paintBtn" class="icon-btn second-column-row2">
+            <img src="images/icons/Icon_Paint.svg" alt="Paint Icon">
+            <span>Paint.exe</span>
+        </button>
+
     </div>
 
     <!-- MARK: Taskbar Section -->
@@ -926,11 +933,41 @@ either way, the deck is yours — let's chat. kent@kentheckel.com)</textarea>
             </div>
         </div>
 
+        <!-- MARK: Paint Modal -->
+        <!-- Collaborative pixel painting board, r/place style. 100x100 grid, ~5px cells, live sync via Supabase Realtime. -->
+        <div id="ModalPaint" class="modal paint-modal">
+            <div id="modalHeaderPaint" class="window-controls">
+                <span class="title">Paint.exe — Everyone's Canvas</span>
+                <div class="window-btn-container">
+                    <button id="paintMinimize" class="window-btn">-</button>
+                    <button id="paintClose" class="window-btn">X</button>
+                </div>
+            </div>
+            <div class="paint-layout">
+                <div class="paint-toolbar">
+                    <div class="paint-palette" id="paintPalette"></div>
+                    <div class="paint-info">
+                        <div class="paint-selected">
+                            <span>Color:</span>
+                            <div class="paint-selected-swatch" id="paintSelectedSwatch"></div>
+                        </div>
+                        <div class="paint-status" id="paintStatus">Connecting...</div>
+                        <div class="paint-hint">Click or drag to paint.<br>Everyone sees it live.</div>
+                    </div>
+                </div>
+                <div class="paint-canvas-wrap">
+                    <canvas id="paintCanvas" width="500" height="500"></canvas>
+                </div>
+            </div>
+        </div>
+
         <!-- Add an audio element for the error sound -->
             <audio id="errorSound">
                 <source src="audio/error-sound.mp3" type="audio/mpeg">
             </audio>
 
+            <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            <script src="paint.js?v=20260521b"></script>
             <script src="script.js?v=20241226b"></script>
 </body>
 
