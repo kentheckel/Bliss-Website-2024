@@ -48,6 +48,12 @@ const slings = [
   { x1: PLUNGER_X - 8, y1: 380, x2: PLUNGER_X - 80, y2: 420, points: 50, glow: 0 }
 ];
 
+// Passive lane guides — angled walls that deflect the ball into the playfield
+// when it cresting the plunger lane. No points, no kick — pure reflection.
+const guides = [
+  { x1: W - WALL - 2, y1: 28, x2: PLUNGER_X - 28, y2: LANE_TOP_Y + 6 }
+];
+
 // Drop targets — top row of "viral" letters
 const targets = [
   { x: WALL + 36, y: 70, w: 30, h: 14, hit: false, label: "V" },
@@ -281,6 +287,22 @@ function step() {
       }
     }
 
+    // Lane guides — passive angled walls that send the ball into play.
+    guides.forEach((g) => {
+      const hit = pointToSegment(ball.x, ball.y, g.x1, g.y1, g.x2, g.y2);
+      if (hit.dist < ball.r + 3) {
+        const nx = ball.x - hit.px;
+        const ny = ball.y - hit.py;
+        const m = Math.hypot(nx, ny) || 1;
+        const nnx = nx / m, nny = ny / m;
+        ball.x = hit.px + nnx * (ball.r + 3);
+        ball.y = hit.py + nny * (ball.r + 3);
+        const dot = ball.vx * nnx + ball.vy * nny;
+        ball.vx = (ball.vx - 2 * dot * nnx) * 0.9;
+        ball.vy = (ball.vy - 2 * dot * nny) * 0.9;
+      }
+    });
+
     // Bumpers — reflect, then add a fixed outward impulse (predictable).
     bumpers.forEach((b) => {
       const dx = ball.x - b.x;
@@ -433,6 +455,24 @@ function draw() {
     ctx.beginPath();
     ctx.moveTo(s.x1, s.y1);
     ctx.lineTo(s.x2, s.y2);
+    ctx.stroke();
+  });
+
+  // Lane guides — chrome bar that sends launched balls into play
+  guides.forEach((g) => {
+    ctx.strokeStyle = "#aacbe6";
+    ctx.lineWidth = 6;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(g.x1, g.y1);
+    ctx.lineTo(g.x2, g.y2);
+    ctx.stroke();
+    // highlight
+    ctx.strokeStyle = "rgba(255,255,255,0.5)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(g.x1, g.y1 - 1);
+    ctx.lineTo(g.x2, g.y2 - 1);
     ctx.stroke();
   });
 
