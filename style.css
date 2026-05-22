@@ -114,12 +114,11 @@ body, html {
     top: 30px;
 }
 
-/* Second column row 2 — default slot beneath ChannelTrack (Paint.exe lives here) */
-/* Same left:140px as second-column; top shifted by one icon row + gap to sit below */
+/* Second column row 2 — sits below Uptides in the same column */
 .icon-btn.second-column-row2 {
     position: fixed;
-    left: 140px;
-    top: 184px;
+    left: 120px;
+    top: 280px;
 }
 
 
