@@ -67,7 +67,14 @@ function minimizeModal(modal) {
 }
 
 // ---- Taskbar Management ----
+// Stable labels (so a renamed header like "New Message" -> typed subject
+// doesn't make the taskbar button change identity)
+const TASKBAR_LABEL_OVERRIDES = {
+    ModalContact: 'Contact',
+};
+
 function getTaskbarLabel(modal) {
+    if (TASKBAR_LABEL_OVERRIDES[modal.id]) return TASKBAR_LABEL_OVERRIDES[modal.id];
     const header = modal.querySelector('.window-controls span, .window-controls .title');
     if (header) return header.textContent.trim();
     return modal.id.replace('Modal', '');
@@ -224,13 +231,18 @@ function autoRegisterIcons() {
                 return;
             }
 
-            // Contact icon opens both Gmail and the Compose modal
+            // Contact icon: open the compose window. Open Gmail behind it only
+            // the first time (so re-clicking the icon to restore a minimized
+            // compose doesn't shove Gmail back in front of everything).
             if (btnId === 'contactBtn') {
-                const gmail = document.getElementById('ModalGmail');
-                if (gmail) openModal(gmail);
                 const contact = document.getElementById('ModalContact');
-                if (contact) {
-                    setTimeout(() => openModal(contact), 100);
+                const gmail = document.getElementById('ModalGmail');
+                const contactAlreadyOpened = contact && contact.dataset.hasBeenOpened === 'true';
+                if (gmail && !contactAlreadyOpened) {
+                    openModal(gmail);
+                    if (contact) setTimeout(() => openModal(contact), 100);
+                } else if (contact) {
+                    openModal(contact);
                 }
                 return;
             }

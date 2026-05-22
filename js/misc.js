@@ -101,6 +101,81 @@ document.addEventListener('DOMContentLoaded', () => {
             replyTo.value = this.value;
         });
     }
+
+    // AJAX submit so the form stays in the win95 UI (no new tab popup)
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('contactStatus');
+    const statusTitle = document.getElementById('contactStatusTitle');
+    const statusBody = document.getElementById('contactStatusBody');
+    const statusIcon = status ? status.querySelector('.contact-status-icon') : null;
+    const sendAnother = document.getElementById('contactStatusNew');
+    const sendBtn = document.getElementById('sendButton');
+
+    function showStatus({ ok, title, body }) {
+        if (!status) return;
+        form.style.display = 'none';
+        status.style.display = 'flex';
+        statusTitle.textContent = title;
+        statusBody.textContent = body;
+        statusIcon.textContent = ok ? '✓' : '!';
+        statusIcon.classList.toggle('error', !ok);
+    }
+
+    function resetForm() {
+        if (!status) return;
+        status.style.display = 'none';
+        form.style.display = '';
+        form.reset();
+        if (headerText) headerText.textContent = 'New Message';
+        if (sendBtn) {
+            sendBtn.disabled = false;
+            sendBtn.textContent = 'Send';
+        }
+    }
+
+    if (sendAnother) sendAnother.addEventListener('click', resetForm);
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (sendBtn) {
+                sendBtn.disabled = true;
+                sendBtn.textContent = 'Sending...';
+            }
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(form),
+                });
+                const data = await res.json().catch(() => ({}));
+                if (res.ok && (data.success === 'true' || data.success === true)) {
+                    showStatus({
+                        ok: true,
+                        title: 'Message sent!',
+                        body: "Kent will get back to you soon.",
+                    });
+                } else {
+                    showStatus({
+                        ok: false,
+                        title: "Couldn't send",
+                        body: (data && data.message) || 'Something went wrong. Try again or email kent@kentheckel.com directly.',
+                    });
+                }
+            } catch (err) {
+                showStatus({
+                    ok: false,
+                    title: "Couldn't send",
+                    body: 'Network error. Try again or email kent@kentheckel.com directly.',
+                });
+            } finally {
+                if (sendBtn) {
+                    sendBtn.disabled = false;
+                    sendBtn.textContent = 'Send';
+                }
+            }
+        });
+    }
 });
 
 // ---- Mobile Warning ----

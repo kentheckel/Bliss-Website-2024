@@ -892,6 +892,51 @@ body, html {
     background-color: #555;
 }
 
+.contact-status {
+    position: absolute;
+    inset: 40px 0 0 0;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    gap: 12px;
+}
+
+.contact-status-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #1a73e8;
+    color: #fff;
+    font-size: 36px;
+    line-height: 60px;
+    font-weight: bold;
+}
+
+.contact-status-icon.error {
+    background: #d93025;
+}
+
+.contact-status-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #202124;
+}
+
+.contact-status-body {
+    font-size: 14px;
+    color: #5f6368;
+    max-width: 320px;
+    line-height: 1.5;
+}
+
+#contactStatusNew {
+    margin-top: 8px;
+}
+
 .vertical-divider {
     width: 1px;
     height: 20px;
