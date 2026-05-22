@@ -162,15 +162,15 @@ function spawnObstacle() {
       kind: "bad",
       type: "flyer",
       x: W + 20,
-      y: GROUND_Y - 70, // flies high — must duck
-      w: 30, h: 30,
+      y: GROUND_Y - 60, // flies high — must duck
+      w: 36, h: 28,
       icon: "👎"
     });
   } else {
     const double = Math.random() < 0.18 && state.speed > 5;
-    state.obstacles.push({ kind: "bad", type: "hater", x: W + 20, y: GROUND_Y - 28, w: 28, h: 28, icon: "👎" });
+    state.obstacles.push({ kind: "bad", type: "hater", x: W + 20, y: GROUND_Y - 26, w: 26, h: 26, icon: "👎" });
     if (double) {
-      state.obstacles.push({ kind: "bad", type: "hater", x: W + 52, y: GROUND_Y - 28, w: 28, h: 28, icon: "👎" });
+      state.obstacles.push({ kind: "bad", type: "hater", x: W + 50, y: GROUND_Y - 26, w: 26, h: 26, icon: "👎" });
     }
   }
 }
@@ -181,8 +181,8 @@ function spawnPickup() {
   state.pickups.push({
     kind: "good",
     x: W + 20,
-    y: high ? GROUND_Y - 90 : GROUND_Y - 34,
-    w: 28, h: 28,
+    y: high ? GROUND_Y - 80 : GROUND_Y - 30,
+    w: 24, h: 24,
     icon: "👍",
     points: high ? 20 : 10
   });
