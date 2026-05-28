@@ -17,7 +17,7 @@ window.ASFC_TEAM = {
 		posts: [
 			{
 				date: "15 January 2025",
-				text: "Hey! I'm Kent, a Content Strategist and Digital Media Innovator with proven expertise in YouTube Growth and Revenue Generation. 10+ years driving over 1 billion organic views, millions in content revenue & millions in brand deal revenue.",
+				text: "Hey! I'm Kent, Founder &amp; CEO of Antisocial Friends Club. We run social media and YouTube for our clients — strategy, packaging, operations, sales, all under one roof. 10+ years and 1B+ organic views getting here.",
 				img: "images/post/Kent3 Copy.JPG"
 			},
 			{
@@ -51,16 +51,17 @@ window.ASFC_TEAM = {
 	jordyn: {
 		name: "Jordyn Brooks",
 		pronouns: "She/Her",
-		role: "Director of Operations",
+		role: "Chief of Staff",
 		department: "Operations",
 		intro: [
-			{ icon: "fas fa-shopping-bag", label: "Director of Operations at: Antisocial Friends Club" },
-			{ icon: "fas fa-tasks", label: "Runs: SOPs, onboarding, &amp; the entire ops machine" },
+			{ icon: "fas fa-shopping-bag", label: "Chief of Staff at: Antisocial Friends Club" },
+			{ icon: "fas fa-tasks", label: "Runs: SOPs, onboarding, &amp; keeps every department aligned" },
 			{ icon: "fas fa-envelope", label: "jordyn@antisocialfriendsclub.com" },
 			{ icon: "fas fa-briefcase", label: "Status: Full Time" }
 		],
 		photo: "images/team/jordyn.jpg",
 		posts: [
+			{ date: "1 January 2025", text: "Hey, I'm Jordyn — Chief of Staff at Antisocial Friends Club. I run the day-to-day: SOPs, onboarding, client kickoffs, and keeping every department moving in the same direction. If something needs to ship, I make sure it ships." },
 			{ date: "14 March 2025", text: "New SOPs are live in Notion. Onboarding checklist now under 20 minutes 🎉 If you spot anything weird in the templates, ping me directly." },
 			{ date: "2 February 2025", text: "Q1 ops audit: every recurring task now has an owner, a doc, and a deadline. The era of \"I'll do it later\" is OVER 🫡" },
 			{ date: "20 January 2025", text: "Templated the entire creator-onboarding flow. New clients now go from contract signed → kicked off in 48 hours." }
@@ -70,16 +71,17 @@ window.ASFC_TEAM = {
 	levi: {
 		name: "Levi Rassmussen",
 		pronouns: "He/Him",
-		role: "Lead Strategist",
+		role: "Chief Strategist",
 		department: "Strategy",
 		intro: [
-			{ icon: "fas fa-shopping-bag", label: "Lead Strategist at: Antisocial Friends Club" },
+			{ icon: "fas fa-shopping-bag", label: "Chief Strategist at: Antisocial Friends Club" },
 			{ icon: "fas fa-chart-line", label: "Obsessed with: CTR, retention, &amp; packaging" },
 			{ icon: "fas fa-envelope", label: "levi@antisocialfriendsclub.com" },
 			{ icon: "fas fa-briefcase", label: "Status: Full Time" }
 		],
 		photo: "images/team/levi.jpg",
 		posts: [
+			{ date: "1 January 2025", text: "Hey, I'm Levi — Chief Strategist at Antisocial Friends Club. I lead our strategy team across YouTube and social: packaging, positioning, content frameworks. If a channel needs a roadmap, that's my desk." },
 			{ date: "2 April 2025", text: "Channel we packaged last month just crossed 1M views on a single upload. Title + thumb A/B test won by 38% CTR over the control. Strategy works, kids 📈" },
 			{ date: "18 March 2025", text: "Hot take: most creators don't have a content problem, they have a packaging problem. Same idea, better title + thumb = different universe." },
 			{ date: "5 February 2025", text: "Spent the morning reverse-engineering MrBeast titles. The pattern isn't \"big number,\" it's \"specific stakes.\" Worth the rabbit hole." }
@@ -89,16 +91,17 @@ window.ASFC_TEAM = {
 	brendan: {
 		name: "Brendan Cole",
 		pronouns: "He/Him",
-		role: "Lead Strategist",
+		role: "Chief Strategist",
 		department: "Strategy",
 		intro: [
-			{ icon: "fas fa-shopping-bag", label: "Lead Strategist at: Antisocial Friends Club" },
+			{ icon: "fas fa-shopping-bag", label: "Chief Strategist at: Antisocial Friends Club" },
 			{ icon: "fas fa-bullseye", label: "Focus: retention, rewatch, &amp; hook design" },
 			{ icon: "fas fa-envelope", label: "brendan@antisocialfriendsclub.com" },
 			{ icon: "fas fa-briefcase", label: "Status: Contractor" }
 		],
 		photo: "images/team/brendan.jpg",
 		posts: [
+			{ date: "1 January 2025", text: "Hey, I'm Brendan — Chief Strategist at Antisocial Friends Club. I obsess over retention, hooks, and rewatch. My job is making sure our clients' videos earn the click and hold the watch." },
 			{ date: "11 April 2025", text: "Stop optimizing for the algorithm, start optimizing for the rewatch. If your retention graph dips at second 3, the algo never even gets a vote." },
 			{ date: "30 March 2025", text: "Looked at 50 top-performing videos in our portfolio - 47 of them open with a question. Hooks > intros, always." },
 			{ date: "12 February 2025", text: "Strategy doc shipped for a new sports channel. First three videos all hit above-average CTR. We're cooking 🔥" }
@@ -118,6 +121,7 @@ window.ASFC_TEAM = {
 		],
 		photo: "images/team/brelan.jpg",
 		posts: [
+			{ date: "1 January 2025", text: "Hey, I'm Brelan — Vertical Specialist at Antisocial Friends Club. I cut shorts, reels, and TikToks for our clients. Vertical 9:16 is home base." },
 			{ date: "22 April 2025", text: "Shorts experiment of the week: vertical re-edits with on-screen captions ran 3.2x watch time vs. uncaptioned. Captions are not optional in 2025." },
 			{ date: "8 April 2025", text: "Re-cut a long-form into 6 verticals. Combined they pulled more views than the original. Repurposing is undefeated." },
 			{ date: "2 March 2025", text: "If the first frame is boring, nothing else matters. Hook the eye in &lt;1 second or get scrolled past." }
@@ -137,6 +141,7 @@ window.ASFC_TEAM = {
 		],
 		photo: "images/team/spencer.jpg",
 		posts: [
+			{ date: "1 January 2025", text: "Hey, I'm Spencer — Thumbnail Designer at Antisocial Friends Club. I design thumbnails that read at 200px on a phone in sunlight. Contrast over clever, every time." },
 			{ date: "18 April 2025", text: "Shipped 14 thumbs this week. Reminder: contrast &gt; clever. If it doesn't read at 200px on a phone in sunlight, it doesn't exist." },
 			{ date: "1 April 2025", text: "Three faces max. Past three, the eye doesn't know where to land. Designed enough thumbs to die on this hill 🪦" },
 			{ date: "10 March 2025", text: "New thumbnail framework: ONE focal point, TWO supporting elements, THREE color values. Boring rules make winning thumbs." }
@@ -156,6 +161,7 @@ window.ASFC_TEAM = {
 		],
 		photo: "images/team/jake.jpg",
 		posts: [
+			{ date: "1 January 2025", text: "Hey, I'm Jake — Vertical Specialist at Antisocial Friends Club. I edit shorts and reels for our clients. Hook in 1.4 seconds, retention is religion." },
 			{ date: "28 April 2025", text: "Big win: a single vertical clip pulled 12M views overnight 🍿 Receipts in the analytics doc. The hook was 1.4 seconds." },
 			{ date: "15 April 2025", text: "Editing reminder: cut on the WORD, not the breath. Feels snappier, retention loves it." },
 			{ date: "3 March 2025", text: "Shorts strategy: post 3x/day for 30 days. Then look at retention curves, not view counts. View counts lie, retention doesn't." }
@@ -175,6 +181,7 @@ window.ASFC_TEAM = {
 		],
 		photo: "images/team/david.svg",
 		posts: [
+			{ date: "1 January 2025", text: "Hey, I'm David — Vertical Specialist at Antisocial Friends Club and editor at Crushed It. Short-form and reaction content are my lane." },
 			{ date: "5 May 2025", text: "Crushed It tip of the week: don't over-cut. Let the reaction breathe. Two extra frames of silence beats one extra zoom-bump." },
 			{ date: "20 April 2025", text: "If you're editing reaction content and you're afraid of pauses, you're going to bury the moment that mattered." },
 			{ date: "1 April 2025", text: "Color grading short-form is underrated. 10 seconds in DaVinci can take a phone clip from mid to cinematic." }
@@ -194,6 +201,7 @@ window.ASFC_TEAM = {
 		],
 		photo: "images/team/casey.jpg",
 		posts: [
+			{ date: "1 January 2025", text: "Hey, I'm Casey — Sales at Antisocial Friends Club. I close creator deals and partnerships, manage the pipeline, and bring new clients into the fold." },
 			{ date: "9 May 2025", text: "Closed two new creator deals this week 💼 Pipeline is looking 🔥 for Q3. If anyone has warm intros to mid-size sports channels, slide into my DMs." },
 			{ date: "22 April 2025", text: "The best sales pitch is a screenshot of someone else's analytics dashboard. Receipts &gt; promises." },
 			{ date: "3 April 2025", text: "If a creator asks \"can you guarantee growth,\" the answer is no. If they ask \"can you guarantee process,\" the answer is yes. That's the deal." }
