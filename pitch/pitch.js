@@ -2980,22 +2980,21 @@
      SLIDE — PRO SPORTS YOUTUBE LEADERBOARD
      NBA + NFL top 10 by subscribers, last-28-day views,
      and (NBA) historical peak monthly views.
-     Data sourced from Kent's Notion trackers, snapshot 2026-05-29.
-     NBA 28-day window: 2026-05-01 → 2026-05-29.
+     Data sourced from Kent's Notion trackers (rolling 28d window), snapshot 2026-05-29.
      ---------------------------------------------------------- */
   const LEADERBOARD = {
     snapshotDate: '2026-05-29',
     nba: [
-      { rank: 1,  team: 'San Antonio Spurs',      subs:  206000, views28d: 21574550, peakMo: 21574550 },
-      { rank: 2,  team: 'Los Angeles Lakers',     subs: 3730000, views28d:  8189235, peakMo: 25534667 },
-      { rank: 3,  team: 'Cleveland Cavaliers',    subs:  146000, views28d:  6170201, peakMo:  6170201 },
-      { rank: 4,  team: 'Oklahoma City Thunder',  subs:  218000, views28d:  5703952, peakMo:  5703952 },
-      { rank: 5,  team: 'New York Knicks',        subs:  161000, views28d:  4047494, peakMo:  4047494 },
-      { rank: 6,  team: 'Minnesota Timberwolves', subs:  149000, views28d:  3339148, peakMo:  4389447 },
-      { rank: 7,  team: 'Golden State Warriors',  subs: 2300000, views28d:  3319544, peakMo: 11808705 },
-      { rank: 8,  team: 'Detroit Pistons',        subs:   99500, views28d:  3095986, peakMo:  3095986 },
-      { rank: 9,  team: 'Indiana Pacers',         subs:  119000, views28d:  1784444, peakMo:  1946547 },
-      { rank: 10, team: 'Miami Heat',             subs:  201000, views28d:  1410142, peakMo:  3315078 },
+      { rank: 1,  team: 'San Antonio Spurs',      subs:  206000, views28d: 21727539, peakMo: 21727539 },
+      { rank: 2,  team: 'Los Angeles Lakers',     subs: 3730000, views28d:  8318857, peakMo: 25534667 },
+      { rank: 3,  team: 'Cleveland Cavaliers',    subs:  146000, views28d:  6110981, peakMo:  6110981 },
+      { rank: 4,  team: 'Oklahoma City Thunder',  subs:  218000, views28d:  5467092, peakMo:  5467092 },
+      { rank: 5,  team: 'New York Knicks',        subs:  161000, views28d:  3791430, peakMo:  4047494 },
+      { rank: 6,  team: 'Minnesota Timberwolves', subs:  149000, views28d:  3387634, peakMo:  4389447 },
+      { rank: 7,  team: 'Golden State Warriors',  subs: 2300000, views28d:  3279038, peakMo: 11808705 },
+      { rank: 8,  team: 'Detroit Pistons',        subs:   99500, views28d:  3133884, peakMo:  3133884 },
+      { rank: 9,  team: 'Indiana Pacers',         subs:  119000, views28d:  1787477, peakMo:  1946547 },
+      { rank: 10, team: 'Orlando Magic',          subs:  875000, views28d:  1452403, peakMo: 12334553 },
     ],
     nfl: [
       { rank: 1,  team: 'Cleveland Browns',       subs:  359000, views28d: 5655286,  total: 239447725 },
