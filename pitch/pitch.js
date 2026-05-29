@@ -148,6 +148,7 @@
     { id: 'tool-playermon', title: 'Player Monitor',             render: renderToolPlayerMonitor },
     { id: 'tool-postgame',  title: 'Postgame Analytics',         render: renderToolPostgame },
     { id: 'tool-uptides',   title: 'Uptides.ai',                 render: renderToolUptides },
+    { id: 'specialists',    title: 'Specialist Teams',           render: (el) => renderSpecialists(el, 'teams') },
     { id: 'monetize-team',  title: 'Monetization · Teams',       render: renderMonetizeTeam },
     { id: 'work-team',      title: 'How We Work · Teams',        render: renderWorkTeam },
     { id: 'capacity-team',  title: 'Studio Capacity · Teams',    render: renderCapacityTeam },
@@ -161,6 +162,7 @@
     { id: 'nil',              title: 'NIL Frameworks',            render: renderNIL },
     { id: 'wave',             title: 'The Untapped Wave',         render: renderWave },
     { id: 'tools',            title: 'Proprietary Tools',         render: renderTools },
+    { id: 'specialists',      title: 'Specialist Teams',          render: (el) => renderSpecialists(el, 'athletes') },
     { id: 'monetize-athlete', title: 'Monetization · Athletes',   render: renderMonetizeAthlete },
     { id: 'work-athlete',     title: 'How We Work · Athletes',    render: renderWorkAthlete },
     { id: 'capacity-athlete', title: 'Studio Capacity · Athletes',render: renderCapacityAthlete },
@@ -706,7 +708,7 @@
       ] },
     { name: 'Ochocinco Soccer Pod',  stat: '5.5M opening wknd',    detail: 'New podcast, new sport, new audience',                         app: 'Ochocinco.exe',
       url: 'https://www.youtube.com/@thelaterunshow' },
-    { name: 'Jim Gaffigan',          stat: '62M views',            detail: '$415K content rev in 6 months',                                app: 'Gaffigan.exe',
+    { name: 'Jim Gaffigan',          stat: '62M views in 6 months',detail: '$415K content rev in 6 months',                                app: 'Gaffigan.exe',
       url: 'https://www.youtube.com/@jimgaffigan' },
     { name: 'Build-A-Bear Workshop', stat: '1M KPI → 2M delivered',detail: 'Original animated kids series · 2× target',                    app: 'BuildABear.exe',
       url: 'https://www.youtube.com/@buildabear' },
@@ -911,6 +913,10 @@
             <span class="sc-sub">Inputs → outcomes</span>
           </div>
           <ul class="sc-list">
+            <li>
+              <span class="sc-title">First 100M+ view game</span>
+              <span class="sc-outcome">→ 130M social views from in-game content</span>
+            </li>
             <li>
               <span class="sc-title">2025-26 season social strategy</span>
               <span class="sc-outcome">→ #19 → #4 NBA ranking</span>
@@ -1782,6 +1788,7 @@
             <div class="ts-price">
               <div class="ts-price-num">${cfg.price}</div>
               <div class="ts-price-unit">${cfg.priceUnit}</div>
+              ${cfg.priceNote ? `<div class="ts-price-note">${cfg.priceNote}</div>` : ''}
             </div>
           </div>
 
@@ -1816,6 +1823,7 @@
       subtitle: 'Plug in your roster. We listen to everything tied to those names so you don&rsquo;t have to.',
       price: '$5,000',
       priceUnit: '/ MONTH',
+      priceNote: '✓ Included in monthly consulting package',
       description: `Tracks every post, comment, reply, Reddit thread, X mention, and Google News article tied to your roster &mdash; <strong>nightly</strong>. The moments fans are already talking about land in your inbox <em>before</em> your team posts about them.`,
       features: [
         {
@@ -1894,6 +1902,7 @@
             <div class="ts-price">
               <div class="ts-price-num">$10,000</div>
               <div class="ts-price-unit">/ MONTH</div>
+              <div class="ts-price-note">✓ Included in monthly consulting package</div>
             </div>
           </div>
 
@@ -1977,6 +1986,7 @@
       subtitle: 'A massive data play on the videos you already wrote off. Compounds from day one.',
       price: '$2,000',
       priceUnit: '/ MONTH',
+      priceNote: '✓ Included in monthly consulting package',
       description: `Re-optimizes <strong>titles and thumbnails</strong> on your back catalog every two weeks. Winners stay. Losers retest. Every result feeds back to your strategist &mdash; so what works on old content compounds your <em>forward</em> strategy too.`,
       features: [
         {
@@ -2004,6 +2014,122 @@
         { num: 'Day 1', lbl: 'time to value' },
       ],
     });
+  }
+
+  /* ----------------------------------------------------------
+     SLIDE — SPECIALIST TEAMS (Thumbnails + Vertical Execution)
+     ---------------------------------------------------------- */
+  function renderSpecialists(el, variant) {
+    el.classList.add('slide-specialists');
+    const verticalContext = variant === 'teams'
+      ? `A <strong>disconnected team</strong> that shows up for game time. Strategizes and executes vertical content around game footage &mdash; broadcast clipping, high-tier edits, broadcast + phone footage blended into high-performing verticals for every platform that takes them.`
+      : `A <strong>disconnected team</strong> that shows up for game time &mdash; built around pro sports rosters. Broadcast clipping, high-tier edits, broadcast + phone footage blended into high-performing verticals for every platform that takes them.`;
+
+    el.innerHTML = `
+      <div class="eyebrow">▮ SPECIALIST TEAMS · PLUG-IN LAYER ▮</div>
+      <h1>Two specialist pods you can switch on the day you need them.</h1>
+      <div class="sp-subtitle">
+        Both ship <strong>100+ deliverables a month</strong>. Both are different disciplines than the in-house studio &mdash; and both have moved numbers that the main feed couldn't.
+      </div>
+
+      <div class="sp-grid">
+
+        <div class="sp-card sp-card-thumbs">
+          <div class="sp-window">
+            <span class="sp-app">Thumbnail_Artist.exe</span>
+            <span class="sp-x">×</span>
+          </div>
+          <div class="sp-body">
+            <div class="sp-hero">
+              <div class="sp-hero-left">
+                <div class="sp-icon">🎨</div>
+                <div class="sp-hero-meta">
+                  <div class="sp-name">THUMBNAIL ARTIST</div>
+                  <div class="sp-tag">CTR LIFT · IMPRESSION GROWTH</div>
+                </div>
+              </div>
+              <div class="sp-price">
+                <div class="sp-price-num">$10,000</div>
+                <div class="sp-price-unit">/ MONTH</div>
+                <div class="sp-price-note">✓ Included in monthly consulting package</div>
+              </div>
+            </div>
+
+            <div class="sp-desc">
+              The single biggest lever on YouTube &mdash; and the one most channels miss. <strong>Thumbnail design is its own discipline</strong>, not graphic design with a different aspect ratio. The CTR lift drives impression growth that nothing else on the channel can match.
+            </div>
+
+            <div class="sp-feature">
+              <div class="sp-feature-label">▸ WHAT YOU GET</div>
+              <ul class="sp-feature-list">
+                <li><span class="sp-blt-h">100+ THUMBNAILS</span><span class="sp-blt-sub">Delivered per month</span></li>
+                <li><span class="sp-blt-h">CTR-NATIVE CRAFT</span><span class="sp-blt-sub">Specialist discipline, not generalist design</span></li>
+                <li><span class="sp-blt-h">A/B + ITERATE</span><span class="sp-blt-sub">Test, learn, lift the whole channel</span></li>
+                <li><span class="sp-blt-h">PAIRS WITH UPTIDES</span><span class="sp-blt-sub">Back-catalog gets the same treatment</span></li>
+              </ul>
+            </div>
+
+            <div class="sp-stat-row">
+              <div class="sp-stat"><div class="sp-stat-num">10×</div><div class="sp-stat-lbl">impressions, first video</div></div>
+              <div class="sp-stat"><div class="sp-stat-num">100+</div><div class="sp-stat-lbl">thumbnails / month</div></div>
+            </div>
+
+            <div class="sp-receipt">
+              <span class="sp-receipt-tag">▸ RECEIPT</span>
+              Podcast client &mdash; the <em>first video</em> our thumbnail artist touched did <strong>10× the impressions</strong> the channel had been averaging per video.
+            </div>
+          </div>
+        </div>
+
+        <div class="sp-card sp-card-verticals">
+          <div class="sp-window">
+            <span class="sp-app">Vertical_Team.exe</span>
+            <span class="sp-x">×</span>
+          </div>
+          <div class="sp-body">
+            <div class="sp-hero">
+              <div class="sp-hero-left">
+                <div class="sp-icon">📱</div>
+                <div class="sp-hero-meta">
+                  <div class="sp-name">VERTICAL EXECUTION</div>
+                  <div class="sp-tag">GAME-TIME POD · EVERY PLATFORM</div>
+                </div>
+              </div>
+              <div class="sp-price">
+                <div class="sp-price-num">$10,000</div>
+                <div class="sp-price-unit">/ MONTH</div>
+                <div class="sp-price-note">✓ Included in monthly consulting package</div>
+              </div>
+            </div>
+
+            <div class="sp-desc">
+              ${verticalContext} Ships to <strong>Shorts, Reels, TikTok, Facebook Reels</strong> &mdash; everywhere vertical lives.
+            </div>
+
+            <div class="sp-feature">
+              <div class="sp-feature-label">▸ WHAT YOU GET</div>
+              <ul class="sp-feature-list">
+                <li><span class="sp-blt-h">100+ VERTICALS</span><span class="sp-blt-sub">Delivered per month</span></li>
+                <li><span class="sp-blt-h">GAME-TIME POD</span><span class="sp-blt-sub">Live for every game, separate from studio</span></li>
+                <li><span class="sp-blt-h">BROADCAST + PHONE</span><span class="sp-blt-sub">High-tier edits blending both feeds</span></li>
+                <li><span class="sp-blt-h">EVERY PLATFORM</span><span class="sp-blt-sub">Shorts · Reels · TikTok · FB Reels</span></li>
+              </ul>
+            </div>
+
+            <div class="sp-stat-row">
+              <div class="sp-stat"><div class="sp-stat-num">10M+</div><div class="sp-stat-lbl">views per game added</div></div>
+              <div class="sp-stat"><div class="sp-stat-num">100+</div><div class="sp-stat-lbl">verticals / month</div></div>
+            </div>
+
+            <div class="sp-receipt">
+              <span class="sp-receipt-tag">▸ RECEIPT</span>
+              Pro sports deployment &mdash; the vertical pod added <strong>10M+ views per game</strong> on top of what the in-house team was already shipping.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    `;
   }
 
   /* ----------------------------------------------------------
@@ -2521,17 +2647,17 @@
             <div class="wpr-tier">
               <div class="wpr-tier-price">$12,000<span class="wpr-tier-per">/mo</span></div>
               <div class="wpr-tier-name">Education &amp; Workshops</div>
-              <div class="wpr-tier-detail">Monthly in-person or remote workshop, dedicated college sports analytics study session, quarterly content audit + roadmap, strategist office hours, read-only access to Channel Track + Post-Game Analytics.</div>
+              <div class="wpr-tier-detail">We come out for a full-day on-site workshop, then run three weeks of remote follow-up sessions. In-person or remote workshops, dedicated analytics study sessions, strategist office hours.</div>
             </div>
             <div class="wpr-tier">
               <div class="wpr-tier-price">$30,000<span class="wpr-tier-per">/mo</span></div>
               <div class="wpr-tier-name">Strategy &amp; Execution</div>
-              <div class="wpr-tier-detail">Custom strategies for every tentpole event, game-over-game strategy, in-person workshops, on-site support.</div>
+              <div class="wpr-tier-detail">Custom strategies for every tentpole event, game-over-game strategy, in-person workshops, on-site support &mdash; let us strategize every aspect of your social media.</div>
             </div>
             <div class="wpr-tier wpr-tier-plus">
-              <div class="wpr-tier-price">$45,000<span class="wpr-tier-per">/mo</span></div>
-              <div class="wpr-tier-name">+ Dedicated Vertical Team + Thumbnail Expert</div>
-              <div class="wpr-tier-detail">Vertical team remotely present at every game producing 100+ verticals/mo. Dedicated thumbnail expert executing across all projects.</div>
+              <div class="wpr-tier-price">$40,000<span class="wpr-tier-per">/mo</span></div>
+              <div class="wpr-tier-name">Full Strategy + Execution + Dedicated Vertical Team + Thumbnail Expert</div>
+              <div class="wpr-tier-detail">All social strategy and execution. Team remotely present at every game producing 100+ verticals a month. Dedicated thumbnail expert executing across all YouTube projects.</div>
             </div>
           </div>
         </div>
@@ -2854,34 +2980,34 @@
      SLIDE — PRO SPORTS YOUTUBE LEADERBOARD
      NBA + NFL top 10 by subscribers, last-28-day views,
      and (NBA) historical peak monthly views.
-     Data sourced from Kent's Notion trackers, snapshot 2026-05-05.
-     NFL 28-day window: 2026-04-07 → 2026-05-05.
+     Data sourced from Kent's Notion trackers, snapshot 2026-05-29.
+     NBA 28-day window: 2026-05-01 → 2026-05-29.
      ---------------------------------------------------------- */
   const LEADERBOARD = {
-    snapshotDate: '2026-05-05',
+    snapshotDate: '2026-05-29',
     nba: [
-      { rank: 1,  team: 'Los Angeles Lakers',     subs: 3390000, views28d: 16733610, peakMo: 31420548 },
-      { rank: 2,  team: 'San Antonio Spurs',      subs:  184000, views28d: 11677497, peakMo: 15944196 },
-      { rank: 3,  team: 'Orlando Magic',          subs:  877000, views28d: 11047420, peakMo: 12334553 },
-      { rank: 4,  team: 'Denver Nuggets',         subs:  203000, views28d:  9862797, peakMo: 10538398 },
-      { rank: 5,  team: 'Golden State Warriors',  subs: 2300000, views28d:  8227652, peakMo: 12160011 },
-      { rank: 6,  team: 'Minnesota Timberwolves', subs:  147000, views28d:  4613066, peakMo:  4613066 },
-      { rank: 7,  team: 'Oklahoma City Thunder',  subs:  212000, views28d:  3541765, peakMo:  3643784 },
-      { rank: 8,  team: 'Cleveland Cavaliers',    subs:  144000, views28d:  3455483, peakMo:  3455483 },
-      { rank: 9,  team: 'Atlanta Hawks',          subs:  105000, views28d:  2694631, peakMo:  2694631 },
-      { rank: 10, team: 'Phoenix Suns',           subs:  143000, views28d:  2693502, peakMo:  5667560 },
+      { rank: 1,  team: 'San Antonio Spurs',      subs:  206000, views28d: 21574550, peakMo: 21574550 },
+      { rank: 2,  team: 'Los Angeles Lakers',     subs: 3730000, views28d:  8189235, peakMo: 25534667 },
+      { rank: 3,  team: 'Cleveland Cavaliers',    subs:  146000, views28d:  6170201, peakMo:  6170201 },
+      { rank: 4,  team: 'Oklahoma City Thunder',  subs:  218000, views28d:  5703952, peakMo:  5703952 },
+      { rank: 5,  team: 'New York Knicks',        subs:  161000, views28d:  4047494, peakMo:  4047494 },
+      { rank: 6,  team: 'Minnesota Timberwolves', subs:  149000, views28d:  3339148, peakMo:  4389447 },
+      { rank: 7,  team: 'Golden State Warriors',  subs: 2300000, views28d:  3319544, peakMo: 11808705 },
+      { rank: 8,  team: 'Detroit Pistons',        subs:   99500, views28d:  3095986, peakMo:  3095986 },
+      { rank: 9,  team: 'Indiana Pacers',         subs:  119000, views28d:  1784444, peakMo:  1946547 },
+      { rank: 10, team: 'Miami Heat',             subs:  201000, views28d:  1410142, peakMo:  3315078 },
     ],
     nfl: [
-      { rank: 1,  team: 'Cleveland Browns',       subs:  358000, views28d: 7673277,  total: 234453156 },
-      { rank: 2,  team: 'Philadelphia Eagles',    subs:  924000, views28d: 7060962,  total: 660773000 },
-      { rank: 3,  team: 'Pittsburgh Steelers',    subs:  368000, views28d: 6862433,  total: 215080772 },
-      { rank: 4,  team: 'Dallas Cowboys',         subs:  518000, views28d: 6351162,  total: 252217996 },
-      { rank: 5,  team: 'Las Vegas Raiders',      subs:  348000, views28d: 5916525,  total: 167773854 },
-      { rank: 6,  team: 'New York Giants',        subs:  302000, views28d: 5538622,  total: 193560088 },
-      { rank: 7,  team: 'Los Angeles Rams',       subs:  389000, views28d: 5316121,  total: 139397119 },
-      { rank: 8,  team: 'Kansas City Chiefs',     subs: 1480000, views28d: 4428163,  total: 350009588 },
-      { rank: 9,  team: 'Los Angeles Chargers',   subs:  448000, views28d: 4124142,  total: 417787247 },
-      { rank: 10, team: 'Baltimore Ravens',       subs:  358000, views28d: 3426748,  total: 150821133 },
+      { rank: 1,  team: 'Cleveland Browns',       subs:  359000, views28d: 5655286,  total: 239447725 },
+      { rank: 2,  team: 'Philadelphia Eagles',    subs:  927000, views28d: 5405162,  total: 665148352 },
+      { rank: 3,  team: 'Pittsburgh Steelers',    subs:  370000, views28d: 5097106,  total: 219368390 },
+      { rank: 4,  team: 'New York Giants',        subs:  305000, views28d: 4594835,  total: 197510992 },
+      { rank: 5,  team: 'Las Vegas Raiders',      subs:  350000, views28d: 4436687,  total: 171069276 },
+      { rank: 6,  team: 'Kansas City Chiefs',     subs: 1480000, views28d: 4029242,  total: 352947610 },
+      { rank: 7,  team: 'Los Angeles Chargers',   subs:  450000, views28d: 3120154,  total: 420188721 },
+      { rank: 8,  team: 'Atlanta Falcons',        subs:  237000, views28d: 2978188,  total: 107061436 },
+      { rank: 9,  team: 'Minnesota Vikings',      subs:  415000, views28d: 2778980,  total: 242331422 },
+      { rank: 10, team: 'Tampa Bay Buccaneers',   subs:  273000, views28d: 2680136,  total: 173942912 },
     ],
     // ASFC network comp — pulled from network-stats.json
     network: {
@@ -2934,7 +3060,7 @@
       <div class="lb-header">
         <div class="eyebrow">▮ THE OPPORTUNITY ▮</div>
         <h1>Pro teams are <span class="lb-h1-strike">sleeping</span> on YouTube.</h1>
-        <p class="lb-lead">Top 10 NBA &amp; NFL franchises by views in the last 28 days — who's actually winning the platform right now. Season-cumulative growth tells a different story (see Spurs case study). <span class="lb-lead-meta">Snapshot ${LEADERBOARD.snapshotDate} · ASFC YouTube tracker</span></p>
+        <p class="lb-lead">Top 10 NBA &amp; NFL franchises by views in the last 28 days — who's actually winning the platform right now. Season-cumulative growth tells a different story (see Spurs case study). <span class="lb-lead-meta">Data updated ${LEADERBOARD.snapshotDate} · ASFC YouTube tracker</span></p>
       </div>
 
       <div class="lb-grid">
