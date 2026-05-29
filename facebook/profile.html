@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Antisocial Friends Club - Profile</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style>
+		.back-to-group {
+			display: inline-block;
+			margin: 12px 0 0 20px;
+			padding: 8px 14px;
+			background: #fff;
+			color: #3A5898;
+			border: 1px solid #ccd0d5;
+			border-radius: 6px;
+			font-weight: 600;
+			text-decoration: none;
+			font-size: 14px;
+		}
+		.back-to-group:hover { background: #f5f6f7; }
+		.back-to-group i { margin-right: 6px; }
+		.profile-image-site.placeholder-bg { background: #1877F2; }
+	</style>
+</head>
+<body>
+	<a href="index.html" class="back-to-group"><i class="fas fa-arrow-left"></i>Back to Antisocial Friends Club</a>
+
+	<section class="profile-contante" id="profileRoot">
+		<!-- Rendered by JS -->
+	</section>
+
+	<script src="team-data.js"></script>
+	<script>
+		(function () {
+			const params = new URLSearchParams(location.search);
+			const slug = (params.get('p') || 'kent').toLowerCase();
+			const team = window.ASFC_TEAM || {};
+			const person = team[slug] || team.kent;
+			document.title = person.name + " - Antisocial Friends Club";
+
+			const cover = person.cover || "images/team/group-cover.jpg";
+
+			function postHtml(post, photo) {
+				const media = post.embed
+					? post.embed
+					: (post.img ? '<img src="' + post.img + '" alt="">' : '');
+				return [
+					'<div class="box-design">',
+						'<div class="post-hader">',
+							'<div><div class="profile-img"><img src="', photo, '" alt=""></div></div>',
+							'<div class="post-name-info">',
+								'<h2>', person.name, '</h2>',
+								'<p class="date-public">',
+									'<span>', post.date, '</span>',
+									'<span><i class="fas fa-globe-americas"></i></span>',
+								'</p>',
+								'<i class="fas fa-ellipsis-v three-dot-icon"></i>',
+							'</div>',
+						'</div>',
+						'<div class="post-img-txt">',
+							'<p>', post.text, '</p>',
+							media,
+						'</div>',
+						'<div class="like-comment-site">',
+							'<button><i class="far fa-thumbs-up"></i> <span>Like</span></button>',
+							'<button><i class="fas fa-comment-alt"></i> Comment</button>',
+							'<button><i class="fas fa-share"></i> Share</button>',
+						'</div>',
+					'</div>'
+				].join('');
+			}
+
+			const intro = person.intro.map(function (item) {
+				return '<li><i class="' + item.icon + '"></i> ' + item.label + '</li>';
+			}).join('');
+
+			// Members list for sidebar - quick links to teammates
+			const otherMembers = Object.keys(team)
+				.filter(function (s) { return s !== slug; })
+				.slice(0, 9)
+				.map(function (s) {
+					const m = team[s];
+					return '<div>'
+						+ '<a href="profile.html?p=' + s + '" style="text-decoration:none;color:inherit;">'
+						+ '<img src="' + m.photo + '" alt="' + m.name + '">'
+						+ '<p>' + m.name.split(' ')[0] + '</p>'
+						+ '</a></div>';
+				}).join('');
+
+			const html = [
+				'<header class="hader-site-design">',
+					'<section class="cover-image-div">',
+						'<img src="', cover, '" alt="cover">',
+						'<section class="cover-in-site">',
+							'<div class="profile-image-site placeholder-bg">',
+								'<img src="', person.photo, '" alt="', person.name, '">',
+								'<h1 class="profile-name">', person.name,
+									'<span id="nikName">', person.pronouns, '</span></h1>',
+							'</div>',
+						'</section>',
+					'</section>',
+					'<nav class="navbar-design">',
+						'<ul>',
+							'<li class="active-navbar">Timeline</li>',
+							'<li>About</li>',
+							'<li>Friends</li>',
+							'<li>Photos</li>',
+							'<li>More <i class="fas fa-caret-down"></i></li>',
+						'</ul>',
+					'</nav>',
+				'</header>',
+
+				'<section class="contant-section">',
+					'<div class="left-site-div">',
+						'<div class="box-design">',
+							'<i class="fas fa-globe-americas"></i> <span>Intro</span>',
+							'<ul>', intro,
+								'<li><i class="fas fa-id-badge"></i> Role: ', person.role, '</li>',
+								'<li><i class="fas fa-sitemap"></i> Department: ', person.department, '</li>',
+							'</ul>',
+						'</div>',
+
+						'<div class="box-design">',
+							'<i class="fas fa-user-friends Friends-icon-bg"></i>',
+							'<span>Coworkers</span>',
+							'<div class="images-friends">', otherMembers, '</div>',
+						'</div>',
+					'</div>',
+
+					'<div class="right-site-div">',
+						person.posts.map(function (p) { return postHtml(p, person.photo); }).join(''),
+					'</div>',
+				'</section>'
+			].join('');
+
+			document.getElementById('profileRoot').innerHTML = html;
+		})();
+	</script>
+</body>
+</html>

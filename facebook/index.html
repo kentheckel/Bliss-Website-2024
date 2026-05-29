@@ -2,40 +2,164 @@
 <html lang="en">
 
 	<head>
-		<title>Old Facebook Profile Design</title>
+		<title>Antisocial Friends Club - Group</title>
 		<meta charset="utf-8">
-
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<link rel="stylesheet" type="text/css" href="css/all.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<style>
+			/* Group-specific tweaks layered on top of profile CSS */
+			.group-header-row {
+				display: flex;
+				align-items: center;
+				gap: 18px;
+				padding: 18px 20px 14px;
+				background: #fff;
+				border-bottom: 1px solid #e1e3e6;
+			}
+			.group-avatar {
+				width: 92px;
+				height: 92px;
+				border-radius: 8px;
+				background: #efe9dc;
+				overflow: hidden;
+				flex-shrink: 0;
+				box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+			}
+			.group-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+			.group-title-block h1 {
+				font-size: 28px;
+				color: #1c1e21;
+				margin: 0 0 4px;
+			}
+			.group-title-block p {
+				font-size: 14px;
+				color: #65676b;
+				margin: 0;
+			}
+			.group-title-block .group-meta-icons i {
+				margin-right: 5px;
+			}
+			.cover-image-div.group-cover {
+				height: 320px;
+				background: #efe9dc;
+			}
+			.cover-image-div.group-cover img {
+				object-fit: contain;
+				object-position: center;
+			}
+
+			/* Member grid in sidebar */
+			.members-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-gap: 6px;
+				margin-top: 15px;
+			}
+			.members-grid a {
+				text-decoration: none;
+				color: inherit;
+			}
+			.member-tile {
+				position: relative;
+				width: 100%;
+				aspect-ratio: 1 / 1;
+				background: #ddd;
+				border-radius: 6px;
+				overflow: hidden;
+				cursor: pointer;
+				transition: transform 0.15s ease;
+			}
+			.member-tile:hover { transform: scale(1.03); }
+			.member-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+			.member-tile .member-name {
+				position: absolute;
+				left: 0; right: 0; bottom: 0;
+				padding: 14px 6px 6px;
+				color: #fff;
+				font-size: 13px;
+				font-weight: 600;
+				background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+			}
+
+			/* Post author links */
+			.post-name-info h2 a {
+				color: #3A5898;
+				text-decoration: none;
+			}
+			.post-name-info h2 a:hover { text-decoration: underline; }
+
+			/* Group description callout */
+			.group-about-text {
+				font-size: 15px;
+				color: #1c1e21;
+				line-height: 1.45;
+				margin-top: 10px;
+			}
+
+			/* Pinned post tag */
+			.pinned-tag {
+				display: inline-block;
+				background: #f0f2f5;
+				color: #65676b;
+				font-size: 12px;
+				font-weight: 600;
+				padding: 3px 8px;
+				border-radius: 12px;
+				margin-left: 8px;
+				vertical-align: middle;
+			}
+
+			/* Department badge in intro list */
+			.dept-badge {
+				display: inline-block;
+				font-size: 12px;
+				font-weight: 600;
+				padding: 2px 8px;
+				border-radius: 10px;
+				margin-left: 6px;
+				color: #fff;
+			}
+			.dept-Leadership { background: #1877F2; }
+			.dept-Operations { background: #F2994A; }
+			.dept-Strategy { background: #9B51E0; }
+			.dept-Creative { background: #EB5757; }
+			.dept-Sales { background: #27AE60; }
+		</style>
 	</head>
 
 	<body>
 
 		<section class="profile-contante">
-			
+
 			<header class="hader-site-design">
-				
-				<section class="cover-image-div">
-					<img src="images/cover-images/cover1.jpg"> 
 
-					<section class="cover-in-site">
-						<div class="profile-image-site">
-							<img src="images/profile-images/profile1.jpg">
-							<h1 class="profile-name">Kent Heckel
-								<span id="nikName">He/Him</span></h1>
-						</div>
-					</section>
-
+				<section class="cover-image-div group-cover">
+					<img src="images/team/group-cover.jpg" alt="Antisocial Friends Club cover">
 				</section>
+
+				<div class="group-header-row">
+					<div class="group-avatar">
+						<img src="images/team/group-avatar.jpg" alt="Antisocial Friends Club avatar">
+					</div>
+					<div class="group-title-block">
+						<h1>Antisocial Friends Club</h1>
+						<p class="group-meta-icons">
+							<i class="fas fa-lock"></i> Private group
+							&nbsp;·&nbsp;
+							<i class="fas fa-user-friends"></i> 9 members
+						</p>
+					</div>
+				</div>
 
 				<nav class="navbar-design">
 					<ul>
-						<li class="active-navbar">Timeline</li>
-						<li>About</li>
-						<li>Friends</li>
-						<li>Photos</li>
+						<li class="active-navbar">Discussion</li>
+						<li>Members</li>
+						<li>Media</li>
+						<li>Events</li>
+						<li>Files</li>
 						<li>More <i class="fas fa-caret-down"></i></li>
 					</ul>
 				</nav>
@@ -43,876 +167,343 @@
 			</header>
 
 			<section class="contant-section">
-				
-				<div class="left-site-div">
-					
-					<div class="box-design">
-						<i class="fas fa-globe-americas"></i> <span>Intro</span>
 
+				<!-- LEFT SIDEBAR -->
+				<div class="left-site-div">
+
+					<div class="box-design">
+						<i class="fas fa-info-circle"></i> <span>About</span>
+						<p class="group-about-text">
+							A tiny, mostly-online team running social media and YouTube
+							for our clients. Strategy, packaging, operations, sales &mdash;
+							all under one roof. We're antisocial in real life,
+							hyper-social in the group chat.
+						</p>
 						<ul>
-							<li><i class="fas fa-shopping-bag"></i>
-								Owner at: Antisocial Friends Club</li>
-							<li><i class="fas fa-home"></i>
-								Lives in: Cleveland Ohio</li>
-							<li><i class="fas fa-heart"></i>
-								Married</li>
-							<li><i class="fas fa-map-marker-alt"></i>
-								From: Annapolis, Maryland</li>
-							<li><i class="fas fa-wifi follow-icon"></i>
-								Followed by: Nobody</li>
-							<li class="add-photo-div"><i class="fas fa-image"></i>
-								Add Photos</li>
+							<li><i class="fas fa-lock"></i> Private - only members see who's here</li>
+							<li><i class="fas fa-eye-slash"></i> Hidden - only members can find it</li>
+							<li><i class="fas fa-map-marker-alt"></i> Remote - everywhere & nowhere</li>
+							<li><i class="fas fa-history"></i> Founded by Kent Heckel</li>
 						</ul>
 					</div>
 
 					<div class="box-design">
-						<i class="far fa-image Photos-icon-bg"></i>
-						<span>Photos</span>
+						<i class="fas fa-user-friends Friends-icon-bg"></i>
+						<span>Members &middot; 9</span>
 
-						<div class="images-photos">
-							<div>
-								<img src="images/post/image1.jpg">
-							</div>
-							<div>
-								<img src="images/post/image2.jpg">
-							</div>
-							<div>
-								<img src="images/post/image3.jpg">
-							</div>
-							<div>
-								<img src="images/post/image4.jpg">
-							</div>
-							<div>
-								<img src="images/post/image5.jpg">
-							</div>
-							<div>
-								<img src="images/post/image6.jpg">
-							</div>
+						<div class="members-grid">
+							<a href="profile.html?p=kent">
+								<div class="member-tile">
+									<img src="images/team/kent.jpg" alt="Kent Heckel">
+									<div class="member-name">Kent Heckel</div>
+								</div>
+							</a>
+							<a href="profile.html?p=jordyn">
+								<div class="member-tile">
+									<img src="images/team/jordyn.jpg" alt="Jordyn Brooks">
+									<div class="member-name">Jordyn Brooks</div>
+								</div>
+							</a>
+							<a href="profile.html?p=levi">
+								<div class="member-tile">
+									<img src="images/team/levi.jpg" alt="Levi Rassmussen">
+									<div class="member-name">Levi Rassmussen</div>
+								</div>
+							</a>
+							<a href="profile.html?p=brendan">
+								<div class="member-tile">
+									<img src="images/team/brendan.jpg" alt="Brendan Cole">
+									<div class="member-name">Brendan Cole</div>
+								</div>
+							</a>
+							<a href="profile.html?p=brelan">
+								<div class="member-tile">
+									<img src="images/team/brelan.jpg" alt="Brelan Butler">
+									<div class="member-name">Brelan Butler</div>
+								</div>
+							</a>
+							<a href="profile.html?p=spencer">
+								<div class="member-tile">
+									<img src="images/team/spencer.jpg" alt="Spencer Lowder">
+									<div class="member-name">Spencer Lowder</div>
+								</div>
+							</a>
+							<a href="profile.html?p=jake">
+								<div class="member-tile">
+									<img src="images/team/jake.jpg" alt="Jake Groulx">
+									<div class="member-name">Jake Groulx</div>
+								</div>
+							</a>
+							<a href="profile.html?p=david">
+								<div class="member-tile">
+									<img src="images/team/david.svg" alt="David Martin">
+									<div class="member-name">David Martin</div>
+								</div>
+							</a>
+							<a href="profile.html?p=casey">
+								<div class="member-tile">
+									<img src="images/team/casey.jpg" alt="Casey Diehl">
+									<div class="member-name">Casey Diehl</div>
+								</div>
+							</a>
 						</div>
 					</div>
-
 
 					<div class="box-design">
-						<i class="fas fa-user-friends Friends-icon-bg"></i>
-						<span>Friends</span>
-
-						<div class="images-friends">
-							<div>
-								<img src="images/frinds-images/friend1.webp">
-								<p>Spongebob</p>
-							</div>
-							<div>
-								<img src="images/frinds-images/friend2.webp">
-
-								<p>Patrick</p>
-							</div>
-							<div>
-								<img src="images/frinds-images/friend3.webp">
-
-								<p>Squidward</p>
-							</div>
-							<div>
-								<img src="images/frinds-images/friend4.avif">
-
-								<p>Mr.Krabs</p>
-							</div>
-							<div>
-								<img src="images/frinds-images/friend5.webp">
-
-								<p>Mehedi</p>
-							</div>
-							<div>
-								<img src="images/frinds-images/friend6.jpg">
-
-								<p>Mehedi</p>
-							</div>
-							<div>
-								<img src="images/frinds-images/friend7.webp">
-
-								<p>Mehedi</p>
-							</div>
-							<div>
-								<img src="images/frinds-images/friend8.webp">
-
-								<p>Mehedi</p>
-							</div>
-							<div>
-								<img src="images/frinds-images/friend9.avif">
-
-								<p>Mehedi</p>
-							</div>
-						</div>
-
+						<i class="fas fa-cogs" style="background-color:#3A5898;"></i>
+						<span>Departments</span>
+						<ul>
+							<li><span class="dept-badge dept-Leadership">Leadership</span> Kent</li>
+							<li><span class="dept-badge dept-Operations">Operations</span> Jordyn</li>
+							<li><span class="dept-badge dept-Strategy">Strategy</span> Levi, Brendan</li>
+							<li><span class="dept-badge dept-Creative">Creative</span> Brelan, Spencer, Jake, David</li>
+							<li><span class="dept-badge dept-Sales">Sales</span> Casey</li>
+						</ul>
 					</div>
-
-
 
 				</div>
 
+				<!-- RIGHT FEED -->
 				<div class="right-site-div">
-					
+
+					<!-- Composer -->
 					<div class="box-design">
 						<div class="hade-icon">
 							<ul>
-								<li><i class="fas fa-pen"></i>
-								Status</li>
-								<li><i class="fas fa-camera-retro"></i>
-								Photo/Video</li>
-								<li><i class="fas fa-flag"></i>
-								Life Event</li>
+								<li><i class="fas fa-pen"></i> Write Something</li>
+								<li><i class="fas fa-camera-retro"></i> Photo/Video</li>
+								<li><i class="fas fa-poll"></i> Poll</li>
 							</ul>
-
-							
 						</div>
 
 						<div class="post-text">
-								<div class="profile-img">
-									<img src="images/profile-images/profile1.jpg">
-								</div>
-								<div>
-									<textarea placeholder="What's on your mind?"></textarea>
-								</div>
+							<div class="profile-img">
+								<img src="images/team/kent.jpg" alt="Kent Heckel">
 							</div>
+							<div>
+								<textarea placeholder="Write something to Antisocial Friends Club..."></textarea>
+							</div>
+						</div>
 
 						<div class="post-div">
-							<button><i class="fas fa-globe-americas"></i>
-							Public</button>
+							<button><i class="fas fa-user-friends"></i> Members</button>
 							<button class="posr-btn">Post</button>
 						</div>
-
-					</div>
-					<! facebook post 1>
-					<div class="box-design">
-				
-						<div class="post-hader">
-							<div>
-								<div class="profile-img">
-									<img src="images/profile-images/profile1.jpg">
-								</div>
-							</div>
-				
-							<div class="post-name-info">
-								<h2>Kent Heckel</h2>
-								<p class="date-public">
-									<span>15 January 2025</span>
-									<span>
-										<i class="fas fa-globe-americas"></i>
-									</span>
-								</p>
-								<i class="fas fa-ellipsis-v three-dot-icon"></i>
-							</div>
-				
-				
-						</div>
-				
-						<div class="post-img-txt">
-							<p>Hey! Im Kent, a Content Strategist and Digital Media Innovator with Proven Expertise in YouTube Growth and Revenue Generation. 10+ years driving over 1 billion organic views, millions in content revenue & millions in brand deal revenue.</p>
-				
-							<img src="images/post/Kent3 Copy.JPG">
-						</div>
-				
-						<div class="like-comment-site">
-				
-							<button>
-								<i class="far fa-thumbs-up"></i>
-								<span>Like</span>
-							</button>
-							<button>
-								<i class="fas fa-comment-alt"></i>
-								Comment
-							</button>
-							<button>
-								<i class="fas fa-share"></i>
-								Share
-							</button>
-				
-						</div>
-
-					<div class="comment-site">
-						<div>
-							<div class="profile-img miniPI">
-								<img src="images/profile-images/profile1.jpg">
-							</div>
-						</div>
-						<div class="comment-div">
-							<textarea placeholder="Write acomment..."></textarea>
-							<ul>
-								<li><i class="fas fa-camera"></i></li>
-								<li><i class="far fa-smile-beam"></i></li>
-							</ul>
-						</div>
 					</div>
 
-				</div>
-					<! facebook post 1>
-						<div class="box-design">
-					
-							<div class="post-hader">
-								<div>
-									<div class="profile-img">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-					
-								<div class="post-name-info">
-									<h2>Kent Heckel</h2>
-									<p class="date-public">
-										<span>16 November 2024</span>
-										<span>
-											<i class="fas fa-globe-americas"></i>
-										</span>
-									</p>
-									<i class="fas fa-ellipsis-v three-dot-icon"></i>
-								</div>
-					
-					
-							</div>
-					
-							<div class="post-img-txt">
-								<p>Isla got a camera for her Birthday!</p>
-					
-								<img src="images/post/image2.jpg">
-							</div>
-					
-							<div class="like-comment-site">
-					
-								<button>
-									<i class="far fa-thumbs-up"></i>
-									<span>Like</span>
-								</button>
-								<button>
-									<i class="fas fa-comment-alt"></i>
-									Comment
-								</button>
-								<button>
-									<i class="fas fa-share"></i>
-									Share
-								</button>
-					
-							</div>
-
-						<div class="comment-site">
-							<div>
-								<div class="profile-img miniPI">
-									<img src="images/profile-images/profile1.jpg">
-								</div>
-							</div>
-							<div class="comment-div">
-								<textarea placeholder="Write acomment..."></textarea>
-								<ul>
-									<li><i class="fas fa-camera"></i></li>
-									<li><i class="far fa-smile-beam"></i></li>
-								</ul>
-							</div>
-						</div>
-
-					</div>
-<! facebook post 1>
-						<div class="box-design">
-					
-							<div class="post-hader">
-								<div>
-									<div class="profile-img">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-					
-								<div class="post-name-info">
-									<h2>Kent Heckel</h2>
-									<p class="date-public">
-										<span>5 Sep 2024</span>
-										<span>
-											<i class="fas fa-globe-americas"></i>
-										</span>
-									</p>
-									<i class="fas fa-ellipsis-v three-dot-icon"></i>
-								</div>
-					
-					
-							</div>
-					
-							<div class="post-img-txt">
-								<p>Spotter Studio & I made an ad together! They were looping it in the lobby of Vidsummit</p>
-					
-								<img src="images/post/image3.jpeg">
-							</div>
-					
-							<div class="like-comment-site">
-					
-								<button>
-									<i class="far fa-thumbs-up"></i>
-									<span>Like</span>
-								</button>
-								<button>
-									<i class="fas fa-comment-alt"></i>
-									Comment
-								</button>
-								<button>
-									<i class="fas fa-share"></i>
-									Share
-								</button>
-					
-							</div>
-							
-						</div>	
-
-						<div class="box-design">
-						
-							<div class="post-hader">
-								<div>
-									<div class="profile-img">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-	
-								<div class="post-name-info">
-									<h2>Kent Heckel</h2>
-									<p class="date-public">
-										<span>22 Apr 2022</span> 
-										<span>
-											<i class="fas fa-globe-americas"></i>
-										</span>
-									</p>
-									<i class="fas fa-ellipsis-v three-dot-icon"></i>
-								</div>
-	
-								
-							</div>
-	
-							<div class="post-img-txt">
-								<p>Attended YouTube's Creator Collective in Idaho!</p>
-	
-								<img src="images/post/image4.jpg">
-							</div>
-	
-							<div class="like-comment-site">
-								
-								<button>
-									<i class="far fa-thumbs-up"></i>
-									<span>Like</span>
-								</button>
-								<button>
-									<i class="fas fa-comment-alt"></i>
-									Comment
-								</button>
-								<button>
-									<i class="fas fa-share"></i>
-									Share
-								</button>
-	
-							</div>
-	
-							<div class="comment-site">
-								<div>
-									<div class="profile-img miniPI">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-								<div class="comment-div">
-									<textarea placeholder="Write acomment..."></textarea>
-									<ul>
-										<li><i class="fas fa-camera"></i></li>
-										<li><i class="far fa-smile-beam"></i></li>
-									</ul>
-								</div>
-							</div>
-	
-						</div>
-
-						
-						<div class="box-design">
-						
-							<div class="post-hader">
-								<div>
-									<div class="profile-img">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-	
-								<div class="post-name-info">
-									<h2>Kent Heckel</h2>
-									<p class="date-public">
-										<span>27 Jul 2022</span> 
-										<span>
-											<i class="fas fa-globe-americas"></i>
-										</span>
-									</p>
-									<i class="fas fa-ellipsis-v three-dot-icon"></i>
-								</div>
-	
-								
-							</div>
-	
-							<div class="post-img-txt">
-								<p>Big o'l leaf @ Jardins de Quatre-Vents in Quebec, Canada</p>
-	
-								<img src="images/post/image5.jpg">
-							</div>
-	
-							<div class="like-comment-site">
-								
-								<button>
-									<i class="far fa-thumbs-up"></i>
-									<span>Like</span>
-								</button>
-								<button>
-									<i class="fas fa-comment-alt"></i>
-									Comment
-								</button>
-								<button>
-									<i class="fas fa-share"></i>
-									Share
-								</button>
-	
-							</div>
-	
-							<div class="comment-site">
-								<div>
-									<div class="profile-img miniPI">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-								<div class="comment-div">
-									<textarea placeholder="Write acomment..."></textarea>
-									<ul>
-										<li><i class="fas fa-camera"></i></li>
-										<li><i class="far fa-smile-beam"></i></li>
-									</ul>
-								</div>
-							</div>
-	
-						</div>
-
-						<div class="box-design">
-							<div class="post-hader">
-								<div>
-									<div class="profile-img">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-								<div class="post-name-info">
-									<h2>Kent Heckel</h2>
-									<p class="date-public">
-										<span>23 May 2024</span> 
-										<span>
-											<i class="fas fa-globe-americas"></i>
-										</span>
-									</p>
-									<i class="fas fa-ellipsis-v three-dot-icon"></i>
-								</div>
-							</div>
-						
-							<div class="post-img-txt">
-								<p>@ SpaceStation with Shonduras & team for YouTube Crew event! YouTube got us a drone show!</p>
-						
-								<!-- Carousel Start -->
-								<div class="carousel-container">
-									<div class="carousel-images">
-										<img src="images/post/image6.jpg" alt="Image 6">
-										<img src="images/post/image7.jpg" alt="Image 7">
-										<img src="images/post/image8.jpg" alt="Image 8">
-										<img src="images/post/image9.jpg" alt="Image 9">
-									</div>
-								</div>
-								<!-- Carousel End -->
-							</div>
-						
-							<div class="like-comment-site">
-								<button>
-									<i class="far fa-thumbs-up"></i>
-									<span>Like</span>
-								</button>
-								<button>
-									<i class="fas fa-comment-alt"></i>
-									Comment
-								</button>
-								<button>
-									<i class="fas fa-share"></i>
-									Share
-								</button>
-							</div>
-						
-							<div class="comment-site">
-								<div>
-									<div class="profile-img miniPI">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-								<div class="comment-div">
-									<textarea placeholder="Write a comment..."></textarea>
-									<ul>
-										<li><i class="fas fa-camera"></i></li>
-										<li><i class="far fa-smile-beam"></i></li>
-									</ul>
-								</div>
-							</div>
-							
-						</div>
-						<div class="box-design">
-						
-							<div class="post-hader">
-								<div>
-									<div class="profile-img">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-	
-								<div class="post-name-info">
-									<h2>Kent Heckel</h2>
-									<p class="date-public">
-										<span>8 Apr 2024</span> 
-										<span>
-											<i class="fas fa-globe-americas"></i>
-										</span>
-									</p>
-									<i class="fas fa-ellipsis-v three-dot-icon"></i>
-								</div>
-	
-								
-							</div>
-	
-							<div class="post-img-txt">
-								<p>Total Eclipse directly over my hosue! (House recreated with Ai)</p>
-	
-								<img src="images/post/image10.jpg">
-							</div>
-	
-							<div class="like-comment-site">
-								
-								<button>
-									<i class="far fa-thumbs-up"></i>
-									<span>Like</span>
-								</button>
-								<button>
-									<i class="fas fa-comment-alt"></i>
-									Comment
-								</button>
-								<button>
-									<i class="fas fa-share"></i>
-									Share
-								</button>
-	
-							</div>
-	
-							<div class="comment-site">
-								<div>
-									<div class="profile-img miniPI">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-								<div class="comment-div">
-									<textarea placeholder="Write acomment..."></textarea>
-									<ul>
-										<li><i class="fas fa-camera"></i></li>
-										<li><i class="far fa-smile-beam"></i></li>
-									</ul>
-								</div>
-							</div>
-	
-						</div>
-
-						<div class="box-design">
-							<div class="post-hader">
-								<div>
-									<div class="profile-img">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-						
-								<div class="post-name-info">
-									<h2>Kent Heckel</h2>
-									<p class="date-public">
-										<span>5 Mar 2024</span>
-										<span>
-											<i class="fas fa-globe-americas"></i>
-										</span>
-									</p>
-									<i class="fas fa-ellipsis-v three-dot-icon"></i>
-								</div>
-							</div>
-						
-							<div class="post-img-txt">
-								<p>Heckel Family tradition, The Cake Flip!</p>
-						
-								<!-- Video Element -->
-								<video width="100%" controls>
-									<source src="images/post/video2.mp4" type="video/mp4">
-									Your browser does not support the video tag.
-								</video>
-							</div>
-						
-							<div class="like-comment-site">
-								<button>
-									<i class="far fa-thumbs-up"></i>
-									<span>Like</span>
-								</button>
-								<button>
-									<i class="fas fa-comment-alt"></i>
-									Comment
-								</button>
-								<button>
-									<i class="fas fa-share"></i>
-									Share
-								</button>
-							</div>
-						
-							<div class="comment-site">
-								<div>
-									<div class="profile-img miniPI">
-										<img src="images/profile-images/profile1.jpg">
-									</div>
-								</div>
-								<div class="comment-div">
-									<textarea placeholder="Write a comment..."></textarea>
-									<ul>
-										<li><i class="fas fa-camera"></i></li>
-										<li><i class="far fa-smile-beam"></i></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						
-
+					<!-- Pinned: Kent welcome -->
 					<div class="box-design">
 						<div class="post-hader">
 							<div>
 								<div class="profile-img">
-									<img src="images/profile-images/profile1.jpg">
+									<img src="images/team/kent.jpg" alt="Kent Heckel">
 								</div>
 							</div>
 							<div class="post-name-info">
-								<h2>Kent Heckel</h2>
+								<h2><a href="profile.html?p=kent">Kent Heckel</a><span class="pinned-tag">📌 Pinned</span></h2>
 								<p class="date-public">
-									<span>7 Feb 2024</span> 
-									<span>
-										<i class="fas fa-globe-americas"></i>
-									</span>
+									<span>Founder &middot; 1 January 2025</span>
+									<span><i class="fas fa-user-friends"></i></span>
 								</p>
 								<i class="fas fa-ellipsis-v three-dot-icon"></i>
 							</div>
 						</div>
-					
+
 						<div class="post-img-txt">
-							<p>SuperBowl with Iconic Saga Team. Wild times!</p>
-					
-							<!-- Carousel Start -->
-							<div class="carousel-container">
-								<div class="carousel-images">
-									<img src="images/post/image12.jpg" alt="Image 12">
-									<img src="images/post/image16.jpg" alt="Image 16">
-									<img src="images/post/image13.jpg" alt="Image 13">
-									<img src="images/post/image15.jpg" alt="Image 15">
-									<img src="images/post/image14.jpg" alt="Image 14">
-									<img src="images/post/image11.jpg" alt="Image 11">
-									<img src="images/post/image17.jpg" alt="Image 17">
-								</div>
-							</div>
-							<!-- Carousel End -->
+							<p>Welcome to the Antisocial Friends Club 👋 We're a tiny remote team running social media and YouTube for our clients &mdash; strategy, packaging, operations, sales, all under one roof. Stoked to have you here.</p>
+							<img src="images/team/group-cover.jpg" alt="Group banner">
 						</div>
-					
+
 						<div class="like-comment-site">
-							<button>
-								<i class="far fa-thumbs-up"></i>
-								<span>Like</span>
-							</button>
-							<button>
-								<i class="fas fa-comment-alt"></i>
-								Comment
-							</button>
-							<button>
-								<i class="fas fa-share"></i>
-								Share
-							</button>
+							<button><i class="far fa-thumbs-up"></i> <span>Like</span></button>
+							<button><i class="fas fa-comment-alt"></i> Comment</button>
+							<button><i class="fas fa-share"></i> Share</button>
 						</div>
-					
-						<div class="comment-site">
-							<div>
-								<div class="profile-img miniPI">
-									<img src="images/profile-images/profile1.jpg">
-								</div>
-							</div>
-							<div class="comment-div">
-								<textarea placeholder="Write a comment..."></textarea>
-								<ul>
-									<li><i class="fas fa-camera"></i></li>
-									<li><i class="far fa-smile-beam"></i></li>
-								</ul>
-							</div>
-						</div>
-						
 					</div>
-							<div class="box-design">
-						
-								<div class="post-hader">
-									<div>
-										<div class="profile-img">
-											<img src="images/profile-images/profile1.jpg">
-										</div>
-									</div>
-		
-									<div class="post-name-info">
-										<h2>Kent Heckel</h2>
-										<p class="date-public">
-											<span>30 Nov 2021</span> 
-											<span>
-												<i class="fas fa-globe-americas"></i>
-											</span>
-										</p>
-										<i class="fas fa-ellipsis-v three-dot-icon"></i>
-									</div>
-		
-									
-								</div>
-		
-								<div class="post-img-txt">
-									<p>My First YouTube video to hit 10 Million views!</p>
-		
-									<!-- <video width="100%" controls>
-										<source src="video/live-video.mp4" type="video/mp4">
-									</video> -->
-		
-									<iframe width="100%" height="315" src="https://www.youtube.com/embed/mD9-ckm4xEU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-								</div>
-		
-								<div class="like-comment-site">
-									
-									<button>
-										<i class="far fa-thumbs-up"></i>
-										<span>Like</span>
-									</button>
-									<button>
-										<i class="fas fa-comment-alt"></i>
-										Comment
-									</button>
-									<button>
-										<i class="fas fa-share"></i>
-										Share
-									</button>
-		
-								</div>
-							</div>
-
-						
+					<!-- Jordyn post -->
 					<div class="box-design">
-						
 						<div class="post-hader">
-							<div>
-								<div class="profile-img">
-									<img src="images/profile-images/profile1.jpg">
-								</div>
-							</div>
-
+							<div><div class="profile-img"><img src="images/team/jordyn.jpg" alt="Jordyn Brooks"></div></div>
 							<div class="post-name-info">
-								<h2>Kent Heckel</h2>
+								<h2><a href="profile.html?p=jordyn">Jordyn Brooks</a></h2>
 								<p class="date-public">
-									<span>22 Apr 2022</span> 
-									<span>
-										<i class="fas fa-globe-americas"></i>
-									</span>
+									<span>Chief of Staff &middot; 1 January 2025</span>
+									<span><i class="fas fa-user-friends"></i></span>
 								</p>
 								<i class="fas fa-ellipsis-v three-dot-icon"></i>
 							</div>
-
-							
 						</div>
-
 						<div class="post-img-txt">
-							<p>Found the Mountains from Ye!</p>
-
-							<img src="images/post/gif2.gif">
+							<p>Hey, I'm Jordyn &mdash; Chief of Staff at Antisocial Friends Club. I run the day-to-day: SOPs, onboarding, client kickoffs, and keeping every department moving in the same direction. If something needs to ship, I make sure it ships.</p>
 						</div>
-
 						<div class="like-comment-site">
-							
-							<button>
-								<i class="far fa-thumbs-up"></i>
-								<span>Like</span>
-							</button>
-							<button>
-								<i class="fas fa-comment-alt"></i>
-								Comment
-							</button>
-							<button>
-								<i class="fas fa-share"></i>
-								Share
-							</button>
-
+							<button><i class="far fa-thumbs-up"></i> <span>Like</span></button>
+							<button><i class="fas fa-comment-alt"></i> Comment</button>
+							<button><i class="fas fa-share"></i> Share</button>
 						</div>
-
-						<div class="comment-site">
-							<div>
-								<div class="profile-img miniPI">
-									<img src="images/profile-images/profile1.jpg">
-								</div>
-							</div>
-							<div class="comment-div">
-								<textarea placeholder="Write acomment..."></textarea>
-								<ul>
-									<li><i class="fas fa-camera"></i></li>
-									<li><i class="far fa-smile-beam"></i></li>
-								</ul>
-							</div>
-						</div>
-
 					</div>
 
+					<!-- Levi post -->
 					<div class="box-design">
-						
 						<div class="post-hader">
-							<div>
-								<div class="profile-img">
-									<img src="images/profile-images/profile1.jpg">
-								</div>
-							</div>
-
+							<div><div class="profile-img"><img src="images/team/levi.jpg" alt="Levi Rassmussen"></div></div>
 							<div class="post-name-info">
-								<h2>Kent Heckel</h2>
+								<h2><a href="profile.html?p=levi">Levi Rassmussen</a></h2>
 								<p class="date-public">
-									<span>07 May 2019</span> 
-									<span>
-										<i class="fas fa-globe-americas"></i>
-									</span>
+									<span>Chief Strategist &middot; 1 January 2025</span>
+									<span><i class="fas fa-user-friends"></i></span>
 								</p>
 								<i class="fas fa-ellipsis-v three-dot-icon"></i>
 							</div>
-
-							
 						</div>
-
 						<div class="post-img-txt">
-							<p>Found Bliss!</p>
-
-							<img src="images/post/7.jpg">
+							<p>Hey, I'm Levi &mdash; Chief Strategist at Antisocial Friends Club. I lead our strategy team across YouTube and social: packaging, positioning, content frameworks. If a channel needs a roadmap, that's my desk.</p>
 						</div>
-
 						<div class="like-comment-site">
-							
-							<button>
-								<i class="far fa-thumbs-up"></i>
-								<span>Like</span>
-							</button>
-							<button>
-								<i class="fas fa-comment-alt"></i>
-								Comment
-							</button>
-							<button>
-								<i class="fas fa-share"></i>
-								Share
-							</button>
-
+							<button><i class="far fa-thumbs-up"></i> <span>Like</span></button>
+							<button><i class="fas fa-comment-alt"></i> Comment</button>
+							<button><i class="fas fa-share"></i> Share</button>
 						</div>
-
-						
-
 					</div>
 
-
-					
-
+					<!-- Brendan post -->
+					<div class="box-design">
+						<div class="post-hader">
+							<div><div class="profile-img"><img src="images/team/brendan.jpg" alt="Brendan Cole"></div></div>
+							<div class="post-name-info">
+								<h2><a href="profile.html?p=brendan">Brendan Cole</a></h2>
+								<p class="date-public">
+									<span>Chief Strategist &middot; 1 January 2025</span>
+									<span><i class="fas fa-user-friends"></i></span>
+								</p>
+								<i class="fas fa-ellipsis-v three-dot-icon"></i>
+							</div>
+						</div>
+						<div class="post-img-txt">
+							<p>Hey, I'm Brendan &mdash; Chief Strategist at Antisocial Friends Club. I obsess over retention, hooks, and rewatch. My job is making sure our clients' videos earn the click and hold the watch.</p>
+						</div>
+						<div class="like-comment-site">
+							<button><i class="far fa-thumbs-up"></i> <span>Like</span></button>
+							<button><i class="fas fa-comment-alt"></i> Comment</button>
+							<button><i class="fas fa-share"></i> Share</button>
+						</div>
 					</div>
 
+					<!-- Spencer post -->
+					<div class="box-design">
+						<div class="post-hader">
+							<div><div class="profile-img"><img src="images/team/spencer.jpg" alt="Spencer Lowder"></div></div>
+							<div class="post-name-info">
+								<h2><a href="profile.html?p=spencer">Spencer Lowder</a></h2>
+								<p class="date-public">
+									<span>Thumbnail Designer &middot; 1 January 2025</span>
+									<span><i class="fas fa-user-friends"></i></span>
+								</p>
+								<i class="fas fa-ellipsis-v three-dot-icon"></i>
+							</div>
+						</div>
+						<div class="post-img-txt">
+							<p>Hey, I'm Spencer &mdash; Thumbnail Designer at Antisocial Friends Club. I design thumbnails that read at 200px on a phone in sunlight. Contrast over clever, every time.</p>
+						</div>
+						<div class="like-comment-site">
+							<button><i class="far fa-thumbs-up"></i> <span>Like</span></button>
+							<button><i class="fas fa-comment-alt"></i> Comment</button>
+							<button><i class="fas fa-share"></i> Share</button>
+						</div>
+					</div>
 
+					<!-- Brelan post -->
+					<div class="box-design">
+						<div class="post-hader">
+							<div><div class="profile-img"><img src="images/team/brelan.jpg" alt="Brelan Butler"></div></div>
+							<div class="post-name-info">
+								<h2><a href="profile.html?p=brelan">Brelan Butler</a></h2>
+								<p class="date-public">
+									<span>Vertical Specialist &middot; 1 January 2025</span>
+									<span><i class="fas fa-user-friends"></i></span>
+								</p>
+								<i class="fas fa-ellipsis-v three-dot-icon"></i>
+							</div>
+						</div>
+						<div class="post-img-txt">
+							<p>Hey, I'm Brelan &mdash; Vertical Specialist at Antisocial Friends Club. I cut shorts, reels, and TikToks for our clients. Vertical 9:16 is home base.</p>
+						</div>
+						<div class="like-comment-site">
+							<button><i class="far fa-thumbs-up"></i> <span>Like</span></button>
+							<button><i class="fas fa-comment-alt"></i> Comment</button>
+							<button><i class="fas fa-share"></i> Share</button>
+						</div>
+					</div>
+
+					<!-- Jake post -->
+					<div class="box-design">
+						<div class="post-hader">
+							<div><div class="profile-img"><img src="images/team/jake.jpg" alt="Jake Groulx"></div></div>
+							<div class="post-name-info">
+								<h2><a href="profile.html?p=jake">Jake Groulx</a></h2>
+								<p class="date-public">
+									<span>Vertical Specialist &middot; 1 January 2025</span>
+									<span><i class="fas fa-user-friends"></i></span>
+								</p>
+								<i class="fas fa-ellipsis-v three-dot-icon"></i>
+							</div>
+						</div>
+						<div class="post-img-txt">
+							<p>Hey, I'm Jake &mdash; Vertical Specialist at Antisocial Friends Club. I edit shorts and reels for our clients. Hook in 1.4 seconds, retention is religion.</p>
+						</div>
+						<div class="like-comment-site">
+							<button><i class="far fa-thumbs-up"></i> <span>Like</span></button>
+							<button><i class="fas fa-comment-alt"></i> Comment</button>
+							<button><i class="fas fa-share"></i> Share</button>
+						</div>
+					</div>
+
+					<!-- David post -->
+					<div class="box-design">
+						<div class="post-hader">
+							<div><div class="profile-img"><img src="images/team/david.svg" alt="David Martin"></div></div>
+							<div class="post-name-info">
+								<h2><a href="profile.html?p=david">David Martin</a></h2>
+								<p class="date-public">
+									<span>Vertical Specialist &middot; 1 January 2025</span>
+									<span><i class="fas fa-user-friends"></i></span>
+								</p>
+								<i class="fas fa-ellipsis-v three-dot-icon"></i>
+							</div>
+						</div>
+						<div class="post-img-txt">
+							<p>Hey, I'm David &mdash; Vertical Specialist at Antisocial Friends Club and editor at Crushed It. Short-form and reaction content are my lane.</p>
+						</div>
+						<div class="like-comment-site">
+							<button><i class="far fa-thumbs-up"></i> <span>Like</span></button>
+							<button><i class="fas fa-comment-alt"></i> Comment</button>
+							<button><i class="fas fa-share"></i> Share</button>
+						</div>
+					</div>
+
+					<!-- Casey post -->
+					<div class="box-design">
+						<div class="post-hader">
+							<div><div class="profile-img"><img src="images/team/casey.jpg" alt="Casey Diehl"></div></div>
+							<div class="post-name-info">
+								<h2><a href="profile.html?p=casey">Casey Diehl</a></h2>
+								<p class="date-public">
+									<span>Sales &middot; 1 January 2025</span>
+									<span><i class="fas fa-user-friends"></i></span>
+								</p>
+								<i class="fas fa-ellipsis-v three-dot-icon"></i>
+							</div>
+						</div>
+						<div class="post-img-txt">
+							<p>Hey, I'm Casey &mdash; Sales at Antisocial Friends Club. I close creator deals and partnerships, manage the pipeline, and bring new clients into the fold.</p>
+						</div>
+						<div class="like-comment-site">
+							<button><i class="far fa-thumbs-up"></i> <span>Like</span></button>
+							<button><i class="fas fa-comment-alt"></i> Comment</button>
+							<button><i class="fas fa-share"></i> Share</button>
+						</div>
+					</div>
 
 				</div>
 

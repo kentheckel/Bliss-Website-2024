@@ -1,0 +1,53 @@
+{
+  "liveDataUrl": "https://raw.githubusercontent.com/kentheckel/YouTubeNotion/main/public/daily-views.json",
+  "chartDays": 60,
+  "categories": [
+    {
+      "name": "Sports",
+      "channels": [
+        { "name": "NBA Franchise Partner", "platform": "youtube", "liveKey": "San Antonio Spurs", "sensitive": true }
+      ],
+      "monthlyViews": {
+        "2025-05": 39275685,
+        "2025-06": 55313383,
+        "2025-07": 38593019,
+        "2025-08": 16619874,
+        "2025-09": 32015186,
+        "2025-10": 126018989,
+        "2025-11": 124006929,
+        "2025-12": 198493682,
+        "2026-01": 124624140,
+        "2026-02": 190413424,
+        "2026-03": 157812266
+      }
+    },
+    {
+      "name": "Podcast",
+      "channels": [
+        { "name": "Cam Newton", "platform": "youtube", "subscribers": 1570000, "views": 450000000, "videos": 890, "growth30d": 12000 },
+        { "name": "4th&1 with Cam Newton", "platform": "youtube", "subscribers": 300000, "views": 85000000, "videos": 450, "growth30d": 8500 },
+        { "name": "Funky Friday Clips", "platform": "youtube", "subscribers": 126000, "views": 32000000, "videos": 280, "growth30d": 3200 },
+        { "name": "All The Smoke", "platform": "youtube", "liveKey": "All The Smoke" },
+        { "name": "KG Certified", "platform": "youtube", "liveKey": "KG Certified" },
+        { "name": "All The Smoke Fight", "platform": "youtube", "liveKey": "All The Smoke Fight" },
+        { "name": "Ring Champs", "platform": "youtube", "liveKey": "Ring Champs" },
+        { "name": "Anik & Florian", "platform": "youtube", "liveKey": "Anik & Florian" },
+        { "name": "Morning Kombat", "platform": "youtube", "liveKey": "Morning Kombat" },
+        { "name": "Killswitch", "platform": "youtube", "liveKey": "Killswitch" },
+        { "name": "Two Percent w/ Michael Easter", "platform": "youtube", "liveKey": "Michael Easter" }
+      ]
+    },
+    {
+      "name": "Comedy",
+      "channels": [
+        { "name": "Jim Gaffigan", "platform": "youtube", "subscribers": 955000, "views": 380000000, "videos": 620, "growth30d": 5800 }
+      ]
+    },
+    {
+      "name": "Creator",
+      "channels": [
+        { "name": "Kent Heckel", "platform": "youtube", "subscribers": 27000, "views": 5200000, "videos": 95, "growth30d": 450 }
+      ]
+    }
+  ]
+}
