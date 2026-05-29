@@ -692,7 +692,7 @@
      SLIDE 4 — PROVEN WINS (stat card grid)
      ---------------------------------------------------------- */
   const WINS = [
-    { name: 'San Antonio Spurs',     stat: '17th → 1st',           detail: 'Biggest jump of any team in 2025-2026 NBA season',             featured: true,  app: 'NBA_Rank.exe',
+    { name: 'San Antonio Spurs',     stat: '17th → 1st on YouTube', detail: 'Biggest jump of any team in 2025-2026 NBA season',             featured: true,  app: 'NBA_Rank.exe',
       url: 'https://www.youtube.com/@spurs' },
     { name: 'Cam Newton',            stat: '500K → 42M /mo',       detail: 'Monthly views · 3 yrs · $0 → $1M+ brand',                     featured: true, app: 'CamChannel.exe',
       url: 'https://www.youtube.com/@CamNewton',
