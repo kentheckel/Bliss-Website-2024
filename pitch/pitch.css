@@ -4329,6 +4329,16 @@ html, body {
   color: #fff;
   margin-top: 4px;
 }
+.slide-tool-solo .ts-price-note {
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #6dff8a;
+  margin-top: 6px;
+  max-width: 200px;
+  text-align: right;
+  line-height: 1.15;
+}
 
 .slide-tool-solo .ts-desc {
   font-family: 'Tahoma', sans-serif;
@@ -6971,5 +6981,267 @@ body.print-mode .slide.print-page:last-child {
 @page {
   size: 1600px 900px;
   margin: 0;
+}
+
+/* ============================================================
+   SLIDE — SPECIALIST TEAMS (Thumbnails + Vertical Execution)
+   ============================================================ */
+.slide-specialists {
+  background: linear-gradient(180deg, #fff1d8 0%, #ffe2b0 100%);
+  padding: 26px 50px 22px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.slide-specialists h1 {
+  margin-bottom: 6px;
+  font-size: clamp(24px, 3vw, 36px);
+}
+.slide-specialists .sp-subtitle {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 15px;
+  color: #404040;
+  max-width: 1020px;
+  margin-bottom: 16px;
+  line-height: 1.45;
+}
+.slide-specialists .sp-subtitle strong { font-weight: bold; }
+.slide-specialists .sp-subtitle em { color: #0044c2; font-style: italic; }
+
+.slide-specialists .sp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.slide-specialists .sp-card {
+  background: #c0c0c0;
+  border: 2px solid #000;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  box-shadow: 6px 6px 0 #000;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.slide-specialists .sp-window {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #c84500 0%, #ff7a1f 100%);
+  color: #fff;
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  padding: 5px 10px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #000;
+}
+.slide-specialists .sp-card-verticals .sp-window {
+  background: linear-gradient(90deg, #0a7d2f 0%, #21b34c 100%);
+}
+.slide-specialists .sp-x {
+  background: #c0c0c0;
+  color: #000;
+  border: 1px solid #000;
+  width: 20px;
+  height: 18px;
+  text-align: center;
+  line-height: 16px;
+  font-size: 12px;
+}
+.slide-specialists .sp-body {
+  background: #fff;
+  padding: 16px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.slide-specialists .sp-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 2px dashed #c0c0c0;
+  padding-bottom: 12px;
+}
+.slide-specialists .sp-hero-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.slide-specialists .sp-icon {
+  font-size: 40px;
+  line-height: 1;
+}
+.slide-specialists .sp-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  color: #000;
+  line-height: 1.15;
+}
+.slide-specialists .sp-tag {
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #c84500;
+  margin-top: 4px;
+}
+.slide-specialists .sp-card-verticals .sp-tag { color: #0a7d2f; }
+
+.slide-specialists .sp-price {
+  background: #000;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #c84500;
+  color: #ffd34d;
+  padding: 8px 14px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.slide-specialists .sp-card-verticals .sp-price {
+  box-shadow: 4px 4px 0 #0a7d2f;
+}
+.slide-specialists .sp-price-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #ffd34d;
+  line-height: 1;
+}
+.slide-specialists .sp-price-unit {
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #fff;
+  margin-top: 4px;
+}
+.slide-specialists .sp-price-note {
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #6dff8a;
+  margin-top: 6px;
+  max-width: 200px;
+  text-align: right;
+  line-height: 1.15;
+}
+
+.slide-specialists .sp-desc {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #000;
+}
+.slide-specialists .sp-desc em { color: #0044c2; font-style: italic; }
+.slide-specialists .sp-desc strong { font-weight: bold; }
+
+.slide-specialists .sp-feature {
+  background: #fff;
+  border: 2px solid #000;
+  padding: 10px 14px 12px;
+}
+.slide-specialists .sp-feature-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #c84500;
+  margin-bottom: 8px;
+}
+.slide-specialists .sp-card-verticals .sp-feature-label { color: #0a7d2f; }
+.slide-specialists .sp-feature-list {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #000;
+  margin: 0;
+  padding: 0 0 0 24px;
+  list-style: none;
+}
+.slide-specialists .sp-feature-list li {
+  position: relative;
+  padding: 3px 0 3px 2px;
+}
+.slide-specialists .sp-feature-list li::before {
+  content: '▸';
+  position: absolute;
+  left: -16px;
+  top: 4px;
+  color: #c84500;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+}
+.slide-specialists .sp-card-verticals .sp-feature-list li::before { color: #0a7d2f; }
+.slide-specialists .sp-blt-h {
+  font-family: 'Tahoma', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-size: 12px;
+  color: #c84500;
+  margin-right: 8px;
+}
+.slide-specialists .sp-card-verticals .sp-blt-h { color: #0a7d2f; }
+.slide-specialists .sp-blt-sub {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 13px;
+  color: #333;
+}
+
+.slide-specialists .sp-stat-row {
+  display: flex;
+  gap: 10px;
+}
+.slide-specialists .sp-stat {
+  flex: 1;
+  text-align: center;
+  background: #000;
+  color: #00ff66;
+  padding: 9px 6px;
+  border: 2px solid #000;
+}
+.slide-specialists .sp-stat-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.slide-specialists .sp-stat-lbl {
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #80ffaa;
+}
+
+.slide-specialists .sp-receipt {
+  background: #fff8d6;
+  border: 2px dashed #000;
+  padding: 9px 12px;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #000;
+}
+.slide-specialists .sp-receipt em { color: #0044c2; font-style: italic; }
+.slide-specialists .sp-receipt strong { font-weight: bold; }
+.slide-specialists .sp-receipt-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #c84500;
+  margin-right: 8px;
+}
+.slide-specialists .sp-card-verticals .sp-receipt-tag { color: #0a7d2f; }
+
+@media (max-width: 1100px) {
+  .slide-specialists .sp-grid { grid-template-columns: 1fr; }
+  .slide-specialists .sp-hero { flex-direction: column; align-items: flex-start; }
+  .slide-specialists .sp-price { align-self: stretch; text-align: center; }
 }
 
