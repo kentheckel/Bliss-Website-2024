@@ -1,0 +1,143 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-bars hamburger-menu"></i>
+            <i class="fab fa-youtube"></i>
+            <span>Studio</span>
+        </div>
+        <ul class="menu">
+            <div class="profile">
+                <img src="../images/channels/AllTheSmokeFight.svg" alt="All The Smoke Fight Logo" class="profile-img">
+                <div class="profile-name">All The Smoke Fight</div>
+            </div>
+            <li><i class="fas fa-th"></i><span>Dashboard</span></li>
+            <li><i class="fas fa-video"></i><span>Content</span></li>
+            <li class="active"><i class="fas fa-chart-bar"></i><span>Analytics</span></li>
+            <li><i class="fas fa-users"></i><span>Community</span></li>
+            <li><i class="fas fa-closed-captioning"></i><span>Subtitles</span></li>
+            <li><i class="fas fa-copyright"></i><span>Copyright</span></li>
+            <li><i class="fas fa-dollar-sign"></i><span>Earn</span></li>
+            <li><i class="fas fa-paint-brush"></i><span>Customization</span></li>
+            <li><i class="fas fa-music"></i><span>Audio library</span></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-bar" placeholder="Search across your channel">
+            </div>
+        </div>
+        <div class="analytics-header">Channel analytics</div>
+        <div class="tabs">
+            <div class="tab-container">
+                <div class="tab active">Overview</div>
+                <div class="tab">Content</div>
+                <div class="tab">Audience</div>
+                <div class="tab">Trends</div>
+            </div>
+            <div class="date-range">
+                <!-- TODO: real date range + engagement status -->
+                <div class="date">Coming Soon</div>
+                <div class="status">Updating</div>
+            </div>
+        </div>
+        <div class="overview">
+            <div class="summary">
+                <!-- TODO: replace placeholder stats with real All The Smoke Fight numbers -->
+                <div class="card">
+                    <div class="description">Total Views</div>
+                    <div class="value">-- <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Stats loading...</div>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label">Views</div>
+                            <div class="info-value">--</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Average Monthly Views</div>
+                            <div class="info-value">--</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">First Month Views</div>
+                            <div class="info-value">--</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Last Month Views</div>
+                            <div class="info-value">--</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Highest Monthly Views</div>
+                            <div class="info-value">--</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="description">Total Uploads</div>
+                    <div class="value">--<i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Stats loading...</div>
+                </div>
+                <div class="card">
+                    <div class="description">Subscribers Gained</div>
+                    <div class="value">-- <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Stats loading...</div>
+                </div>
+            </div>
+            <div class="chart">
+                <div class="chart-header">
+                    <span>Views</span>
+                    <button class="see-more">See more</button>
+                </div>
+                <canvas id="viewsChart" class="chart-graph"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // TODO: replace with real All The Smoke Fight monthly cumulative views
+        const monthlyViews = [
+            ["Month 1", 0],
+            ["Month 2", 0],
+            ["Month 3", 0],
+            ["Month 4", 0],
+            ["Month 5", 0],
+            ["Month 6", 0]
+        ];
+
+        const labels = monthlyViews.map(item => item[0]);
+        const data = monthlyViews.map(item => item[1]);
+
+        const ctx = document.getElementById('viewsChart').getContext('2d');
+        const viewsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Monthly Views',
+                    data: data,
+                    borderColor: '#40B4D9',
+                    backgroundColor: 'rgba(64, 180, 217, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    x: { display: true, title: { display: true, text: 'Month' } },
+                    y: { display: true, title: { display: true, text: 'Views' } }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>

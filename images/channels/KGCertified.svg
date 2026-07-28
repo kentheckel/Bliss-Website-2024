@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Placeholder icon for KG Certified - replace with real YouTube profile picture -->
+  <rect width="64" height="64" fill="#007a33"/>
+  <rect x="2" y="2" width="60" height="60" fill="none" stroke="#ffffff" stroke-width="2"/>
+  <text x="32" y="41" text-anchor="middle" font-family="monospace" font-weight="bold" font-size="26" fill="#ffffff">KG</text>
+</svg>
