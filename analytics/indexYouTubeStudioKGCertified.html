@@ -46,19 +46,19 @@
                 <div class="tab">Trends</div>
             </div>
             <div class="date-range">
-                <div class="date">May 2025 – Jul 2026</div>
+                <div class="date">Mar 2025 – Jul 2026</div>
                 <div class="status">Active</div>
             </div>
         </div>
         <div class="overview">
             <div class="summary">
                 <div class="card">
-                    <div class="description">Total Views</div>
-                    <div class="value">110M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Views Since We Teamed Up (Mar 2025)</div>
+                    <div class="value">39.9M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
                     <div class="description">25 uploads in the last 28 days</div>
                     <div class="info-card">
                         <div class="info-item">
-                            <div class="info-label">Views</div>
+                            <div class="info-label">All-Time Channel Views</div>
                             <div class="info-value">110,022,481</div>
                         </div>
                         <div class="info-item">
@@ -92,7 +92,7 @@
             </div>
             <div class="chart">
                 <div class="chart-header">
-                    <span>Views</span>
+                    <span>Views since we teamed up</span>
                     <button class="see-more">See more</button>
                 </div>
                 <canvas id="viewsChart" class="chart-graph"></canvas>
@@ -101,23 +101,24 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // KG Certified cumulative total views by month (source: ChannelTrack / Notion YouTube Analytics)
+        // KG Certified views gained since the partnership started (Mar 2025),
+        // cumulative by month (source: ChannelTrack / Notion YouTube Analytics)
         const monthlyViews = [
-            ["May 2025", 71941750],
-            ["Jun 2025", 76427115],
-            ["Jul 2025", 79214562],
-            ["Aug 2025", 81044492],
-            ["Sep 2025", 81605591],
-            ["Oct 2025", 82967019],
-            ["Nov 2025", 85486664],
-            ["Dec 2025", 88429810],
-            ["Jan 2026", 90645731],
-            ["Feb 2026", 92801484],
-            ["Mar 2026", 94754634],
-            ["Apr 2026", 98046389],
-            ["May 2026", 102725654],
-            ["Jun 2026", 108361512],
-            ["Jul 2026", 110022481]
+            ["May 2025", 1775564],
+            ["Jun 2025", 6260929],
+            ["Jul 2025", 9048376],
+            ["Aug 2025", 10878306],
+            ["Sep 2025", 11439405],
+            ["Oct 2025", 12800833],
+            ["Nov 2025", 15320478],
+            ["Dec 2025", 18263624],
+            ["Jan 2026", 20479545],
+            ["Feb 2026", 22635298],
+            ["Mar 2026", 24588448],
+            ["Apr 2026", 27880203],
+            ["May 2026", 32559468],
+            ["Jun 2026", 38195326],
+            ["Jul 2026", 39856295]
         ];
 
         const labels = monthlyViews.map(item => item[0]);
@@ -129,7 +130,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Total Views',
+                    label: 'Views Since Partnership',
                     data: data,
                     borderColor: '#40B4D9',
                     backgroundColor: 'rgba(64, 180, 217, 0.2)',
@@ -140,7 +141,7 @@
             options: {
                 scales: {
                     x: { display: true, title: { display: true, text: 'Month' } },
-                    y: { display: true, title: { display: true, text: 'Total Views' } }
+                    y: { display: true, title: { display: true, text: 'Views Since Partnership' } }
                 },
                 plugins: { legend: { display: false } }
             }

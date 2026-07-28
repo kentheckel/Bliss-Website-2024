@@ -46,19 +46,19 @@
                 <div class="tab">Trends</div>
             </div>
             <div class="date-range">
-                <div class="date">May 2025 – Jul 2026</div>
+                <div class="date">Mar 2025 – Jul 2026</div>
                 <div class="status">Active</div>
             </div>
         </div>
         <div class="overview">
             <div class="summary">
                 <div class="card">
-                    <div class="description">Total Views</div>
-                    <div class="value">785M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Views Since We Teamed Up (Mar 2025)</div>
+                    <div class="value">61.6M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
                     <div class="description">56 uploads in the last 28 days</div>
                     <div class="info-card">
                         <div class="info-item">
-                            <div class="info-label">Views</div>
+                            <div class="info-label">All-Time Channel Views</div>
                             <div class="info-value">785,140,496</div>
                         </div>
                         <div class="info-item">
@@ -92,7 +92,7 @@
             </div>
             <div class="chart">
                 <div class="chart-header">
-                    <span>Views</span>
+                    <span>Views since we teamed up</span>
                     <button class="see-more">See more</button>
                 </div>
                 <canvas id="viewsChart" class="chart-graph"></canvas>
@@ -101,23 +101,24 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // All The Smoke Fight cumulative total views by month (source: ChannelTrack / Notion YouTube Analytics)
+        // All The Smoke Fight views gained since the partnership started (Mar 2025),
+        // cumulative by month (source: ChannelTrack / Notion YouTube Analytics)
         const monthlyViews = [
-            ["May 2025", 725105254],
-            ["Jun 2025", 727311880],
-            ["Jul 2025", 731203869],
-            ["Aug 2025", 734297610],
-            ["Sep 2025", 739623921],
-            ["Oct 2025", 743890697],
-            ["Nov 2025", 745709693],
-            ["Dec 2025", 752629756],
-            ["Jan 2026", 756950766],
-            ["Feb 2026", 761597889],
-            ["Mar 2026", 764891815],
-            ["Apr 2026", 767390473],
-            ["May 2026", 770718321],
-            ["Jun 2026", 779007812],
-            ["Jul 2026", 785140496]
+            ["May 2025", 1525747],
+            ["Jun 2025", 3732373],
+            ["Jul 2025", 7624362],
+            ["Aug 2025", 10718103],
+            ["Sep 2025", 16044414],
+            ["Oct 2025", 20311190],
+            ["Nov 2025", 22130186],
+            ["Dec 2025", 29050249],
+            ["Jan 2026", 33371259],
+            ["Feb 2026", 38018382],
+            ["Mar 2026", 41312308],
+            ["Apr 2026", 43810966],
+            ["May 2026", 47138814],
+            ["Jun 2026", 55428305],
+            ["Jul 2026", 61560989]
         ];
 
         const labels = monthlyViews.map(item => item[0]);
@@ -129,7 +130,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Total Views',
+                    label: 'Views Since Partnership',
                     data: data,
                     borderColor: '#40B4D9',
                     backgroundColor: 'rgba(64, 180, 217, 0.2)',
@@ -140,7 +141,7 @@
             options: {
                 scales: {
                     x: { display: true, title: { display: true, text: 'Month' } },
-                    y: { display: true, title: { display: true, text: 'Total Views' } }
+                    y: { display: true, title: { display: true, text: 'Views Since Partnership' } }
                 },
                 plugins: { legend: { display: false } }
             }

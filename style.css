@@ -1417,12 +1417,12 @@ body, html {
     margin: 0;
 }
 
-/* Spurs window holds a slide deck — wider, landscape-shaped */
+/* Spurs window holds a slide deck — wide, sized so one 16:9 slide fills the view */
 #ModalTextBoxSanAntonioSpurs {
-    left: 600px !important;
-    top: 120px !important;
-    width: 780px;
-    height: 560px;
+    left: 460px !important;
+    top: 100px !important;
+    width: 920px;
+    height: 600px;
 }
 #ModalTextBoxCamNewton {
     position: absolute !important;

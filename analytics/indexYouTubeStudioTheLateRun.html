@@ -16,7 +16,7 @@
         </div>
         <ul class="menu">
             <div class="profile">
-                <img src="../images/channels/TheLateRun.svg" alt="The Late Run Logo" class="profile-img">
+                <img src="../images/channels/TheLateRun.png" alt="The Late Run Logo" class="profile-img">
                 <div class="profile-name">The Late Run</div>
             </div>
             <li><i class="fas fa-th"></i><span>Dashboard</span></li>
@@ -46,19 +46,19 @@
                 <div class="tab">Trends</div>
             </div>
             <div class="date-range">
-                <div class="date">Apr 2026 – Jul 2026</div>
+                <div class="date">Jan 2026 – Jul 2026</div>
                 <div class="status">Active</div>
             </div>
         </div>
         <div class="overview">
             <div class="summary">
                 <div class="card">
-                    <div class="description">Total Views</div>
+                    <div class="description">Views Since We Teamed Up (Jan 2026)</div>
                     <div class="value">43.4M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
                     <div class="description">103 uploads in the last 28 days</div>
                     <div class="info-card">
                         <div class="info-item">
-                            <div class="info-label">Views</div>
+                            <div class="info-label">All-Time Channel Views</div>
                             <div class="info-value">43,435,096</div>
                         </div>
                         <div class="info-item">
@@ -92,7 +92,7 @@
             </div>
             <div class="chart">
                 <div class="chart-header">
-                    <span>Views</span>
+                    <span>Views since we teamed up</span>
                     <button class="see-more">See more</button>
                 </div>
                 <canvas id="viewsChart" class="chart-graph"></canvas>
@@ -101,7 +101,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // The Late Run cumulative total views by month (source: ChannelTrack / Notion YouTube Analytics)
+        // The Late Run views gained since the partnership started (Jan 2026),
+        // cumulative by month (source: ChannelTrack / Notion YouTube Analytics)
         const monthlyViews = [
             ["Apr 2026", 10447766],
             ["May 2026", 17768521],
@@ -118,7 +119,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Total Views',
+                    label: 'Views Since Partnership',
                     data: data,
                     borderColor: '#40B4D9',
                     backgroundColor: 'rgba(64, 180, 217, 0.2)',
@@ -129,7 +130,7 @@
             options: {
                 scales: {
                     x: { display: true, title: { display: true, text: 'Month' } },
-                    y: { display: true, title: { display: true, text: 'Total Views' } }
+                    y: { display: true, title: { display: true, text: 'Views Since Partnership' } }
                 },
                 plugins: { legend: { display: false } }
             }

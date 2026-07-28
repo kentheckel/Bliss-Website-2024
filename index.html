@@ -466,16 +466,20 @@
                     <span>San Antonio Spurs</span>
                     <small>265k subs</small>
                 </button>
-                <!-- The Late Run: placeholder icon until the real logo arrives -->
                 <button class="explorer-item" data-channel="TheLateRun">
-                    <img src="images/channels/TheLateRun.svg" alt="The Late Run">
+                    <img src="images/channels/TheLateRun.png" alt="The Late Run">
                     <span>The Late Run</span>
                     <small>43.9k subs</small>
                 </button>
+                <button class="explorer-item" data-channel="RingChamps">
+                    <img src="images/channels/RingChamps.png" alt="Ring Champs">
+                    <span>Ring Champs</span>
+                    <small>47.7k subs</small>
+                </button>
             </div>
             <div class="explorer-statusbar">
-                <span>10 object(s)</span>
-                <span>6.8M+ total subscribers</span>
+                <span>11 object(s)</span>
+                <span>6.9M+ total subscribers</span>
             </div>
         </div>
 
@@ -744,7 +748,8 @@
                 </div>
             </div>
             <div class="modal-content">
-                <iframe src="analytics/decks/SanAntonioSpursDeck.html" class="modal-iframe"></iframe>
+                <!-- The deck is a self-contained presentation app (scales itself, arrow-key nav, password gate) -->
+                <iframe src="Spurs/ASFC%20Spurs%20Season%20Story%20Deck%20v5%20-%20Presentation%20Mode.html" class="modal-iframe"></iframe>
             </div>
         </div>
 
@@ -771,6 +776,32 @@
             </div>
             <div class="modal-content">
                 <iframe src="analytics/strategies/TheLateRunStrategy.html" class="modal-iframe"></iframe>
+            </div>
+        </div>
+
+        <!-- Modal for Ring Champs Analytics -->
+        <div id="ModalAnalyticsRingChamps" class="modal ModalYouTubeBorder" style="display: none;">
+            <div id="modalHeaderAnalyticsRingChamps" class="window-controls">
+                <span class="title">Ring Champs Analytics</span>
+                <div class="window-btn-container">
+                    <button id="AnalyticsMinimizeRingChamps" class="window-btn-youtube">-</button>
+                    <button id="AnalyticsCloseRingChamps" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <iframe src="analytics/indexYouTubeStudioRingChamps.html" class="modal-iframe"></iframe>
+        </div>
+
+        <!-- Modal for Ring Champs Strategy -->
+        <div id="ModalTextBoxRingChamps" class="modal ModalTextBox" style="display: none;">
+            <div id="modalHeaderTextBoxRingChamps" class="window-controls">
+                <span class="title">Ring Champs Strategy</span>
+                <div class="window-btn-container">
+                    <button id="TextBoxMinimizeRingChamps" class="window-btn-youtube">-</button>
+                    <button id="TextBoxCloseRingChamps" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <div class="modal-content">
+                <iframe src="analytics/strategies/RingChampsStrategy.html" class="modal-iframe"></iframe>
             </div>
         </div>
 
