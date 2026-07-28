@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Antonio Spurs Deck</title>
+    <style>
+        /* Slide viewer that lives inside a Win95 modal iframe.
+           To swap in the real deck: replace the <section class="slide"> blocks below.
+           Image-only slides work too: <section class="slide image-slide"><img src="..."></section> */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; }
+        body {
+            background: #0c0c0c;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+        #stage {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            padding: 48px 64px;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1d1d1f 100%);
+        }
+        .slide.active { display: flex; }
+        .slide.image-slide { padding: 0; justify-content: center; align-items: center; background: #000; }
+        .slide.image-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .slide .kicker {
+            color: #c4ced4;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+        .slide h1 { font-size: 44px; line-height: 1.1; margin-bottom: 12px; }
+        .slide h2 { font-size: 32px; line-height: 1.15; margin-bottom: 18px; }
+        .slide p  { font-size: 18px; line-height: 1.6; color: #d7d7d7; max-width: 640px; }
+        .slide ul { margin-top: 10px; padding-left: 24px; }
+        .slide li { font-size: 18px; line-height: 1.7; color: #d7d7d7; }
+        .slide .logo { width: 110px; height: 110px; margin-bottom: 24px; border-radius: 8px; }
+        .statgrid {
+            display: flex;
+            gap: 28px;
+            margin-top: 26px;
+            flex-wrap: wrap;
+        }
+        .stat {
+            border-left: 3px solid #c4ced4;
+            padding-left: 14px;
+        }
+        .stat .num { font-size: 34px; font-weight: 700; }
+        .stat .cap { font-size: 13px; color: #9aa4ab; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+        .placeholder-note {
+            margin-top: 30px;
+            border: 1px dashed #555;
+            color: #9aa4ab;
+            font-size: 14px;
+            padding: 10px 14px;
+            max-width: 640px;
+            font-style: italic;
+        }
+        /* Controls bar */
+        #controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #c0c0c0;
+            color: #000;
+            padding: 6px 10px;
+            font-size: 14px;
+            border-top: 2px solid #ffffff;
+            user-select: none;
+        }
+        #controls button {
+            font-family: inherit;
+            font-size: 14px;
+            padding: 4px 16px;
+            background: #dcdcdc;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            cursor: pointer;
+        }
+        #controls button:active { border-color: #808080 #ffffff #ffffff #808080; }
+        #counter { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="stage">
+
+        <!-- Slide 1: Title -->
+        <section class="slide active">
+            <img src="../../images/channels/SanAntonioSpurs.png" alt="San Antonio Spurs" class="logo">
+            <div class="kicker">Case Study</div>
+            <h1>San Antonio Spurs</h1>
+            <p>YouTube Strategy &amp; Channel Growth</p>
+        </section>
+
+        <!-- Slide 2: The Results -->
+        <section class="slide">
+            <div class="kicker">The Results</div>
+            <h2>42.6M &rarr; 181.5M total views in 14 months</h2>
+            <div class="statgrid">
+                <div class="stat"><div class="num">4.3x</div><div class="cap">Total views growth</div></div>
+                <div class="stat"><div class="num">265K</div><div class="cap">Subscribers</div></div>
+                <div class="stat"><div class="num">136.7M</div><div class="cap">Views last 365 days</div></div>
+                <div class="stat"><div class="num">107</div><div class="cap">Uploads last 28 days</div></div>
+            </div>
+        </section>
+
+        <!-- Slide 3: placeholder — replace with real deck content -->
+        <section class="slide">
+            <div class="kicker">The Approach</div>
+            <h2>How we did it</h2>
+            <p>Slide content coming soon.</p>
+            <div class="placeholder-note">Placeholder — this deck will be replaced with the real
+            San Antonio Spurs slides. Swap each &lt;section class="slide"&gt; in this file, or use
+            image-slides for exported deck pages.</div>
+        </section>
+
+        <!-- Slide 4: placeholder — replace with real deck content -->
+        <section class="slide">
+            <div class="kicker">The Work</div>
+            <h2>What we built</h2>
+            <p>Slide content coming soon.</p>
+            <div class="placeholder-note">Placeholder — swap with the real deck.</div>
+        </section>
+
+    </div>
+
+    <div id="controls">
+        <button id="prevBtn">&#9664; Prev</button>
+        <span id="counter">1 / 4</span>
+        <button id="nextBtn">Next &#9654;</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const counter = document.getElementById('counter');
+        let current = 0;
+
+        function show(i) {
+            current = Math.max(0, Math.min(slides.length - 1, i));
+            slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+            counter.textContent = (current + 1) + ' / ' + slides.length;
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => show(current - 1));
+        document.getElementById('nextBtn').addEventListener('click', () => show(current + 1));
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') show(current + 1);
+            if (e.key === 'ArrowLeft') show(current - 1);
+        });
+        // Click right/left half of the stage to advance/go back
+        document.getElementById('stage').addEventListener('click', (e) => {
+            const mid = window.innerWidth / 2;
+            show(e.clientX > mid ? current + 1 : current - 1);
+        });
+    </script>
+</body>
+</html>

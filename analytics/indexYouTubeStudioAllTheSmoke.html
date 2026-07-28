@@ -16,7 +16,7 @@
         </div>
         <ul class="menu">
             <div class="profile">
-                <img src="../images/channels/AllTheSmoke.svg" alt="All The Smoke Logo" class="profile-img">
+                <img src="../images/channels/AllTheSmoke.png" alt="All The Smoke Logo" class="profile-img">
                 <div class="profile-name">All The Smoke</div>
             </div>
             <li><i class="fas fa-th"></i><span>Dashboard</span></li>
@@ -46,50 +46,48 @@
                 <div class="tab">Trends</div>
             </div>
             <div class="date-range">
-                <!-- TODO: real date range + engagement status -->
-                <div class="date">Coming Soon</div>
-                <div class="status">Updating</div>
+                <div class="date">May 2025 – Jul 2026</div>
+                <div class="status">Active</div>
             </div>
         </div>
         <div class="overview">
             <div class="summary">
-                <!-- TODO: replace placeholder stats with real All The Smoke numbers -->
                 <div class="card">
                     <div class="description">Total Views</div>
-                    <div class="value">-- <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">Stats loading...</div>
+                    <div class="value">717M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">99 uploads in the last 28 days</div>
                     <div class="info-card">
                         <div class="info-item">
                             <div class="info-label">Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">717,473,735</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Average Monthly Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">15,266,629</div>
                         </div>
                         <div class="info-item">
-                            <div class="info-label">First Month Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-label">Views (Last 28 Days)</div>
+                            <div class="info-value">10,932,463</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Last Month Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">11,388,679</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Highest Monthly Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">21,220,022</div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="description">Total Uploads</div>
-                    <div class="value">--<i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">Stats loading...</div>
+                    <div class="value">3,823<i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Yes, that's correct</div>
                 </div>
                 <div class="card">
-                    <div class="description">Subscribers Gained</div>
-                    <div class="value">-- <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">Stats loading...</div>
+                    <div class="description">Subscribers</div>
+                    <div class="value">1.33M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">+9,491 in the last 28 days</div>
                 </div>
             </div>
             <div class="chart">
@@ -103,14 +101,23 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // TODO: replace with real All The Smoke monthly cumulative views
+        // All The Smoke cumulative total views by month (source: ChannelTrack / Notion YouTube Analytics)
         const monthlyViews = [
-            ["Month 1", 0],
-            ["Month 2", 0],
-            ["Month 3", 0],
-            ["Month 4", 0],
-            ["Month 5", 0],
-            ["Month 6", 0]
+            ["May 2025", 503740927],
+            ["Jun 2025", 519908804],
+            ["Jul 2025", 531336220],
+            ["Aug 2025", 548299095],
+            ["Sep 2025", 561880780],
+            ["Oct 2025", 576759249],
+            ["Nov 2025", 597696379],
+            ["Dec 2025", 618916401],
+            ["Jan 2026", 635193149],
+            ["Feb 2026", 646471557],
+            ["Mar 2026", 659909920],
+            ["Apr 2026", 675676382],
+            ["May 2026", 691100040],
+            ["Jun 2026", 706085056],
+            ["Jul 2026", 717473735]
         ];
 
         const labels = monthlyViews.map(item => item[0]);
@@ -122,7 +129,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Monthly Views',
+                    label: 'Total Views',
                     data: data,
                     borderColor: '#40B4D9',
                     backgroundColor: 'rgba(64, 180, 217, 0.2)',
@@ -133,7 +140,7 @@
             options: {
                 scales: {
                     x: { display: true, title: { display: true, text: 'Month' } },
-                    y: { display: true, title: { display: true, text: 'Views' } }
+                    y: { display: true, title: { display: true, text: 'Total Views' } }
                 },
                 plugins: { legend: { display: false } }
             }

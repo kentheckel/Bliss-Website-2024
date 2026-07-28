@@ -16,7 +16,7 @@
         </div>
         <ul class="menu">
             <div class="profile">
-                <img src="../images/channels/AllTheSmokeFight.svg" alt="All The Smoke Fight Logo" class="profile-img">
+                <img src="../images/channels/AllTheSmokeFight.png" alt="All The Smoke Fight Logo" class="profile-img">
                 <div class="profile-name">All The Smoke Fight</div>
             </div>
             <li><i class="fas fa-th"></i><span>Dashboard</span></li>
@@ -46,50 +46,48 @@
                 <div class="tab">Trends</div>
             </div>
             <div class="date-range">
-                <!-- TODO: real date range + engagement status -->
-                <div class="date">Coming Soon</div>
-                <div class="status">Updating</div>
+                <div class="date">May 2025 – Jul 2026</div>
+                <div class="status">Active</div>
             </div>
         </div>
         <div class="overview">
             <div class="summary">
-                <!-- TODO: replace placeholder stats with real All The Smoke Fight numbers -->
                 <div class="card">
                     <div class="description">Total Views</div>
-                    <div class="value">-- <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">Stats loading...</div>
+                    <div class="value">785M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">56 uploads in the last 28 days</div>
                     <div class="info-card">
                         <div class="info-item">
                             <div class="info-label">Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">785,140,496</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Average Monthly Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">4,288,231</div>
                         </div>
                         <div class="info-item">
-                            <div class="info-label">First Month Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-label">Views (Last 28 Days)</div>
+                            <div class="info-value">5,852,216</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Last Month Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">6,132,684</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Highest Monthly Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">8,289,491</div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="description">Total Uploads</div>
-                    <div class="value">--<i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">Stats loading...</div>
+                    <div class="value">3,103<i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Yes, that's correct</div>
                 </div>
                 <div class="card">
-                    <div class="description">Subscribers Gained</div>
-                    <div class="value">-- <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">Stats loading...</div>
+                    <div class="description">Subscribers</div>
+                    <div class="value">1.93M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">+3,722 in the last 28 days</div>
                 </div>
             </div>
             <div class="chart">
@@ -103,14 +101,23 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // TODO: replace with real All The Smoke Fight monthly cumulative views
+        // All The Smoke Fight cumulative total views by month (source: ChannelTrack / Notion YouTube Analytics)
         const monthlyViews = [
-            ["Month 1", 0],
-            ["Month 2", 0],
-            ["Month 3", 0],
-            ["Month 4", 0],
-            ["Month 5", 0],
-            ["Month 6", 0]
+            ["May 2025", 725105254],
+            ["Jun 2025", 727311880],
+            ["Jul 2025", 731203869],
+            ["Aug 2025", 734297610],
+            ["Sep 2025", 739623921],
+            ["Oct 2025", 743890697],
+            ["Nov 2025", 745709693],
+            ["Dec 2025", 752629756],
+            ["Jan 2026", 756950766],
+            ["Feb 2026", 761597889],
+            ["Mar 2026", 764891815],
+            ["Apr 2026", 767390473],
+            ["May 2026", 770718321],
+            ["Jun 2026", 779007812],
+            ["Jul 2026", 785140496]
         ];
 
         const labels = monthlyViews.map(item => item[0]);
@@ -122,7 +129,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Monthly Views',
+                    label: 'Total Views',
                     data: data,
                     borderColor: '#40B4D9',
                     backgroundColor: 'rgba(64, 180, 217, 0.2)',
@@ -133,7 +140,7 @@
             options: {
                 scales: {
                     x: { display: true, title: { display: true, text: 'Month' } },
-                    y: { display: true, title: { display: true, text: 'Views' } }
+                    y: { display: true, title: { display: true, text: 'Total Views' } }
                 },
                 plugins: { legend: { display: false } }
             }

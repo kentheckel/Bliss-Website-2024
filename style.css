@@ -1400,6 +1400,30 @@ body, html {
     height: 800px; /* Set the height */
     z-index: 1000; /* Ensure it appears above other elements */
 }
+
+/* Generic content/iframe layout for all TextBox modals (strategy docs, decks) —
+   the original five channels also have per-ID versions of these same rules */
+.ModalTextBox .modal-content {
+    overflow: hidden;
+    padding: 0;
+    height: calc(100% - 40px); /* Subtract header height */
+}
+
+.ModalTextBox .modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Spurs window holds a slide deck — wider, landscape-shaped */
+#ModalTextBoxSanAntonioSpurs {
+    left: 600px !important;
+    top: 120px !important;
+    width: 780px;
+    height: 560px;
+}
 #ModalTextBoxCamNewton {
     position: absolute !important;
     top: 10% !important; /* Adjusted to 10% for responsive positioning */

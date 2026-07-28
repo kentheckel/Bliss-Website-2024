@@ -16,7 +16,7 @@
         </div>
         <ul class="menu">
             <div class="profile">
-                <img src="../images/channels/SanAntonioSpurs.svg" alt="San Antonio Spurs Logo" class="profile-img">
+                <img src="../images/channels/SanAntonioSpurs.png" alt="San Antonio Spurs Logo" class="profile-img">
                 <div class="profile-name">San Antonio Spurs</div>
             </div>
             <li><i class="fas fa-th"></i><span>Dashboard</span></li>
@@ -46,50 +46,48 @@
                 <div class="tab">Trends</div>
             </div>
             <div class="date-range">
-                <!-- TODO: real date range + engagement status -->
-                <div class="date">Coming Soon</div>
-                <div class="status">Updating</div>
+                <div class="date">May 2025 – Jul 2026</div>
+                <div class="status">Active</div>
             </div>
         </div>
         <div class="overview">
             <div class="summary">
-                <!-- TODO: replace placeholder stats with real San Antonio Spurs numbers -->
                 <div class="card">
                     <div class="description">Total Views</div>
-                    <div class="value">-- <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">Stats loading...</div>
+                    <div class="value">182M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">107 uploads in the last 28 days</div>
                     <div class="info-card">
                         <div class="info-item">
                             <div class="info-label">Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">181,560,320</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Average Monthly Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">9,925,133</div>
                         </div>
                         <div class="info-item">
-                            <div class="info-label">First Month Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-label">Views (Last 28 Days)</div>
+                            <div class="info-value">6,068,776</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Last Month Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">6,382,207</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Highest Monthly Views</div>
-                            <div class="info-value">--</div>
+                            <div class="info-value">31,685,341</div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="description">Total Uploads</div>
-                    <div class="value">--<i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">Stats loading...</div>
+                    <div class="value">8,014<i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Yes, that's correct</div>
                 </div>
                 <div class="card">
-                    <div class="description">Subscribers Gained</div>
-                    <div class="value">-- <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">Stats loading...</div>
+                    <div class="description">Subscribers</div>
+                    <div class="value">265k <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">+7,370 in the last 28 days</div>
                 </div>
             </div>
             <div class="chart">
@@ -103,14 +101,23 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // TODO: replace with real San Antonio Spurs monthly cumulative views
+        // San Antonio Spurs cumulative total views by month (source: ChannelTrack / Notion YouTube Analytics)
         const monthlyViews = [
-            ["Month 1", 0],
-            ["Month 2", 0],
-            ["Month 3", 0],
-            ["Month 4", 0],
-            ["Month 5", 0],
-            ["Month 6", 0]
+            ["May 2025", 42608445],
+            ["Jun 2025", 43592716],
+            ["Jul 2025", 45212594],
+            ["Aug 2025", 46063572],
+            ["Sep 2025", 46862378],
+            ["Oct 2025", 52800220],
+            ["Nov 2025", 59208600],
+            ["Dec 2025", 68676372],
+            ["Jan 2026", 79267024],
+            ["Feb 2026", 89104189],
+            ["Mar 2026", 105636664],
+            ["Apr 2026", 118226182],
+            ["May 2026", 143492772],
+            ["Jun 2026", 175178113],
+            ["Jul 2026", 181560320]
         ];
 
         const labels = monthlyViews.map(item => item[0]);
@@ -122,7 +129,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Monthly Views',
+                    label: 'Total Views',
                     data: data,
                     borderColor: '#40B4D9',
                     backgroundColor: 'rgba(64, 180, 217, 0.2)',
@@ -133,7 +140,7 @@
             options: {
                 scales: {
                     x: { display: true, title: { display: true, text: 'Month' } },
-                    y: { display: true, title: { display: true, text: 'Views' } }
+                    y: { display: true, title: { display: true, text: 'Total Views' } }
                 },
                 plugins: { legend: { display: false } }
             }
