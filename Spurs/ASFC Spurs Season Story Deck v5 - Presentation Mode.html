@@ -1728,9 +1728,9 @@ body{padding:0;margin:0;display:block;}
       pw.value = ''; pw.focus();
     }
   }
-  document.getElementById('asfc-go').addEventListener('click', tryPw);
-  pw.addEventListener('keydown', function(e){ if(e.key==='Enter') tryPw(); });
-  window.addEventListener('load', function(){ pw.focus(); });
+  /* Password gate removed — deck opens straight to the boot screen */
+  document.getElementById('asfc-login').remove();
+  boot();
 })();
 </script>
 </body>
