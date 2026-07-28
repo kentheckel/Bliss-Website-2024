@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges">
+  <!-- Classic Win95 yellow folder, pixel-art style to match the desktop icons -->
+  <!-- Back panel -->
+  <rect x="4" y="14" width="24" height="8" fill="#000000"/>
+  <rect x="6" y="16" width="20" height="6" fill="#ffe89c"/>
+  <!-- Body outline -->
+  <rect x="2" y="20" width="60" height="36" fill="#000000"/>
+  <!-- Body fill -->
+  <rect x="4" y="22" width="56" height="32" fill="#ffcc33"/>
+  <!-- Top highlight -->
+  <rect x="4" y="22" width="56" height="4" fill="#ffe89c"/>
+  <!-- Left highlight -->
+  <rect x="4" y="22" width="3" height="32" fill="#ffe89c"/>
+  <!-- Bottom shadow -->
+  <rect x="6" y="50" width="54" height="4" fill="#cc9900"/>
+  <!-- Right shadow -->
+  <rect x="56" y="26" width="4" height="28" fill="#cc9900"/>
+</svg>

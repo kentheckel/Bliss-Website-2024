@@ -71,14 +71,14 @@ function makeIconDraggable(icon) {
 
 function saveIconPosition(icon) {
     const iconId = icon.id || icon.querySelector('span')?.textContent || 'unknown';
-    const positions = JSON.parse(localStorage.getItem('desktopIconPositions') || '{}');
+    const positions = JSON.parse(localStorage.getItem('desktopIconPositions_v2') || '{}');
     positions[iconId] = { left: icon.style.left, top: icon.style.top };
-    localStorage.setItem('desktopIconPositions', JSON.stringify(positions));
+    localStorage.setItem('desktopIconPositions_v2', JSON.stringify(positions));
 }
 
 function loadIconPosition(icon) {
     const iconId = icon.id || icon.querySelector('span')?.textContent || 'unknown';
-    const positions = JSON.parse(localStorage.getItem('desktopIconPositions') || '{}');
+    const positions = JSON.parse(localStorage.getItem('desktopIconPositions_v2') || '{}');
     if (positions[iconId]) {
         icon.style.position = 'fixed';
         icon.style.left = positions[iconId].left;
@@ -88,7 +88,7 @@ function loadIconPosition(icon) {
 }
 
 function resetIconPositions() {
-    localStorage.removeItem('desktopIconPositions');
+    localStorage.removeItem('desktopIconPositions_v2');
     location.reload();
 }
 

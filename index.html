@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link href="style.css?v=20260521b" rel="stylesheet">
+    <link href="style.css?v=20260728a" rel="stylesheet">
     <title>Kent Heckel's Website</title>
     <style>
         .email-label {
@@ -50,53 +50,25 @@
     </div>
 
     <!-- MARK: Desktop Icons Container -->
+    <!-- Left column: the business — who we are, what we've done, what we've built -->
+    <!-- Right side: the fun stuff (Games, Paint, Stats) lives near the Trash -->
     <div id="desktop-icons">
-        <!-- Team Icon (formerly About) -->
+        <!-- Team Icon -->
         <button id="aboutBtn" class="icon-btn">
             <img src="images/icons/Icon_Team.png" alt="Team Icon">
             <span>Team</span>
         </button>
 
-        <!-- ChannelTrack Icon -->
-        <button id="channelTrackBtn" class="icon-btn second-column">
-            <img src="images/icons/Icon_ChannelTrack.svg" alt="ChannelTrack Icon">
-            <span>Channel<br>Track.XYZ</span>
+        <!-- Our Work folder — channels we've worked with -->
+        <button id="ourWorkBtn" class="icon-btn">
+            <img src="images/icons/Icon_Folder.svg" alt="Our Work Folder">
+            <span>Our Work</span>
         </button>
 
-        <!-- Uptides Icon -->
-        <button id="uptidesBtn" class="icon-btn second-column" style="top: 155px;">
-            <img src="images/icons/Icon_Uptides.svg" alt="Uptides.ai Icon">
-            <span>Uptides.ai</span>
-        </button>
-
-        <!-- Social Icon -->
-        <button id="socialBtn" class="icon-btn">
-            <img src="images/icons/Icon_Social.svg" alt="Social Icon">
-            <span>Social</span>
-        </button>
-
-        <!-- Contact Icon -->
-        <button id="contactBtn" class="icon-btn">
-            <img src="images/icons/contact.png" alt="Contact Icon">
-            <span>Contact</span>
-        </button>
-
-        <!-- Trash Icon on Desktop -->
-        <button id="trashBtn" class="icon-btn trash-icon">
-            <img src="images/icons/trashCan.png" alt="Trash Can Icon">
-            <span>Trash</span>
-        </button>
-
-        <!-- Videos Icon on Desktop -->
-        <button id="VideosBtn" class="icon-btn">
-            <img src="images/YouTubeStudio2.png" alt="Video camera Icon">
-            <span>Videos</span>
-        </button>
-
-        <!-- Stats Icon on Desktop -->
-        <button id="statsBtn" class="icon-btn">
-            <img src="images/icons/wrench.png" alt="Stats Icon">
-            <span>Stats</span>
+        <!-- Our Products folder — tools we've built (ChannelTrack, Uptides, ...) -->
+        <button id="ourProductsBtn" class="icon-btn">
+            <img src="images/icons/Icon_Folder.svg" alt="Our Products Folder">
+            <span>Our Products</span>
         </button>
 
         <!-- Pitch.exe Icon on Desktop - opens the ASFC pitch deck -->
@@ -105,17 +77,34 @@
             <span>Pitch.exe</span>
         </a>
 
-        <!-- Games Folder Icon on Desktop - opens ModalGames popup -->
-        <button id="gamesBtn" class="icon-btn">
+        <!-- Contact Icon -->
+        <button id="contactBtn" class="icon-btn">
+            <img src="images/icons/contact.png" alt="Contact Icon">
+            <span>Contact</span>
+        </button>
+
+        <!-- Games Folder Icon - right side, opens ModalGames popup -->
+        <button id="gamesBtn" class="icon-btn right-column">
             <img src="images/icons/Icon_Games.svg?v=20260521a" alt="Games Folder Icon">
             <span>Games</span>
         </button>
 
-        <!-- Paint Icon on Desktop - opens collaborative pixel canvas -->
-        <!-- Positioned in the second column directly under ChannelTrack via .second-column-row2 -->
-        <button id="paintBtn" class="icon-btn second-column-row2">
+        <!-- Paint Icon - right side, opens collaborative pixel canvas -->
+        <button id="paintBtn" class="icon-btn right-column-row2">
             <img src="images/icons/Icon_Paint.svg?v=20260521b" alt="Paint Icon">
             <span>Paint.exe</span>
+        </button>
+
+        <!-- Stats Icon - right side -->
+        <button id="statsBtn" class="icon-btn right-column-row3">
+            <img src="images/icons/wrench.png" alt="Stats Icon">
+            <span>Stats</span>
+        </button>
+
+        <!-- Trash Icon - bottom right corner -->
+        <button id="trashBtn" class="icon-btn trash-icon">
+            <img src="images/icons/trashCan.png" alt="Trash Can Icon">
+            <span>Trash</span>
         </button>
 
     </div>
@@ -126,8 +115,8 @@
             <span>Kent<b>OS</b>95</span>
         </div>
         <div class="start-menu-items">
-            <div class="start-menu-item" data-menu-modal="ModalVideos">
-                <span class="start-menu-icon">📹</span> Programs
+            <div class="start-menu-item" data-menu-modal="ModalOurWork">
+                <span class="start-menu-icon">📁</span> Our Work
             </div>
             <div class="start-menu-item" data-menu-modal="ModalAbout">
                 <span class="start-menu-icon">⚙️</span> Settings
@@ -414,62 +403,88 @@
 
 
 
-            <!-- MARK: Videos Modal -->
-        <div id="ModalVideos" style="display: none;">
-            <div id="modalHeaderVideos" class="window-controls">
-                <span>Choose Account</span>
-                
-                <button id="VideosClose" class="window-btn">X</button>
+        <!-- MARK: Our Work Modal (Explorer-style folder of channels we've worked with) -->
+        <!-- Clicking a channel opens its analytics + strategy windows (see js/videos.js) -->
+        <div id="ModalOurWork" class="modal explorer-modal" style="display: none;">
+            <div id="modalHeaderOurWork" class="window-controls">
+                <span class="title">Our Work</span>
+                <div class="window-btn-container">
+                    <button id="ourWorkMinimize" class="window-btn">-</button>
+                    <button id="ourWorkClose" class="window-btn">X</button>
+                </div>
             </div>
-            <div class="account-list">
-                <!-- Account 1 -->
-                <div class="account-item" data-channel="CamNewton">
-                    <img src="images/cam.jpg" alt="Cam Newton" class="account-img">
-                    <div class="account-info">
-                        <b>Cam Newton</b>
-                        <p>@CamNewton<br>1.57M subscribers</p>
-                    </div>                    
-                    <button class="arrow-btn" onclick="window.open('https://youtube.com/@CamNewton', '_blank')">➔</button>
-                </div>
-                <!-- Account 2 -->
-                <div class="account-item" data-channel="4thand1">
-                    <img src="images/4th.jpg" alt="4th&1 with Cam Newton logo" class="account-img">
-                    <div class="account-info">
-                        <b>4th&1 with Cam Newton</b>
-                        <p>@4thand1CamNewton<br>300k subscribers</p>
-                    </div>
-                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@4thand1CamNewton', '_blank')">➔</button>
-                </div>
-                <!-- Account 3 -->
-                <div class="account-item" data-channel="FunkyFriday">
-                    <img src="images/funky.jpg" alt="Funky Friday with Cam Newton logo" class="account-img">
-                    <div class="account-info">
-                        <b>Funky Friday Clips</b>
-                        <p>@FunkyFriday<br>126k subscribers</p>
-                    </div>
-                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@FunkyFridayCamNewton', '_blank')">➔</button>
-                </div>
-                <!-- Add more accounts as needed -->
-                 <!-- Account 4 -->
-                <div class="account-item" data-channel="JimGaffigan">
-                    <img src="images/jim.jpg" alt="Jim Gaffigan logo" class="account-img">
-                    <div class="account-info">
-                        <b>Jim Gaffigan</b>
-                        <p>@JimGaffigan<br>955k subscribers</p>
-                    </div>
-                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@jimgaffigan', '_blank')">➔</button>
-                </div>
+            <div class="explorer-menubar">
+                <span>File</span><span>Edit</span><span>View</span><span>Help</span>
+            </div>
+            <div class="explorer-addressbar">
+                <span class="explorer-address-label">Address</span>
+                <div class="explorer-address-field">C:\Desktop\Our Work</div>
+            </div>
+            <div class="explorer-body">
+                <button class="explorer-item" data-channel="CamNewton">
+                    <img src="images/cam.jpg" alt="Cam Newton">
+                    <span>Cam Newton</span>
+                    <small>1.57M subs</small>
+                </button>
+                <button class="explorer-item" data-channel="4thand1">
+                    <img src="images/4th.jpg" alt="4th&1 with Cam Newton">
+                    <span>4th&amp;1</span>
+                    <small>300k subs</small>
+                </button>
+                <button class="explorer-item" data-channel="FunkyFriday">
+                    <img src="images/funky.jpg" alt="Funky Friday Clips">
+                    <span>Funky Friday</span>
+                    <small>126k subs</small>
+                </button>
+                <button class="explorer-item" data-channel="JimGaffigan">
+                    <img src="images/jim.jpg" alt="Jim Gaffigan">
+                    <span>Jim Gaffigan</span>
+                    <small>955k subs</small>
+                </button>
+                <button class="explorer-item" data-channel="KentHeckel">
+                    <img src="images/kent.jpg" alt="Kent Heckel">
+                    <span>Kent Heckel</span>
+                    <small>27k subs</small>
+                </button>
+            </div>
+            <div class="explorer-statusbar">
+                <span>5 object(s)</span>
+                <span>2.9M+ total subscribers</span>
+            </div>
+        </div>
 
-                <!-- Account 5 -->
-                <div class="account-item" data-channel="KentHeckel">
-                    <img src="images/kent.jpg" alt="Kent Heckel logo" class="account-img">
-                    <div class="account-info">
-                        <b>Kent Heckel</b>
-                        <p>@KentHeckel<br>27k subscribers</p>
-                    </div>
-                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/c/kentheckel', '_blank')">➔</button>
+        <!-- MARK: Our Products Modal (Explorer-style folder of tools we've built) -->
+        <!-- Add new products here as explorer-item buttons with data-opens="Modal..." -->
+        <div id="ModalOurProducts" class="modal explorer-modal" style="display: none;">
+            <div id="modalHeaderOurProducts" class="window-controls">
+                <span class="title">Our Products</span>
+                <div class="window-btn-container">
+                    <button id="ourProductsMinimize" class="window-btn">-</button>
+                    <button id="ourProductsClose" class="window-btn">X</button>
                 </div>
-
+            </div>
+            <div class="explorer-menubar">
+                <span>File</span><span>Edit</span><span>View</span><span>Help</span>
+            </div>
+            <div class="explorer-addressbar">
+                <span class="explorer-address-label">Address</span>
+                <div class="explorer-address-field">C:\Desktop\Our Products</div>
+            </div>
+            <div class="explorer-body">
+                <button class="explorer-item" data-opens="ModalChannelTrack">
+                    <img src="images/icons/Icon_ChannelTrack.svg" alt="ChannelTrack">
+                    <span>ChannelTrack</span>
+                    <small>channeltrack.xyz</small>
+                </button>
+                <button class="explorer-item" data-opens="ModalUptides">
+                    <img src="images/icons/Icon_Uptides.svg" alt="Uptides">
+                    <span>Uptides</span>
+                    <small>uptides.ai</small>
+                </button>
+            </div>
+            <div class="explorer-statusbar">
+                <span>2 object(s)</span>
+                <span>Built in-house</span>
             </div>
         </div>
  <!-- MARK: Analytics Modals -->

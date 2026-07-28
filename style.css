@@ -82,12 +82,6 @@ body, html {
     height: 58px;
 }
 
-/* Channel Track icon larger */
-#channelTrackBtn img {
-    width: 72px;
-    height: 72px;
-}
-
 .icon-btn:hover {
     transform: scale(1.1);
 }
@@ -106,19 +100,24 @@ body, html {
     margin: 0 !important;
 }
 
-/* Second column - default position for Color Social */
-/* Will be overridden if user drags it somewhere else */
-.icon-btn.second-column {
+/* Right side of the desktop — the fun stuff (Games, Paint, Stats) */
+/* Will be overridden if user drags an icon somewhere else */
+.icon-btn.right-column {
     position: fixed;
-    left: 120px;
+    right: 24px;
     top: 30px;
 }
 
-/* Second column row 2 — sits below Uptides in the same column */
-.icon-btn.second-column-row2 {
+.icon-btn.right-column-row2 {
     position: fixed;
-    left: 120px;
-    top: 280px;
+    right: 24px;
+    top: 165px;
+}
+
+.icon-btn.right-column-row3 {
+    position: fixed;
+    right: 24px;
+    top: 300px;
 }
 
 
@@ -1152,114 +1151,126 @@ body, html {
     align-items: center;
 }
 
-/* Account List Styling */
-.account-list {
+/* ===========================================
+   EXPLORER FOLDER WINDOWS (Our Work, Our Products)
+   Classic Win95 file-explorer look: menu bar,
+   address bar, white icon grid, status bar
+   =========================================== */
+.explorer-modal {
+    width: 620px;
+    height: auto;
+    max-width: 90vw;
+    background-color: var(--win95-gray-light);
+    display: none;
+}
+
+.explorer-menubar {
+    display: flex;
+    gap: 18px;
+    padding: 4px 12px;
+    font-size: 20px;
+    background-color: var(--win95-gray-light);
+    border-bottom: 1px solid var(--win95-gray-dark);
+    user-select: none;
+}
+
+.explorer-menubar span {
+    cursor: default;
+}
+
+.explorer-menubar span:hover {
+    background-color: var(--win95-blue-dark);
+    color: white;
+}
+
+.explorer-addressbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--win95-gray-dark);
+    font-size: 18px;
+}
+
+.explorer-address-field {
+    flex: 1;
+    background-color: white;
+    border: 2px inset var(--win95-gray-dark);
+    padding: 3px 8px;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.explorer-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 8px;
+    padding: 16px;
+    background-color: white;
+    border: 2px inset var(--win95-gray-dark);
+    margin: 4px;
+    min-height: 240px;
+    max-height: 55vh;
+    overflow-y: auto;
+}
+
+.explorer-item {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 15px;
+    align-items: center;
+    width: 108px;
+    padding: 8px 4px;
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: var(--win95-font);
+    color: var(--win95-text);
 }
 
-.account-item {
+.explorer-item img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid var(--win95-gray-dark);
+}
+
+.explorer-item span {
+    font-size: 19px;
+    line-height: 1.1;
+    text-align: center;
+    padding: 1px 4px;
+    white-space: normal;
+}
+
+.explorer-item small {
+    font-size: 15px;
+    color: var(--win95-gray-dark);
+    margin-top: 2px;
+}
+
+/* Win95 selection look on hover/focus */
+.explorer-item:hover span,
+.explorer-item:focus span {
+    background-color: var(--win95-blue-dark);
+    color: white;
+    outline: 1px dotted white;
+}
+
+.explorer-statusbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+    gap: 4px;
+    padding: 3px 6px;
+    font-size: 17px;
 }
 
-.account-item:hover {
-    background-color: #404040;
-}
-
-.account-content {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.account-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px; /* Add margin to create a gap */
-}
-
-.account-info {
-    flex-grow: 1;
-    color: white;
-}
-
-.account-info b {
-    font-size: 14px;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.account-info p {
-    font-size: 12px;
-    color: #aaaaaa;
-    margin: 0;
-}
-
-/* Arrow Button Styling */
-.arrow-btn {
-    background-color: #0049d1;
-    border: none;
-    color: white;
-    font-size: 18px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: auto;
-}
-
-.arrow-btn:hover {
-    background-color: #0063e8;
-}
-
-/* Videos Modal Specific Styling */
-/* Custom modal class for Videos modal */
-#ModalVideos {
-    position: fixed;
-    top: 0 !important;
-    right: 0 !important;
-    left: auto !important;
-    width: 350px;
-    height: auto;
-    max-height: 80vh;
-    background-color: #303030;
-    font-family: 'Roboto', sans-serif;
-    z-index: 1000;
-    box-shadow: -4px 0 8px rgba(0,0,0,0.2);
-    overflow-y: auto;
-    margin: 0 !important;
-    transform: none !important;
-}
-
-#ModalVideos .window-controls {
-    background-color: #404040;
-    padding: 8px;
-    color: white;
-    font-size: 14px;
-}
-
-#ModalVideos .account-list {
-    padding: 10px;
-    max-height: calc(80vh - 35px); /* Adjust to fit within the modal */
-    overflow-y: auto;
-}
-
-#ModalVideos .account-img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+.explorer-statusbar span {
+    border: 2px inset var(--win95-gray-dark);
+    padding: 2px 10px;
+    background-color: var(--win95-gray-light);
 }
 
 /* Analytics Tabs */

@@ -27,14 +27,18 @@ function switchAnalyticsTab(tabName) {
     if (activeTab) activeTab.classList.add('active');
 }
 
-// Wire up account items in the Videos modal
+// Wire up items in the explorer folder windows (Our Work, Our Products)
+// data-channel="X"  -> opens the channel's analytics + strategy windows
+// data-opens="ModalX" -> opens that modal (used for product pages)
 document.addEventListener('DOMContentLoaded', () => {
-    const accountItems = document.querySelectorAll('#ModalVideos .account-item');
-    accountItems.forEach(item => {
-        const channelName = item.dataset.channel;
-        item.addEventListener('click', (e) => {
-            if (e.target.closest('.arrow-btn')) return;
-            openChannelModals(channelName);
+    document.querySelectorAll('.explorer-item').forEach(item => {
+        item.addEventListener('click', () => {
+            if (item.dataset.channel) {
+                openChannelModals(item.dataset.channel);
+            } else if (item.dataset.opens) {
+                const modal = document.getElementById(item.dataset.opens);
+                if (modal) openModal(modal);
+            }
         });
     });
 });

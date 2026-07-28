@@ -33,8 +33,7 @@ function openModal(modal) {
 
     // Apply cascade offset (only if the modal doesn't have a custom fixed position via CSS)
     // Skip cascade for modals that have specific positioning (Videos, error modals, etc.)
-    const skipCascade = modal.id === 'ModalVideos' ||
-                        modal.id === 'ModalError' ||
+    const skipCascade = modal.id === 'ModalError' ||
                         modal.id === 'ModalLogin' ||
                         modal.id === 'mobileWarningModal';
 
@@ -224,13 +223,6 @@ function autoRegisterIcons() {
             const btnId = button.id;
             if (!btnId) return;
 
-            // Special case: social requires login first
-            if (btnId === 'socialBtn') {
-                const loginModal = document.getElementById('ModalLogin');
-                if (loginModal) openModal(loginModal);
-                return;
-            }
-
             // Contact icon: open the compose window. Open Gmail behind it only
             // the first time (so re-clicking the icon to restore a minimized
             // compose doesn't shove Gmail back in front of everything).
@@ -250,7 +242,7 @@ function autoRegisterIcons() {
             // Derive modal ID from button ID
             // "aboutBtn" -> "About" -> "ModalAbout"
             // "channelTrackBtn" -> "ChannelTrack" -> "ModalChannelTrack"
-            // "VideosBtn" -> "Videos" -> "ModalVideos"
+            // "ourWorkBtn" -> "OurWork" -> "ModalOurWork"
             // "resumeTxtBtn" -> "ResumeTxt" -> "ModalResumeTxt"
             const baseName = btnId.replace('Btn', '');
             const modalId = 'Modal' + baseName.charAt(0).toUpperCase() + baseName.slice(1);
