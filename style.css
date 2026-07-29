@@ -76,12 +76,6 @@ body, html {
     object-fit: contain;
 }
 
-/* Stats icon slightly smaller */
-#statsBtn img {
-    width: 58px;
-    height: 58px;
-}
-
 .icon-btn:hover {
     transform: scale(1.1);
 }
@@ -112,12 +106,6 @@ body, html {
     position: fixed;
     right: 24px;
     top: 165px;
-}
-
-.icon-btn.right-column-row3 {
-    position: fixed;
-    right: 24px;
-    top: 300px;
 }
 
 
