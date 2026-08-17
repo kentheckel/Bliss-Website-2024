@@ -8,8 +8,8 @@
 // (desktop hides #phone-os via CSS).
 // ===========================================
 
-// ---- Booking link (drop a Cal.com / Calendly URL here to go live) ----
-const BOOKING_URL = ""; // e.g. "https://cal.com/antisocialfriendsclub/intro"
+// ---- Where inquiries go (formsubmit forwards to Kent -> chief of staff) ----
+const INQUIRY_ENDPOINT = "https://formsubmit.co/kent@kentheckel.com";
 
 // ---- Channel data (mirrors the desktop "Our Work" folder) ----
 // story: responsive strategy page | deck: presentation | since: views since we teamed up
@@ -48,8 +48,8 @@ const PHONE_BOOT_LINES = [
     "CLIENTS ........... CAM NEWTON / SPURS / ALL THE SMOKE .... OK",
     "NETWORK ........... 500M+ VIEWS DELIVERED .... OK",
     "",
-    "> WE TURN ATHLETES & CREATORS INTO THE",
-    "  BIGGEST CHANNELS ON YOUTUBE.",
+    "> WE TURN ATHLETES, TEAMS & CREATORS INTO",
+    "  THE BIGGEST CHANNELS ON YOUTUBE.",
     "",
     "LOADING ASFC_OS ... READY"
 ];
@@ -228,43 +228,48 @@ const APP_BODY = {
     },
 
     contact() {
-        return `
-            <div class="phone-pad">
-                <h2>Let's talk</h2>
-                <p class="phone-lede">Tell us about your channel or your goals and we'll get back to you fast.</p>
-                <form class="phone-form" action="https://formsubmit.co/kent@kentheckel.com" method="POST">
-                    <input type="hidden" name="_subject" value="New message from antisocialfriendsclub.com (mobile)">
-                    <input type="hidden" name="_captcha" value="false">
-                    <label>Your email<input type="email" name="email" required placeholder="you@company.com"></label>
-                    <label>Message<textarea name="message" rows="4" required placeholder="What are you working on?"></textarea></label>
-                    <label>How'd you hear about us?
-                        <select name="how_heard">
-                            <option value="">Select…</option>
-                            <option>Saw our content (YouTube / TikTok / IG)</option>
-                            <option>Referral from a friend</option>
-                            <option>You reached out to me</option>
-                            <option>Google / search</option>
-                            <option>Other</option>
-                        </select>
-                    </label>
-                    <button type="submit" class="phone-cta">Send message</button>
-                </form>
-            </div>`;
+        return inquiryForm("Tell us about your channel or your goals and we'll get back to you fast.");
     },
 
     book() {
-        const embed = BOOKING_URL
-            ? `<iframe class="pb-cal" src="${BOOKING_URL}" title="Book a call"></iframe>`
-            : `<div class="pb-soon">
-                    <div class="phone-bigglyph">☎</div>
-                    <h2>Book a call</h2>
-                    <p class="phone-lede">Grab a time and we'll talk through your channel. Booking calendar drops in here soon — for now, reach us directly:</p>
-                    <a class="phone-cta" href="mailto:kent@kentheckel.com?subject=Let's%20talk%20about%20my%20channel">Email us to set a time</a>
-                    <button class="phone-cta phone-cta-ghost" data-app="contact">Or send a message</button>
-               </div>`;
-        return `<div class="phone-pad phone-center">${embed}</div>`;
+        return inquiryForm("Tell us a bit about your channel and we'll set up a call. This goes straight to our team.");
     }
 };
+
+// ---- Shared inquiry form (routes to the team; used by Book a Call + Contact) ----
+function inquiryForm(lede) {
+    const heard = ["Saw our content (YouTube / TikTok / IG)", "Referral from a friend", "You reached out to me", "Google / search", "Other"];
+    const stage = ["Just getting started", "Under 100k subscribers", "100k – 1M subscribers", "1M+ subscribers", "Team, league, or brand"];
+    return `
+        <div class="phone-pad">
+            <h2>Let's talk</h2>
+            <p class="phone-lede">${esc(lede)}</p>
+            <form class="phone-form" action="${INQUIRY_ENDPOINT}" method="POST">
+                <input type="hidden" name="_subject" value="New inquiry from antisocialfriendsclub.com">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <label>Your name<input name="name" required placeholder="First & last"></label>
+                <label>Email<input type="email" name="email" required placeholder="you@company.com"></label>
+                <label>Channel or brand<input name="channel" placeholder="Channel / company name"></label>
+                <label>Channel link <span class="pf-opt">(optional)</span><input type="url" name="channel_url" placeholder="https://youtube.com/@..."></label>
+                <label>Where are you at?
+                    <select name="stage">
+                        <option value="">Select…</option>
+                        ${stage.map(s => `<option>${s}</option>`).join("")}
+                    </select>
+                </label>
+                <label>What do you need help with?<textarea name="message" rows="4" required placeholder="Tell us about your goals…"></textarea></label>
+                <label>How'd you hear about us?
+                    <select name="how_heard">
+                        <option value="">Select…</option>
+                        ${heard.map(h => `<option>${h}</option>`).join("")}
+                    </select>
+                </label>
+                <button type="submit" class="phone-cta">Send it over</button>
+                <p class="phone-fineprint">Goes straight to our team — we'll reach out to set up a call.</p>
+            </form>
+        </div>`;
+}
 
 // ---- Wiring ----
 const phoneState = { channel: null };
