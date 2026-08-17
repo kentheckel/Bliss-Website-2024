@@ -31,6 +31,17 @@
 
 <body>
     <!-- ============================================================= -->
+    <!-- BIOS BOOT — desktop only, plays once per session before desktop  -->
+    <!-- ============================================================= -->
+    <div id="boot-screen">
+        <pre id="boot-screen-text"></pre>
+        <button id="boot-screen-skip">[ press any key to enter &#9656; ]</button>
+    </div>
+    <!-- Loaded here (not at end of body) so it can hide instantly for
+         returning visitors and start typing before the rest of the page paints -->
+    <script src="js/boot.js?v=20260817a"></script>
+
+    <!-- ============================================================= -->
     <!-- ASFC PHONE OS — mobile experience (shown only on small screens) -->
     <!-- Desktop UI is hidden on mobile; this takes over. See js/phone.js -->
     <!-- ============================================================= -->

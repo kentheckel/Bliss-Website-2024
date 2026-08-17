@@ -3056,6 +3056,44 @@ body, html {
 /* ASFC PHONE OS — mobile experience                              */
 /* Hidden on desktop; takes over the screen at <= 768px          */
 /* ============================================================= */
+/* ---- Desktop BIOS boot screen ---- */
+#boot-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647; /* above everything — taskbar, modals, notifications */
+    background: #0a0a0a;
+    color: #37f06a;
+    font-family: var(--win95-font, 'VT323', monospace);
+    padding: 6vh 6vw;
+    display: flex;
+    flex-direction: column;
+    transition: opacity .4s ease;
+}
+#boot-screen.boot-out { opacity: 0; }
+#boot-screen-text {
+    font-size: 27px;
+    line-height: 1.42;
+    white-space: pre-wrap;
+    margin: 0;
+    text-shadow: 0 0 8px rgba(55, 240, 106, .5);
+}
+#boot-screen-skip {
+    margin-top: auto;
+    align-self: center;
+    background: none;
+    border: none;
+    color: #37f06a;
+    font-family: inherit;
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+#boot-screen-skip.boot-ready { opacity: .85; animation: bootBlink 1s steps(2) infinite; }
+@keyframes bootBlink { 50% { opacity: .3; } }
+/* Phone has its own boot; hide the desktop one on mobile */
+@media (max-width: 768px) { #boot-screen { display: none !important; } }
+
 #phone-os { display: none; }
 #phone-os, #phone-os *, #phone-os *::before, #phone-os *::after { box-sizing: border-box; }
 
