@@ -3051,3 +3051,355 @@ body, html {
     height: 500px;
     box-shadow: 0 0 0 1px #000;
 }
+
+/* ============================================================= */
+/* ASFC PHONE OS — mobile experience                              */
+/* Hidden on desktop; takes over the screen at <= 768px          */
+/* ============================================================= */
+#phone-os { display: none; }
+#phone-os, #phone-os *, #phone-os *::before, #phone-os *::after { box-sizing: border-box; }
+
+@media (max-width: 768px) {
+    /* Hide the entire desktop metaphor on mobile */
+    #desktop-icons, #taskbar, #startMenu, #modalContainer { display: none !important; }
+
+    html, body {
+        overflow: auto;
+        height: auto;
+        font-size: 16px;
+        background: #0b1f4b;
+    }
+
+    #phone-os {
+        display: block;
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        font-family: var(--win95-font-system, 'Tahoma', sans-serif);
+        color: #10233f;
+        overflow: hidden;
+    }
+
+    /* ---- BIOS boot ---- */
+    #phone-boot {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: #0a0a0a;
+        color: #37f06a;
+        font-family: var(--win95-font, 'VT323', monospace);
+        padding: 40px 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        transition: opacity .35s ease;
+    }
+    #phone-boot.phone-boot-out { opacity: 0; }
+    #phone-boot-text {
+        font-size: 19px;
+        line-height: 1.45;
+        white-space: pre-wrap;
+        word-break: break-word;
+        margin: 0;
+        text-shadow: 0 0 6px rgba(55,240,106,.5);
+    }
+    #phone-boot-skip {
+        margin-top: auto;
+        align-self: center;
+        background: none;
+        border: none;
+        color: #37f06a;
+        font-family: inherit;
+        font-size: 18px;
+        opacity: 0;
+        transition: opacity .3s ease;
+        padding: 20px;
+    }
+    #phone-boot-skip.phone-boot-ready { opacity: .8; animation: phoneBlink 1s steps(2) infinite; }
+    @keyframes phoneBlink { 50% { opacity: .25; } }
+
+    /* ---- Screens ---- */
+    .phone-screen {
+        position: relative;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+    }
+    .phone-hidden { display: none !important; }
+
+    /* ---- Home ---- */
+    #phone-home {
+        background:
+            linear-gradient(180deg, rgba(11,31,75,.15), rgba(11,31,75,.55)),
+            url('images/bliss_Website_Background.svg') center/cover no-repeat fixed;
+    }
+    .phone-statusbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 16px;
+        font-family: var(--win95-font, 'VT323', monospace);
+        font-size: 16px;
+        color: #fff;
+        background: rgba(0,0,0,.28);
+        letter-spacing: .5px;
+    }
+    .phone-hero {
+        padding: 26px 22px 10px;
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(0,0,0,.45);
+    }
+    .phone-hero-logo {
+        font-family: var(--win95-font, 'VT323', monospace);
+        font-size: 15px;
+        letter-spacing: 3px;
+        line-height: 1.25;
+        opacity: .9;
+        margin-bottom: 12px;
+    }
+    .phone-hero-line {
+        font-size: 25px;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+    .phone-hero-proof {
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 1.5;
+        opacity: .92;
+    }
+
+    /* ---- App grid ---- */
+    .phone-appgrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px 8px;
+        padding: 26px 18px 20px;
+    }
+    .phone-appicon {
+        background: none;
+        border: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        cursor: pointer;
+        color: #fff;
+        text-shadow: 0 1px 4px rgba(0,0,0,.5);
+    }
+    .pa-glyph {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        background: var(--accent, #fff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        box-shadow: 0 6px 14px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.5);
+    }
+    .phone-appicon:active .pa-glyph { transform: scale(.92); }
+    .pa-label { font-size: 12.5px; font-weight: 600; }
+
+    /* ---- Sticky dock CTA ---- */
+    .phone-dock {
+        position: sticky;
+        bottom: 0;
+        margin-top: auto;
+        width: calc(100% - 32px);
+        margin-left: 16px;
+        margin-bottom: 16px;
+        padding: 16px;
+        border: none;
+        border-radius: 14px;
+        background: #37f06a;
+        color: #052b12;
+        font-size: 18px;
+        font-weight: 800;
+        box-shadow: 0 8px 20px rgba(0,0,0,.35);
+        cursor: pointer;
+    }
+    .phone-dock:active { transform: translateY(1px); }
+
+    /* ---- App bar ---- */
+    /* App screen is a fixed overlay so it fully covers the home screen */
+    #phone-app {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: #f2f4f8;
+    }
+    .phone-appbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 14px;
+        background: var(--win95-blue-dark, #0044c2);
+        color: #fff;
+        font-weight: 700;
+        font-size: 17px;
+    }
+    .phone-appbar button {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 26px;
+        line-height: 1;
+        padding: 0 6px;
+        cursor: pointer;
+    }
+    #phone-app-body {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* ---- Shared app content ---- */
+    .phone-pad { padding: 18px; }
+    .phone-center { text-align: center; }
+    .phone-lede { font-size: 15px; line-height: 1.55; color: #374151; }
+    #phone-app-body h2 { font-size: 22px; margin: 4px 0 10px; }
+    #phone-app-body h3 { font-size: 18px; margin: 8px 0 6px; }
+    .phone-bigglyph { font-size: 54px; margin: 24px 0 8px; }
+
+    .phone-cta {
+        display: block;
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
+        margin-top: 14px;
+        padding: 15px;
+        border: none;
+        border-radius: 12px;
+        background: var(--win95-blue-dark, #0044c2);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .phone-cta-ghost {
+        background: #fff;
+        color: var(--win95-blue-dark, #0044c2);
+        box-shadow: inset 0 0 0 2px var(--win95-blue-dark, #0044c2);
+    }
+
+    /* ---- Our Work list ---- */
+    .pw-list { padding: 0 12px; }
+    .pw-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        background: #fff;
+        border: 1px solid #e1e5eb;
+        border-radius: 14px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        text-align: left;
+    }
+    .pw-row:active { background: #eef2f8; }
+    .pw-row img {
+        width: 54px; height: 54px;
+        border-radius: 12px;
+        object-fit: cover;
+        flex-shrink: 0;
+        background: #0b1f4b;
+    }
+    .pw-meta { flex: 1; min-width: 0; }
+    .pw-name { font-size: 16px; font-weight: 700; color: #10233f; }
+    .pw-sub { font-size: 12.5px; color: #6b7280; margin-top: 2px; }
+    .pw-arrow { font-size: 24px; color: #b6bfca; }
+
+    /* ---- Channel detail ---- */
+    .pc-head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 26px 18px 16px;
+        background: #0b1f4b;
+        color: #fff;
+    }
+    .pc-head img { width: 88px; height: 88px; border-radius: 18px; object-fit: cover; }
+    .pc-title { font-size: 22px; font-weight: 800; }
+    .pc-stats { display: flex; gap: 10px; padding: 16px; background: #0b1f4b; }
+    .pc-stat {
+        flex: 1;
+        background: rgba(255,255,255,.08);
+        border-radius: 12px;
+        padding: 12px;
+        text-align: center;
+        color: #fff;
+    }
+    .pc-num { font-size: 24px; font-weight: 800; }
+    .pc-cap { font-size: 11px; opacity: .8; margin-top: 3px; line-height: 1.3; }
+    .pc-story {
+        width: 100%;
+        border: none;
+        min-height: 400px;
+        background: #fff;
+        border-radius: 12px;
+    }
+
+    /* ---- Products ---- */
+    .pp-card {
+        background: #fff;
+        border: 1px solid #e1e5eb;
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 16px;
+        text-align: center;
+    }
+    .pp-card img { width: 56px; height: 56px; }
+    .pp-card p { font-size: 14px; color: #374151; line-height: 1.5; }
+
+    /* ---- Games ---- */
+    .pg-list { margin-top: 8px; }
+    .pg-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+        color: #10233f;
+        background: #fff;
+        border: 1px solid #e1e5eb;
+        border-radius: 12px;
+        padding: 15px 16px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    /* ---- Contact form ---- */
+    .phone-form { margin-top: 8px; }
+    .phone-form label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 14px;
+    }
+    .phone-form input,
+    .phone-form textarea,
+    .phone-form select {
+        display: block;
+        width: 100%;
+        margin-top: 6px;
+        padding: 13px;
+        border: 1px solid #cbd2da;
+        border-radius: 10px;
+        font-size: 16px;
+        font-family: inherit;
+        background: #fff;
+    }
+
+    /* ---- Book a call ---- */
+    .pb-cal { width: 100%; min-height: 620px; border: none; }
+    .pb-soon { padding: 20px 6px; }
+}

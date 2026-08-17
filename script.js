@@ -874,29 +874,7 @@ function switchAnalyticsTab(tabName) {
 // Example usage: call this function with the tab name, e.g., 'overview', 'content', 'audience', or 'trends'
 // switchAnalyticsTab('overview'); // To switch to Overview tab
 
-// Function to check if the device is mobile based on screen width
-// Only displays the mobile warning modal if viewport width is 768px or less
-function checkIfMobile() {
-    if (window.innerWidth <= 768) {
-        document.getElementById('mobileWarningModal').style.display = 'block';
-    }
-}
-
-// Show modal only on mobile when page loads
-// This ensures desktop users don't see the mobile warning
-window.onload = function() {
-    checkIfMobile(); // Only show if actually on mobile
-}
-
-// Close modal when X button is clicked
-// Hides the mobile warning modal
-document.getElementById('mobileWarningClose').onclick = function() {
-    document.getElementById('mobileWarningModal').style.display = 'none';
-}
-
-// Close modal when OK button is clicked
-// Hides the mobile warning modal
-document.getElementById('mobileWarningOkButton').onclick = function() {
-    document.getElementById('mobileWarningModal').style.display = 'none';
-}
+// Mobile is now handled by the ASFC Phone OS (js/phone.js), which takes over
+// the whole screen below 768px. The old "Desktop Experience Required" warning
+// has been removed.
 

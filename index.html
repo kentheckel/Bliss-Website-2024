@@ -30,22 +30,41 @@
 </head>
 
 <body>
-    <!-- Add this right after the opening <body> tag -->
-    <div id="mobileWarningModal" class="modal">
-        <div id="modalHeaderMobileWarning" class="window-controls">
-            <span>Desktop Experience Required</span>
-            <button id="mobileWarningClose" class="window-btn">X</button>
+    <!-- ============================================================= -->
+    <!-- ASFC PHONE OS — mobile experience (shown only on small screens) -->
+    <!-- Desktop UI is hidden on mobile; this takes over. See js/phone.js -->
+    <!-- ============================================================= -->
+    <div id="phone-os">
+        <!-- BIOS boot sequence -->
+        <div id="phone-boot">
+            <pre id="phone-boot-text"></pre>
+            <button id="phone-boot-skip">[ tap to enter ▸ ]</button>
         </div>
-        <div class="error-layout">
-            <div class="error-icon">
-                <img src="images/icons/error.png" alt="Warning Icon">
+
+        <!-- Home screen -->
+        <div id="phone-home" class="phone-screen phone-hidden">
+            <div class="phone-statusbar">
+                <span class="ps-carrier">▮▮▮ ASFC</span>
+                <span class="ps-clock" id="phone-clock">--:--</span>
+                <span class="ps-batt">100% ▮</span>
             </div>
-            <div class="error-message">
-                I'm gonna be real with you, i coded this by hand, i have no idea how to make it work on mobile. Pls use a computer -Kent <3
+            <div class="phone-hero">
+                <div class="phone-hero-logo">ANTISOCIAL<br>FRIENDS CLUB</div>
+                <div class="phone-hero-line">We turn athletes &amp; creators into the biggest channels on YouTube.</div>
+                <div class="phone-hero-proof">6.9M+ subscribers grown for Cam Newton, the Spurs, All The Smoke &amp; more.</div>
             </div>
-            <div class="error-button">
-                <button id="mobileWarningOkButton" class="fix-button">OK</button>
+            <div class="phone-appgrid" id="phone-appgrid"><!-- apps injected by phone.js --></div>
+            <button class="phone-dock" data-app="book">☎  Book a Call</button>
+        </div>
+
+        <!-- App screen (content injected per app) -->
+        <div id="phone-app" class="phone-screen phone-hidden">
+            <div class="phone-appbar">
+                <button id="phone-back" aria-label="Back">‹</button>
+                <span id="phone-app-title">App</span>
+                <button id="phone-home-btn" aria-label="Home">⌂</button>
             </div>
+            <div id="phone-app-body"></div>
         </div>
     </div>
 
@@ -1286,6 +1305,7 @@ either way, the deck is yours — let's chat. kent@kentheckel.com)</textarea>
             <script src="js/misc.js"></script>
             <script src="js/stats.js"></script>
             <script src="js/easter-eggs.js"></script>
+            <script src="js/phone.js?v=20260817a"></script>
             <script src="paint.js?v=20260521b"></script>
 </body>
 
