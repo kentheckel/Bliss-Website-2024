@@ -41,7 +41,7 @@
         "Genres ....................... BOXING / NBA / COMEDY / CREATOR ... OK",
         "",
         "> WE TURN ATHLETES, TEAMS & CREATORS INTO",
-        "  THE BIGGEST CHANNELS ON YOUTUBE.",
+        "  HIGH-VIEWERSHIP, HIGH-REVENUE CHANNELS.",
         "",
         "Loading KentOS95 ............. READY"
     ];

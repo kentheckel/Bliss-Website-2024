@@ -3057,127 +3057,148 @@ body, html {
 /* Hidden on desktop; takes over the screen at <= 768px          */
 /* ============================================================= */
 /* ============================================================= */
-/* WELCOME / ABOUT WINDOW — clarity-first, auto-opens on load     */
+/* WELCOME / ABOUT WINDOW — native Win95 "About" dialog           */
+/* Auto-opens on load; two-goals pitch + buttons to sibling windows */
 /* ============================================================= */
 #ModalWelcome {
-    width: 660px;
+    width: 560px;
     max-width: 92vw;
     height: auto;
     max-height: 90vh;
-    left: calc(50% - 330px);
-    top: 4%;
+    left: calc(50% - 280px);
+    top: 9%;
     overflow: hidden;
     cursor: default;
+    background: var(--win95-gray-light, #dcdcdc);
 }
 #ModalWelcome .welcome-body {
-    background: #ffffff;
-    padding: 0 0 18px;
+    background: var(--win95-gray-light, #dcdcdc);
+    padding: 16px 18px 18px;
     overflow-y: auto;
     max-height: calc(90vh - 38px);
     font-family: var(--win95-font-system, 'Tahoma', sans-serif);
-    color: #16233b;
+    color: #10233b;
 }
-.welcome-hero {
-    background: linear-gradient(140deg, #0b1f4b 0%, #0044c2 100%);
-    color: #fff;
-    padding: 18px 30px 15px;
-    text-align: center;
+
+/* Identity row (emblem + wordmark) */
+.welcome-id { display: flex; align-items: center; gap: 14px; }
+.welcome-emblem {
+    width: 52px; height: 52px;
+    image-rendering: auto;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+    flex-shrink: 0;
 }
 .welcome-wordmark {
     font-family: var(--win95-font, 'VT323', monospace);
-    letter-spacing: 4px;
-    font-size: 17px;
-    opacity: .85;
-    margin-bottom: 8px;
-}
-.welcome-headline {
-    font-size: 27px;
-    line-height: 1.18;
-    font-weight: 800;
-    margin: 0 0 10px;
-}
-.welcome-cats {
-    font-size: 12.5px;
+    font-size: 24px;
     letter-spacing: 2px;
-    opacity: .82;
-    font-weight: 600;
+    line-height: 1;
+    color: #0b1f4b;
+}
+.welcome-tag { font-size: 13px; color: #4a5568; margin-top: 4px; }
+
+/* Etched Win95 divider */
+.welcome-rule {
+    height: 2px;
+    margin: 14px 0;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #ffffff;
+}
+
+.welcome-headline {
+    font-size: 19px;
+    line-height: 1.28;
+    font-weight: 700;
+    color: #0b1f4b;
+    margin: 0 0 12px;
 }
 .welcome-lead {
-    font-size: 15.5px;
-    line-height: 1.55;
+    font-size: 14px;
     color: #374151;
-    padding: 14px 30px 4px;
-    margin: 0;
-    text-align: center;
+    margin: 0 0 8px;
 }
-.welcome-section-label {
-    font-size: 12px;
-    letter-spacing: 2px;
-    font-weight: 700;
-    color: #0044c2;
-    text-align: center;
-    margin: 12px 0 2px;
-}
-.welcome-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 8px 24px 4px;
-}
-.welcome-card {
-    border: 1px solid #e1e5eb;
-    border-radius: 10px;
-    padding: 11px 14px;
-    background: #f7f9fc;
-}
-.welcome-card b { display: block; font-size: 15px; margin-bottom: 4px; color: #0b1f4b; }
-.welcome-card span { font-size: 13px; line-height: 1.45; color: #5b6472; }
-.welcome-stats {
+
+/* Two-goals sunken panel */
+.welcome-goals {
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #ffffff;
+    padding: 12px 14px;
     display: flex;
-    justify-content: center;
-    gap: 14px;
-    padding: 14px 24px 4px;
+    flex-direction: column;
+    gap: 12px;
 }
-.welcome-stats div {
-    flex: 1;
-    max-width: 150px;
-    text-align: center;
-    border-left: 3px solid #0044c2;
-    padding: 4px 0 4px 12px;
+.welcome-goal { display: flex; gap: 12px; align-items: flex-start; }
+.wg-num {
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-size: 30px;
+    line-height: .9;
+    color: #0044c2;
+    flex-shrink: 0;
+    width: 34px;
 }
-.welcome-stats b { display: block; font-size: 26px; font-weight: 800; color: #0b1f4b; }
-.welcome-stats span { font-size: 11.5px; color: #6b7280; text-transform: uppercase; letter-spacing: .5px; }
-.welcome-clients {
-    text-align: center;
-    font-size: 13px;
-    color: #6b7280;
-    padding: 12px 30px 2px;
-    line-height: 1.5;
-}
+.welcome-goal b { display: block; font-size: 15px; color: #0b1f4b; margin-bottom: 2px; }
+.welcome-goal span { font-size: 13px; color: #55606f; }
+
+/* Button row — classic raised Win95 buttons */
 .welcome-cta-row {
     display: flex;
-    gap: 12px;
-    justify-content: center;
-    padding: 14px 30px 4px;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 18px;
 }
-.welcome-cta {
-    padding: 13px 26px;
-    border: none;
-    border-radius: 10px;
-    background: #37f06a;
-    color: #052b12;
-    font-size: 16px;
-    font-weight: 800;
+.welcome-btn95 {
+    font-family: var(--win95-font-system, 'Tahoma', sans-serif);
+    font-size: 14px;
+    padding: 8px 16px;
+    background: #c0c0c0;
+    color: #000;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
     cursor: pointer;
-    font-family: inherit;
 }
-.welcome-cta:hover { filter: brightness(1.05); }
-.welcome-cta-ghost {
-    background: #fff;
-    color: #0044c2;
-    box-shadow: inset 0 0 0 2px #0044c2;
+.welcome-btn95:active { border-color: #808080 #ffffff #ffffff #808080; }
+.welcome-btn95-primary {
+    font-weight: 700;
+    box-shadow: 0 0 0 1px #000; /* Win95 default-button outline */
 }
 @media (max-width: 768px) { #ModalWelcome { display: none !important; } }
+
+/* ---- Services window (native Win95) ---- */
+#ModalServices {
+    width: 520px;
+    max-width: 92vw;
+    height: auto;
+    max-height: 84vh;
+    background: var(--win95-gray-light, #dcdcdc);
+    cursor: default;
+}
+.services-body {
+    background: var(--win95-gray-light, #dcdcdc);
+    padding: 16px 18px 18px;
+    overflow-y: auto;
+    max-height: calc(84vh - 38px);
+    font-family: var(--win95-font-system, 'Tahoma', sans-serif);
+    color: #10233b;
+}
+.services-headline { font-size: 20px; color: #0b1f4b; margin: 0 0 6px; }
+.services-lead { font-size: 14px; color: #374151; margin: 0 0 12px; line-height: 1.5; }
+.services-list {
+    list-style: none;
+    margin: 0;
+    padding: 12px 14px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #ffffff;
+}
+.services-list li { padding: 8px 0; border-bottom: 1px solid #e6e6e6; }
+.services-list li:last-child { border-bottom: none; }
+.services-list b { display: block; font-size: 15px; color: #0b1f4b; }
+.services-list span { font-size: 13px; color: #55606f; }
+.services-cta-row { display: flex; justify-content: flex-end; margin-top: 16px; }
+@media (max-width: 768px) { #ModalServices { display: none !important; } }
 
 /* ---- Desktop BIOS boot screen ---- */
 #boot-screen {

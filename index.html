@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link href="style.css?v=20260818a" rel="stylesheet">
+    <link href="style.css?v=20260818b" rel="stylesheet">
     <title>Kent Heckel's Website</title>
     <style>
         .email-label {
@@ -39,7 +39,7 @@
     </div>
     <!-- Loaded here (not at end of body) so it can hide instantly for
          returning visitors and start typing before the rest of the page paints -->
-    <script src="js/boot.js?v=20260817a"></script>
+    <script src="js/boot.js?v=20260818b"></script>
 
     <!-- ============================================================= -->
     <!-- ASFC PHONE OS — mobile experience (shown only on small screens) -->
@@ -61,7 +61,7 @@
             </div>
             <div class="phone-hero">
                 <div class="phone-hero-logo">ANTISOCIAL<br>FRIENDS CLUB</div>
-                <div class="phone-hero-line">We turn athletes, teams &amp; creators into the biggest channels on YouTube.</div>
+                <div class="phone-hero-line">We turn athletes, teams &amp; creators into high-viewership, high-revenue channels.</div>
                 <div class="phone-hero-proof">6.9M+ subscribers grown for Cam Newton, the Spurs, All The Smoke &amp; more.</div>
             </div>
             <div class="phone-appgrid" id="phone-appgrid"><!-- apps injected by phone.js --></div>
@@ -105,6 +105,12 @@
         <button id="ourProductsBtn" class="icon-btn">
             <img src="images/icons/Icon_Folder.svg" alt="Our Products Folder">
             <span>Our Products</span>
+        </button>
+
+        <!-- Services — what we do, in client language -->
+        <button id="servicesBtn" class="icon-btn">
+            <img src="images/icons/Icon_Notes.svg" alt="Services Icon">
+            <span>Services</span>
         </button>
 
         <!-- Pitch.exe Icon on Desktop - opens the ASFC pitch deck -->
@@ -182,28 +188,60 @@
                 </div>
             </div>
             <div class="welcome-body">
-                <div class="welcome-hero">
-                    <div class="welcome-wordmark">ANTISOCIAL FRIENDS CLUB</div>
-                    <h1 class="welcome-headline">We turn athletes, teams &amp; creators into the biggest channels on YouTube.</h1>
-                    <div class="welcome-cats">STRATEGY · PACKAGING · EDITING · DISTRIBUTION</div>
+                <!-- Classic Win95 "About" dialog: emblem + identity, then the pitch -->
+                <div class="welcome-id">
+                    <img class="welcome-emblem" src="images/icons/Icon_Team.png" alt="ASFC">
+                    <div>
+                        <div class="welcome-wordmark">ANTISOCIAL FRIENDS CLUB</div>
+                        <div class="welcome-tag">YouTube strategy, production &amp; growth</div>
+                    </div>
                 </div>
-                <p class="welcome-lead">We build and run YouTube channels for the biggest names in sports and entertainment — engineered for two things: explosive view growth and audiences you can actually monetize.</p>
-                <div class="welcome-section-label">WHAT WE DO</div>
-                <div class="welcome-grid">
-                    <div class="welcome-card"><b>Run your whole channel</b><span>Strategy, packaging, editing, and distribution — end to end.</span></div>
-                    <div class="welcome-card"><b>Make the content</b><span>Weekly podcasts, high-impact clips, and vertical shorts for every platform.</span></div>
-                    <div class="welcome-card"><b>Package &amp; test</b><span>Titles and thumbnails tested on every upload to make each one hit.</span></div>
-                    <div class="welcome-card"><b>Launch from zero</b><span>New shows warmed up to a strong debut, then grown fast.</span></div>
+
+                <div class="welcome-rule"></div>
+
+                <h1 class="welcome-headline">We turn athletes, teams, and creators into high-viewership and high-revenue channels.</h1>
+
+                <p class="welcome-lead">Everything we do is built with two goals in mind:</p>
+                <div class="welcome-goals">
+                    <div class="welcome-goal">
+                        <span class="wg-num">01</span>
+                        <div><b>High Viewership</b><span>Grow views and subscribers, fast.</span></div>
+                    </div>
+                    <div class="welcome-goal">
+                        <span class="wg-num">02</span>
+                        <div><b>High Revenue</b><span>Turn that audience into real money.</span></div>
+                    </div>
                 </div>
-                <div class="welcome-stats">
-                    <div><b>6.9M+</b><span>subscribers grown</span></div>
-                    <div><b>500M+</b><span>views delivered</span></div>
-                    <div><b>11</b><span>channels run</span></div>
-                </div>
-                <div class="welcome-clients">Cam Newton · San Antonio Spurs · All The Smoke · KG Certified · The Late Run &amp; more</div>
+
                 <div class="welcome-cta-row">
-                    <button id="welcomeBookBtn" class="welcome-cta">☎&nbsp;&nbsp;Book a Call</button>
-                    <button id="welcomeWorkBtn" class="welcome-cta welcome-cta-ghost">See our work</button>
+                    <button id="welcomeTeamBtn" class="welcome-btn95">Meet the Team</button>
+                    <button id="welcomeServicesBtn" class="welcome-btn95">View Services</button>
+                    <button id="welcomeBookBtn" class="welcome-btn95 welcome-btn95-primary">Work With Us</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARK: Services Modal — what we do, in client language -->
+        <!-- Scaffold: pricing floor + "who we're not for" to be added next -->
+        <div id="ModalServices" class="modal services-modal">
+            <div id="modalHeaderServices" class="window-controls">
+                <span class="title">Services — Antisocial Friends Club</span>
+                <div class="window-btn-container">
+                    <button class="window-btn">-</button>
+                    <button class="window-btn">X</button>
+                </div>
+            </div>
+            <div class="services-body">
+                <h1 class="services-headline">What we do</h1>
+                <p class="services-lead">Run the whole thing, or just the parts you want. Everything points at the same two goals: <b>more views</b> and <b>more revenue</b>.</p>
+                <ul class="services-list">
+                    <li><b>Run your whole channel</b><span>Strategy, packaging, editing, and distribution — end to end.</span></li>
+                    <li><b>Make the content</b><span>Weekly podcasts, high-impact clips, and vertical shorts for every platform.</span></li>
+                    <li><b>Package &amp; test</b><span>Titles and thumbnails tested on every upload to make each one hit.</span></li>
+                    <li><b>Launch from zero</b><span>New shows warmed up to a strong debut with our pillow strategy, then grown fast.</span></li>
+                </ul>
+                <div class="services-cta-row">
+                    <button id="servicesBookBtn" class="welcome-btn95 welcome-btn95-primary">Work With Us</button>
                 </div>
             </div>
         </div>
@@ -1359,7 +1397,7 @@ either way, the deck is yours — let's chat. kent@kentheckel.com)</textarea>
             <script src="js/misc.js"></script>
             <script src="js/stats.js"></script>
             <script src="js/easter-eggs.js"></script>
-            <script src="js/phone.js?v=20260817a"></script>
+            <script src="js/phone.js?v=20260818b"></script>
             <script src="paint.js?v=20260521b"></script>
 </body>
 

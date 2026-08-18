@@ -268,19 +268,29 @@ function initWelcomeWindow() {
     const welcome = document.getElementById('ModalWelcome');
     if (!welcome) return;
 
-    // "Book a Call" -> same flow as the Contact icon (opens the contact window)
-    const bookBtn = document.getElementById('welcomeBookBtn');
-    if (bookBtn) bookBtn.addEventListener('click', () => {
+    // Helper: open the contact/inquiry flow (same as the Contact icon)
+    const openContact = () => {
         const contactBtn = document.getElementById('contactBtn');
         if (contactBtn) contactBtn.click();
+    };
+    const openById = (id) => {
+        const m = document.getElementById(id);
+        if (m) openModal(m);
+    };
+
+    // "Work With Us" -> contact flow (from both the About and Services windows)
+    ['welcomeBookBtn', 'servicesBookBtn'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', openContact);
     });
 
-    // "See our work" -> open the Our Work folder
-    const workBtn = document.getElementById('welcomeWorkBtn');
-    if (workBtn) workBtn.addEventListener('click', () => {
-        const work = document.getElementById('ModalOurWork');
-        if (work) openModal(work);
-    });
+    // "Meet the Team" -> Team window
+    const teamBtn = document.getElementById('welcomeTeamBtn');
+    if (teamBtn) teamBtn.addEventListener('click', () => openById('ModalAbout'));
+
+    // "View Services" -> Services window
+    const servicesBtn = document.getElementById('welcomeServicesBtn');
+    if (servicesBtn) servicesBtn.addEventListener('click', () => openById('ModalServices'));
 
     // Auto-open on load (desktop only; hidden on mobile via CSS / phone OS).
     // Opens even while the BIOS boot overlay is up — it's revealed when boot fades.
