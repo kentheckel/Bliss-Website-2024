@@ -3171,7 +3171,9 @@ body, html {
     width: 520px;
     max-width: 92vw;
     height: auto;
-    max-height: 84vh;
+    max-height: 90vh;
+    left: calc(50% - 260px);
+    top: 4%;
     background: var(--win95-gray-light, #dcdcdc);
     cursor: default;
 }
@@ -3179,7 +3181,7 @@ body, html {
     background: var(--win95-gray-light, #dcdcdc);
     padding: 16px 18px 18px;
     overflow-y: auto;
-    max-height: calc(84vh - 38px);
+    max-height: calc(90vh - 38px);
     font-family: var(--win95-font-system, 'Tahoma', sans-serif);
     color: #10233b;
 }
@@ -3193,11 +3195,12 @@ body, html {
     border-color: #808080 #ffffff #ffffff #808080;
     background: #ffffff;
 }
-.services-list li { padding: 8px 0; border-bottom: 1px solid #e6e6e6; }
+.services-list li { padding: 7px 0; border-bottom: 1px solid #e6e6e6; }
 .services-list li:last-child { border-bottom: none; }
-.services-list b { display: block; font-size: 15px; color: #0b1f4b; }
-.services-list span { font-size: 13px; color: #55606f; }
-.services-cta-row { display: flex; justify-content: flex-end; margin-top: 16px; }
+.services-list b { display: block; font-size: 15px; color: #0b1f4b; margin-bottom: 2px; }
+.services-list span { display: block; font-size: 13px; color: #55606f; line-height: 1.4; }
+.services-note { font-size: 13px; color: #55606f; font-style: italic; margin: 12px 0 0; }
+.services-cta-row { display: flex; justify-content: flex-end; margin-top: 12px; }
 @media (max-width: 768px) { #ModalServices { display: none !important; } }
 
 /* ---- Desktop BIOS boot screen ---- */

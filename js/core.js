@@ -34,6 +34,7 @@ function openModal(modal) {
     // Apply cascade offset (only if the modal doesn't have a custom fixed position via CSS)
     // Skip cascade for modals that have specific positioning (Videos, error modals, etc.)
     const skipCascade = modal.id === 'ModalWelcome' ||
+                        modal.id === 'ModalServices' ||
                         modal.id === 'ModalError' ||
                         modal.id === 'ModalLogin' ||
                         modal.id === 'mobileWarningModal';
