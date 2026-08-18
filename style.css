@@ -3056,6 +3056,129 @@ body, html {
 /* ASFC PHONE OS — mobile experience                              */
 /* Hidden on desktop; takes over the screen at <= 768px          */
 /* ============================================================= */
+/* ============================================================= */
+/* WELCOME / ABOUT WINDOW — clarity-first, auto-opens on load     */
+/* ============================================================= */
+#ModalWelcome {
+    width: 660px;
+    max-width: 92vw;
+    height: auto;
+    max-height: 90vh;
+    left: calc(50% - 330px);
+    top: 4%;
+    overflow: hidden;
+    cursor: default;
+}
+#ModalWelcome .welcome-body {
+    background: #ffffff;
+    padding: 0 0 18px;
+    overflow-y: auto;
+    max-height: calc(90vh - 38px);
+    font-family: var(--win95-font-system, 'Tahoma', sans-serif);
+    color: #16233b;
+}
+.welcome-hero {
+    background: linear-gradient(140deg, #0b1f4b 0%, #0044c2 100%);
+    color: #fff;
+    padding: 18px 30px 15px;
+    text-align: center;
+}
+.welcome-wordmark {
+    font-family: var(--win95-font, 'VT323', monospace);
+    letter-spacing: 4px;
+    font-size: 17px;
+    opacity: .85;
+    margin-bottom: 8px;
+}
+.welcome-headline {
+    font-size: 27px;
+    line-height: 1.18;
+    font-weight: 800;
+    margin: 0 0 10px;
+}
+.welcome-cats {
+    font-size: 12.5px;
+    letter-spacing: 2px;
+    opacity: .82;
+    font-weight: 600;
+}
+.welcome-lead {
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: #374151;
+    padding: 14px 30px 4px;
+    margin: 0;
+    text-align: center;
+}
+.welcome-section-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #0044c2;
+    text-align: center;
+    margin: 12px 0 2px;
+}
+.welcome-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 8px 24px 4px;
+}
+.welcome-card {
+    border: 1px solid #e1e5eb;
+    border-radius: 10px;
+    padding: 11px 14px;
+    background: #f7f9fc;
+}
+.welcome-card b { display: block; font-size: 15px; margin-bottom: 4px; color: #0b1f4b; }
+.welcome-card span { font-size: 13px; line-height: 1.45; color: #5b6472; }
+.welcome-stats {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    padding: 14px 24px 4px;
+}
+.welcome-stats div {
+    flex: 1;
+    max-width: 150px;
+    text-align: center;
+    border-left: 3px solid #0044c2;
+    padding: 4px 0 4px 12px;
+}
+.welcome-stats b { display: block; font-size: 26px; font-weight: 800; color: #0b1f4b; }
+.welcome-stats span { font-size: 11.5px; color: #6b7280; text-transform: uppercase; letter-spacing: .5px; }
+.welcome-clients {
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280;
+    padding: 12px 30px 2px;
+    line-height: 1.5;
+}
+.welcome-cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    padding: 14px 30px 4px;
+}
+.welcome-cta {
+    padding: 13px 26px;
+    border: none;
+    border-radius: 10px;
+    background: #37f06a;
+    color: #052b12;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: inherit;
+}
+.welcome-cta:hover { filter: brightness(1.05); }
+.welcome-cta-ghost {
+    background: #fff;
+    color: #0044c2;
+    box-shadow: inset 0 0 0 2px #0044c2;
+}
+@media (max-width: 768px) { #ModalWelcome { display: none !important; } }
+
 /* ---- Desktop BIOS boot screen ---- */
 #boot-screen {
     position: fixed;

@@ -33,7 +33,8 @@ function openModal(modal) {
 
     // Apply cascade offset (only if the modal doesn't have a custom fixed position via CSS)
     // Skip cascade for modals that have specific positioning (Videos, error modals, etc.)
-    const skipCascade = modal.id === 'ModalError' ||
+    const skipCascade = modal.id === 'ModalWelcome' ||
+                        modal.id === 'ModalError' ||
                         modal.id === 'ModalLogin' ||
                         modal.id === 'mobileWarningModal';
 
@@ -262,9 +263,36 @@ window.addEventListener('message', (e) => {
     }
 });
 
+// ---- Welcome window: auto-open on every load + wire its CTAs ----
+function initWelcomeWindow() {
+    const welcome = document.getElementById('ModalWelcome');
+    if (!welcome) return;
+
+    // "Book a Call" -> same flow as the Contact icon (opens the contact window)
+    const bookBtn = document.getElementById('welcomeBookBtn');
+    if (bookBtn) bookBtn.addEventListener('click', () => {
+        const contactBtn = document.getElementById('contactBtn');
+        if (contactBtn) contactBtn.click();
+    });
+
+    // "See our work" -> open the Our Work folder
+    const workBtn = document.getElementById('welcomeWorkBtn');
+    if (workBtn) workBtn.addEventListener('click', () => {
+        const work = document.getElementById('ModalOurWork');
+        if (work) openModal(work);
+    });
+
+    // Auto-open on load (desktop only; hidden on mobile via CSS / phone OS).
+    // Opens even while the BIOS boot overlay is up — it's revealed when boot fades.
+    if (window.innerWidth > 768) {
+        openModal(welcome);
+    }
+}
+
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
     autoRegisterModals();
     autoRegisterIcons();
+    initWelcomeWindow();
     console.log('Core window management initialized');
 });

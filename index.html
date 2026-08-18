@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link href="style.css?v=20260728a" rel="stylesheet">
+    <link href="style.css?v=20260818a" rel="stylesheet">
     <title>Kent Heckel's Website</title>
     <style>
         .email-label {
@@ -83,6 +83,12 @@
     <!-- Left column: the business — who we are, what we've done, what we've built -->
     <!-- Right side: the fun stuff (Games, Paint, Stats) lives near the Trash -->
     <div id="desktop-icons">
+        <!-- Start Here / About Us — auto-opens on load, reopenable here -->
+        <button id="welcomeBtn" class="icon-btn">
+            <img src="images/icons/Icon_About.svg" alt="About Us Icon">
+            <span>Start Here</span>
+        </button>
+
         <!-- Team Icon -->
         <button id="aboutBtn" class="icon-btn">
             <img src="images/icons/Icon_Team.png" alt="Team Icon">
@@ -165,6 +171,43 @@
 
     <!-- Modal Section (hidden until triggered) -->
     <div id="modalContainer">
+        <!-- MARK: Welcome / About Modal — auto-opens on load (see js/core.js) -->
+        <!-- Clarity-first: one line of what we do, one sentence why, plain services, proof, CTA -->
+        <div id="ModalWelcome" class="modal welcome-modal">
+            <div id="modalHeaderWelcome" class="window-controls">
+                <span class="title">About — Antisocial Friends Club</span>
+                <div class="window-btn-container">
+                    <button class="window-btn">-</button>
+                    <button class="window-btn">X</button>
+                </div>
+            </div>
+            <div class="welcome-body">
+                <div class="welcome-hero">
+                    <div class="welcome-wordmark">ANTISOCIAL FRIENDS CLUB</div>
+                    <h1 class="welcome-headline">We turn athletes, teams &amp; creators into the biggest channels on YouTube.</h1>
+                    <div class="welcome-cats">STRATEGY · PACKAGING · EDITING · DISTRIBUTION</div>
+                </div>
+                <p class="welcome-lead">We build and run YouTube channels for the biggest names in sports and entertainment — engineered for two things: explosive view growth and audiences you can actually monetize.</p>
+                <div class="welcome-section-label">WHAT WE DO</div>
+                <div class="welcome-grid">
+                    <div class="welcome-card"><b>Run your whole channel</b><span>Strategy, packaging, editing, and distribution — end to end.</span></div>
+                    <div class="welcome-card"><b>Make the content</b><span>Weekly podcasts, high-impact clips, and vertical shorts for every platform.</span></div>
+                    <div class="welcome-card"><b>Package &amp; test</b><span>Titles and thumbnails tested on every upload to make each one hit.</span></div>
+                    <div class="welcome-card"><b>Launch from zero</b><span>New shows warmed up to a strong debut, then grown fast.</span></div>
+                </div>
+                <div class="welcome-stats">
+                    <div><b>6.9M+</b><span>subscribers grown</span></div>
+                    <div><b>500M+</b><span>views delivered</span></div>
+                    <div><b>11</b><span>channels run</span></div>
+                </div>
+                <div class="welcome-clients">Cam Newton · San Antonio Spurs · All The Smoke · KG Certified · The Late Run &amp; more</div>
+                <div class="welcome-cta-row">
+                    <button id="welcomeBookBtn" class="welcome-cta">☎&nbsp;&nbsp;Book a Call</button>
+                    <button id="welcomeWorkBtn" class="welcome-cta welcome-cta-ghost">See our work</button>
+                </div>
+            </div>
+        </div>
+
         <!-- About Modal (iframe to load HTML content) -->
          <!-- MARK: About Modal -->
         <div id="ModalAbout" class="modal">
