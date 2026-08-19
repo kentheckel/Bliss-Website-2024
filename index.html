@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link href="style.css?v=20260521b" rel="stylesheet">
+    <link href="style.css?v=20260819a" rel="stylesheet">
     <title>Kent Heckel's Website</title>
     <style>
         .email-label {
@@ -30,6 +30,31 @@
 </head>
 
 <body>
+    <!-- MARK: Closed for Maintenance Screen -->
+    <!-- Full-screen interstitial shown on load so visitors don't land on outdated info. -->
+    <div id="maintenanceScreen">
+        <div id="maintenanceWindow">
+            <div class="window-controls">
+                <span class="title">System Maintenance</span>
+            </div>
+            <div class="maintenance-body">
+                <div class="maintenance-icon">
+                    <img src="images/icons/wrench.png" alt="Maintenance Icon">
+                </div>
+                <h1 class="maintenance-title">Closed for Maintenance</h1>
+                <p class="maintenance-message">
+                    ASFCos is currently being updated. Some info on here is out of
+                    date while I fix things up. Please check back soon!
+                </p>
+                <p class="maintenance-contact">
+                    If you need to get in touch, email
+                    <a href="mailto:jordyn@antisocialfriendsclub.com">jordyn@antisocialfriendsclub.com</a>
+                </p>
+                <p class="maintenance-signoff">&mdash; Kent &lt;3</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Add this right after the opening <body> tag -->
     <div id="mobileWarningModal" class="modal">
         <div id="modalHeaderMobileWarning" class="window-controls">

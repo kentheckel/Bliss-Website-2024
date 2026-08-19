@@ -3028,3 +3028,72 @@ body, html {
     height: 500px;
     box-shadow: 0 0 0 1px #000;
 }
+
+/* MARK: Closed for Maintenance Screen */
+/* Full-screen interstitial that sits above the taskbar and every modal (z-index 100). */
+#maintenanceScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background-color: #008080; /* Classic Win95 teal desktop */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--win95-font-system);
+}
+
+#maintenanceWindow {
+    width: 460px;
+    max-width: 90%;
+    background-color: var(--win95-gray-light);
+    border: var(--win95-border-raised);
+    box-shadow: var(--win95-shadow);
+    overflow: hidden;
+}
+
+.maintenance-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 24px 28px;
+}
+
+.maintenance-icon img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+}
+
+.maintenance-title {
+    font-family: var(--win95-font);
+    font-size: 40px;
+    color: var(--win95-black);
+    margin: 0 0 12px;
+}
+
+.maintenance-message {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--win95-black);
+    margin: 0 0 8px;
+    max-width: 340px;
+}
+
+.maintenance-contact {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--win95-black);
+    margin: 0 0 16px;
+    max-width: 340px;
+}
+
+.maintenance-contact a {
+    color: var(--win95-link);
+}
+
+.maintenance-signoff {
+    font-size: 15px;
+    color: var(--win95-black);
+    margin: 0;
+}
