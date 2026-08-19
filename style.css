@@ -3057,113 +3057,151 @@ body, html {
 /* Hidden on desktop; takes over the screen at <= 768px          */
 /* ============================================================= */
 /* ============================================================= */
-/* WELCOME / ABOUT WINDOW — native Win95 "About" dialog           */
-/* Auto-opens on load; two-goals pitch + buttons to sibling windows */
+/* WELCOME / ABOUT WINDOW — CRT terminal theme                    */
+/* A continuation of the BIOS boot: black screen, green phosphor  */
 /* ============================================================= */
 #ModalWelcome {
-    width: 560px;
+    width: 640px;
     max-width: 92vw;
     height: auto;
     max-height: 90vh;
-    left: calc(50% - 280px);
-    top: 9%;
+    left: calc(50% - 320px);
+    top: 6%;
     overflow: hidden;
     cursor: default;
-    background: var(--win95-gray-light, #dcdcdc);
+    background: #0a0a0a;
+    border: var(--win95-border-raised);
 }
 #ModalWelcome .welcome-body {
-    background: var(--win95-gray-light, #dcdcdc);
-    padding: 16px 18px 18px;
+    position: relative;
+    background: #0a0a0a;
+    padding: 22px 28px 24px;
     overflow-y: auto;
     max-height: calc(90vh - 38px);
     font-family: var(--win95-font-system, 'Tahoma', sans-serif);
-    color: #10233b;
+    color: #e8e8e8;
+}
+/* CRT scanlines + soft vignette */
+#ModalWelcome .welcome-body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px),
+        radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.5) 100%);
 }
 
-/* Identity row (emblem + wordmark) */
-.welcome-id { display: flex; align-items: center; gap: 14px; }
-.welcome-emblem {
-    width: 52px; height: 52px;
-    image-rendering: auto;
-    border: 2px solid;
-    border-color: #808080 #ffffff #ffffff #808080;
-    background: #fff;
-    flex-shrink: 0;
+.welcome-prompt {
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-size: 17px;
+    color: #1f9f4c;
+    margin-bottom: 14px;
 }
 .welcome-wordmark {
     font-family: var(--win95-font, 'VT323', monospace);
-    font-size: 24px;
+    font-size: 44px;
+    line-height: .95;
     letter-spacing: 2px;
-    line-height: 1;
-    color: #0b1f4b;
+    color: #37f06a;
+    text-shadow: 0 0 10px rgba(55, 240, 106, .55);
 }
-.welcome-tag { font-size: 13px; color: #4a5568; margin-top: 4px; }
-
-/* Etched Win95 divider */
-.welcome-rule {
-    height: 2px;
-    margin: 14px 0;
-    border-top: 1px solid #808080;
-    border-bottom: 1px solid #ffffff;
-}
-
-.welcome-headline {
+.welcome-tag {
+    font-family: var(--win95-font, 'VT323', monospace);
     font-size: 19px;
-    line-height: 1.28;
-    font-weight: 700;
-    color: #0b1f4b;
+    letter-spacing: 2px;
+    color: #8b8b8b;
+    margin: 6px 0 18px;
+}
+.welcome-headline {
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-weight: 400;
+    font-size: 31px;
+    line-height: 1.12;
+    color: #f2f2f2;
     margin: 0 0 12px;
+}
+.welcome-headline em {
+    font-style: normal;
+    color: #37f06a;
+    text-shadow: 0 0 8px rgba(55, 240, 106, .45);
 }
 .welcome-lead {
     font-size: 14px;
-    color: #374151;
-    margin: 0 0 8px;
+    line-height: 1.6;
+    color: #b9c0c7;
+    margin: 0 0 16px;
 }
+.welcome-lead b { color: #ffffff; }
 
-/* Two-goals sunken panel */
+/* Two-goals readout */
 .welcome-goals {
-    border: 2px solid;
-    border-color: #808080 #ffffff #ffffff #808080;
-    background: #ffffff;
-    padding: 12px 14px;
+    border: 1px solid #1f9f4c;
+    box-shadow: inset 0 0 14px rgba(55, 240, 106, .08);
+    padding: 14px 16px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 13px;
 }
-.welcome-goal { display: flex; gap: 12px; align-items: flex-start; }
+.welcome-goal { display: flex; gap: 14px; align-items: flex-start; }
 .wg-num {
     font-family: var(--win95-font, 'VT323', monospace);
-    font-size: 30px;
-    line-height: .9;
-    color: #0044c2;
+    font-size: 34px;
+    line-height: .85;
+    color: #37f06a;
+    text-shadow: 0 0 8px rgba(55, 240, 106, .45);
     flex-shrink: 0;
-    width: 34px;
+    width: 38px;
 }
-.welcome-goal b { display: block; font-size: 15px; color: #0b1f4b; margin-bottom: 2px; line-height: 1.3; }
-.welcome-goal span { display: block; font-size: 13px; color: #55606f; line-height: 1.45; }
+.welcome-goal b {
+    display: block;
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    margin-bottom: 2px;
+    line-height: 1;
+}
+.welcome-goal span {
+    display: block;
+    font-size: 13px;
+    color: #9aa4ab;
+    line-height: 1.5;
+}
 
-/* Button row — classic raised Win95 buttons */
+/* Terminal buttons */
 .welcome-cta-row {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
     margin-top: 18px;
+    flex-wrap: wrap;
 }
-.welcome-btn95 {
-    font-family: var(--win95-font-system, 'Tahoma', sans-serif);
-    font-size: 14px;
-    padding: 8px 16px;
-    background: #c0c0c0;
-    color: #000;
-    border: 2px solid;
-    border-color: #ffffff #808080 #808080 #ffffff;
+.welcome-btn-term {
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-size: 19px;
+    letter-spacing: 1.5px;
+    padding: 9px 16px 7px;
+    background: transparent;
+    color: #37f06a;
+    border: 1px solid #1f9f4c;
     cursor: pointer;
 }
-.welcome-btn95:active { border-color: #808080 #ffffff #ffffff #808080; }
-.welcome-btn95-primary {
-    font-weight: 700;
-    box-shadow: 0 0 0 1px #000; /* Win95 default-button outline */
+.welcome-btn-term:hover {
+    background: rgba(55, 240, 106, .12);
+    box-shadow: 0 0 10px rgba(55, 240, 106, .35);
 }
+.welcome-btn-term-primary {
+    background: #37f06a;
+    color: #052b12;
+    border-color: #37f06a;
+    text-shadow: none;
+    box-shadow: 0 0 14px rgba(55, 240, 106, .45);
+}
+.welcome-btn-term-primary:hover { background: #4bff7e; }
+.wcursor { animation: wBlink 1s steps(2) infinite; }
+@keyframes wBlink { 50% { opacity: 0; } }
 @media (max-width: 768px) { #ModalWelcome { display: none !important; } }
 
 /* ---- Services window (native Win95) ---- */
