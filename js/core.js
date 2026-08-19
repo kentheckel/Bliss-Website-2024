@@ -293,6 +293,15 @@ function initWelcomeWindow() {
     const servicesBtn = document.getElementById('welcomeServicesBtn');
     if (servicesBtn) servicesBtn.addEventListener('click', () => openById('ModalServices'));
 
+    // TEMP: theme picker for review — remove after a theme is chosen
+    welcome.querySelectorAll('.welcome-theme-switch [data-settheme]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            welcome.dataset.theme = btn.dataset.settheme;
+            welcome.querySelectorAll('.welcome-theme-switch button').forEach(b =>
+                b.classList.toggle('wts-active', b === btn));
+        });
+    });
+
     // Auto-open on load (desktop only; hidden on mobile via CSS / phone OS).
     // Opens even while the BIOS boot overlay is up — it's revealed when boot fades.
     if (window.innerWidth > 768) {

@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link href="style.css?v=20260819b" rel="stylesheet">
+    <!-- Fonts for the About-window theme variants (deck = Anton/Archivo/Plex Mono, studio = Roboto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="style.css?v=20260819d" rel="stylesheet">
     <title>Kent Heckel's Website</title>
     <style>
         .email-label {
@@ -179,7 +181,7 @@
     <div id="modalContainer">
         <!-- MARK: Welcome / About Modal — auto-opens on load (see js/core.js) -->
         <!-- Clarity-first: one line of what we do, one sentence why, plain services, proof, CTA -->
-        <div id="ModalWelcome" class="modal welcome-modal">
+        <div id="ModalWelcome" class="modal welcome-modal" data-theme="terminal">
             <div id="modalHeaderWelcome" class="window-controls">
                 <span class="title">About — Antisocial Friends Club</span>
                 <div class="window-btn-container">
@@ -212,6 +214,18 @@
                     <button id="welcomeTeamBtn" class="welcome-btn-term">MEET THE TEAM</button>
                     <button id="welcomeServicesBtn" class="welcome-btn-term">VIEW SERVICES</button>
                     <button id="welcomeBookBtn" class="welcome-btn-term welcome-btn-term-primary">WORK WITH US<span class="wcursor">&#9646;</span></button>
+                </div>
+
+                <!-- Broadcast ticker — visible in the scorebug theme only -->
+                <div class="welcome-ticker"><span>ALL THE SMOKE +225M VIEWS &#9650;&nbsp;&nbsp;&nbsp;SPURS +139M &#9650;&nbsp;&nbsp;&nbsp;ATS FIGHT +61.6M &#9650;&nbsp;&nbsp;&nbsp;THE LATE RUN +43.4M &#9650;&nbsp;&nbsp;&nbsp;KG CERTIFIED +39.9M &#9650;&nbsp;&nbsp;&nbsp;RING CHAMPS +32.9M &#9650;&nbsp;&nbsp;&nbsp;6.9M+ SUBSCRIBERS GROWN&nbsp;&nbsp;&nbsp;</span></div>
+
+                <!-- TEMP: theme picker for review — remove after Kent chooses -->
+                <div class="welcome-theme-switch">
+                    <span>THEME:</span>
+                    <button data-settheme="terminal" class="wts-active">Terminal</button>
+                    <button data-settheme="studio">Studio</button>
+                    <button data-settheme="deck">Deck</button>
+                    <button data-settheme="scorebug">Scorebug</button>
                 </div>
             </div>
         </div>

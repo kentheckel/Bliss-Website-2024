@@ -3204,6 +3204,350 @@ body, html {
 @keyframes wBlink { 50% { opacity: 0; } }
 @media (max-width: 768px) { #ModalWelcome { display: none !important; } }
 
+/* ---- TEMP theme picker strip (remove after a theme is chosen) ---- */
+.welcome-theme-switch {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(128,128,128,.45);
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-size: 14px;
+    opacity: .75;
+}
+.welcome-theme-switch span { letter-spacing: 1px; }
+.welcome-theme-switch button {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 2px 9px;
+    background: transparent;
+    border: 1px solid currentColor;
+    color: inherit;
+    cursor: pointer;
+    opacity: .7;
+}
+.welcome-theme-switch button.wts-active { opacity: 1; font-weight: bold; text-decoration: underline; }
+
+/* Ticker hidden except in scorebug */
+.welcome-ticker { display: none; }
+
+/* ============================================================= */
+/* THEME VARIANT: STUDIO — YouTube Studio dark dashboard          */
+/* ============================================================= */
+#ModalWelcome[data-theme="studio"] .welcome-body {
+    background: #282828;
+    color: #ffffff;
+    font-family: 'Roboto', 'Tahoma', sans-serif;
+}
+#ModalWelcome[data-theme="studio"] .welcome-body::before { background: none; }
+#ModalWelcome[data-theme="studio"] .welcome-prompt { font-size: 0; }
+#ModalWelcome[data-theme="studio"] .welcome-prompt::before {
+    content: "\25B6  CHANNEL ANALYTICS \B7 ABOUT";
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #aaaaaa;
+}
+#ModalWelcome[data-theme="studio"] .welcome-wordmark {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0;
+    color: #ffffff;
+    text-shadow: none;
+}
+#ModalWelcome[data-theme="studio"] .welcome-tag {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    letter-spacing: .5px;
+    color: #aaaaaa;
+}
+#ModalWelcome[data-theme="studio"] .welcome-headline {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.25;
+    color: #ffffff;
+}
+#ModalWelcome[data-theme="studio"] .welcome-headline em { color: #3ea6ff; text-shadow: none; }
+#ModalWelcome[data-theme="studio"] .welcome-lead { color: #cfcfcf; }
+#ModalWelcome[data-theme="studio"] .welcome-goals {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    flex-direction: row;
+    gap: 12px;
+}
+#ModalWelcome[data-theme="studio"] .welcome-goal {
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    background: #1f1f1f;
+    border: 1px solid #3d3d3d;
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+#ModalWelcome[data-theme="studio"] .wg-num {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #00c853;
+    width: auto;
+    text-shadow: none;
+}
+#ModalWelcome[data-theme="studio"] .wg-num::after { content: "  \2191"; }
+#ModalWelcome[data-theme="studio"] .welcome-goal b {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0;
+    text-transform: none;
+}
+#ModalWelcome[data-theme="studio"] .welcome-goal span { color: #aaaaaa; }
+#ModalWelcome[data-theme="studio"] .welcome-btn-term {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .3px;
+    border-radius: 18px;
+    border: 1px solid #555;
+    color: #f1f1f1;
+    padding: 8px 18px;
+    text-transform: none;
+}
+#ModalWelcome[data-theme="studio"] .welcome-btn-term:hover { background: rgba(255,255,255,.1); box-shadow: none; }
+#ModalWelcome[data-theme="studio"] .welcome-btn-term-primary {
+    background: #ff0033;
+    border-color: #ff0033;
+    color: #fff;
+    box-shadow: none;
+}
+#ModalWelcome[data-theme="studio"] .welcome-btn-term-primary:hover { background: #ff3355; }
+#ModalWelcome[data-theme="studio"] .wcursor { display: none; }
+
+/* ============================================================= */
+/* THEME VARIANT: DECK — the Spurs/Hamilton proposal language     */
+/* ============================================================= */
+#ModalWelcome[data-theme="deck"] .welcome-body {
+    background: #F2F4F8;
+    color: #0B1F4B;
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+#ModalWelcome[data-theme="deck"] .welcome-body::before {
+    background: radial-gradient(ellipse at center, transparent 70%, rgba(11,31,75,.06) 100%);
+}
+#ModalWelcome[data-theme="deck"] .welcome-prompt { font-size: 0; }
+#ModalWelcome[data-theme="deck"] .welcome-prompt::before {
+    content: "ASFC \2192 ABOUT \B7 EST. 2020 \B7 NYC";
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #6B7280;
+}
+#ModalWelcome[data-theme="deck"] .welcome-wordmark {
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    letter-spacing: 1px;
+    color: #0B1F4B;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+#ModalWelcome[data-theme="deck"] .welcome-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #377EF0;
+}
+#ModalWelcome[data-theme="deck"] .welcome-headline {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 1.2;
+    color: #0B1F4B;
+}
+#ModalWelcome[data-theme="deck"] .welcome-headline em { color: #377EF0; text-shadow: none; }
+#ModalWelcome[data-theme="deck"] .welcome-lead { color: #374151; }
+#ModalWelcome[data-theme="deck"] .welcome-lead b { color: #0B1F4B; }
+#ModalWelcome[data-theme="deck"] .welcome-goals {
+    border: none;
+    box-shadow: none;
+    border-top: 2px solid #0B1F4B;
+    padding: 14px 0 0;
+    flex-direction: row;
+    gap: 24px;
+}
+#ModalWelcome[data-theme="deck"] .welcome-goal { flex: 1; flex-direction: column; gap: 6px; }
+#ModalWelcome[data-theme="deck"] .wg-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: #377EF0;
+    width: auto;
+    text-shadow: none;
+}
+#ModalWelcome[data-theme="deck"] .wg-num::after { content: " /"; color: rgba(11,31,75,.3); }
+#ModalWelcome[data-theme="deck"] .welcome-goal b {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: .5px;
+    color: #0B1F4B;
+}
+#ModalWelcome[data-theme="deck"] .welcome-goal span { color: #4a5568; }
+#ModalWelcome[data-theme="deck"] .welcome-btn-term {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    border: 1.5px solid #0B1F4B;
+    color: #0B1F4B;
+    border-radius: 0;
+    padding: 10px 16px;
+}
+#ModalWelcome[data-theme="deck"] .welcome-btn-term:hover { background: rgba(11,31,75,.07); box-shadow: none; }
+#ModalWelcome[data-theme="deck"] .welcome-btn-term-primary {
+    background: #0B1F4B;
+    border-color: #0B1F4B;
+    color: #ffffff;
+    box-shadow: 4px 4px 0 #377EF0;
+}
+#ModalWelcome[data-theme="deck"] .welcome-btn-term-primary:hover { background: #14306b; }
+#ModalWelcome[data-theme="deck"] .wcursor { display: none; }
+
+/* ============================================================= */
+/* THEME VARIANT: SCOREBUG — broadcast sports graphics            */
+/* ============================================================= */
+#ModalWelcome[data-theme="scorebug"] .welcome-body {
+    background: linear-gradient(160deg, #0a1428 0%, #12203c 70%, #0d1830 100%);
+    color: #ffffff;
+    font-family: 'Archivo', 'Tahoma', sans-serif;
+    padding-bottom: 0;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-body::before { background: none; }
+#ModalWelcome[data-theme="scorebug"] .welcome-prompt { font-size: 0; }
+#ModalWelcome[data-theme="scorebug"] .welcome-prompt::before {
+    content: "\25CF LIVE";
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #ff2e4d;
+    animation: wBlink 1.4s steps(2) infinite;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-prompt::after {
+    content: "  \B7  ASFC NETWORK";
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #ffd60a;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-wordmark {
+    font-family: 'Anton', sans-serif;
+    font-size: 38px;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: none;
+    display: inline-block;
+    background: linear-gradient(100deg, #1d428a 0%, #12315f 100%);
+    border-left: 6px solid #ffd60a;
+    padding: 6px 18px 4px 12px;
+    transform: skewX(-6deg);
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-tag {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #9fb4d8;
+    margin-top: 10px;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-headline {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1.22;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-headline em { color: #ffd60a; text-shadow: none; }
+#ModalWelcome[data-theme="scorebug"] .welcome-lead { color: #c3cede; }
+#ModalWelcome[data-theme="scorebug"] .welcome-goals {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    flex-direction: row;
+    gap: 10px;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-goal {
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+    background: rgba(255,255,255,.06);
+    border-top: 4px solid #ffd60a;
+    padding: 12px 14px;
+}
+#ModalWelcome[data-theme="scorebug"] .wg-num {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    color: #ffd60a;
+    width: auto;
+    text-shadow: none;
+}
+#ModalWelcome[data-theme="scorebug"] .wg-num::after { content: "  \25B2"; color: #35e07c; }
+#ModalWelcome[data-theme="scorebug"] .welcome-goal b {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    letter-spacing: 1px;
+    font-style: italic;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-goal span { color: #9fb4d8; }
+#ModalWelcome[data-theme="scorebug"] .welcome-cta-row { margin-bottom: 16px; }
+#ModalWelcome[data-theme="scorebug"] .welcome-btn-term {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    border-radius: 0;
+    transform: skewX(-6deg);
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-btn-term:hover { background: rgba(255,255,255,.12); box-shadow: none; }
+#ModalWelcome[data-theme="scorebug"] .welcome-btn-term-primary {
+    background: #ffd60a;
+    border-color: #ffd60a;
+    color: #0a1428;
+    box-shadow: none;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-btn-term-primary:hover { background: #ffe14d; }
+#ModalWelcome[data-theme="scorebug"] .wcursor { display: none; }
+/* Scrolling stat ticker */
+#ModalWelcome[data-theme="scorebug"] .welcome-ticker {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #060d1c;
+    border-top: 2px solid #ffd60a;
+    margin: 0 -28px;
+    padding: 6px 0;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #ffd60a;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-ticker span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: wTicker 22s linear infinite;
+}
+@keyframes wTicker { to { transform: translateX(-100%); } }
+#ModalWelcome[data-theme="scorebug"] .welcome-theme-switch { margin-top: 10px; padding-bottom: 12px; }
+
+
 /* ---- Services window (native Win95) ---- */
 #ModalServices {
     width: 520px;
