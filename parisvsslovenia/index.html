@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paris vs Slovenia &#183; ASFC</title>
+<meta name="description" content="Internal ASFC benchmark: Spurs Paris vs Lakers Slovenia, compared on views across owned and earned content.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#1D51C4">
+<meta property="og:title" content="ASFC OS &#8212; Benchmark">
+<meta property="og:description" content="Internal report. Password required.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ASFC OS &#8212; Benchmark">
+<meta name="twitter:description" content="Internal report. Password required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231D51C4'/><text x='50' y='74' font-size='52' font-family='monospace' font-weight='700' fill='%23fff' text-anchor='middle'>VS</text></svg>">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@300;400;500;600;700;800;900&family=VT323&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+:root{
+  color-scheme: light;
+  --ground:#E7E9ED; --paper:#F2F4F8; --paper-2:#FFFFFF;
+  --ink:#0B1F4B; --ink-70:#374151; --ink-45:#6B7280;
+  --line:rgba(11,31,75,.16); --line-2:rgba(11,31,75,.30);
+  --accent:#377EF0; --win-a:#2E6BE6; --win-b:#1D51C4; --win-x:#E14B4B;
+  --spurs:#377EF0; --lakers:#B8791A;
+  --type:'IBM Plex Mono','Courier New',monospace;
+  --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --exp:'Space Grotesk','Archivo','Helvetica Neue',sans-serif;
+  --vt:'VT323','Courier New',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans);
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--exp); font-weight:800; letter-spacing:-.015em; line-height:1.0; margin:0}
+a{color:inherit}
+
+.app{max-width:1240px; margin:26px auto 40px; overflow-x:hidden; background:var(--paper);
+  border:1px solid var(--line-2); box-shadow:0 26px 70px rgba(11,31,75,.22); position:relative}
+.app::before{content:""; position:absolute; inset:0; z-index:40; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.05; mix-blend-mode:multiply}
+.winbar{position:sticky; top:0; z-index:45; height:44px;
+  background:linear-gradient(180deg,var(--win-a),var(--win-b)); border-bottom:3px solid var(--ink);
+  display:flex; align-items:center; justify-content:space-between; padding:0 16px;
+  font-family:var(--vt); font-size:23px; color:#fff}
+.winbar .wbt{letter-spacing:.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0}
+.winbar .wbr{display:flex; align-items:center; gap:7px; flex:none}
+.winbar .wbc{font-size:18px; color:rgba(255,255,255,.75); margin-right:10px; white-space:nowrap}
+@media(max-width:620px){.winbar .wbc{display:none}}
+.winbar i, .winmini i{font-style:normal; width:23px; height:23px; background:#fff; color:var(--win-b);
+  display:flex; align-items:center; justify-content:center; font-family:var(--vt); font-size:18px; flex:none}
+.winbar i.x, .winmini i.x{background:var(--win-x); color:#fff}
+.winmini{background:linear-gradient(180deg,var(--win-a),var(--win-b)); border-bottom:3px solid var(--ink);
+  display:flex; align-items:center; justify-content:space-between; padding:4px 10px;
+  font-family:var(--vt); font-size:18px; color:#fff; line-height:1}
+.winmini .wmb{display:flex; gap:4px}
+.winmini>span:first-child{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0}
+.winmini .wmb{flex:none}
+.winmini i{width:17px; height:17px; font-size:14px}
+.pad{padding:34px 44px 54px; position:relative; z-index:2}
+@media(max-width:760px){.pad{padding:24px 20px 40px} .app{margin:0; border:0}}
+
+.topbar{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;
+  font-family:var(--type); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-70)}
+.topbar .mark{letter-spacing:.30em; color:var(--ink)}
+.rule{height:1px; background:var(--line-2); margin:16px 0 0}
+.kicker{font-family:var(--type); font-size:12px; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--ink-70); display:flex; align-items:center; gap:13px}
+.kicker .num{color:var(--accent)}
+.kicker .dash{width:38px; height:1px; background:var(--line-2); display:inline-block}
+
+header{padding:30px 0 0}
+h1{font-size:clamp(38px,5.6vw,62px); line-height:.98; margin:20px 0 0; max-width:19ch}
+h1 .thin{font-weight:400; color:var(--ink-70); display:block; font-size:.46em;
+  letter-spacing:-.005em; line-height:1.15; margin-top:14px}
+.dek{margin:20px 0 0; max-width:68ch; color:var(--ink-70); font-size:17px; font-weight:300; line-height:1.45}
+.dek b{color:var(--ink); font-weight:600}
+
+.kpis{margin:34px 0 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  border-top:1px solid var(--line-2); border-bottom:1px solid var(--line-2)}
+.kpi{padding:26px 18px 22px; border-right:1px solid var(--line);
+  display:flex; flex-direction:column; align-items:center; text-align:center}
+.kpi:last-child{border-right:0}
+.kpi .lab{font-family:var(--type); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-45)}
+.kpi .val{font-family:var(--exp); font-weight:800; font-size:38px; line-height:.95; letter-spacing:-.02em;
+  margin-top:14px; font-variant-numeric:tabular-nums}
+.kpi .val.sp{color:var(--spurs)} .kpi .val.lk{color:var(--lakers)}
+.kpi .sub{font-family:var(--type); font-size:11px; letter-spacing:.05em; color:var(--ink-70); margin-top:12px; line-height:1.5}
+.kpi .cav{font-style:normal; color:var(--ink-45); font-size:10px; letter-spacing:.04em; text-transform:none}
+@media(max-width:640px){.kpi{border-right:0; border-bottom:1px solid var(--line)} .kpi:last-child{border-bottom:0}}
+
+section{margin-top:52px}
+.sec-head{margin-bottom:20px}
+h2{font-size:33px; margin-top:16px; letter-spacing:-.02em; max-width:26ch}
+.sec-note{font-family:var(--type); font-size:11.5px; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-70); margin-top:12px; max-width:96ch; line-height:1.75}
+.card{border:1px solid var(--line-2); background:var(--paper-2); display:flex; flex-direction:column}
+.card .cbody{padding:20px 24px 18px}
+.card h3{font-family:var(--exp); font-weight:700; font-size:20px; letter-spacing:-.01em}
+.card .csub{font-size:14px; color:var(--ink-70); margin:8px 0 18px; line-height:1.45}
+.card .csub b{color:var(--ink); font-weight:600}
+.grid2{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:22px}
+@media(max-width:900px){.grid2{grid-template-columns:minmax(0,1fr)}}
+
+/* ============ TALE OF THE TAPE ============ */
+.talewrap{overflow-x:auto; border:2px solid var(--ink); background:var(--paper-2)}
+.scrollhint{display:none; font-family:var(--type); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-45); margin-top:8px}
+@media(max-width:700px){.scrollhint{display:block}}
+.tale{min-width:680px}
+.thead{display:grid; grid-template-columns:1fr 210px 1fr; background:var(--ink); color:var(--paper);
+  align-items:center}
+.thead .ts{display:flex; align-items:center; gap:11px; padding:13px 16px; white-space:nowrap}
+.thead .ts.b{justify-content:flex-end}
+.thead .nm{font-family:var(--exp); font-weight:700; font-size:15px; letter-spacing:-.01em; line-height:1.2}
+.thead .nm small{display:block; font-family:var(--type); font-weight:400; font-size:9.5px;
+  letter-spacing:.16em; text-transform:uppercase; color:rgba(242,244,248,.62); margin-top:3px}
+.thead .ts.b .nm{text-align:right}
+.thead .mid{text-align:center; font-family:var(--type); font-size:9.5px; letter-spacing:.18em;
+  text-transform:uppercase; color:rgba(242,244,248,.62); padding:13px 8px}
+.bcode{font-family:var(--exp); font-weight:800; font-size:14px; letter-spacing:.04em; color:#fff;
+  padding:4px 9px; line-height:1.15; flex:none}
+.bcode.sp{background:var(--spurs)} .bcode.lk{background:var(--lakers)}
+
+.trow{display:grid; grid-template-columns:1fr 210px 1fr; align-items:center;
+  border-top:1px solid var(--line)}
+.trow:first-child{border-top:0}
+.trow:hover{background:var(--paper)}
+.tsec{background:var(--paper); border-top:1px solid var(--line-2); padding:8px 16px;
+  font-family:var(--type); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-45)}
+.thalf{display:flex; align-items:center; gap:12px; padding:12px 16px; min-width:0}
+.thalf.a{flex-direction:row}
+.thalf.b{flex-direction:row-reverse}
+.tv{font-family:var(--exp); font-weight:700; font-size:16px; font-variant-numeric:tabular-nums;
+  white-space:nowrap; flex:none; width:108px; color:var(--ink-70)}
+.tv b{font-weight:inherit}
+.tv .sm{display:none}
+.thalf.a .tv{text-align:left} .thalf.b .tv{text-align:right}
+.trow.big .tv{font-size:21px; font-weight:800; color:var(--ink)}
+.trow.win-a .thalf.a .tv{color:var(--spurs)} .trow.win-b .thalf.b .tv{color:var(--lakers)}
+.ttrack{flex:1; height:16px; background:var(--paper); display:flex; min-width:20px}
+.trow.big .ttrack{height:22px}
+.thalf.a .ttrack{justify-content:flex-end}
+.tfill{display:block; height:100%}
+.thalf.a .tfill{background:var(--spurs)} .thalf.b .tfill{background:var(--lakers)}
+.trow:not(.win-a) .thalf.a .tfill{opacity:.55}
+.trow:not(.win-b) .thalf.b .tfill{opacity:.55}
+.trow.neutral .tfill{opacity:.8}
+.trow.neutral .tv{color:var(--ink-70)}
+.tmid{text-align:center; padding:12px 8px; border-left:1px solid var(--line); border-right:1px solid var(--line)}
+.tmid .tl{font-family:var(--sans); font-size:13px; font-weight:500; color:var(--ink); line-height:1.25}
+.trow.big .tmid .tl{font-family:var(--exp); font-weight:800; font-size:14px; letter-spacing:.02em; text-transform:uppercase}
+.tmid .tp{font-family:var(--type); font-size:10px; letter-spacing:.08em; margin-top:4px;
+  font-variant-numeric:tabular-nums}
+.tmid .tp .a{color:var(--spurs)} .tmid .tp .b{color:var(--lakers)} .tmid .tp em{font-style:normal; color:var(--ink-45)}
+@media(max-width:760px){
+  /* both teams stay on one phone screen: abbreviated values, tighter centre column */
+  .tale{min-width:0}
+  .thead, .trow{grid-template-columns:1fr 128px 1fr}
+  .tv{width:56px; font-size:14px} .trow.big .tv{font-size:16px}
+  .tv .lg{display:none} .tv .sm{display:inline}
+  .tmid{padding:10px 5px} .tmid .tl{font-size:11px; line-height:1.2}
+  .trow.big .tmid .tl{font-size:11px; letter-spacing:.01em}
+  .tmid .tp{font-size:9px}
+  .thalf{padding:11px 9px; gap:7px}
+  .ttrack{height:13px} .trow.big .ttrack{height:17px}
+  .thead .ts{padding:11px 9px; gap:7px; white-space:normal; min-width:0}
+  .thead .nm{font-size:13px; min-width:0; overflow:hidden}
+  .thead .nm small{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .thead .nm small{font-size:8.5px; letter-spacing:.1em}
+  .bcode{font-size:12px; padding:3px 6px}
+  .thead .mid{font-size:8px; letter-spacing:.1em; padding:11px 4px}
+  .scrollhint{display:none}
+}
+
+/* ============ MIX (themes-by-views treatment) ============ */
+.mixgrid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:22px}
+@media(max-width:900px){.mixgrid{grid-template-columns:minmax(0,1fr)}}
+.mixrow{display:grid; grid-template-columns:1fr; gap:0; margin-top:4px}
+.mline{display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid var(--line)}
+.mline:last-child{border-bottom:0}
+.mname{font-family:var(--type); font-size:11px; letter-spacing:.06em; color:var(--ink-70);
+  width:104px; flex:none; line-height:1.35}
+.mname i{display:block; font-style:normal; color:var(--ink-45); font-size:10px; margin-top:2px}
+.mbarw{flex:1; height:20px; background:var(--paper); position:relative}
+.mbar{height:100%; display:block}
+.mbar.sp{background:var(--spurs)} .mbar.lk{background:var(--lakers)}
+.mbar.dim{opacity:.4}
+.mval{font-family:var(--exp); font-weight:700; font-size:13px; width:56px; text-align:right;
+  flex:none; font-variant-numeric:tabular-nums}
+.midx{font-family:var(--type); font-size:11.5px; width:52px; text-align:right; flex:none;
+  font-variant-numeric:tabular-nums; color:var(--ink-45)}
+.midx.up{color:var(--ink); font-weight:600}
+.mhead{display:flex; align-items:center; gap:12px; padding:0 0 6px; border-bottom:1px solid var(--line-2);
+  font-family:var(--type); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-45)}
+.mhead .mname{color:var(--ink-45)}
+@media(max-width:420px){.mname{width:84px} .midx{width:44px}}
+
+/* ============ POST CARDS WITH LINKS ============ */
+.posts{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:22px}
+@media(max-width:900px){.posts{grid-template-columns:minmax(0,1fr)}}
+.plist{list-style:none; margin:0; padding:0}
+.plist li{border-bottom:1px solid var(--line)}
+.plist li:last-child{border-bottom:0}
+.plist a{display:flex; gap:12px; align-items:flex-start; padding:13px 0; text-decoration:none;
+  transition:background .12s}
+.plist a:hover{background:var(--paper)}
+.plist a:hover .pt{color:var(--ink)}
+.plist .n{font-family:var(--type); font-size:11px; color:var(--ink-45); flex:none; width:18px; padding-top:3px}
+.plist .pw{flex:1; min-width:0}
+.plist .ph{font-family:var(--type); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-45); margin-bottom:4px; display:flex; align-items:center; gap:7px}
+.plist .pf{color:#fff; padding:2px 6px; font-size:9px}
+.plist .pf.IG{background:#6B7280} .plist .pf.TT{background:#0B1F4B} .plist .pf.X{background:#4A6491}
+.plist .pt{font-size:13.5px; line-height:1.4; color:var(--ink-70)}
+.plist .pv{flex:none; text-align:right; padding-top:2px}
+.plist .pv b{font-family:var(--exp); font-weight:700; font-size:15px; display:block; font-variant-numeric:tabular-nums}
+.plist .pv i{font-style:normal; font-family:var(--type); font-size:9.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-45)}
+.plist .go{flex:none; font-family:var(--type); font-size:14px; color:var(--ink-45); padding-top:14px}
+.plist a:hover .go{color:var(--accent)}
+
+.method{border:1px solid var(--line-2); background:var(--paper-2)}
+.method .cbody{padding:26px 30px 24px}
+.method ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:13px}
+.method li{font-size:15px; line-height:1.45; color:var(--ink-70); padding-left:26px; position:relative}
+.method li::before{content:"\2192"; position:absolute; left:0; color:var(--accent); font-family:var(--type)}
+.method li b{color:var(--ink); font-weight:600}
+.method li.warn::before{content:"\26A0"; color:var(--win-x)}
+.callout{border-top:1px solid var(--line-2); margin-top:44px; padding-top:22px;
+  display:flex; align-items:baseline; gap:24px; flex-wrap:wrap}
+.callout .ck{font-family:var(--type); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-45); white-space:nowrap; padding-top:5px}
+.callout .cv{font-family:var(--exp); font-weight:600; font-size:16px; line-height:1.4; color:var(--ink-70); flex:1; min-width:280px}
+.callout .cv b{font-weight:800; color:var(--ink)}
+
+@keyframes asfc-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+body.gated{overflow:hidden}
+#asfc-login{position:fixed; inset:0; z-index:1200; background:var(--ink);
+  display:flex; align-items:center; justify-content:center; padding:20px}
+#asfc-login .lwin{width:min(480px,100%); background:var(--paper); border:3px solid var(--ink);
+  box-shadow:14px 14px 0 rgba(0,0,0,.45)}
+#asfc-login .lbar{display:flex; align-items:center; justify-content:space-between;
+  background:linear-gradient(180deg,var(--win-a),var(--win-b)); border-bottom:3px solid var(--ink);
+  padding:8px 14px; font-family:var(--vt); font-size:24px; color:#fff}
+#asfc-login .lbar i{font-style:normal; width:24px; height:24px; background:var(--win-x); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-family:var(--vt); font-size:18px}
+#asfc-login .lbody{padding:30px 30px 26px}
+#asfc-login .lmsg{font-family:var(--type); font-size:14px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-70); margin-bottom:16px; line-height:1.6}
+#asfc-login input{width:100%; box-sizing:border-box; border:3px solid var(--ink); background:#fff;
+  padding:12px 14px; font-family:var(--vt); font-size:26px; color:var(--ink); outline:none; letter-spacing:4px}
+#asfc-login input:focus{box-shadow:inset 0 0 0 2px var(--accent)}
+#asfc-login button{margin-top:16px; width:100%; border:3px solid var(--ink); background:#52B529;
+  color:var(--ink); font-family:var(--vt); font-size:24px; padding:10px 0; cursor:pointer;
+  box-shadow:5px 5px 0 rgba(11,31,75,.4)}
+#asfc-login button:active{transform:translate(3px,3px); box-shadow:2px 2px 0 rgba(11,31,75,.4)}
+#asfc-login .lerr{font-family:var(--vt); font-size:20px; color:var(--win-x); margin-top:12px; min-height:24px}
+#asfc-login .lwin.no{animation:asfc-shake .18s steps(2) 2}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+@media print{#asfc-login{display:none!important} body.gated{overflow:visible}}
+@media (prefers-reduced-motion: reduce){*{transition:none !important; animation:none !important}}
+</style><style>
+.backlink{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--type);
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-45);padding:6px 12px;
+  border:1px solid var(--line);background:var(--paper-2);margin-bottom:22px;transition:color .13s,border-color .13s}
+.backlink:hover{color:var(--ink);border-color:var(--ink)}
+</style>
+</head>
+<body>
+
+<div class="app">
+<div class="winbar">
+  <span class="wbt">PARIS-VS-SLOVENIA.EXE</span>
+  <span class="wbr"><span class="wbc">ASFC BENCHMARK &#183; VIEWS</span><i>&#8211;</i><i>&#9634;</i><i class="x">&#10005;</i></span>
+</div>
+
+<div class="pad">
+<header>
+  <a class="backlink" href="/lukaslovenia/">&#8592;&nbsp; Lakers in Slovenia</a>
+  <div class="topbar">
+    <span class="mark">ANTISOCIAL FRIENDS CLUB</span>
+    <span>Two NBA overseas trips &#183; 58 owned posts &#183; 158 + 319 earned</span>
+  </div>
+  <div class="rule"></div>
+  <div class="kicker" style="margin-top:26px"><span class="num">00</span><span class="dash"></span>Benchmark &#183; Summer 2026</div>
+  <h1>Player culture won both. Only one team chose it.<span class="thin">The Spurs took 86.6% of their Paris views out of 46% of their posts. The Lakers took 81.2% out of 81% &#8212; their posting mix, restated.</span></h1>
+  <p class="dek">Three weeks apart, two NBA teams ran an overseas summer trip. On owned and athlete accounts the Lakers pulled <b>1.7&#215; the views per post</b>, and the Spurs converted their smaller audience harder. But the useful number is neither of those: divide each content bucket&#8217;s share of views by its share of posts and the two trips come apart. Paris <b>over-indexed on player culture at 1.88&#215;</b>. Slovenia sat at <b>1.00&#215;</b> &#8212; a result you get for free when a bucket is most of what you posted.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="lab">Total views &#183; owned</div><div class="val lk">2.1&#215;</div><div class="sub">LAL 23,519,376<br>SAS 11,256,780</div></div>
+    <div class="kpi"><div class="lab">Views per post</div><div class="val lk">1.7&#215;</div><div class="sub">LAL 734,980<br>SAS 432,953</div></div>
+    <div class="kpi"><div class="lab">Views &#183; earned</div><div class="val lk">1.6&#215;</div><div class="sub">LAL 11,169,585<br>SAS 6,773,861<br><em class="cav">both sides are floors &#8212; see &sect;04</em></div></div>
+    <div class="kpi"><div class="lab">TikTok eng / 1k views</div><div class="val sp">2.3&#215;</div><div class="sub">SAS 183.6<br>LAL 79.3</div></div>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head">
+    <div class="kicker"><span class="num">01</span><span class="dash"></span>Box score</div>
+    <h2>The Lakers won the reach. The Spurs converted it.</h2>
+    <p class="sec-note">Owned + athlete accounts only &#183; league accounts excluded from both sides &#183; Instagram plays and TikTok plays are counted differently, so the total-view rows lead but the per-platform rows are the sounder read</p>
+  </div>
+  <div class="talewrap"><div class="tale" id="tale1"></div></div>
+  <p class="scrollhint">&#8592; swipe the table sideways &#8594;</p>
+  <div class="callout">
+    <span class="ck">The trade-off</span>
+    <span class="cv">More views did not mean more reaction. On TikTok, the one surface where every post on both sides reports plays, the Spurs earned <b>183.6 engagements per 1,000 views to the Lakers&#8217; 79.3</b> &#8212; Paris converting <b>2.3&#215; harder</b> across 8 and 12 posts. That is a ratio of sums, so it is a mean: drop each side&#8217;s single biggest TikTok and it becomes <b>163.9 against 77.4, or 2.1&#215;</b>. The direction holds; the size of the gap does not. The same rate cannot be computed across all posts at all, because Instagram carousels and statics book engagement with no plays, in unequal proportion on the two sides.</span>
+  </div>
+  <div class="callout">
+    <span class="ck">The anomaly</span>
+    <span class="cv">Team accounts only: @spurs TikTok has <b>1.8M followers to @lakers&#8217; 4.3M</b> &#8212; 42% of the audience &#8212; and a <b>median 19,074 engagements per post against 9,570</b> &#8212; <b>2.0&#215;</b> the rate, or <b>4.8&#215;</b> per follower. Read the median, not the mean: the Louvre slideshow alone is <b>69% of the Spurs&#8217; entire Paris TikTok engagement</b>, and on means it would carry the whole comparison.</span>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="kicker"><span class="num">02</span><span class="dash"></span>Content mix</div>
+    <h2>Paris over-indexed on player culture. Slovenia posted almost nothing else.</h2>
+    <p class="sec-note">Views by content bucket &#183; buckets carried over from the Paris recap &#183; owned + athlete accounts, the same basis as the box score &#183; both panels share one scale, so bar lengths are comparable across the two events &#183; index = share of views divided by share of posts, so 1.00 means the bucket returned exactly what its post count implies &#183; a bucket with posts but 0 views is content that reported no plays, usually an Instagram carousel, not content nobody watched; a bucket with 0 posts is content the team simply did not make</p>
+  </div>
+  <div class="mixgrid" id="mix"></div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="kicker"><span class="num">03</span><span class="dash"></span>Top posts</div>
+    <h2>The six most-watched posts of each trip.</h2>
+    <p class="sec-note">Ranked by views &#183; click any row to open the source post</p>
+  </div>
+  <div class="posts">
+    <div class="card">
+      <div class="winmini"><span>paris_top_views.txt</span><span class="wmb"><i>&#8211;</i><i>&#9634;</i><i class="x">&#10005;</i></span></div>
+      <div class="cbody"><h3 style="color:var(--spurs)">Spurs &#183; Paris</h3><ul class="plist" id="p1"></ul></div>
+    </div>
+    <div class="card">
+      <div class="winmini"><span>slovenia_top_views.txt</span><span class="wmb"><i>&#8211;</i><i>&#9634;</i><i class="x">&#10005;</i></span></div>
+      <div class="cbody"><h3 style="color:var(--lakers)">Lakers &#183; Slovenia</h3><ul class="plist" id="p2"></ul></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="kicker"><span class="num">04</span><span class="dash"></span>Earned</div>
+    <h2>What everyone else posted.</h2>
+    <p class="sec-note">Media, fan and creator accounts &#183; nobody on the team posted these &#183; engagement is likes + comments on both sides &#183; Paris Jul 30 &#8211; Aug 8, Slovenia Aug 20 &#8211; Aug 24 &#183; no winner is marked on engagement because 90% of the Paris figure comes from the relevance-ranked TikTok sample, which selects for virality by construction</p>
+  </div>
+  <div class="talewrap"><div class="tale" id="tale2"></div></div>
+  <p class="scrollhint">&#8592; swipe the table sideways &#8594;</p>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card">
+      <div class="winmini"><span>paris_earned_top.txt</span><span class="wmb"><i>&#8211;</i><i>&#9634;</i><i class="x">&#10005;</i></span></div>
+      <div class="cbody"><h3 style="color:var(--spurs)">Spurs &#183; Paris</h3><ul class="plist" id="e1"></ul></div>
+    </div>
+    <div class="card">
+      <div class="winmini"><span>slovenia_earned_top.txt</span><span class="wmb"><i>&#8211;</i><i>&#9634;</i><i class="x">&#10005;</i></span></div>
+      <div class="cbody"><h3 style="color:var(--lakers)">Lakers &#183; Slovenia</h3><ul class="plist" id="e2"></ul></div>
+    </div>
+  </div>
+  <div class="callout">
+    <span class="ck">Read carefully</span>
+    <span class="cv">Neither earned set is complete, and they are incomplete in opposite directions. X supports true date-range search, so both sides were queried the same way &#8212; on X alone Slovenia earned <b>2.7&#215;</b> the views. TikTok search is relevance-ranked and ignored the date bound, so <b>Paris returned only 43 in-window posts against Slovenia&#8217;s 137</b> and the Paris TikTok figure is a floor. Cutting the other way, the whole Slovenia sweep ran on Aug 24 and <b>misses the trip&#8217;s final day on both platforms, X included</b>, so the Slovenia totals are a floor too. No winner is marked on the earned view rows. Treat all of it as directional.</span>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="kicker"><span class="num">05</span><span class="dash"></span>Method &amp; caveats</div>
+    <h2>Read this before quoting any of it.</h2>
+  </div>
+  <div class="method">
+    <div class="winmini"><span>readme.txt</span><span class="wmb"><i>&#8211;</i><i>&#9634;</i><i class="x">&#10005;</i></span></div>
+    <div class="cbody">
+      <ul>
+        <li class="warn"><b>Views are the least comparable number here.</b> Instagram plays, TikTok plays and X impressions are three different counts. Instagram carousels and statics return nothing at all, so several high-engagement posts on both sides contribute zero views. Compare within a platform and treat cross-platform totals as directional.</li>
+        <li><b>Paris owned figures come from the Les Spurs / Spurs Give recap</b> (post-level pull, 8/10/26): 28 posts, 5 accounts, 7/30&#8211;8/7. The single Facebook post is excluded because Slovenia has no Facebook equivalent. Paris TikTok view counts in that recap are rounded to the hundred, so any Paris rate quoted to a decimal inherits that rounding.</li>
+        <li><b>Slovenia owned figures come from a matching account-level pull</b> of @lakers, @lukadoncic, @nba and @nbaeurope. <b>37 posts were hand-picked as trip content</b>, posted 8/20&#8211;8/25, of which 32 survive the league-account exclusion. The pull returned 62 Lakers posts in that window; routine roster content, NBA Defense Week and a large Kobe Day block were set aside by hand as not trip content.</li>
+        <li class="warn"><b>The two post sets were not assembled the same way, and that moves every per-post number.</b> Paris&#8217;s 26 is a client-side judgement about what counted as trip content; Slovenia&#8217;s 32 is ours. The account mix is uneven too: Paris spans five accounts including athlete accounts such as @hbarnes, while Slovenia is @lakers 31 posts plus a single @lukadoncic post. Views per post and both index denominators depend on those counts, so read the index as a comparison of shape, not a precise multiple.</li>
+        <li><b>Slovenia&#8217;s content buckets were assigned by hand</b> using the four categories from the Paris recap. Only two of them were ever needed. Bucket boundaries are a judgement call, and &sect;02&#8217;s finding rests on them.</li>
+        <li><b>A handful of posts carry each total.</b> The single biggest Paris post is 37% of all Paris owned views; the biggest Slovenia post is 15%. On earned X, one Bleacher Report post is roughly 45% of the entire Paris X total. Every multiple on this page is fragile to a few posts in both directions.</li>
+        <li><b>League accounts are excluded from both sides</b> of every number on this page: @nbafrance from Paris, @nba and @nbaeurope from Slovenia. That includes the content mix and the top-post lists, so every post count on the page reconciles to 26 and 32.</li>
+        <li><b>Earned means nobody on the team posted it</b> &#8212; media, fan and creator accounts only. Tottenham Hotspur transfer chatter was filtered out of the Paris set by hand; &ldquo;Spurs&rdquo; plus &ldquo;Paris&rdquo; catches a lot of football.</li>
+        <li><b>Engagement per 1,000 views is quoted on TikTok only.</b> Every TikTok post on both sides reports plays. On Instagram, carousels and statics report engagement and no plays at all &#8212; 9 of the 20 Slovenia Instagram posts, and an unknown count in Paris &#8212; so an all-posts rate divides a full numerator by a partial denominator and inflates whichever side has more silent posts.</li>
+        <li><b>Index = share of views divided by share of posts.</b> It is the only number here that separates &ldquo;this worked&rdquo; from &ldquo;we posted a lot of this.&rdquo; Paris player culture indexes at 1.88; Slovenia&#8217;s indexes at 1.00, meaning its 81% share of views is simply its 81% share of posts.</li>
+        <li class="warn"><b>Both earned totals are floors, for different reasons.</b> TikTok search is relevance-ranked and ignored the date bound, returning results back to 2021 &#8212; only <b>43 Paris TikTok posts</b> landed in window against Slovenia&#8217;s <b>137</b>, so Paris earned understates. Separately, the Slovenia sweep ran on Aug 24 and covers Aug 20 &#8211; Aug 24 against a trip that ran to Aug 25, so Slovenia understates on X and TikTok alike; Paris covers Jul 30 &#8211; Aug 8, its full window plus a day. Because the two shortfalls push opposite ways, no winner is marked on any earned view row except X, where both sides were queried identically and the shortfall can only widen the gap.</li>
+        <li><b>Engagement is likes + comments everywhere on this page</b>, owned and earned alike. Shares and saves are TikTok-only, so they are left out of every cross-event number.</li>
+        <li><b>Instagram follower counts were not captured</b>, so the per-follower normalisation is TikTok-only and team-account-only: @spurs (1.8M) against @lakers (4.3M).</li>
+        <li><b>Instagram earned was not pulled for either event</b> on a like-for-like basis, so the earned comparison is X + TikTok only.</li>
+        <li><b>Not covered on either side:</b> Stories, YouTube, paid-versus-organic split, follower delta, and sentiment.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="topbar" style="margin-top:34px; padding-top:18px; border-top:1px solid var(--line-2)">
+    <span class="mark">ANTISOCIAL FRIENDS CLUB</span>
+    <span>Built 2026-08-26 21:49 UTC</span>
+  </div>
+</div>
+</div>
+
+<div id="asfc-login">
+  <div class="lwin">
+    <div class="lbar"><span>ASFC OS &#8212; BENCHMARK</span><i>&#10005;</i></div>
+    <div class="lbody">
+      <div class="lmsg">Internal report. Enter password to continue.</div>
+      <label for="asfc-pw" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Password</label>
+      <input id="asfc-pw" type="password" autocomplete="off" spellcheck="false">
+      <button id="asfc-go" type="button">ENTER_</button>
+      <div class="lerr" id="asfc-err" role="alert"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const D = {"head1":{"mid":"Owned + athlete","a":{"code":"SAS","name":"Spurs","sub":"Paris \u00b7 Jul 30\u2013Aug 7"},"b":{"code":"LAL","name":"Lakers","sub":"Slovenia \u00b7 Aug 20\u201325"}},"head2":{"mid":"Earned \u00b7 X + TikTok","a":{"code":"SAS","name":"Spurs","sub":"Paris"},"b":{"code":"LAL","name":"Lakers","sub":"Slovenia"}},"tale1":[{"sec":"Views by platform"},{"m":"Instagram views","a":8970780,"b":20438576,"fa":"8,970,780","fb":"20,438,576","sa":"9.0M","sb":"20.4M","big":false,"neutral":false},{"m":"TikTok views","a":2286000,"b":3080800,"fa":"2,286,000","fb":"3,080,800","sa":"2.3M","sb":"3.1M","big":false,"neutral":false},{"m":"Total views","a":11256780,"b":23519376,"fa":"11,256,780","fb":"23,519,376","sa":"11.3M","sb":"23.5M","big":true,"neutral":false},{"sec":"Volume"},{"m":"Posts","a":26,"b":32,"fa":"26","fb":"32","sa":"26","sb":"32","big":false,"neutral":true},{"m":"Posting span","a":9,"b":6,"fa":"9 days","fb":"6 days","sa":"9 days","sb":"6 days","big":false,"neutral":true},{"m":"Posts per day","a":2.888888888888889,"b":5.333333333333333,"fa":"2.9","fb":"5.3","sa":"2.9","sb":"5.3","big":false,"neutral":true},{"sec":"Rate"},{"m":"Views per post","a":432953,"b":734980,"fa":"432,953","fb":"734,980","sa":"433k","sb":"735k","big":true,"neutral":false},{"m":"Instagram views per post","a":498377,"b":1021929,"fa":"498,377","fb":"1,021,929","sa":"498k","sb":"1.0M","big":false,"neutral":false},{"m":"TikTok views per post","a":285750,"b":256733,"fa":"285,750","fb":"256,733","sa":"286k","sb":"257k","big":false,"neutral":false},{"sec":"Reaction"},{"m":"Total engagement","a":1479091,"b":1755468,"fa":"1,479,091","fb":"1,755,468","sa":"1.5M","sb":"1.8M","big":false,"neutral":false},{"m":"Engagement per post","a":56888,"b":54858,"fa":"56,888","fb":"54,858","sa":"56.9k","sb":"54.9k","big":false,"neutral":false},{"m":"TikTok engagement per 1,000 views","a":183.6,"b":79.3,"fa":"183.6","fb":"79.3","sa":"183.6","sb":"79.3","big":true,"neutral":false},{"sec":"Team accounts only \u00b7 @spurs vs @lakers"},{"m":"TikTok eng per post (median)","a":19074,"b":9570,"fa":"19,074","fb":"9,570","sa":"19.1k","sb":"9.6k","big":false,"neutral":false},{"m":"TikTok followers","a":1800000,"b":4300000,"fa":"1,800,000","fb":"4,300,000","sa":"1.8M","sb":"4.3M","big":false,"neutral":true},{"m":"TikTok median eng per 1,000 followers","a":10.596666666666668,"b":2.2255813953488373,"fa":"10.6","fb":"2.2","sa":"10.6","sb":"2.2","big":false,"neutral":false}],"tale2":[{"sec":"Earned views by platform"},{"m":"X (date-range search)","a":3193368,"b":8490543,"fa":"3,193,368","fb":"8,490,543","sa":"3.2M","sb":"8.5M","big":false,"neutral":false},{"m":"TikTok (see caveat)","a":3580493,"b":2679042,"fa":"3,580,493","fb":"2,679,042","sa":"3.6M","sb":"2.7M","big":false,"neutral":true},{"m":"Total earned views","a":6773861,"b":11169585,"fa":"6,773,861","fb":"11,169,585","sa":"6.8M","sb":"11.2M","big":true,"neutral":true},{"sec":"Volume & reaction"},{"m":"Posts","a":158,"b":319,"fa":"158","fb":"319","sa":"158","sb":"319","big":false,"neutral":true},{"m":"Views per post","a":42873,"b":35014,"fa":"42,873","fb":"35,014","sa":"42.9k","sb":"35.0k","big":false,"neutral":true},{"m":"Engagement (likes + comments)","a":485766,"b":227185,"fa":"485,766","fb":"227,185","sa":"486k","sb":"227k","big":false,"neutral":true},{"sec":"Earned vs owned"},{"m":"Earned views as % of owned","a":60.175831809807065,"b":47.490992107953886,"fa":"60%","fb":"47%","sa":"60%","sb":"47%","big":false,"neutral":true}],"mix_max":19098189,"mix":[{"label":"Spurs \u00b7 Paris","sub":"26 posts \u00b7 11,256,780 views","cls":"sp","posts":26,"rows":[{"n":"Player culture / lifestyle","p":12,"v":9745799,"vs":86.6,"idx":1.88},{"n":"Brand activation","p":7,"v":923522,"vs":8.2,"idx":0.3},{"n":"Community","p":6,"v":587459,"vs":5.2,"idx":0.23},{"n":"Business announce","p":1,"v":0,"vs":0.0,"idx":0.0}]},{"label":"Lakers \u00b7 Slovenia","sub":"32 posts \u00b7 23,519,376 views","cls":"lk","posts":32,"rows":[{"n":"Player culture / lifestyle","p":26,"v":19098189,"vs":81.2,"idx":1.0},{"n":"Community","p":6,"v":4421187,"vs":18.8,"idx":1.0},{"n":"Brand activation","p":0,"v":0,"vs":0.0,"idx":null},{"n":"Business announce","p":0,"v":0,"vs":0.0,"idx":null}]}],"top_paris":[{"v":4174003,"e":111970,"acct":"@spurs","pf":"IG","t":"Wemby plays chess at NBA Summer House","u":"https://www.instagram.com/p/DbgQCe-RLfo/"},{"v":2054682,"e":166247,"acct":"@spurs","pf":"IG","t":"i think @stephcastle loves Paris","u":"https://www.instagram.com/p/DbqwA_-E5GC/"},{"v":1500000,"e":290858,"acct":"@spurs","pf":"TT","t":"A week of hoops, art and camaraderie (Louvre)","u":"https://www.tiktok.com/@spurs/photo/7670638389112163597"},{"v":918329,"e":38555,"acct":"@spurs","pf":"IG","t":"same grind. different country.","u":"https://www.instagram.com/p/Dbn-Cp9j_MX/"},{"v":635348,"e":23316,"acct":"@spurs","pf":"IG","t":"@dylharpp surprise jersey giveaway","u":"https://www.instagram.com/p/Dbi4WlLxGrH/"},{"v":451785,"e":33179,"acct":"@spurs","pf":"IG","t":"magnifique","u":"https://www.instagram.com/p/Dbj-0L_x_sW/"}],"top_slo":[{"v":3548537,"e":118804,"acct":"@lakers","pf":"IG","t":"Who\u2019s got the better fit? \ud83e\udd14","u":"https://www.instagram.com/p/DcWaanrNzhY/"},{"v":3215926,"e":77187,"acct":"@lakers","pf":"IG","t":"These two \ud83d\ude02","u":"https://www.instagram.com/p/DcWLb-ftHbd/"},{"v":3146959,"e":117831,"acct":"@lakers","pf":"IG","t":"The sweetest Kobe Day surprise in Slovenia with Luka &\u2026","u":"https://www.instagram.com/p/Dcbl4VzFFAY/"},{"v":2483698,"e":70181,"acct":"@lakers","pf":"IG","t":"New ink coming soon @lukadoncic? \ud83d\ude02","u":"https://www.instagram.com/p/DcYZJtLRMTD/"},{"v":2223666,"e":158476,"acct":"@lakers","pf":"IG","t":"That time Kobe talked to Luka in Slovenian \ud83d\ude0e","u":"https://www.instagram.com/p/DcbfDH8gCWI/"},{"v":1800494,"e":97290,"acct":"@lakers","pf":"IG","t":"Roll the tape \u2014 fellas are hoopin\u2019","u":"https://www.instagram.com/p/DcZC20CNZMN/"}],"earned":{"paris":{"x":{"posts":115,"views":3193368,"eng":48824},"tt":{"posts":43,"views":3580493,"eng":436942},"both":{"posts":158,"views":6773861,"eng":485766}},"slo":{"x":{"posts":182,"views":8490543,"eng":110028},"tt":{"posts":137,"views":2679042,"eng":117157},"both":{"posts":319,"views":11169585,"eng":227185}}},"earned_top_paris":[{"v":1434099,"e":23396,"acct":"@BleacherReport","pf":"X","t":"Wemby's brother, Oscar Wembanyama (20-year-old, 6'8\"), was\u2026","u":"https://twitter.com/BleacherReport/status/2085038585598681571"},{"v":1000000,"e":178415,"acct":"@allhailbball","pf":"TT","t":"SCARY HOURSE SPURS YEAR 3 \ud83d\ude31\ud83d\udc40 #spurs #nba #sanantonio #france\u2026","u":"https://www.tiktok.com/@allhailbball/video/7671035015819480350"},{"v":614600,"e":79818,"acct":"@espn","pf":"TT","t":"Team field trip \ud83d\udd25\ud83c\uddeb\ud83c\uddf7 (via @San Antonio Spurs) #espnsocial #wemby\u2026","u":"https://www.tiktok.com/@espn/video/7670568887460662558"},{"v":382100,"e":15483,"acct":"@tsn","pf":"TT","t":"Dylan Harper seems to be enjoying his time in Paris \ud83d\ude4c (via @San\u2026","u":"https://www.tiktok.com/@tsn/video/7669657995147644168"},{"v":249700,"e":31968,"acct":"@bleacherreport","pf":"TT","t":"Wemby comedy \ud83e\udd23 (via @Victor Wembanyama) #nba #basketball #wemby\u2026","u":"https://www.tiktok.com/@bleacherreport/video/7671436805597662477"},{"v":230800,"e":21588,"acct":"@espn","pf":"TT","t":"(via @Victor Wembanyama) #Paris #eiffeltower #riverwalk\u2026","u":"https://www.tiktok.com/@espn/video/7671496405323713822"}],"earned_top_slo":[{"v":2015623,"e":21817,"acct":"@LakeShowYo","pf":"X","t":"Luka got the Lakers kayaking in Slovenia \ud83d\ude2d","u":"https://twitter.com/LakeShowYo/status/2091124694393241989"},{"v":815742,"e":10195,"acct":"@fearedlaker","pf":"X","t":"Luka Don\u010di\u0107 & Lebron James in Slovenia \ud83d\ude02\ud83c\uddf8\ud83c\uddee","u":"https://twitter.com/fearedlaker/status/2090951559911723160"},{"v":710216,"e":2571,"acct":"@LukaUpdates","pf":"X","t":"Los Angeles Lakers arrive to another basketball practice in\u2026","u":"https://twitter.com/LukaUpdates/status/2091474469206344124"},{"v":651364,"e":7412,"acct":"@TheHoopCentral","pf":"X","t":"The new-look Lakers are putting in work in Slovenia. \ud83d\udd25 LAL is\u2026","u":"https://twitter.com/TheHoopCentral/status/2091589192983974157"},{"v":502308,"e":2398,"acct":"@LALMuse","pf":"X","t":"Luka got the Lakers moving like the Secret Service in Slovenia\u2026","u":"https://twitter.com/LALMuse/status/2090872231559594449"},{"v":421100,"e":2552,"acct":"@feel.slovenia","pf":"TT","t":"\ud83c\udfc0 Luka Don\u010di\u0107, ambasador slovenskega turizma, v Sloveniji gosti\u2026","u":"https://www.tiktok.com/@feel.slovenia/video/7676101893759700257"}]};
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a={})=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e};
+const fmt=n=> n>=1e6 ? (n/1e6).toFixed(1)+'M' : n>=1e3 ? (n/1e3).toFixed(n<100e3?1:0)+'k' : String(n);
+const full=n=>Number(n).toLocaleString('en-US');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- tale of the tape ---------- */
+function tale(id, head, rows){
+  const h = `<div class="thead">
+      <div class="ts a"><span class="bcode sp">${esc(head.a.code)}</span>
+        <span class="nm">${esc(head.a.name)}<small>${esc(head.a.sub)}</small></span></div>
+      <div class="mid">${esc(head.mid)}</div>
+      <div class="ts b"><span class="nm">${esc(head.b.name)}<small>${esc(head.b.sub)}</small></span>
+        <span class="bcode lk">${esc(head.b.code)}</span></div>
+    </div>`;
+  const body = rows.map(r=>{
+    if(r.sec) return `<div class="tsec">${esc(r.sec)}</div>`;
+    const a=Number(r.a), b=Number(r.b), tot=a+b;
+    const pa = tot ? a/tot*100 : 50, pb = tot ? b/tot*100 : 50;
+    // differences inside 5% are noise; do not award a winner for them
+    const close = Math.min(a,b) ? Math.max(a,b)/Math.min(a,b) < 1.05 : false;
+    const cls = ['trow', r.big?'big':'', (r.neutral||close)?'neutral':'',
+                 (r.neutral||close)?'':(a>b?'win-a':(b>a?'win-b':''))].filter(Boolean).join(' ');
+    return `<div class="${cls}">
+      <div class="thalf a"><span class="tv"><b class="lg">${esc(r.fa)}</b><b class="sm">${esc(r.sa||r.fa)}</b></span>
+        <span class="ttrack"><span class="tfill" style="width:${pa.toFixed(1)}%"></span></span></div>
+      <div class="tmid"><div class="tl">${esc(r.m)}</div>
+        <div class="tp"><span class="a">${pa.toFixed(0)}%</span><em> / </em><span class="b">${pb.toFixed(0)}%</span></div></div>
+      <div class="thalf b"><span class="tv"><b class="lg">${esc(r.fb)}</b><b class="sm">${esc(r.sb||r.fb)}</b></span>
+        <span class="ttrack"><span class="tfill" style="width:${pb.toFixed(1)}%"></span></span></div>
+    </div>`;
+  }).join('');
+  document.getElementById(id).innerHTML = h + body;
+}
+tale('tale1', D.head1, D.tale1);
+tale('tale2', D.head2, D.tale2);
+
+/* ---------- content mix, views basis ---------- */
+document.getElementById('mix').innerHTML = D.mix.map(ev=>{
+  const top=D.mix_max;   // one scale across both panels, so lengths compare
+  const tot=ev.rows.reduce((s,r)=>s+r.v,0);
+  return `<div class="card">
+    <div class="winmini"><span>${ev.cls==='sp'?'paris':'slovenia'}_mix_by_views.chart</span>
+      <span class="wmb"><i>\u2013</i><i>\u25a2</i><i class="x">\u2715</i></span></div>
+    <div class="cbody">
+      <h3 style="color:var(--${ev.cls==='sp'?'spurs':'lakers'})">${esc(ev.label)}</h3>
+      <p class="csub">${esc(ev.sub)}</p>
+      <div class="mhead"><span class="mname">Bucket</span><span style="flex:1"></span>
+        <span class="mval">Views</span><span class="midx">Index</span></div>
+      <div class="mixrow">${ev.rows.map(r=>`
+        <div class="mline">
+          <span class="mname">${esc(r.n.replace(' / lifestyle',''))}<i>${r.p} post${r.p===1?'':'s'} \u00b7 ${r.p?(r.p/ev.posts*100).toFixed(0):0}%</i></span>
+          <span class="mbarw"><span class="mbar ${ev.cls}${r.v&&r.v/top<0.02?' dim':''}"
+            style="width:${top?Math.max(r.v/top*100,r.v?0.6:0):0}%"></span></span>
+          <span class="mval">${r.v?fmt(r.v):'0'}</span>
+          <span class="midx${r.idx>=1.2?' up':''}">${r.idx===null?'\u2014':r.idx.toFixed(2)}</span>
+        </div>`).join('')}
+      </div>
+      ${(()=>{const pc=ev.rows.find(r=>/^Player culture/.test(r.n));
+        return pc? `<p class="csub" style="margin:16px 0 0">Player culture \u00b7
+        <b>${esc(pc.vs)}%</b> of views from <b>${(pc.p/ev.posts*100).toFixed(0)}%</b>
+        of posts \u2014 index <b>${pc.idx===null?'\u2014':pc.idx.toFixed(2)}</b>.</p>` : ''})()}
+    </div></div>`;
+}).join('');
+
+/* ---------- post lists, linked ---------- */
+function plist(id, arr){
+  document.getElementById(id).innerHTML = arr.map((p,i)=>`
+    <li><a href="${esc(p.u)}" target="_blank" rel="noopener">
+      <span class="n">${String(i+1).padStart(2,'0')}</span>
+      <span class="pw">
+        <span class="ph"><span class="pf ${esc(p.pf)}">${esc(p.pf)}</span>${esc(p.acct)}</span>
+        <span class="pt">${esc(p.t)}</span>
+      </span>
+      <span class="pv"><b>${p.v?fmt(p.v):'\u2014'}</b><i>${p.v?'views':'no plays'}</i></span>
+      <span class="go">\u2197</span>
+    </a></li>`).join('');
+}
+plist('p1', D.top_paris); plist('p2', D.top_slo);
+plist('e1', D.earned_top_paris); plist('e2', D.earned_top_slo);
+
+/* ---------- login gate ---------- */
+(function(){
+  var PW_HASH = "4a13aa695ada485952638fac1ed74c6de9b9e0a59e42783bc00174418096677f";
+  var KEY='asfc-vs-open';
+  var gate=document.getElementById('asfc-login'), pw=document.getElementById('asfc-pw');
+  function open_(){ try{sessionStorage.setItem(KEY,'1')}catch(e){}
+    gate.remove(); document.body.classList.remove('gated'); }
+  var already=false; try{already=sessionStorage.getItem(KEY)==='1'}catch(e){}
+  if(already){ open_(); return; }
+  document.body.classList.add('gated');
+  async function hash(str){
+    if(window.crypto && crypto.subtle && location.protocol!=='file:'){
+      try{ var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+        return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+      }catch(e){ return null; } }
+    return null;
+  }
+  async function tryPw(){
+    var v=(pw.value||'').trim().toUpperCase();
+    var h=await hash(v);
+    var ok = h ? (h===PW_HASH) : (v===atob('TFVLQTc3'));
+    if(ok){ open_(); }
+    else{ var w=gate.querySelector('.lwin');
+      document.getElementById('asfc-err').textContent='ACCESS DENIED. TRY AGAIN_';
+      w.classList.remove('no'); void w.offsetHeight; w.classList.add('no');
+      pw.value=''; pw.focus(); }
+  }
+  document.getElementById('asfc-go').addEventListener('click',tryPw);
+  pw.addEventListener('keydown',function(e){ if(e.key==='Enter'){e.preventDefault();tryPw();} });
+  pw.focus();
+})();
+</script>
+</body>
+</html>
