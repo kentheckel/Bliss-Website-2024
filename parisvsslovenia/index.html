@@ -498,7 +498,7 @@ plist('e1', D.earned_top_paris); plist('e2', D.earned_top_slo);
 
 /* ---------- login gate ---------- */
 (function(){
-  var PW_HASH = "4a13aa695ada485952638fac1ed74c6de9b9e0a59e42783bc00174418096677f";
+  var PW_HASH = "57cc74acc3544bc7ba244b4e4899258699e92fc7fe1beaff019b8153b464a407";
   var KEY='asfc-vs-open';
   var gate=document.getElementById('asfc-login'), pw=document.getElementById('asfc-pw');
   function open_(){ try{sessionStorage.setItem(KEY,'1')}catch(e){}
@@ -516,7 +516,7 @@ plist('e1', D.earned_top_paris); plist('e2', D.earned_top_slo);
   async function tryPw(){
     var v=(pw.value||'').trim().toUpperCase();
     var h=await hash(v);
-    var ok = h ? (h===PW_HASH) : (v===atob('TFVLQTc3'));
+    var ok = h ? (h===PW_HASH) : (v===atob('R09TUFVSU0dP'));
     if(ok){ open_(); }
     else{ var w=gate.querySelector('.lwin');
       document.getElementById('asfc-err').textContent='ACCESS DENIED. TRY AGAIN_';
