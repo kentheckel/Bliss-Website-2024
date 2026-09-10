@@ -1,0 +1,115 @@
+/* The approved homepage uses the existing ASFCos window manager. */
+#ModalWelcome {
+    box-sizing: border-box;
+    left: 160px;
+    top: 38px;
+    width: calc(100vw - 192px);
+    height: calc(100dvh - 126px);
+    max-width: none;
+    max-height: none;
+    background: #c0c0c0;
+    border: 2px outset #e5e5e5;
+    box-shadow: 7px 9px 0 #12364135;
+    padding: 4px;
+    transform: none;
+}
+#modalContainer .managed-window {
+    position: fixed !important;
+    box-sizing: border-box;
+    padding: 4px;
+    background: #c0c0c0;
+    border: 2px outset #e5e5e5;
+    border-radius: 0;
+    overflow: hidden;
+}
+#modalContainer .managed-window .window-controls {
+    box-sizing: border-box;
+    height: 30px;
+    min-height: 30px;
+    margin: 0;
+    padding: 3px 5px 3px 9px;
+    background: #0049d1;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font: bold 12px Tahoma, Arial, sans-serif;
+    touch-action: none;
+}
+#modalContainer .managed-window .window-controls > span {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font: inherit;
+}
+#modalContainer .managed-window .window-btn,
+#modalContainer .managed-window .window-btn-youtube {
+    box-sizing: border-box;
+    width: 24px;
+    height: 23px;
+    padding: 0;
+    flex-shrink: 0;
+    border: 2px outset #eee;
+    border-radius: 0;
+    background: #c0c0c0;
+    color: #111;
+    font: bold 14px/17px monospace;
+}
+#modalContainer .managed-window > .modal-iframe,
+#modalContainer .managed-window > .modal-content {
+    display: block;
+    width: 100%;
+    height: calc(100% - 34px);
+    min-height: 0;
+    margin: 4px 0 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+}
+#modalContainer .managed-window .modal-content > .modal-iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+#agency-desktop-slot { height: calc(100% - 33px); margin-top: 3px; }
+#agency-home-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    background: #f8f7ef;
+}
+.managed-window.is-maximized .window-controls { cursor: default !important; }
+#taskbar-windows { min-width: 0; overflow-x: auto; }
+.taskbar-window-button { flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#phone-homepage-host { display: none; }
+#phone-launcher { display: none; }
+.phone-channel-tabs { display: flex; gap: 8px; padding: 12px 16px; background: #e8e8df; }
+.phone-channel-tabs button { flex: 1; padding: 11px; border: 1px solid #9da696; background: #f8f7ef; font: bold 13px Arial, sans-serif; color: #142520; }
+.phone-channel-tabs button[aria-selected="true"] { background: #0049d1; color: white; }
+.phone-channel-frame { display: block; width: 100%; height: calc(100dvh - 130px); border: 0; background: white; }
+.phone-channel-full { display: block; padding: 9px 16px; font: 12px Arial, sans-serif; color: #0049d1; }
+.phone-channel-links { display: flex; justify-content: space-between; gap: 16px; padding: 9px 16px; font: 12px Arial, sans-serif; color: #0049d1; }
+#phone-app-body [hidden] { display: none !important; }
+@media (max-width: 1050px) and (min-width: 769px) {
+    #ModalWelcome { left: 118px; top: 24px; width: calc(100vw - 140px); height: calc(100dvh - 112px); }
+}
+@media (min-width: 1600px) {
+    #ModalWelcome { left: max(160px, calc((100vw - 1270px) / 2)); width: min(1270px, calc(100vw - 192px)); }
+}
+@media (max-width: 768px) {
+    #phone-homepage-host { display: block; }
+    #phone-home #agency-home-frame { height: calc(100dvh - 30px); margin: 0; }
+    #phone-home > .phone-statusbar { height: 30px; box-sizing: border-box; }
+    #phone-app .phone-appgrid { padding: 24px 18px; }
+    .phone-channel-tabs { position: sticky; top: 0; z-index: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    #boot-screen, #phone-boot { transition: none; }
+}

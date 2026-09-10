@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="style.css?v=20260908" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-bars hamburger-menu"></i>
+            <i class="fab fa-youtube"></i>
+            <span>Studio</span>
+        </div>
+        <ul class="menu">
+            <div class="profile">
+                <img src="../images/channels/KGCertified.png" alt="KG Certified Logo" class="profile-img">
+                <div class="profile-name">KG Certified</div>
+            </div>
+            <li><i class="fas fa-th"></i><span>Dashboard</span></li>
+            <li><i class="fas fa-video"></i><span>Content</span></li>
+            <li class="active"><i class="fas fa-chart-bar"></i><span>Analytics</span></li>
+            <li><i class="fas fa-users"></i><span>Community</span></li>
+            <li><i class="fas fa-closed-captioning"></i><span>Subtitles</span></li>
+            <li><i class="fas fa-copyright"></i><span>Copyright</span></li>
+            <li><i class="fas fa-dollar-sign"></i><span>Earn</span></li>
+            <li><i class="fas fa-paint-brush"></i><span>Customization</span></li>
+            <li><i class="fas fa-music"></i><span>Audio library</span></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-bar" placeholder="Search across your channel">
+            </div>
+        </div>
+        <div class="analytics-header">Channel analytics</div>
+        <div class="tabs">
+            <div class="tab-container">
+                <div class="tab active">Overview</div>
+                <div class="tab">Content</div>
+                <div class="tab">Audience</div>
+                <div class="tab">Trends</div>
+            </div>
+            <div class="date-range">
+                <div class="date">Mar 2025 – Jul 2026</div>
+                <div class="status">Active</div>
+            </div>
+        </div>
+        <div class="overview">
+            <div class="summary">
+                <div class="card">
+                    <div class="description">Views Since We Teamed Up (Mar 2025)</div>
+                    <div class="value">39.9M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">25 uploads in the last 28 days</div>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label">All-Time Channel Views</div>
+                            <div class="info-value">110,022,481</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Average Monthly Views</div>
+                            <div class="info-value">2,720,052</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Views (Last 28 Days)</div>
+                            <div class="info-value">1,426,765</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Last Month Views</div>
+                            <div class="info-value">1,660,969</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Highest Monthly Views</div>
+                            <div class="info-value">5,635,858</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="description">Total Uploads</div>
+                    <div class="value">1,496<i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">Yes, that's correct</div>
+                </div>
+                <div class="card">
+                    <div class="description">Subscribers</div>
+                    <div class="value">260k <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
+                    <div class="description">+3,033 in the last 28 days</div>
+                </div>
+            </div>
+            <div class="chart">
+                <div class="chart-header">
+                    <span>Views since we teamed up</span>
+                    <button class="see-more">See more</button>
+                </div>
+                <canvas id="viewsChart" class="chart-graph"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // KG Certified views gained since the partnership started (Mar 2025),
+        // cumulative by month (source: ChannelTrack / Notion YouTube Analytics)
+        const monthlyViews = [
+            ["May 2025", 1775564],
+            ["Jun 2025", 6260929],
+            ["Jul 2025", 9048376],
+            ["Aug 2025", 10878306],
+            ["Sep 2025", 11439405],
+            ["Oct 2025", 12800833],
+            ["Nov 2025", 15320478],
+            ["Dec 2025", 18263624],
+            ["Jan 2026", 20479545],
+            ["Feb 2026", 22635298],
+            ["Mar 2026", 24588448],
+            ["Apr 2026", 27880203],
+            ["May 2026", 32559468],
+            ["Jun 2026", 38195326],
+            ["Jul 2026", 39856295]
+        ];
+
+        const labels = monthlyViews.map(item => item[0]);
+        const data = monthlyViews.map(item => item[1]);
+
+        const ctx = document.getElementById('viewsChart').getContext('2d');
+        const viewsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Views Since Partnership',
+                    data: data,
+                    borderColor: '#40B4D9',
+                    backgroundColor: 'rgba(64, 180, 217, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    x: { display: true, title: { display: true, text: 'Month' } },
+                    y: { display: true, title: { display: true, text: 'Views Since Partnership' } }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -301,3 +301,37 @@ body {
     font-size: 16px;
     color: #fff;
 }
+
+/* Studio also lives beside a strategy document, or inside the phone OS. */
+@media (max-width: 1050px) {
+    .sidebar { width: 170px; }
+    .main-content { margin-left: 170px; padding: 18px; min-width: 0; }
+    .profile-img { width: 88px; height: 88px; }
+    .tabs { align-items: flex-start; flex-wrap: wrap; gap: 14px; padding: 10px 0; }
+    .tab-container { gap: 6px; }
+    .tabs .tab { padding: 10px 8px; }
+    .overview .summary { gap: 10px; }
+    .overview .summary .card { margin: 0; padding: 15px 10px; min-width: 0; }
+    .overview .summary .card .value { font-size: 22px; }
+    .overview .summary .card .description { font-size: 12px; line-height: 1.5; }
+    .overview .chart { min-width: 0; padding: 15px; }
+    .overview .chart canvas { max-width: 100%; }
+    .info-card { box-sizing: border-box; max-width: calc(100vw - 40px); }
+}
+@media (max-width: 600px) {
+    .sidebar { position: static; width: auto; height: auto; padding: 14px 16px; }
+    .sidebar .logo { margin-bottom: 14px; padding: 0; }
+    .sidebar .menu li { display: none; }
+    .profile { display: flex; align-items: center; gap: 12px; margin: 0; text-align: left; }
+    .profile-img { width: 44px; height: 44px; margin: 0; }
+    .main-content { margin-left: 0; padding: 16px; }
+    .header { display: none; }
+    .analytics-header { margin-top: 0; }
+    .date-range { text-align: left; }
+    .status { font-size: 13px; margin-top: 4px; }
+    .overview { margin-top: 8px; }
+    .overview .summary { flex-wrap: wrap; }
+    .overview .summary .card:first-child { flex-basis: 100%; }
+    .overview .chart .chart-header { font-size: 13px; gap: 8px; }
+    .info-card { display: none; }
+}

@@ -1306,7 +1306,6 @@ body{padding:0;margin:0;display:block;}
 
 <script id="asfc-present-js">
 (function(){
-  var PW_HASH = "b4802c1f8e324582848ced6435a77d3ede0ab6ce4a8e916da7a762a52f246f75";
   var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
   var N = slides.length, cur = -1, started = false;
 
@@ -1462,32 +1461,9 @@ body{padding:0;margin:0;display:block;}
     el.addEventListener('click', skip, true);
   }
 
-  /* ---- login gate ---- */
-  async function hash(str){
-    if(window.crypto && crypto.subtle){
-      var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-      return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-    }
-    return null;
-  }
-  var pw = document.getElementById('asfc-pw');
-  async function tryPw(){
-    var v = (pw.value||'').trim().toUpperCase();
-    var h = await hash(v);
-    var ok = h ? (h === PW_HASH) : (v === atob('QUdVSUxBUw=='));
-    if(ok){
-      document.getElementById('asfc-login').remove();
-      boot();
-    } else {
-      var w = document.querySelector('#asfc-login .lwin');
-      document.getElementById('asfc-err').textContent = 'ACCESS DENIED. TRY AGAIN_';
-      w.classList.remove('no'); void w.offsetHeight; w.classList.add('no');
-      pw.value = ''; pw.focus();
-    }
-  }
-  document.getElementById('asfc-go').addEventListener('click', tryPw);
-  pw.addEventListener('keydown', function(e){ if(e.key==='Enter') tryPw(); });
-  window.addEventListener('load', function(){ pw.focus(); });
+  // Route access is enforced by the server's shared session.
+  document.getElementById('asfc-login').remove();
+  boot();
 })();
 </script>
 </body>

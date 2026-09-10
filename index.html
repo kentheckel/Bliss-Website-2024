@@ -9,8 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link href="style.css?v=20260819a" rel="stylesheet">
-    <title>Kent Heckel's Website</title>
+    <!-- Fonts for the About-window theme variants (deck = Anton/Archivo/Plex Mono, studio = Roboto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="style.css?v=20260819d" rel="stylesheet">
+    <link href="agency/desktop.css?v=20260909a" rel="stylesheet">
+    <title>Antisocial Friends Club — YouTube &amp; Social Growth</title>
+    <meta name="description" content="Strategy, creative, and channel operations for athletes, entertainers, and brands. Explore the work of Antisocial Friends Club.">
     <style>
         .email-label {
             font-size: 14px;
@@ -30,74 +34,90 @@
 </head>
 
 <body>
-    <!-- MARK: Closed for Maintenance Screen -->
-    <!-- Full-screen interstitial shown on load so visitors don't land on outdated info. -->
-    <div id="maintenanceScreen">
-        <div id="maintenanceWindow">
-            <div class="window-controls">
-                <span class="title">System Maintenance</span>
-            </div>
-            <div class="maintenance-body">
-                <div class="maintenance-icon">
-                    <img src="images/icons/wrench.png" alt="Maintenance Icon">
-                </div>
-                <h1 class="maintenance-title">Closed for Maintenance</h1>
-                <p class="maintenance-message">
-                    ASFCos is currently being updated. Some info on here is out of
-                    date while I fix things up. Please check back soon!
-                </p>
-                <p class="maintenance-contact">
-                    If you need to get in touch, email
-                    <a href="mailto:jordyn@antisocialfriendsclub.com">jordyn@antisocialfriendsclub.com</a>
-                </p>
-                <p class="maintenance-signoff">&mdash; Kent &lt;3</p>
-            </div>
-        </div>
+    <!-- ============================================================= -->
+    <!-- BIOS BOOT — desktop only, plays once per session before desktop  -->
+    <!-- ============================================================= -->
+    <div id="boot-screen">
+        <pre id="boot-screen-text"></pre>
+        <button id="boot-screen-skip">[ press any key to enter &#9656; ]</button>
     </div>
+    <!-- Loaded here (not at end of body) so it can hide instantly for
+         returning visitors and start typing before the rest of the page paints -->
+    <script src="js/boot.js?v=20260818b"></script>
 
-    <!-- Add this right after the opening <body> tag -->
-    <div id="mobileWarningModal" class="modal">
-        <div id="modalHeaderMobileWarning" class="window-controls">
-            <span>Desktop Experience Required</span>
-            <button id="mobileWarningClose" class="window-btn">X</button>
+    <!-- ============================================================= -->
+    <!-- ASFC PHONE OS — mobile experience (shown only on small screens) -->
+    <!-- Desktop UI is hidden on mobile; this takes over. See js/phone.js -->
+    <!-- ============================================================= -->
+    <div id="phone-os">
+        <!-- BIOS boot sequence -->
+        <div id="phone-boot">
+            <pre id="phone-boot-text"></pre>
+            <button id="phone-boot-skip">[ tap to enter ▸ ]</button>
         </div>
-        <div class="error-layout">
-            <div class="error-icon">
-                <img src="images/icons/error.png" alt="Warning Icon">
+
+        <!-- Home screen -->
+        <div id="phone-home" class="phone-screen phone-hidden">
+            <div class="phone-statusbar">
+                <span class="ps-carrier">▮▮▮ ASFC</span>
+                <span class="ps-clock" id="phone-clock">--:--</span>
+                <span class="ps-batt">100% ▮</span>
             </div>
-            <div class="error-message">
-                I'm gonna be real with you, i coded this by hand, i have no idea how to make it work on mobile. Pls use a computer -Kent <3
+            <div id="phone-homepage-host"></div>
+            <div id="phone-launcher">
+            <div class="phone-hero">
+                <div class="phone-hero-logo">ANTISOCIAL<br>FRIENDS CLUB</div>
+                <div class="phone-hero-line">We turn athletes, teams &amp; creators into high-viewership, high-revenue channels.</div>
+                <div class="phone-hero-proof">6.9M+ subscribers grown for Cam Newton, the Spurs, All The Smoke &amp; more.</div>
             </div>
-            <div class="error-button">
-                <button id="mobileWarningOkButton" class="fix-button">OK</button>
+            <div class="phone-appgrid" id="phone-appgrid"><!-- apps injected by phone.js --></div>
+            <button class="phone-dock" data-app="book">☎  Book a Call</button>
             </div>
+        </div>
+
+        <!-- App screen (content injected per app) -->
+        <div id="phone-app" class="phone-screen phone-hidden">
+            <div class="phone-appbar">
+                <button id="phone-back" aria-label="Back">‹</button>
+                <span id="phone-app-title">App</span>
+                <button id="phone-home-btn" aria-label="Home">⌂</button>
+            </div>
+            <div id="phone-app-body"></div>
         </div>
     </div>
 
     <!-- MARK: Desktop Icons Container -->
+    <!-- Left column: the business — who we are, what we've done, what we've built -->
+    <!-- Right side: the fun stuff (Games, Paint, Stats) lives near the Trash -->
     <div id="desktop-icons">
-        <!-- Team Icon (formerly About) -->
+        <!-- Start Here / About Us — auto-opens on load, reopenable here -->
+        <button id="welcomeBtn" class="icon-btn">
+            <img src="images/icons/Icon_About.svg" alt="About Us Icon">
+            <span>ASFC Home</span>
+        </button>
+
+        <!-- Team Icon -->
         <button id="aboutBtn" class="icon-btn">
             <img src="images/icons/Icon_Team.png" alt="Team Icon">
             <span>Team</span>
         </button>
 
-        <!-- ChannelTrack Icon -->
-        <button id="channelTrackBtn" class="icon-btn second-column">
-            <img src="images/icons/Icon_ChannelTrack.svg" alt="ChannelTrack Icon">
-            <span>Channel<br>Track.XYZ</span>
+        <!-- Our Work folder — channels we've worked with -->
+        <button id="ourWorkBtn" class="icon-btn">
+            <img src="images/icons/Icon_Folder.svg" alt="Channels Folder">
+            <span>Channels</span>
         </button>
 
-        <!-- Uptides Icon -->
-        <button id="uptidesBtn" class="icon-btn second-column" style="top: 155px;">
-            <img src="images/icons/Icon_Uptides.svg" alt="Uptides.ai Icon">
-            <span>Uptides.ai</span>
+        <!-- Our Products folder — tools we've built (ChannelTrack, Uptides, ...) -->
+        <button id="ourProductsBtn" class="icon-btn">
+            <img src="images/icons/Icon_Folder.svg" alt="Our Products Folder">
+            <span>Our Products</span>
         </button>
 
-        <!-- Social Icon -->
-        <button id="socialBtn" class="icon-btn">
-            <img src="images/icons/Icon_Social.svg" alt="Social Icon">
-            <span>Social</span>
+        <!-- Services — what we do, in client language -->
+        <button id="servicesBtn" class="icon-btn">
+            <img src="images/icons/Icon_Notes.svg" alt="Services Icon">
+            <span>Services</span>
         </button>
 
         <!-- Contact Icon -->
@@ -106,41 +126,22 @@
             <span>Contact</span>
         </button>
 
-        <!-- Trash Icon on Desktop -->
-        <button id="trashBtn" class="icon-btn trash-icon">
-            <img src="images/icons/trashCan.png" alt="Trash Can Icon">
-            <span>Trash</span>
-        </button>
-
-        <!-- Videos Icon on Desktop -->
-        <button id="VideosBtn" class="icon-btn">
-            <img src="images/YouTubeStudio2.png" alt="Video camera Icon">
-            <span>Videos</span>
-        </button>
-
-        <!-- Stats Icon on Desktop -->
-        <button id="statsBtn" class="icon-btn">
-            <img src="images/icons/wrench.png" alt="Stats Icon">
-            <span>Stats</span>
-        </button>
-
-        <!-- Pitch.exe Icon on Desktop - opens the ASFC pitch deck -->
-        <a id="pitchBtn" class="icon-btn" href="pitch/index.html" style="text-decoration: none; color: inherit;">
-            <img src="images/icons/Icon_Pitch.svg?v=20260503a" alt="Pitch.exe Icon">
-            <span>Pitch.exe</span>
-        </a>
-
-        <!-- Games Folder Icon on Desktop - opens ModalGames popup -->
-        <button id="gamesBtn" class="icon-btn">
+        <!-- Games Folder Icon - right side, opens ModalGames popup -->
+        <button id="gamesBtn" class="icon-btn right-column">
             <img src="images/icons/Icon_Games.svg?v=20260521a" alt="Games Folder Icon">
             <span>Games</span>
         </button>
 
-        <!-- Paint Icon on Desktop - opens collaborative pixel canvas -->
-        <!-- Positioned in the second column directly under ChannelTrack via .second-column-row2 -->
-        <button id="paintBtn" class="icon-btn second-column-row2">
+        <!-- Paint Icon - right side, opens collaborative pixel canvas -->
+        <button id="paintBtn" class="icon-btn right-column-row2">
             <img src="images/icons/Icon_Paint.svg?v=20260521b" alt="Paint Icon">
             <span>Paint.exe</span>
+        </button>
+
+        <!-- Trash Icon - bottom right corner -->
+        <button id="trashBtn" class="icon-btn trash-icon">
+            <img src="images/icons/trashCan.png" alt="Trash Can Icon">
+            <span>Trash</span>
         </button>
 
     </div>
@@ -151,8 +152,8 @@
             <span>Kent<b>OS</b>95</span>
         </div>
         <div class="start-menu-items">
-            <div class="start-menu-item" data-menu-modal="ModalVideos">
-                <span class="start-menu-icon">📹</span> Programs
+            <div class="start-menu-item" data-menu-modal="ModalOurWork">
+                <span class="start-menu-icon">📁</span> Channels
             </div>
             <div class="start-menu-item" data-menu-modal="ModalAbout">
                 <span class="start-menu-icon">⚙️</span> Settings
@@ -177,6 +178,47 @@
 
     <!-- Modal Section (hidden until triggered) -->
     <div id="modalContainer">
+        <!-- The agency homepage is an app inside the original desktop. -->
+        <div id="ModalWelcome" class="modal">
+            <div id="modalHeaderWelcome" class="window-controls">
+                <span class="title">Antisocial Friends Club — Home</span>
+                <div class="window-btn-container">
+                    <button class="window-btn">-</button>
+                    <button class="window-btn">X</button>
+                </div>
+            </div>
+            <div id="agency-desktop-slot">
+                <iframe id="agency-home-frame" src="agency/index.html?v=20260909c" title="Antisocial Friends Club homepage"></iframe>
+            </div>
+        </div>
+
+        <!-- MARK: Services Modal — what we do, in client language -->
+        <!-- Scaffold: pricing floor + "who we're not for" to be added next -->
+        <div id="ModalServices" class="modal services-modal">
+            <div id="modalHeaderServices" class="window-controls">
+                <span class="title">Services — Antisocial Friends Club</span>
+                <div class="window-btn-container">
+                    <button class="window-btn">-</button>
+                    <button class="window-btn">X</button>
+                </div>
+            </div>
+            <div class="services-body">
+                <h1 class="services-headline">What "YouTube strategy" actually means</h1>
+                <p class="services-lead">It can mean running your whole channel — or just fixing your titles and thumbnails. We do the entire stack; <b>you take only what you need</b>. It all points at two things: more views, and more revenue.</p>
+                <ul class="services-list">
+                    <li><b>Content Strategy</b><span>What to make and how to package it — formats, titles &amp; thumbnails, and testing on every upload.</span></li>
+                    <li><b>Production</b><span>Podcasts, high-impact clips, and vertical shorts, produced and edited for every platform.</span></li>
+                    <li><b>Distribution</b><span>Getting every episode everywhere it should be — sized, timed, and optimized per platform.</span></li>
+                    <li><b>Monetization</b><span>Turning views into revenue: sponsorships, and a channel built to actually pay.</span></li>
+                    <li><b>Data &amp; Analytics</b><span>Tracking what's working and where the growth is — powered by our own ChannelTrack.</span></li>
+                </ul>
+                <p class="services-note">Not sure what you need? That's what the first call is for.</p>
+                <div class="services-cta-row">
+                    <button id="servicesBookBtn" class="welcome-btn95 welcome-btn95-primary">Work With Us</button>
+                </div>
+            </div>
+        </div>
+
         <!-- About Modal (iframe to load HTML content) -->
          <!-- MARK: About Modal -->
         <div id="ModalAbout" class="modal">
@@ -439,62 +481,118 @@
 
 
 
-            <!-- MARK: Videos Modal -->
-        <div id="ModalVideos" style="display: none;">
-            <div id="modalHeaderVideos" class="window-controls">
-                <span>Choose Account</span>
-                
-                <button id="VideosClose" class="window-btn">X</button>
+        <!-- MARK: Our Work Modal (Explorer-style folder of channels we've worked with) -->
+        <!-- Clicking a channel opens its analytics + strategy windows (see js/videos.js) -->
+        <div id="ModalOurWork" class="modal explorer-modal" style="display: none;">
+            <div id="modalHeaderOurWork" class="window-controls">
+                <span class="title">Channels</span>
+                <div class="window-btn-container">
+                    <button id="ourWorkMinimize" class="window-btn">-</button>
+                    <button id="ourWorkClose" class="window-btn">X</button>
+                </div>
             </div>
-            <div class="account-list">
-                <!-- Account 1 -->
-                <div class="account-item" data-channel="CamNewton">
-                    <img src="images/cam.jpg" alt="Cam Newton" class="account-img">
-                    <div class="account-info">
-                        <b>Cam Newton</b>
-                        <p>@CamNewton<br>1.57M subscribers</p>
-                    </div>                    
-                    <button class="arrow-btn" onclick="window.open('https://youtube.com/@CamNewton', '_blank')">➔</button>
-                </div>
-                <!-- Account 2 -->
-                <div class="account-item" data-channel="4thand1">
-                    <img src="images/4th.jpg" alt="4th&1 with Cam Newton logo" class="account-img">
-                    <div class="account-info">
-                        <b>4th&1 with Cam Newton</b>
-                        <p>@4thand1CamNewton<br>300k subscribers</p>
-                    </div>
-                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@4thand1CamNewton', '_blank')">➔</button>
-                </div>
-                <!-- Account 3 -->
-                <div class="account-item" data-channel="FunkyFriday">
-                    <img src="images/funky.jpg" alt="Funky Friday with Cam Newton logo" class="account-img">
-                    <div class="account-info">
-                        <b>Funky Friday Clips</b>
-                        <p>@FunkyFriday<br>126k subscribers</p>
-                    </div>
-                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@FunkyFridayCamNewton', '_blank')">➔</button>
-                </div>
-                <!-- Add more accounts as needed -->
-                 <!-- Account 4 -->
-                <div class="account-item" data-channel="JimGaffigan">
-                    <img src="images/jim.jpg" alt="Jim Gaffigan logo" class="account-img">
-                    <div class="account-info">
-                        <b>Jim Gaffigan</b>
-                        <p>@JimGaffigan<br>955k subscribers</p>
-                    </div>
-                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/@jimgaffigan', '_blank')">➔</button>
-                </div>
+            <div class="explorer-menubar">
+                <span>File</span><span>Edit</span><span>View</span><span>Help</span>
+            </div>
+            <div class="explorer-addressbar">
+                <span class="explorer-address-label">Address</span>
+                <div class="explorer-address-field">C:\Desktop\Channels</div>
+            </div>
+            <div class="explorer-body">
+                <button class="explorer-item" data-channel="CamNewton">
+                    <img src="images/cam.jpg" alt="Cam Newton">
+                    <span>Cam Newton</span>
+                    <small>1.57M subs</small>
+                </button>
+                <button class="explorer-item" data-channel="4thand1">
+                    <img src="images/4th.jpg" alt="4th&1 with Cam Newton">
+                    <span>4th&amp;1</span>
+                    <small>300k subs</small>
+                </button>
+                <button class="explorer-item" data-channel="FunkyFriday">
+                    <img src="images/funky.jpg" alt="Funky Friday Clips">
+                    <span>Funky Friday</span>
+                    <small>126k subs</small>
+                </button>
+                <button class="explorer-item" data-channel="JimGaffigan">
+                    <img src="images/jim.jpg" alt="Jim Gaffigan">
+                    <span>Jim Gaffigan</span>
+                    <small>1.02M subs</small>
+                </button>
+                <button class="explorer-item" data-channel="KentHeckel">
+                    <img src="images/kent.jpg" alt="Kent Heckel">
+                    <span>Kent Heckel</span>
+                    <small>27k subs</small>
+                </button>
+                <button class="explorer-item" data-channel="AllTheSmoke">
+                    <img src="images/channels/AllTheSmoke.png" alt="All The Smoke">
+                    <span>All The Smoke</span>
+                    <small>1.33M subs</small>
+                </button>
+                <button class="explorer-item" data-channel="AllTheSmokeFight">
+                    <img src="images/channels/AllTheSmokeFight.png" alt="All The Smoke Fight">
+                    <span>All The Smoke Fight</span>
+                    <small>1.93M subs</small>
+                </button>
+                <button class="explorer-item" data-channel="KGCertified">
+                    <img src="images/channels/KGCertified.png" alt="KG Certified">
+                    <span>KG Certified</span>
+                    <small>260k subs</small>
+                </button>
+                <button class="explorer-item" data-channel="SanAntonioSpurs">
+                    <img src="images/channels/SanAntonioSpurs.png" alt="San Antonio Spurs">
+                    <span>San Antonio Spurs</span>
+                    <small>265k subs</small>
+                </button>
+                <button class="explorer-item" data-channel="TheLateRun">
+                    <img src="images/channels/TheLateRun.png" alt="The Late Run">
+                    <span>The Late Run</span>
+                    <small>43.9k subs</small>
+                </button>
+                <button class="explorer-item" data-channel="RingChamps">
+                    <img src="images/channels/RingChamps.png" alt="Ring Champs">
+                    <span>Ring Champs</span>
+                    <small>47.7k subs</small>
+                </button>
+            </div>
+            <div class="explorer-statusbar">
+                <span>11 object(s)</span>
+                <span>6.9M+ total subscribers</span>
+            </div>
+        </div>
 
-                <!-- Account 5 -->
-                <div class="account-item" data-channel="KentHeckel">
-                    <img src="images/kent.jpg" alt="Kent Heckel logo" class="account-img">
-                    <div class="account-info">
-                        <b>Kent Heckel</b>
-                        <p>@KentHeckel<br>27k subscribers</p>
-                    </div>
-                    <button class="arrow-btn" onclick="window.open('https://www.youtube.com/c/kentheckel', '_blank')">➔</button>
+        <!-- MARK: Our Products Modal (Explorer-style folder of tools we've built) -->
+        <!-- Add new products here as explorer-item buttons with data-opens="Modal..." -->
+        <div id="ModalOurProducts" class="modal explorer-modal" style="display: none;">
+            <div id="modalHeaderOurProducts" class="window-controls">
+                <span class="title">Our Products</span>
+                <div class="window-btn-container">
+                    <button id="ourProductsMinimize" class="window-btn">-</button>
+                    <button id="ourProductsClose" class="window-btn">X</button>
                 </div>
-
+            </div>
+            <div class="explorer-menubar">
+                <span>File</span><span>Edit</span><span>View</span><span>Help</span>
+            </div>
+            <div class="explorer-addressbar">
+                <span class="explorer-address-label">Address</span>
+                <div class="explorer-address-field">C:\Desktop\Our Products</div>
+            </div>
+            <div class="explorer-body">
+                <button class="explorer-item" data-opens="ModalChannelTrack">
+                    <img src="images/icons/Icon_ChannelTrack.svg" alt="ChannelTrack">
+                    <span>ChannelTrack</span>
+                    <small>channeltrack.xyz</small>
+                </button>
+                <button class="explorer-item" data-opens="ModalUptides">
+                    <img src="images/icons/Icon_Uptides.svg" alt="Uptides">
+                    <span>Uptides</span>
+                    <small>uptides.ai</small>
+                </button>
+            </div>
+            <div class="explorer-statusbar">
+                <span>2 object(s)</span>
+                <span>Built in-house</span>
             </div>
         </div>
  <!-- MARK: Analytics Modals -->
@@ -506,16 +604,16 @@
                 <button id="AnalyticsMinimizeCamNewton" class="window-btn-youtube">-</button>
                 <button id="AnalyticsCloseCamNewton" class="window-btn-youtube">X</button>
             </div>
-            <iframe src="analytics/indexYouTubeStudioCamNewton.html" class="modal-iframe"></iframe>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudioCamNewton.html" class="modal-iframe"></iframe>
         </div>
         
         <div id="ModalTextBoxCamNewton" class="modal" style="display: none;">
             <div id="modalHeaderTextBoxCamNewton" class="window-controls">
-                <span>Cam Newton Notes</span>
+                <span>Cam Newton Strategy</span>
                 <button id="TextBoxCloseCamNewton" class="window-btn">X</button>
             </div>
             <div class="modal-content">
-                <iframe src="analytics/CamNewtonYouTubeStrategies/Funky Friday Strategy/FunkyFridayStrategy.html" 
+                <iframe loading="lazy" src="analytics/strategy.html?channel=CamNewton&amp;v=20260909release"
                         class="modal-iframe">
                 </iframe>
             </div>
@@ -528,17 +626,17 @@
                 <button id="AnalyticsMinimize4thand1" class="window-btn-youtube">-</button>
                 <button id="AnalyticsClose4thand1" class="window-btn-youtube">X</button>
             </div>
-            <iframe src="analytics/indexYouTubeStudio4thand1.html" class="modal-iframe"></iframe>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudio4thand1.html" class="modal-iframe"></iframe>
         </div>
 
 
         <div id="ModalTextBox4thand1" class="modal" style="display: none;">
             <div id="modalHeaderTextBox4thand1" class="window-controls">
-                <span>4th&1 Notes</span>
+                <span>4th&1 Strategy</span>
                 <button id="TextBoxClose4thand1" class="window-btn">X</button>
             </div>
             <div class="modal-content">
-                <iframe src="analytics/4thStrategy/4th1Strategyv2.html" 
+                <iframe loading="lazy" src="analytics/strategy.html?channel=4thand1&amp;v=20260909release"
                         class="modal-iframe">
                 </iframe>
             </div>
@@ -553,7 +651,7 @@
                     <button id="AnalyticsCloseFunkyFriday" class="window-btn-youtube">X</button>
                 </div>
             </div>
-            <iframe src="analytics/indexYouTubeStudioFunkyFriday.html" class="modal-iframe"></iframe>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudioFunkyFriday.html" class="modal-iframe"></iframe>
         </div>
 
         <!-- Modal for Funky Friday Text Box -->
@@ -566,7 +664,7 @@
                 </div>
             </div>
             <div class="modal-content">
-                <iframe src="analytics/Funky Friday Clips Strategy/FunkyFridayClipsStrategy.html" 
+                <iframe loading="lazy" src="analytics/strategy.html?channel=FunkyFriday&amp;v=20260909release"
                         class="modal-iframe">
                 </iframe>
             </div>
@@ -581,7 +679,7 @@
                     <button id="AnalyticsCloseJimGaffigan" class="window-btn-youtube">X</button>
                 </div>
             </div>
-            <iframe src="analytics/indexYouTubeStudioJimGaffigan.html" class="modal-iframe"></iframe>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudioJimGaffigan.html" class="modal-iframe"></iframe>
         </div>
 
         <!-- Modal for Jim Gaffigan Text Box -->
@@ -594,7 +692,7 @@
                 </div>
             </div>
             <div class="modal-content">
-                <iframe src="analytics/Jim Gaffigan’s YouTube Channel Strategy/JimGaffigansYouTubeChannelStrategy.html" 
+                <iframe loading="lazy" src="analytics/strategy.html?channel=JimGaffigan&amp;v=20260909release"
                         class="modal-iframe">
                 </iframe>
             </div>
@@ -609,7 +707,7 @@
                     <button id="AnalyticsCloseKentHeckel" class="window-btn-youtube">X</button>
                 </div>
             </div>
-            <iframe src="analytics/indexYouTubeStudioKentHeckel.html" class="modal-iframe"></iframe>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudioKentHeckel.html" class="modal-iframe"></iframe>
         </div>
 
         <!-- Modal for Kent Heckel Text Box -->
@@ -622,9 +720,166 @@
                 </div>
             </div>
             <div class="modal-content">
-                <iframe src="analytics/Kent Heckel’s YouTube Channel Strategy/KentHeckelsYouTubeChannelStrategy.html" 
+                <iframe loading="lazy" src="analytics/strategy.html?channel=KentHeckel&amp;v=20260909release"
                         class="modal-iframe">
                 </iframe>
+            </div>
+        </div>
+
+        <!-- Modal for All The Smoke Analytics -->
+        <div id="ModalAnalyticsAllTheSmoke" class="modal ModalYouTubeBorder" style="display: none;">
+            <div id="modalHeaderAnalyticsAllTheSmoke" class="window-controls">
+                <span class="title">All The Smoke Analytics</span>
+                <div class="window-btn-container">
+                    <button id="AnalyticsMinimizeAllTheSmoke" class="window-btn-youtube">-</button>
+                    <button id="AnalyticsCloseAllTheSmoke" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudioAllTheSmoke.html" class="modal-iframe"></iframe>
+        </div>
+
+        <!-- Modal for All The Smoke Strategy -->
+        <div id="ModalTextBoxAllTheSmoke" class="modal ModalTextBox" style="display: none;">
+            <div id="modalHeaderTextBoxAllTheSmoke" class="window-controls">
+                <span class="title">All The Smoke Strategy</span>
+                <div class="window-btn-container">
+                    <button id="TextBoxMinimizeAllTheSmoke" class="window-btn-youtube">-</button>
+                    <button id="TextBoxCloseAllTheSmoke" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <div class="modal-content">
+                <iframe loading="lazy" src="analytics/strategy.html?channel=AllTheSmoke&amp;v=20260909release" class="modal-iframe"></iframe>
+            </div>
+        </div>
+
+        <!-- Modal for All The Smoke Fight Analytics -->
+        <div id="ModalAnalyticsAllTheSmokeFight" class="modal ModalYouTubeBorder" style="display: none;">
+            <div id="modalHeaderAnalyticsAllTheSmokeFight" class="window-controls">
+                <span class="title">All The Smoke Fight Analytics</span>
+                <div class="window-btn-container">
+                    <button id="AnalyticsMinimizeAllTheSmokeFight" class="window-btn-youtube">-</button>
+                    <button id="AnalyticsCloseAllTheSmokeFight" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudioAllTheSmokeFight.html" class="modal-iframe"></iframe>
+        </div>
+
+        <!-- Modal for All The Smoke Fight Strategy -->
+        <div id="ModalTextBoxAllTheSmokeFight" class="modal ModalTextBox" style="display: none;">
+            <div id="modalHeaderTextBoxAllTheSmokeFight" class="window-controls">
+                <span class="title">All The Smoke Fight Strategy</span>
+                <div class="window-btn-container">
+                    <button id="TextBoxMinimizeAllTheSmokeFight" class="window-btn-youtube">-</button>
+                    <button id="TextBoxCloseAllTheSmokeFight" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <div class="modal-content">
+                <iframe loading="lazy" src="analytics/strategy.html?channel=AllTheSmokeFight&amp;v=20260909release" class="modal-iframe"></iframe>
+            </div>
+        </div>
+
+        <!-- Modal for KG Certified Analytics -->
+        <div id="ModalAnalyticsKGCertified" class="modal ModalYouTubeBorder" style="display: none;">
+            <div id="modalHeaderAnalyticsKGCertified" class="window-controls">
+                <span class="title">KG Certified Analytics</span>
+                <div class="window-btn-container">
+                    <button id="AnalyticsMinimizeKGCertified" class="window-btn-youtube">-</button>
+                    <button id="AnalyticsCloseKGCertified" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudioKGCertified.html" class="modal-iframe"></iframe>
+        </div>
+
+        <!-- Modal for KG Certified Strategy -->
+        <div id="ModalTextBoxKGCertified" class="modal ModalTextBox" style="display: none;">
+            <div id="modalHeaderTextBoxKGCertified" class="window-controls">
+                <span class="title">KG Certified Strategy</span>
+                <div class="window-btn-container">
+                    <button id="TextBoxMinimizeKGCertified" class="window-btn-youtube">-</button>
+                    <button id="TextBoxCloseKGCertified" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <div class="modal-content">
+                <iframe loading="lazy" src="analytics/strategy.html?channel=KGCertified&amp;v=20260909release" class="modal-iframe"></iframe>
+            </div>
+        </div>
+
+        <!-- Modal for San Antonio Spurs Analytics -->
+        <div id="ModalAnalyticsSanAntonioSpurs" class="modal ModalYouTubeBorder" style="display: none;">
+            <div id="modalHeaderAnalyticsSanAntonioSpurs" class="window-controls">
+                <span class="title">San Antonio Spurs Analytics</span>
+                <div class="window-btn-container">
+                    <button id="AnalyticsMinimizeSanAntonioSpurs" class="window-btn-youtube">-</button>
+                    <button id="AnalyticsCloseSanAntonioSpurs" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudioSanAntonioSpurs.html" class="modal-iframe"></iframe>
+        </div>
+
+        <!-- Modal for San Antonio Spurs Deck (slide deck instead of the doc-style strategy page) -->
+        <div id="ModalTextBoxSanAntonioSpurs" class="modal ModalTextBox" data-window-layout="presentation" style="display: none;">
+            <div id="modalHeaderTextBoxSanAntonioSpurs" class="window-controls">
+                <span class="title">San Antonio Spurs Deck</span>
+                <div class="window-btn-container">
+                    <button id="TextBoxMinimizeSanAntonioSpurs" class="window-btn-youtube">-</button>
+                    <button id="TextBoxCloseSanAntonioSpurs" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <div class="modal-content">
+                <!-- The deck is a self-contained landscape presentation with arrow-key navigation. -->
+                <iframe loading="lazy" src="Spurs/ASFC%20Spurs%20Season%20Story%20Deck%20v5%20-%20Presentation%20Mode.html" class="modal-iframe"></iframe>
+            </div>
+        </div>
+
+        <!-- Modal for The Late Run Analytics -->
+        <div id="ModalAnalyticsTheLateRun" class="modal ModalYouTubeBorder" style="display: none;">
+            <div id="modalHeaderAnalyticsTheLateRun" class="window-controls">
+                <span class="title">The Late Run Analytics</span>
+                <div class="window-btn-container">
+                    <button id="AnalyticsMinimizeTheLateRun" class="window-btn-youtube">-</button>
+                    <button id="AnalyticsCloseTheLateRun" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudioTheLateRun.html" class="modal-iframe"></iframe>
+        </div>
+
+        <!-- Modal for The Late Run Strategy -->
+        <div id="ModalTextBoxTheLateRun" class="modal ModalTextBox" style="display: none;">
+            <div id="modalHeaderTextBoxTheLateRun" class="window-controls">
+                <span class="title">The Late Run Strategy</span>
+                <div class="window-btn-container">
+                    <button id="TextBoxMinimizeTheLateRun" class="window-btn-youtube">-</button>
+                    <button id="TextBoxCloseTheLateRun" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <div class="modal-content">
+                <iframe loading="lazy" src="analytics/strategy.html?channel=TheLateRun&amp;v=20260909release" class="modal-iframe"></iframe>
+            </div>
+        </div>
+
+        <!-- Modal for Ring Champs Analytics -->
+        <div id="ModalAnalyticsRingChamps" class="modal ModalYouTubeBorder" style="display: none;">
+            <div id="modalHeaderAnalyticsRingChamps" class="window-controls">
+                <span class="title">Ring Champs Analytics</span>
+                <div class="window-btn-container">
+                    <button id="AnalyticsMinimizeRingChamps" class="window-btn-youtube">-</button>
+                    <button id="AnalyticsCloseRingChamps" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <iframe loading="lazy" src="analytics/indexYouTubeStudioRingChamps.html" class="modal-iframe"></iframe>
+        </div>
+
+        <!-- Modal for Ring Champs Strategy -->
+        <div id="ModalTextBoxRingChamps" class="modal ModalTextBox" style="display: none;">
+            <div id="modalHeaderTextBoxRingChamps" class="window-controls">
+                <span class="title">Ring Champs Strategy</span>
+                <div class="window-btn-container">
+                    <button id="TextBoxMinimizeRingChamps" class="window-btn-youtube">-</button>
+                    <button id="TextBoxCloseRingChamps" class="window-btn-youtube">X</button>
+                </div>
+            </div>
+            <div class="modal-content">
+                <iframe loading="lazy" src="analytics/strategy.html?channel=RingChamps&amp;v=20260909release" class="modal-iframe"></iframe>
             </div>
         </div>
 
@@ -663,12 +918,6 @@
                         <span>passwords.txt</span>
                     </button>
                 </div>
-                <div class="second-txt">
-                    <button id="doNotShareTxtBtn" class="txt-btn">
-                        <img src="images/icons/txt.png" alt="Do Not Share Text File Icon">
-                        <span>do-not-share.txt</span>
-                    </button>
-                </div>
             </div>
         </div>
 
@@ -702,30 +951,6 @@
             </div>
             <div class="txt-content">
                 <textarea id="passwordTextArea">KIM PASSWORD: passw0rd</textarea>
-            </div>
-        </div>
-
-        <!-- MARK: Do Not Share Text File Modal -->
-        <div id="ModalDoNotShareTxt" class="modal large-modal">
-            <div id="modalHeaderDoNotShareTxt" class="window-controls">
-                <span>do-not-share.txt</span>
-                <div class="window-btn-container">
-                    <button id="doNotShareTxtMinimize" class="window-btn">-</button>
-                    <button id="doNotShareTxtClose" class="window-btn">X</button>
-                </div>
-            </div>
-            <div class="file-menu-bar">
-                <div class="menu-tab">File</div>
-                <div class="menu-tab">Edit</div>
-                <div class="menu-tab">View</div>
-            </div>
-            <div class="txt-content">
-                <textarea id="doNotShareTextArea">internal — do not share
-
-asfc pitch deck pricing password: ASFC2026
-
-(if you found this, you're either nosy or very good at clicking around.
-either way, the deck is yours — let's chat. kent@kentheckel.com)</textarea>
             </div>
         </div>
 
@@ -1109,12 +1334,14 @@ either way, the deck is yours — let's chat. kent@kentheckel.com)</textarea>
             </audio>
 
             <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-            <script src="js/core.js"></script>
+            <script src="js/core.js?v=20260908"></script>
             <script src="js/icons.js"></script>
-            <script src="js/videos.js"></script>
-            <script src="js/misc.js"></script>
+            <script src="js/videos.js?v=20260908"></script>
+            <script src="js/misc.js?v=20260909nopitch"></script>
             <script src="js/stats.js"></script>
-            <script src="js/easter-eggs.js"></script>
+            <script src="js/easter-eggs.js?v=20260908"></script>
+            <script src="js/phone.js?v=20260909nopitch"></script>
+            <script src="js/agency-desktop.js?v=20260909spurs"></script>
             <script src="paint.js?v=20260521b"></script>
 </body>
 

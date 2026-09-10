@@ -76,18 +76,6 @@ body, html {
     object-fit: contain;
 }
 
-/* Stats icon slightly smaller */
-#statsBtn img {
-    width: 58px;
-    height: 58px;
-}
-
-/* Channel Track icon larger */
-#channelTrackBtn img {
-    width: 72px;
-    height: 72px;
-}
-
 .icon-btn:hover {
     transform: scale(1.1);
 }
@@ -106,19 +94,18 @@ body, html {
     margin: 0 !important;
 }
 
-/* Second column - default position for Color Social */
-/* Will be overridden if user drags it somewhere else */
-.icon-btn.second-column {
+/* Right side of the desktop — the fun stuff (Games, Paint, Stats) */
+/* Will be overridden if user drags an icon somewhere else */
+.icon-btn.right-column {
     position: fixed;
-    left: 120px;
+    right: 24px;
     top: 30px;
 }
 
-/* Second column row 2 — sits below Uptides in the same column */
-.icon-btn.second-column-row2 {
+.icon-btn.right-column-row2 {
     position: fixed;
-    left: 120px;
-    top: 280px;
+    right: 24px;
+    top: 165px;
 }
 
 
@@ -1152,114 +1139,126 @@ body, html {
     align-items: center;
 }
 
-/* Account List Styling */
-.account-list {
+/* ===========================================
+   EXPLORER FOLDER WINDOWS (Our Work, Our Products)
+   Classic Win95 file-explorer look: menu bar,
+   address bar, white icon grid, status bar
+   =========================================== */
+.explorer-modal {
+    width: 620px;
+    height: auto;
+    max-width: 90vw;
+    background-color: var(--win95-gray-light);
+    display: none;
+}
+
+.explorer-menubar {
+    display: flex;
+    gap: 18px;
+    padding: 4px 12px;
+    font-size: 20px;
+    background-color: var(--win95-gray-light);
+    border-bottom: 1px solid var(--win95-gray-dark);
+    user-select: none;
+}
+
+.explorer-menubar span {
+    cursor: default;
+}
+
+.explorer-menubar span:hover {
+    background-color: var(--win95-blue-dark);
+    color: white;
+}
+
+.explorer-addressbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--win95-gray-dark);
+    font-size: 18px;
+}
+
+.explorer-address-field {
+    flex: 1;
+    background-color: white;
+    border: 2px inset var(--win95-gray-dark);
+    padding: 3px 8px;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.explorer-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 8px;
+    padding: 16px;
+    background-color: white;
+    border: 2px inset var(--win95-gray-dark);
+    margin: 4px;
+    min-height: 240px;
+    max-height: 55vh;
+    overflow-y: auto;
+}
+
+.explorer-item {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 15px;
+    align-items: center;
+    width: 108px;
+    padding: 8px 4px;
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: var(--win95-font);
+    color: var(--win95-text);
 }
 
-.account-item {
+.explorer-item img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border: 1px solid var(--win95-gray-dark);
+}
+
+.explorer-item span {
+    font-size: 19px;
+    line-height: 1.1;
+    text-align: center;
+    padding: 1px 4px;
+    white-space: normal;
+}
+
+.explorer-item small {
+    font-size: 15px;
+    color: var(--win95-gray-dark);
+    margin-top: 2px;
+}
+
+/* Win95 selection look on hover/focus */
+.explorer-item:hover span,
+.explorer-item:focus span {
+    background-color: var(--win95-blue-dark);
+    color: white;
+    outline: 1px dotted white;
+}
+
+.explorer-statusbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+    gap: 4px;
+    padding: 3px 6px;
+    font-size: 17px;
 }
 
-.account-item:hover {
-    background-color: #404040;
-}
-
-.account-content {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.account-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px; /* Add margin to create a gap */
-}
-
-.account-info {
-    flex-grow: 1;
-    color: white;
-}
-
-.account-info b {
-    font-size: 14px;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.account-info p {
-    font-size: 12px;
-    color: #aaaaaa;
-    margin: 0;
-}
-
-/* Arrow Button Styling */
-.arrow-btn {
-    background-color: #0049d1;
-    border: none;
-    color: white;
-    font-size: 18px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: auto;
-}
-
-.arrow-btn:hover {
-    background-color: #0063e8;
-}
-
-/* Videos Modal Specific Styling */
-/* Custom modal class for Videos modal */
-#ModalVideos {
-    position: fixed;
-    top: 0 !important;
-    right: 0 !important;
-    left: auto !important;
-    width: 350px;
-    height: auto;
-    max-height: 80vh;
-    background-color: #303030;
-    font-family: 'Roboto', sans-serif;
-    z-index: 1000;
-    box-shadow: -4px 0 8px rgba(0,0,0,0.2);
-    overflow-y: auto;
-    margin: 0 !important;
-    transform: none !important;
-}
-
-#ModalVideos .window-controls {
-    background-color: #404040;
-    padding: 8px;
-    color: white;
-    font-size: 14px;
-}
-
-#ModalVideos .account-list {
-    padding: 10px;
-    max-height: calc(80vh - 35px); /* Adjust to fit within the modal */
-    overflow-y: auto;
-}
-
-#ModalVideos .account-img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+.explorer-statusbar span {
+    border: 2px inset var(--win95-gray-dark);
+    padding: 2px 10px;
+    background-color: var(--win95-gray-light);
 }
 
 /* Analytics Tabs */
@@ -1388,6 +1387,30 @@ body, html {
     width: 460px; /* Set the width */
     height: 800px; /* Set the height */
     z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Generic content/iframe layout for all TextBox modals (strategy docs, decks) —
+   the original five channels also have per-ID versions of these same rules */
+.ModalTextBox .modal-content {
+    overflow: hidden;
+    padding: 0;
+    height: calc(100% - 40px); /* Subtract header height */
+}
+
+.ModalTextBox .modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Spurs window holds a slide deck — wide, sized so one 16:9 slide fills the view */
+#ModalTextBoxSanAntonioSpurs {
+    left: 460px !important;
+    top: 100px !important;
+    width: 920px;
+    height: 600px;
 }
 #ModalTextBoxCamNewton {
     position: absolute !important;
@@ -3029,71 +3052,925 @@ body, html {
     box-shadow: 0 0 0 1px #000;
 }
 
-/* MARK: Closed for Maintenance Screen */
-/* Full-screen interstitial that sits above the taskbar and every modal (z-index 100). */
-#maintenanceScreen {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    background-color: #008080; /* Classic Win95 teal desktop */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--win95-font-system);
-}
-
-#maintenanceWindow {
-    width: 460px;
-    max-width: 90%;
-    background-color: var(--win95-gray-light);
-    border: var(--win95-border-raised);
-    box-shadow: var(--win95-shadow);
+/* ============================================================= */
+/* ASFC PHONE OS — mobile experience                              */
+/* Hidden on desktop; takes over the screen at <= 768px          */
+/* ============================================================= */
+/* ============================================================= */
+/* WELCOME / ABOUT WINDOW — CRT terminal theme                    */
+/* A continuation of the BIOS boot: black screen, green phosphor  */
+/* ============================================================= */
+#ModalWelcome {
+    width: 640px;
+    max-width: 92vw;
+    height: auto;
+    max-height: 90vh;
+    left: calc(50% - 320px);
+    top: 6%;
     overflow: hidden;
+    cursor: default;
+    background: #0a0a0a;
+    border: var(--win95-border-raised);
+}
+#ModalWelcome .welcome-body {
+    position: relative;
+    background: #0a0a0a;
+    padding: 22px 28px 24px;
+    overflow-y: auto;
+    max-height: calc(90vh - 38px);
+    font-family: var(--win95-font-system, 'Tahoma', sans-serif);
+    color: #e8e8e8;
+}
+/* CRT scanlines + soft vignette */
+#ModalWelcome .welcome-body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px),
+        radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.5) 100%);
 }
 
-.maintenance-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 24px 24px 28px;
+.welcome-prompt {
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-size: 17px;
+    color: #1f9f4c;
+    margin-bottom: 14px;
 }
-
-.maintenance-icon img {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 12px;
+.welcome-wordmark {
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-size: 44px;
+    line-height: .95;
+    letter-spacing: 2px;
+    color: #37f06a;
+    text-shadow: 0 0 10px rgba(55, 240, 106, .55);
 }
-
-.maintenance-title {
-    font-family: var(--win95-font);
-    font-size: 40px;
-    color: var(--win95-black);
+.welcome-tag {
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-size: 19px;
+    letter-spacing: 2px;
+    color: #8b8b8b;
+    margin: 6px 0 18px;
+}
+.welcome-headline {
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-weight: 400;
+    font-size: 31px;
+    line-height: 1.12;
+    color: #f2f2f2;
     margin: 0 0 12px;
 }
-
-.maintenance-message {
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--win95-black);
-    margin: 0 0 8px;
-    max-width: 340px;
+.welcome-headline em {
+    font-style: normal;
+    color: #37f06a;
+    text-shadow: 0 0 8px rgba(55, 240, 106, .45);
 }
-
-.maintenance-contact {
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--win95-black);
+.welcome-lead {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #b9c0c7;
     margin: 0 0 16px;
-    max-width: 340px;
+}
+.welcome-lead b { color: #ffffff; }
+
+/* Two-goals readout */
+.welcome-goals {
+    border: 1px solid #1f9f4c;
+    box-shadow: inset 0 0 14px rgba(55, 240, 106, .08);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+.welcome-goal { display: flex; gap: 14px; align-items: flex-start; }
+.wg-num {
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-size: 34px;
+    line-height: .85;
+    color: #37f06a;
+    text-shadow: 0 0 8px rgba(55, 240, 106, .45);
+    flex-shrink: 0;
+    width: 38px;
+}
+.welcome-goal b {
+    display: block;
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    margin-bottom: 2px;
+    line-height: 1;
+}
+.welcome-goal span {
+    display: block;
+    font-size: 13px;
+    color: #9aa4ab;
+    line-height: 1.5;
 }
 
-.maintenance-contact a {
-    color: var(--win95-link);
+/* Terminal buttons */
+.welcome-cta-row {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 18px;
+    flex-wrap: wrap;
 }
+.welcome-btn-term {
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-size: 19px;
+    letter-spacing: 1.5px;
+    padding: 9px 16px 7px;
+    background: transparent;
+    color: #37f06a;
+    border: 1px solid #1f9f4c;
+    cursor: pointer;
+}
+.welcome-btn-term:hover {
+    background: rgba(55, 240, 106, .12);
+    box-shadow: 0 0 10px rgba(55, 240, 106, .35);
+}
+.welcome-btn-term-primary {
+    background: #37f06a;
+    color: #052b12;
+    border-color: #37f06a;
+    text-shadow: none;
+    box-shadow: 0 0 14px rgba(55, 240, 106, .45);
+}
+.welcome-btn-term-primary:hover { background: #4bff7e; }
+.wcursor { animation: wBlink 1s steps(2) infinite; }
+@keyframes wBlink { 50% { opacity: 0; } }
+@media (max-width: 768px) { #ModalWelcome { display: none !important; } }
 
-.maintenance-signoff {
-    font-size: 15px;
-    color: var(--win95-black);
+/* ---- TEMP theme picker strip (remove after a theme is chosen) ---- */
+.welcome-theme-switch {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(128,128,128,.45);
+    font-family: var(--win95-font, 'VT323', monospace);
+    font-size: 14px;
+    opacity: .75;
+}
+.welcome-theme-switch span { letter-spacing: 1px; }
+.welcome-theme-switch button {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 2px 9px;
+    background: transparent;
+    border: 1px solid currentColor;
+    color: inherit;
+    cursor: pointer;
+    opacity: .7;
+}
+.welcome-theme-switch button.wts-active { opacity: 1; font-weight: bold; text-decoration: underline; }
+
+/* Ticker hidden except in scorebug */
+.welcome-ticker { display: none; }
+
+/* ============================================================= */
+/* THEME VARIANT: STUDIO — YouTube Studio dark dashboard          */
+/* ============================================================= */
+#ModalWelcome[data-theme="studio"] .welcome-body {
+    background: #282828;
+    color: #ffffff;
+    font-family: 'Roboto', 'Tahoma', sans-serif;
+}
+#ModalWelcome[data-theme="studio"] .welcome-body::before { background: none; }
+#ModalWelcome[data-theme="studio"] .welcome-prompt { font-size: 0; }
+#ModalWelcome[data-theme="studio"] .welcome-prompt::before {
+    content: "\25B6  CHANNEL ANALYTICS \B7 ABOUT";
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #aaaaaa;
+}
+#ModalWelcome[data-theme="studio"] .welcome-wordmark {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0;
+    color: #ffffff;
+    text-shadow: none;
+}
+#ModalWelcome[data-theme="studio"] .welcome-tag {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    letter-spacing: .5px;
+    color: #aaaaaa;
+}
+#ModalWelcome[data-theme="studio"] .welcome-headline {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.25;
+    color: #ffffff;
+}
+#ModalWelcome[data-theme="studio"] .welcome-headline em { color: #3ea6ff; text-shadow: none; }
+#ModalWelcome[data-theme="studio"] .welcome-lead { color: #cfcfcf; }
+#ModalWelcome[data-theme="studio"] .welcome-goals {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    flex-direction: row;
+    gap: 12px;
+}
+#ModalWelcome[data-theme="studio"] .welcome-goal {
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    background: #1f1f1f;
+    border: 1px solid #3d3d3d;
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+#ModalWelcome[data-theme="studio"] .wg-num {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #00c853;
+    width: auto;
+    text-shadow: none;
+}
+#ModalWelcome[data-theme="studio"] .wg-num::after { content: "  \2191"; }
+#ModalWelcome[data-theme="studio"] .welcome-goal b {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0;
+    text-transform: none;
+}
+#ModalWelcome[data-theme="studio"] .welcome-goal span { color: #aaaaaa; }
+#ModalWelcome[data-theme="studio"] .welcome-btn-term {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .3px;
+    border-radius: 18px;
+    border: 1px solid #555;
+    color: #f1f1f1;
+    padding: 8px 18px;
+    text-transform: none;
+}
+#ModalWelcome[data-theme="studio"] .welcome-btn-term:hover { background: rgba(255,255,255,.1); box-shadow: none; }
+#ModalWelcome[data-theme="studio"] .welcome-btn-term-primary {
+    background: #ff0033;
+    border-color: #ff0033;
+    color: #fff;
+    box-shadow: none;
+}
+#ModalWelcome[data-theme="studio"] .welcome-btn-term-primary:hover { background: #ff3355; }
+#ModalWelcome[data-theme="studio"] .wcursor { display: none; }
+
+/* ============================================================= */
+/* THEME VARIANT: DECK — the Spurs/Hamilton proposal language     */
+/* ============================================================= */
+#ModalWelcome[data-theme="deck"] .welcome-body {
+    background: #F2F4F8;
+    color: #0B1F4B;
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+#ModalWelcome[data-theme="deck"] .welcome-body::before {
+    background: radial-gradient(ellipse at center, transparent 70%, rgba(11,31,75,.06) 100%);
+}
+#ModalWelcome[data-theme="deck"] .welcome-prompt { font-size: 0; }
+#ModalWelcome[data-theme="deck"] .welcome-prompt::before {
+    content: "ASFC \2192 ABOUT \B7 EST. 2020 \B7 NYC";
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #6B7280;
+}
+#ModalWelcome[data-theme="deck"] .welcome-wordmark {
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    letter-spacing: 1px;
+    color: #0B1F4B;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+#ModalWelcome[data-theme="deck"] .welcome-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #377EF0;
+}
+#ModalWelcome[data-theme="deck"] .welcome-headline {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 1.2;
+    color: #0B1F4B;
+}
+#ModalWelcome[data-theme="deck"] .welcome-headline em { color: #377EF0; text-shadow: none; }
+#ModalWelcome[data-theme="deck"] .welcome-lead { color: #374151; }
+#ModalWelcome[data-theme="deck"] .welcome-lead b { color: #0B1F4B; }
+#ModalWelcome[data-theme="deck"] .welcome-goals {
+    border: none;
+    box-shadow: none;
+    border-top: 2px solid #0B1F4B;
+    padding: 14px 0 0;
+    flex-direction: row;
+    gap: 24px;
+}
+#ModalWelcome[data-theme="deck"] .welcome-goal { flex: 1; flex-direction: column; gap: 6px; }
+#ModalWelcome[data-theme="deck"] .wg-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: #377EF0;
+    width: auto;
+    text-shadow: none;
+}
+#ModalWelcome[data-theme="deck"] .wg-num::after { content: " /"; color: rgba(11,31,75,.3); }
+#ModalWelcome[data-theme="deck"] .welcome-goal b {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: .5px;
+    color: #0B1F4B;
+}
+#ModalWelcome[data-theme="deck"] .welcome-goal span { color: #4a5568; }
+#ModalWelcome[data-theme="deck"] .welcome-btn-term {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    border: 1.5px solid #0B1F4B;
+    color: #0B1F4B;
+    border-radius: 0;
+    padding: 10px 16px;
+}
+#ModalWelcome[data-theme="deck"] .welcome-btn-term:hover { background: rgba(11,31,75,.07); box-shadow: none; }
+#ModalWelcome[data-theme="deck"] .welcome-btn-term-primary {
+    background: #0B1F4B;
+    border-color: #0B1F4B;
+    color: #ffffff;
+    box-shadow: 4px 4px 0 #377EF0;
+}
+#ModalWelcome[data-theme="deck"] .welcome-btn-term-primary:hover { background: #14306b; }
+#ModalWelcome[data-theme="deck"] .wcursor { display: none; }
+
+/* ============================================================= */
+/* THEME VARIANT: SCOREBUG — broadcast sports graphics            */
+/* ============================================================= */
+#ModalWelcome[data-theme="scorebug"] .welcome-body {
+    background: linear-gradient(160deg, #0a1428 0%, #12203c 70%, #0d1830 100%);
+    color: #ffffff;
+    font-family: 'Archivo', 'Tahoma', sans-serif;
+    padding-bottom: 0;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-body::before { background: none; }
+#ModalWelcome[data-theme="scorebug"] .welcome-prompt { font-size: 0; }
+#ModalWelcome[data-theme="scorebug"] .welcome-prompt::before {
+    content: "\25CF LIVE";
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #ff2e4d;
+    animation: wBlink 1.4s steps(2) infinite;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-prompt::after {
+    content: "  \B7  ASFC NETWORK";
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #ffd60a;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-wordmark {
+    font-family: 'Anton', sans-serif;
+    font-size: 38px;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: none;
+    display: inline-block;
+    background: linear-gradient(100deg, #1d428a 0%, #12315f 100%);
+    border-left: 6px solid #ffd60a;
+    padding: 6px 18px 4px 12px;
+    transform: skewX(-6deg);
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-tag {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #9fb4d8;
+    margin-top: 10px;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-headline {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1.22;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-headline em { color: #ffd60a; text-shadow: none; }
+#ModalWelcome[data-theme="scorebug"] .welcome-lead { color: #c3cede; }
+#ModalWelcome[data-theme="scorebug"] .welcome-goals {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    flex-direction: row;
+    gap: 10px;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-goal {
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+    background: rgba(255,255,255,.06);
+    border-top: 4px solid #ffd60a;
+    padding: 12px 14px;
+}
+#ModalWelcome[data-theme="scorebug"] .wg-num {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    color: #ffd60a;
+    width: auto;
+    text-shadow: none;
+}
+#ModalWelcome[data-theme="scorebug"] .wg-num::after { content: "  \25B2"; color: #35e07c; }
+#ModalWelcome[data-theme="scorebug"] .welcome-goal b {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    letter-spacing: 1px;
+    font-style: italic;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-goal span { color: #9fb4d8; }
+#ModalWelcome[data-theme="scorebug"] .welcome-cta-row { margin-bottom: 16px; }
+#ModalWelcome[data-theme="scorebug"] .welcome-btn-term {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    border-radius: 0;
+    transform: skewX(-6deg);
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-btn-term:hover { background: rgba(255,255,255,.12); box-shadow: none; }
+#ModalWelcome[data-theme="scorebug"] .welcome-btn-term-primary {
+    background: #ffd60a;
+    border-color: #ffd60a;
+    color: #0a1428;
+    box-shadow: none;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-btn-term-primary:hover { background: #ffe14d; }
+#ModalWelcome[data-theme="scorebug"] .wcursor { display: none; }
+/* Scrolling stat ticker */
+#ModalWelcome[data-theme="scorebug"] .welcome-ticker {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #060d1c;
+    border-top: 2px solid #ffd60a;
+    margin: 0 -28px;
+    padding: 6px 0;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #ffd60a;
+}
+#ModalWelcome[data-theme="scorebug"] .welcome-ticker span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: wTicker 22s linear infinite;
+}
+@keyframes wTicker { to { transform: translateX(-100%); } }
+#ModalWelcome[data-theme="scorebug"] .welcome-theme-switch { margin-top: 10px; padding-bottom: 12px; }
+
+
+/* ---- Services window (native Win95) ---- */
+#ModalServices {
+    width: 520px;
+    max-width: 92vw;
+    height: auto;
+    max-height: 90vh;
+    left: calc(50% - 260px);
+    top: 4%;
+    background: var(--win95-gray-light, #dcdcdc);
+    cursor: default;
+}
+.services-body {
+    background: var(--win95-gray-light, #dcdcdc);
+    padding: 16px 18px 18px;
+    overflow-y: auto;
+    max-height: calc(90vh - 38px);
+    font-family: var(--win95-font-system, 'Tahoma', sans-serif);
+    color: #10233b;
+}
+.services-headline { font-size: 20px; color: #0b1f4b; margin: 0 0 6px; }
+.services-lead { font-size: 14px; color: #374151; margin: 0 0 12px; line-height: 1.5; }
+.services-list {
+    list-style: none;
     margin: 0;
+    padding: 12px 14px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #ffffff;
+}
+.services-list li { padding: 7px 0; border-bottom: 1px solid #e6e6e6; }
+.services-list li:last-child { border-bottom: none; }
+.services-list b { display: block; font-size: 15px; color: #0b1f4b; margin-bottom: 2px; }
+.services-list span { display: block; font-size: 13px; color: #55606f; line-height: 1.4; }
+.services-note { font-size: 13px; color: #55606f; font-style: italic; margin: 12px 0 0; }
+.services-cta-row { display: flex; justify-content: flex-end; margin-top: 12px; }
+@media (max-width: 768px) { #ModalServices { display: none !important; } }
+
+/* ---- Desktop BIOS boot screen ---- */
+#boot-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647; /* above everything — taskbar, modals, notifications */
+    background: #0a0a0a;
+    color: #37f06a;
+    font-family: var(--win95-font, 'VT323', monospace);
+    padding: 6vh 6vw;
+    display: flex;
+    flex-direction: column;
+    transition: opacity .4s ease;
+}
+#boot-screen.boot-out { opacity: 0; }
+#boot-screen-text {
+    font-size: 27px;
+    line-height: 1.42;
+    white-space: pre-wrap;
+    margin: 0;
+    text-shadow: 0 0 8px rgba(55, 240, 106, .5);
+}
+#boot-screen-skip {
+    margin-top: auto;
+    align-self: center;
+    background: none;
+    border: none;
+    color: #37f06a;
+    font-family: inherit;
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+#boot-screen-skip.boot-ready { opacity: .85; animation: bootBlink 1s steps(2) infinite; }
+@keyframes bootBlink { 50% { opacity: .3; } }
+/* Phone has its own boot; hide the desktop one on mobile */
+@media (max-width: 768px) { #boot-screen { display: none !important; } }
+
+#phone-os { display: none; }
+#phone-os, #phone-os *, #phone-os *::before, #phone-os *::after { box-sizing: border-box; }
+
+@media (max-width: 768px) {
+    /* Hide the entire desktop metaphor on mobile */
+    #desktop-icons, #taskbar, #startMenu, #modalContainer { display: none !important; }
+
+    html, body {
+        overflow: auto;
+        height: auto;
+        font-size: 16px;
+        background: #0b1f4b;
+    }
+
+    #phone-os {
+        display: block;
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        font-family: var(--win95-font-system, 'Tahoma', sans-serif);
+        color: #10233f;
+        overflow: hidden;
+    }
+
+    /* ---- BIOS boot ---- */
+    #phone-boot {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: #0a0a0a;
+        color: #37f06a;
+        font-family: var(--win95-font, 'VT323', monospace);
+        padding: 40px 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        transition: opacity .35s ease;
+    }
+    #phone-boot.phone-boot-out { opacity: 0; }
+    #phone-boot-text {
+        font-size: 19px;
+        line-height: 1.45;
+        white-space: pre-wrap;
+        word-break: break-word;
+        margin: 0;
+        text-shadow: 0 0 6px rgba(55,240,106,.5);
+    }
+    #phone-boot-skip {
+        margin-top: auto;
+        align-self: center;
+        background: none;
+        border: none;
+        color: #37f06a;
+        font-family: inherit;
+        font-size: 18px;
+        opacity: 0;
+        transition: opacity .3s ease;
+        padding: 20px;
+    }
+    #phone-boot-skip.phone-boot-ready { opacity: .8; animation: phoneBlink 1s steps(2) infinite; }
+    @keyframes phoneBlink { 50% { opacity: .25; } }
+
+    /* ---- Screens ---- */
+    .phone-screen {
+        position: relative;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+    }
+    .phone-hidden { display: none !important; }
+
+    /* ---- Home ---- */
+    #phone-home {
+        background:
+            linear-gradient(180deg, rgba(11,31,75,.15), rgba(11,31,75,.55)),
+            url('images/bliss_Website_Background.svg') center/cover no-repeat fixed;
+    }
+    .phone-statusbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 16px;
+        font-family: var(--win95-font, 'VT323', monospace);
+        font-size: 16px;
+        color: #fff;
+        background: rgba(0,0,0,.28);
+        letter-spacing: .5px;
+    }
+    .phone-hero {
+        padding: 26px 22px 10px;
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(0,0,0,.45);
+    }
+    .phone-hero-logo {
+        font-family: var(--win95-font, 'VT323', monospace);
+        font-size: 15px;
+        letter-spacing: 3px;
+        line-height: 1.25;
+        opacity: .9;
+        margin-bottom: 12px;
+    }
+    .phone-hero-line {
+        font-size: 25px;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+    .phone-hero-proof {
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 1.5;
+        opacity: .92;
+    }
+
+    /* ---- App grid ---- */
+    .phone-appgrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px 8px;
+        padding: 26px 18px 20px;
+    }
+    .phone-appicon {
+        background: none;
+        border: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        cursor: pointer;
+        color: #fff;
+        text-shadow: 0 1px 4px rgba(0,0,0,.5);
+    }
+    .pa-glyph {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        background: var(--accent, #fff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        box-shadow: 0 6px 14px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.5);
+    }
+    .phone-appicon:active .pa-glyph { transform: scale(.92); }
+    .pa-label { font-size: 12.5px; font-weight: 600; }
+
+    /* ---- Sticky dock CTA ---- */
+    .phone-dock {
+        position: sticky;
+        bottom: 0;
+        margin-top: auto;
+        width: calc(100% - 32px);
+        margin-left: 16px;
+        margin-bottom: 16px;
+        padding: 16px;
+        border: none;
+        border-radius: 14px;
+        background: #37f06a;
+        color: #052b12;
+        font-size: 18px;
+        font-weight: 800;
+        box-shadow: 0 8px 20px rgba(0,0,0,.35);
+        cursor: pointer;
+    }
+    .phone-dock:active { transform: translateY(1px); }
+
+    /* ---- App bar ---- */
+    /* App screen is a fixed overlay so it fully covers the home screen */
+    #phone-app {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: #f2f4f8;
+    }
+    .phone-appbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 14px;
+        background: var(--win95-blue-dark, #0044c2);
+        color: #fff;
+        font-weight: 700;
+        font-size: 17px;
+    }
+    .phone-appbar button {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 26px;
+        line-height: 1;
+        padding: 0 6px;
+        cursor: pointer;
+    }
+    #phone-app-body {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* ---- Shared app content ---- */
+    .phone-pad { padding: 18px; }
+    .phone-center { text-align: center; }
+    .phone-lede { font-size: 15px; line-height: 1.55; color: #374151; }
+    #phone-app-body h2 { font-size: 22px; margin: 4px 0 10px; }
+    #phone-app-body h3 { font-size: 18px; margin: 8px 0 6px; }
+    .phone-bigglyph { font-size: 54px; margin: 24px 0 8px; }
+
+    .phone-cta {
+        display: block;
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
+        margin-top: 14px;
+        padding: 15px;
+        border: none;
+        border-radius: 12px;
+        background: var(--win95-blue-dark, #0044c2);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .phone-cta-ghost {
+        background: #fff;
+        color: var(--win95-blue-dark, #0044c2);
+        box-shadow: inset 0 0 0 2px var(--win95-blue-dark, #0044c2);
+    }
+
+    /* ---- Our Work list ---- */
+    .pw-list { padding: 0 12px; }
+    .pw-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        background: #fff;
+        border: 1px solid #e1e5eb;
+        border-radius: 14px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        text-align: left;
+    }
+    .pw-row:active { background: #eef2f8; }
+    .pw-row img {
+        width: 54px; height: 54px;
+        border-radius: 12px;
+        object-fit: cover;
+        flex-shrink: 0;
+        background: #0b1f4b;
+    }
+    .pw-meta { flex: 1; min-width: 0; }
+    .pw-name { font-size: 16px; font-weight: 700; color: #10233f; }
+    .pw-sub { font-size: 12.5px; color: #6b7280; margin-top: 2px; }
+    .pw-arrow { font-size: 24px; color: #b6bfca; }
+
+    /* ---- Channel detail ---- */
+    .pc-head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 26px 18px 16px;
+        background: #0b1f4b;
+        color: #fff;
+    }
+    .pc-head img { width: 88px; height: 88px; border-radius: 18px; object-fit: cover; }
+    .pc-title { font-size: 22px; font-weight: 800; }
+    .pc-stats { display: flex; gap: 10px; padding: 16px; background: #0b1f4b; }
+    .pc-stat {
+        flex: 1;
+        background: rgba(255,255,255,.08);
+        border-radius: 12px;
+        padding: 12px;
+        text-align: center;
+        color: #fff;
+    }
+    .pc-num { font-size: 24px; font-weight: 800; }
+    .pc-cap { font-size: 11px; opacity: .8; margin-top: 3px; line-height: 1.3; }
+    .pc-story {
+        width: 100%;
+        border: none;
+        min-height: 400px;
+        background: #fff;
+        border-radius: 12px;
+    }
+
+    /* ---- Products ---- */
+    .pp-card {
+        background: #fff;
+        border: 1px solid #e1e5eb;
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 16px;
+        text-align: center;
+    }
+    .pp-card img { width: 56px; height: 56px; }
+    .pp-card p { font-size: 14px; color: #374151; line-height: 1.5; }
+
+    /* ---- Games ---- */
+    .pg-list { margin-top: 8px; }
+    .pg-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+        color: #10233f;
+        background: #fff;
+        border: 1px solid #e1e5eb;
+        border-radius: 12px;
+        padding: 15px 16px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    /* ---- Contact form ---- */
+    .phone-form { margin-top: 8px; }
+    .phone-form label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 14px;
+    }
+    .phone-form input,
+    .phone-form textarea,
+    .phone-form select {
+        display: block;
+        width: 100%;
+        margin-top: 6px;
+        padding: 13px;
+        border: 1px solid #cbd2da;
+        border-radius: 10px;
+        font-size: 16px;
+        font-family: inherit;
+        background: #fff;
+    }
+
+    .phone-form .pf-opt { font-weight: 400; color: #9aa4b0; }
+    .phone-fineprint {
+        margin-top: 12px;
+        font-size: 12.5px;
+        color: #6b7280;
+        text-align: center;
+    }
 }

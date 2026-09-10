@@ -2507,8 +2507,7 @@
   const PRICING_REQUEST_EMAIL = 'kent@kentheckel.com';
 
   function isPricingUnlocked() {
-    try { return localStorage.getItem(PRICING_UNLOCK_KEY) === '1'; }
-    catch (_) { return false; }
+    return true; // The entire pitch route requires the shared server session.
   }
   function setPricingUnlocked() {
     try { localStorage.setItem(PRICING_UNLOCK_KEY, '1'); } catch (_) {}

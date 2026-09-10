@@ -33,7 +33,8 @@ function openModal(modal) {
 
     // Apply cascade offset (only if the modal doesn't have a custom fixed position via CSS)
     // Skip cascade for modals that have specific positioning (Videos, error modals, etc.)
-    const skipCascade = modal.id === 'ModalVideos' ||
+    const skipCascade = modal.id === 'ModalWelcome' ||
+                        modal.id === 'ModalServices' ||
                         modal.id === 'ModalError' ||
                         modal.id === 'ModalLogin' ||
                         modal.id === 'mobileWarningModal';
@@ -71,6 +72,8 @@ function minimizeModal(modal) {
 // doesn't make the taskbar button change identity)
 const TASKBAR_LABEL_OVERRIDES = {
     ModalContact: 'Contact',
+    ModalWelcome: 'ASFC Home',
+    ModalOurWork: 'Channels',
 };
 
 function getTaskbarLabel(modal) {
@@ -130,45 +133,35 @@ function updateTaskbarButton(modal, isMinimized) {
 
 // ---- Draggable Windows ----
 function makeDraggable(element, handle) {
-    let isDragging = false;
-    let currentX;
-    let currentY;
-    let initialX;
-    let initialY;
-    let xOffset = 0;
-    let yOffset = 0;
-
+    let drag = null;
     handle.style.cursor = 'grab';
+    handle.style.touchAction = 'none';
 
-    function dragStart(e) {
-        if (e.target.closest('.window-btn, .window-btn-youtube, .channeltrack-btn')) return;
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
-        isDragging = true;
+    handle.addEventListener('pointerdown', event => {
+        if (event.button !== 0 || event.target.closest('button, a, input') || element.classList.contains('is-maximized')) return;
+        const bounds = element.getBoundingClientRect();
+        drag = { x: event.clientX - bounds.left, y: event.clientY - bounds.top };
+        handle.setPointerCapture(event.pointerId);
         handle.style.cursor = 'grabbing';
         bringToFront(element);
-    }
-
-    function dragEnd() {
-        initialX = currentX;
-        initialY = currentY;
-        isDragging = false;
+        event.preventDefault();
+    });
+    handle.addEventListener('pointermove', event => {
+        if (!drag) return;
+        // Keep the title bar reachable, even when a large window is moved aside.
+        const left = Math.max(80 - element.offsetWidth, Math.min(innerWidth - 80, event.clientX - drag.x));
+        const top = Math.max(0, Math.min(innerHeight - 110, event.clientY - drag.y));
+        element.style.setProperty('left', left + 'px', 'important');
+        element.style.setProperty('top', top + 'px', 'important');
+        element.style.transform = 'none';
+    });
+    function finishDrag() {
+        drag = null;
         handle.style.cursor = 'grab';
     }
-
-    function drag(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
-        xOffset = currentX;
-        yOffset = currentY;
-        element.style.transform = `translate(${currentX}px, ${currentY}px)`;
-    }
-
-    handle.addEventListener('mousedown', dragStart);
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', dragEnd);
+    handle.addEventListener('pointerup', finishDrag);
+    handle.addEventListener('pointercancel', finishDrag);
+    handle.addEventListener('lostpointercapture', finishDrag);
 }
 
 // ---- Auto-Registration ----
@@ -224,13 +217,6 @@ function autoRegisterIcons() {
             const btnId = button.id;
             if (!btnId) return;
 
-            // Special case: social requires login first
-            if (btnId === 'socialBtn') {
-                const loginModal = document.getElementById('ModalLogin');
-                if (loginModal) openModal(loginModal);
-                return;
-            }
-
             // Contact icon: open the compose window. Open Gmail behind it only
             // the first time (so re-clicking the icon to restore a minimized
             // compose doesn't shove Gmail back in front of everything).
@@ -250,7 +236,7 @@ function autoRegisterIcons() {
             // Derive modal ID from button ID
             // "aboutBtn" -> "About" -> "ModalAbout"
             // "channelTrackBtn" -> "ChannelTrack" -> "ModalChannelTrack"
-            // "VideosBtn" -> "Videos" -> "ModalVideos"
+            // "ourWorkBtn" -> "OurWork" -> "ModalOurWork"
             // "resumeTxtBtn" -> "ResumeTxt" -> "ModalResumeTxt"
             const baseName = btnId.replace('Btn', '');
             const modalId = 'Modal' + baseName.charAt(0).toUpperCase() + baseName.slice(1);
@@ -270,9 +256,46 @@ window.addEventListener('message', (e) => {
     }
 });
 
+// ---- Welcome window: auto-open on every load + wire its CTAs ----
+function initWelcomeWindow() {
+    const welcome = document.getElementById('ModalWelcome');
+    if (!welcome) return;
+
+    // Helper: open the contact/inquiry flow (same as the Contact icon)
+    const openContact = () => {
+        const contactBtn = document.getElementById('contactBtn');
+        if (contactBtn) contactBtn.click();
+    };
+    const openById = (id) => {
+        const m = document.getElementById(id);
+        if (m) openModal(m);
+    };
+
+    // "Work With Us" -> contact flow (from both the About and Services windows)
+    ['welcomeBookBtn', 'servicesBookBtn'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', openContact);
+    });
+
+    // "Meet the Team" -> Team window
+    const teamBtn = document.getElementById('welcomeTeamBtn');
+    if (teamBtn) teamBtn.addEventListener('click', () => openById('ModalAbout'));
+
+    // "View Services" -> Services window
+    const servicesBtn = document.getElementById('welcomeServicesBtn');
+    if (servicesBtn) servicesBtn.addEventListener('click', () => openById('ModalServices'));
+
+    // Auto-open on load (desktop only; hidden on mobile via CSS / phone OS).
+    // Opens even while the BIOS boot overlay is up — it's revealed when boot fades.
+    if (window.innerWidth > 768) {
+        openModal(welcome);
+    }
+}
+
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
     autoRegisterModals();
     autoRegisterIcons();
+    initWelcomeWindow();
     console.log('Core window management initialized');
 });

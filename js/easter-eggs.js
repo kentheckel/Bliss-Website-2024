@@ -273,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ['mousemove','mousedown','keydown','touchstart','scroll'].forEach(evt => {
         document.addEventListener(evt, resetIdleTimer);
     });
+    document.addEventListener('asfc:activity', resetIdleTimer);
     resetIdleTimer();
 
     // ---- 8. Hourglass Cursor ----

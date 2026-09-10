@@ -598,45 +598,9 @@ chart1(); chart2(); chart3(); reel(); render();
 </script>
 
 <script>
-(function(){
-  /* Same gate as the deck: SHA-256 of the upper-cased input, compared client-side.
-     A soft gate, not security -- the page still ships to anyone who loads it. */
-  var PW_HASH = "4a13aa695ada485952638fac1ed74c6de9b9e0a59e42783bc00174418096677f";
-  var KEY='asfc-lks-open';
-  var gate=document.getElementById('asfc-login'), pw=document.getElementById('asfc-pw');
-
-  function open_(){ try{sessionStorage.setItem(KEY,'1')}catch(e){}
-    gate.remove(); document.body.classList.remove('gated'); }
-
-  var already=false; try{already=sessionStorage.getItem(KEY)==='1'}catch(e){}
-  if(already){ open_(); return; }
-  document.body.classList.add('gated');
-
-  async function hash(str){
-    if(window.crypto && crypto.subtle && location.protocol!=='file:'){
-      try{
-        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-        return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
-      }catch(e){ return null; }
-    }
-    return null;
-  }
-  async function tryPw(){
-    var v=(pw.value||'').trim().toUpperCase();
-    var h=await hash(v);
-    var ok = h ? (h===PW_HASH) : (v===atob('TFVLQTc3'));
-    if(ok){ open_(); }
-    else{
-      var w=gate.querySelector('.lwin');
-      document.getElementById('asfc-err').textContent='ACCESS DENIED. TRY AGAIN_';
-      w.classList.remove('no'); void w.offsetHeight; w.classList.add('no');
-      pw.value=''; pw.focus();
-    }
-  }
-  document.getElementById('asfc-go').addEventListener('click',tryPw);
-  pw.addEventListener('keydown',function(e){ if(e.key==='Enter'){e.preventDefault();tryPw();} });
-  pw.focus();
-})();
+// Route access is enforced by the server's shared session.
+document.getElementById('asfc-login').remove();
+document.body.classList.remove('gated');
 </script>
 
 </body>

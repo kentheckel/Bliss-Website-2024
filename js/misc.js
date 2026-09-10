@@ -71,14 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // do-not-share.txt easter egg — holds the ASFC pitch deck pricing password
-    const doNotShareTxtBtn = document.getElementById('doNotShareTxtBtn');
-    if (doNotShareTxtBtn) {
-        doNotShareTxtBtn.addEventListener('click', () => {
-            const modal = document.getElementById('ModalDoNotShareTxt');
-            if (modal) openModal(modal);
-        });
-    }
+
 });
 
 // ---- Gmail / Contact ----
