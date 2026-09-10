@@ -10,6 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<style>
 			/* Group-specific tweaks layered on top of profile CSS */
+			.profile-contante { width: 100%; }
 			.group-header-row {
 				display: flex;
 				align-items: center;
@@ -42,12 +43,13 @@
 				margin-right: 5px;
 			}
 			.cover-image-div.group-cover {
-				height: 320px;
+				height: auto;
 				background: #efe9dc;
 			}
 			.cover-image-div.group-cover img {
-				object-fit: contain;
-				object-position: center;
+				display: block;
+				width: 100%;
+				height: auto;
 			}
 
 			/* Member grid in sidebar */
