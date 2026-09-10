@@ -27,7 +27,7 @@ const password=readFileSync('.context/admin-access.txt','utf8').split('\n')[0].s
  await page.locator('#boot-skip').click();
  await page.locator('#deck-window:not(.hidden)').waitFor();
  for(const file of ['network-stats','leaderboard']){
-  const response=await context.request.get(`${base}/pitch/data/${file}.json`,{maxRedirects:0});assert.equal(response.status(),200);await response.json();
+  const response=await context.request.get(new URL(`/pitch/data/${file}.json`,page.url()).href,{maxRedirects:0});assert.equal(response.status(),200);await response.json();
  }
  await page.goto(base+'/admin/');await page.locator('#logout').click();await page.waitForURL('**/access/');
  await page.goto(base+'/lukadoncic/index.html');assert.ok(page.url().includes('/access/'));
