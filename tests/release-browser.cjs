@@ -23,6 +23,12 @@ const password=readFileSync('.context/admin-access.txt','utf8').split('\n')[0].s
   await page.keyboard.press('ArrowRight');const after=await page.locator('.slide.active').evaluate(e=>Array.from(e.parentNode.children).indexOf(e));assert.notEqual(before,after,route+' navigation');
  }
  for(const route of ['lukaslovenia','parisvsslovenia']){await page.goto(`${base}/${route}/`);assert.equal(await page.locator('#asfc-login').count(),0);assert.equal(await page.locator('body').evaluate(e=>e.classList.contains('gated')),false);}
+ await page.goto(base+'/pitch/');
+ await page.locator('#boot-skip').click();
+ await page.locator('#deck-window:not(.hidden)').waitFor();
+ for(const file of ['network-stats','leaderboard']){
+  const response=await context.request.get(`${base}/pitch/data/${file}.json`,{maxRedirects:0});assert.equal(response.status(),200);await response.json();
+ }
  await page.goto(base+'/admin/');await page.locator('#logout').click();await page.waitForURL('**/access/');
  await page.goto(base+'/lukadoncic/index.html');assert.ok(page.url().includes('/access/'));
  assert.deepEqual(errors,[]);console.log('PASS maintenance sign-in, wrong password, 17 library links, mobile/desktop, search, deck navigation, reports, logout');
