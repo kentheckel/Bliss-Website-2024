@@ -582,26 +582,6 @@
         });
     }
 
-    // ---- SYSTEM TRAY ----
-
-    function updateTray(totalViews, growth30d) {
-        const trayVal = document.getElementById("statsTrayViews");
-        if (!trayVal) return;
-        trayVal.textContent = formatCompact(growth30d) + "/30d";
-        const tray = document.getElementById("stats-tray");
-        if (tray) {
-            tray.title = `Network: ${formatNumber(totalViews)} total views | ${formatNumber(growth30d)} last 30d`;
-            tray.style.cursor = "pointer";
-            tray.onclick = () => {
-                const modal = document.getElementById("ModalStats");
-                if (modal) {
-                    if (typeof openModal === "function") openModal(modal);
-                    else modal.style.display = "block";
-                }
-            };
-        }
-    }
-
     // ---- LOAD & INIT ----
 
     async function loadStats() {
@@ -637,12 +617,6 @@
             const merged = mergeChannelData(cachedConfig.categories, cachedLive);
             renderTable(merged, shouldAnimate);
 
-            const allChannels = merged.flatMap((cat) => cat.channels);
-            updateTray(
-                allChannels.reduce((s, c) => s + c.views, 0),
-                allChannels.reduce((s, c) => s + c.growth30d, 0)
-            );
-
             hasAnimated = true;
         } catch (err) {
             console.error("Failed to load channel stats:", err);
@@ -668,38 +642,6 @@
         setupChartToggle();
         setupHover();
         setupMaximize();
-
-        // Pre-fetch for tray
-        setTimeout(async () => {
-            try {
-                if (!cachedConfig) {
-                    const configResp = await fetch("data/channels.json");
-                    cachedConfig = await configResp.json();
-                }
-                if (!cachedLive) {
-                    const liveResp = await fetch(cachedConfig.liveDataUrl);
-                    cachedLive = await liveResp.json();
-                }
-                if (cachedLive && cachedLive.daily) {
-                    allDailyDates = Object.keys(cachedLive.daily).sort();
-                    allDailyTotals = allDailyDates.map((d) => {
-                        const entry = cachedLive.daily[d];
-                        if (typeof entry === "object") {
-                            return entry._total || Object.keys(entry).filter((k) => k !== "_total").reduce((s, k) => s + entry[k], 0);
-                        }
-                        return entry;
-                    });
-                }
-                const merged = mergeChannelData(cachedConfig.categories, cachedLive);
-                const allChannels = merged.flatMap((cat) => cat.channels);
-                updateTray(
-                    allChannels.reduce((s, c) => s + c.views, 0),
-                    allChannels.reduce((s, c) => s + c.growth30d, 0)
-                );
-            } catch (e) {
-                console.warn("Tray prefetch failed:", e);
-            }
-        }, 2000);
     }
 
     if (document.readyState === "loading") {

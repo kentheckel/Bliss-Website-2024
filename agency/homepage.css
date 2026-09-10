@@ -168,3 +168,8 @@ h1 { font-size:clamp(44px,11vw,72px); }
     .archive-card { min-height:285px; }
     .case-banner--jim > span { font-size:30px; }
 }
+
+.services-details { display:flex; align-items:center; justify-content:space-between; gap:24px; margin-top:24px; }
+.services-details p { max-width:480px; font-size:13px; line-height:1.7; color:#4e5d47; }
+.services-details button { flex-shrink:0; }
+@media(max-width:560px) { .services-details { align-items:flex-start; flex-direction:column; gap:12px; } }

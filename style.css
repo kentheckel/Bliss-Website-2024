@@ -2730,32 +2730,6 @@ body, html {
     font-style: italic;
 }
 
-/* System tray stats widget */
-.stats-tray {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 0 8px;
-    margin-right: 4px;
-    cursor: pointer;
-    border-left: 1px solid #888;
-    height: 100%;
-}
-
-.stats-tray-icon {
-    color: #33ff99;
-    font-size: 10px;
-    text-shadow: 0 0 4px #33ff9966;
-}
-
-.stats-tray-value {
-    color: #33ff99;
-    font-size: 11px;
-    font-family: var(--win95-font);
-    text-shadow: 0 0 4px #33ff9944;
-    white-space: nowrap;
-}
-
 /* ============================================
    GAMES FOLDER MODAL
    Win95-style folder window listing arcade games
@@ -3548,41 +3522,18 @@ body, html {
 #ModalWelcome[data-theme="scorebug"] .welcome-theme-switch { margin-top: 10px; padding-bottom: 12px; }
 
 
-/* ---- Services window (native Win95) ---- */
+/* Services uses the same responsive page on desktop and phone. */
 #ModalServices {
-    width: 520px;
-    max-width: 92vw;
-    height: auto;
-    max-height: 90vh;
-    left: calc(50% - 260px);
-    top: 4%;
-    background: var(--win95-gray-light, #dcdcdc);
+    width: min(1100px, calc(100vw - 160px));
+    height: calc(100dvh - 130px);
+    max-width: none;
+    max-height: none;
+    left: max(120px, calc((100vw - 1100px) / 2));
+    top: 40px;
+    transform: none;
     cursor: default;
 }
-.services-body {
-    background: var(--win95-gray-light, #dcdcdc);
-    padding: 16px 18px 18px;
-    overflow-y: auto;
-    max-height: calc(90vh - 38px);
-    font-family: var(--win95-font-system, 'Tahoma', sans-serif);
-    color: #10233b;
-}
-.services-headline { font-size: 20px; color: #0b1f4b; margin: 0 0 6px; }
-.services-lead { font-size: 14px; color: #374151; margin: 0 0 12px; line-height: 1.5; }
-.services-list {
-    list-style: none;
-    margin: 0;
-    padding: 12px 14px;
-    border: 2px solid;
-    border-color: #808080 #ffffff #ffffff #808080;
-    background: #ffffff;
-}
-.services-list li { padding: 7px 0; border-bottom: 1px solid #e6e6e6; }
-.services-list li:last-child { border-bottom: none; }
-.services-list b { display: block; font-size: 15px; color: #0b1f4b; margin-bottom: 2px; }
-.services-list span { display: block; font-size: 13px; color: #55606f; line-height: 1.4; }
-.services-note { font-size: 13px; color: #55606f; font-style: italic; margin: 12px 0 0; }
-.services-cta-row { display: flex; justify-content: flex-end; margin-top: 12px; }
+.phone-services-frame { display: block; width: 100%; height: calc(100dvh - 55px); border: 0; }
 @media (max-width: 768px) { #ModalServices { display: none !important; } }
 
 /* ---- Desktop BIOS boot screen ---- */

@@ -93,6 +93,11 @@ function openAgencyApp(app) {
 }
 
 window.addEventListener("message", event => {
+    if (event.origin === location.origin && event.data?.type === "asfc:services" && event.data.action === "contact") {
+        const trusted = [...document.querySelectorAll('.services-frame')].some(frame => frame.contentWindow === event.source);
+        if (trusted) openAgencyApp('contact');
+        return;
+    }
     const frame = document.getElementById("agency-home-frame");
     if (event.source !== frame?.contentWindow || event.origin !== location.origin || event.data?.type !== "asfc:homepage") return;
     const { action, value } = event.data;
@@ -109,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileSlot = document.getElementById("phone-homepage-host");
     const mobileQuery = matchMedia("(max-width: 768px)");
 
-    document.querySelectorAll('#ModalWelcome, [id^="ModalAnalytics"], [id^="ModalTextBox"]').forEach(modal => {
+    document.querySelectorAll('#ModalWelcome, #ModalServices, [id^="ModalAnalytics"], [id^="ModalTextBox"]').forEach(modal => {
         modal.classList.add("managed-window");
         const header = modal.querySelector(".window-controls");
         if (!header) return;

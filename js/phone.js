@@ -29,6 +29,7 @@ const PHONE_CHANNELS = [
 
 // ---- App registry ----
 const PHONE_APPS = [
+    { id: "services", label: "Services", glyph: "▤", accent: "#d5ff4e" },
     { id: "work",     label: "Channels",   glyph: "📁", accent: "#ffcc33" },
     { id: "products", label: "Products",   glyph: "🧰", accent: "#7db8ff" },
     { id: "team",     label: "Team",       glyph: "👥", accent: "#c9a0ff" },
@@ -127,6 +128,9 @@ function closeApp() {
 
 // ---- App body builders ----
 const APP_BODY = {
+    services() {
+        return '<iframe class="phone-services-frame services-frame" src="services/index.html?v=20260910" title="ASFC services and ways to work together"></iframe>';
+    },
     work() {
         const rows = PHONE_CHANNELS.map(c => `
             <button class="pw-row" data-channel="${c.id}">

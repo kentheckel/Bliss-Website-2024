@@ -72,3 +72,10 @@ Run the client-page release check described in `tests/README.md` before publishi
 The strategy document, data, renderer, and stylesheet use matching release query
 strings so returning visitors fetch the revised assets. Update those versions
 when changing the client stories.
+
+Services is shared at `/services/`, embedded in the desktop Services window and
+the phone Services app. It leads with all-in consulting, then an embedded
+strategist, a vertical editing team, and a channel audit. The homepage summarizes
+those same engagements. Individual specialists can be scoped separately; no
+pricing or fixed delivery volume is implied. The taskbar stats widget and its
+background prefetch have been removed; the homepage network estimate is separate.
