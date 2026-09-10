@@ -37,7 +37,11 @@
 			const params = new URLSearchParams(location.search);
 			const slug = (params.get('p') || 'kent').toLowerCase();
 			const team = window.ASFC_TEAM || {};
-			const person = team[slug] || team.kent;
+			if (!Object.hasOwn(team, slug)) {
+				location.replace('index.html');
+				return;
+			}
+			const person = team[slug];
 			document.title = person.name + " - Antisocial Friends Club";
 
 			const cover = person.cover || "images/team/group-cover.jpg";

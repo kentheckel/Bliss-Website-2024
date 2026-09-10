@@ -128,25 +128,6 @@ window.ASFC_TEAM = {
 		]
 	},
 
-	spencer: {
-		name: "Spencer Lowder",
-		pronouns: "He/Him",
-		role: "Thumbnail Designer",
-		department: "Creative",
-		intro: [
-			{ icon: "fas fa-shopping-bag", label: "Thumbnail Designer at: Antisocial Friends Club" },
-			{ icon: "fas fa-paint-brush", label: "Tools: Photoshop, Figma, &amp; vibes" },
-			{ icon: "fas fa-envelope", label: "spencerlowder@gmail.com" },
-			{ icon: "fas fa-briefcase", label: "Status: Contractor" }
-		],
-		photo: "images/team/spencer.jpg",
-		posts: [
-			{ date: "1 January 2025", text: "Hey, I'm Spencer — Thumbnail Designer at Antisocial Friends Club. I design thumbnails that read at 200px on a phone in sunlight. Contrast over clever, every time." },
-			{ date: "18 April 2025", text: "Shipped 14 thumbs this week. Reminder: contrast &gt; clever. If it doesn't read at 200px on a phone in sunlight, it doesn't exist." },
-			{ date: "1 April 2025", text: "Three faces max. Past three, the eye doesn't know where to land. Designed enough thumbs to die on this hill 🪦" },
-			{ date: "10 March 2025", text: "New thumbnail framework: ONE focal point, TWO supporting elements, THREE color values. Boring rules make winning thumbs." }
-		]
-	},
 
 	jake: {
 		name: "Jake Groulx",
@@ -185,26 +166,6 @@ window.ASFC_TEAM = {
 			{ date: "5 May 2025", text: "Crushed It tip of the week: don't over-cut. Let the reaction breathe. Two extra frames of silence beats one extra zoom-bump." },
 			{ date: "20 April 2025", text: "If you're editing reaction content and you're afraid of pauses, you're going to bury the moment that mattered." },
 			{ date: "1 April 2025", text: "Color grading short-form is underrated. 10 seconds in DaVinci can take a phone clip from mid to cinematic." }
-		]
-	},
-
-	casey: {
-		name: "Casey Diehl",
-		pronouns: "He/Him",
-		role: "Sales",
-		department: "Sales",
-		intro: [
-			{ icon: "fas fa-shopping-bag", label: "Sales at: Antisocial Friends Club" },
-			{ icon: "fas fa-handshake", label: "Closes: creator deals &amp; partnerships" },
-			{ icon: "fas fa-envelope", label: "casey@antisocialfriendsclub.com" },
-			{ icon: "fas fa-briefcase", label: "Status: Active" }
-		],
-		photo: "images/team/casey.jpg",
-		posts: [
-			{ date: "1 January 2025", text: "Hey, I'm Casey — Sales at Antisocial Friends Club. I close creator deals and partnerships, manage the pipeline, and bring new clients into the fold." },
-			{ date: "9 May 2025", text: "Closed two new creator deals this week 💼 Pipeline is looking 🔥 for Q3. If anyone has warm intros to mid-size sports channels, slide into my DMs." },
-			{ date: "22 April 2025", text: "The best sales pitch is a screenshot of someone else's analytics dashboard. Receipts &gt; promises." },
-			{ date: "3 April 2025", text: "If a creator asks \"can you guarantee growth,\" the answer is no. If they ask \"can you guarantee process,\" the answer is yes. That's the deal." }
 		]
 	}
 };
