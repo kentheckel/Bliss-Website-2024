@@ -27,10 +27,15 @@ document.addEventListener("load", event => {
 }, true);
 
 function setWindowBounds(modal, bounds) {
+    if (modal.classList.contains('is-maximized')) {
+        ['max-width', 'max-height'].forEach(name => modal.style.setProperty(name, 'none', 'important'));
+        ['min-width', 'min-height'].forEach(name => modal.style.setProperty(name, '0', 'important'));
+    }
     Object.entries(bounds).forEach(([name, value]) =>
         modal.style.setProperty(name, typeof value === "number" ? value + "px" : value, "important")
     );
     modal.style.transform = "none";
+    fitDesktopWindow(modal);
 }
 
 function toggleWindowMaximize(modal) {
@@ -43,10 +48,11 @@ function toggleWindowMaximize(modal) {
     } else {
         agencyRestoredBounds.set(modal, modal.style.cssText);
         modal.classList.add("is-maximized");
-        setWindowBounds(modal, { left: 12, top: 12, width: innerWidth - 24, height: innerHeight - 94 });
+        setWindowBounds(modal, getDesktopWorkArea());
         button?.setAttribute("aria-label", "Restore window size");
         if (button) { button.title = "Restore window size"; button.textContent = "▣"; }
     }
+    fitDesktopWindow(modal);
     bringToFront(modal);
     modal.dispatchEvent(new Event('asfc:window-resize'));
 }
@@ -186,16 +192,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     placeHomepage();
     mobileQuery.addEventListener("change", placeHomepage);
-    window.addEventListener("resize", () => {
-        document.querySelectorAll(".desktop-window.is-maximized").forEach(modal =>
-            setWindowBounds(modal, { left: 12, top: 12, width: innerWidth - 24, height: innerHeight - 94 })
-        );
-        if (innerWidth > 768) {
-            document.querySelectorAll('[data-window-layout="presentation"]:not(.is-maximized)').forEach(modal => {
-                if (modal.style.display !== "none") arrangePresentationWindow(modal);
-            });
-        }
-    });
+    function fitOpenWindows() {
+        if (innerWidth <= 768) return;
+        document.querySelectorAll('.desktop-window').forEach(modal => {
+            if (getComputedStyle(modal).display === 'none') return;
+            if (modal.classList.contains('is-maximized')) setWindowBounds(modal, getDesktopWorkArea());
+            else if (modal.dataset.windowLayout === 'presentation') arrangePresentationWindow(modal);
+            else fitDesktopWindow(modal);
+        });
+    }
+    window.addEventListener('resize', fitOpenWindows);
+    // Core may open Home before the shared frame styles are applied.
+    fitOpenWindows();
 
     const params = new URLSearchParams(location.search);
     if (params.has("channel")) openChannelModals(params.get("channel"));

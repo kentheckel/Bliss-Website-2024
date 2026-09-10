@@ -23,12 +23,55 @@ function bringToFront(modal) {
     modal.style.zIndex = topZIndex;
 }
 
+// ---- Available Desktop Area ----
+// Reserve the real taskbar height plus enough room for the shared window shadow.
+function getDesktopWorkArea() {
+    const gap = 12;
+    const taskbar = document.getElementById('taskbar');
+    const bar = taskbar?.getBoundingClientRect();
+    const bottom = bar && bar.height > 0 ? Math.min(innerHeight, bar.top) : innerHeight;
+    return { left: gap, top: gap, width: Math.max(1, innerWidth - gap * 2), height: Math.max(1, bottom - gap * 2) };
+}
+
+function fitDesktopWindow(modal) {
+    if (!modal || innerWidth <= 768 || getComputedStyle(modal).display === 'none') return;
+    const area = getDesktopWorkArea();
+    let bounds = modal.getBoundingClientRect();
+    if (!bounds.width || !bounds.height) return;
+    let changed = false;
+    if (bounds.width > area.width || bounds.height > area.height) {
+        modal.style.boxSizing = 'border-box';
+        if (bounds.width > area.width) {
+            modal.style.setProperty('min-width', '0', 'important');
+            modal.style.setProperty('max-width', area.width + 'px', 'important');
+            modal.style.setProperty('width', area.width + 'px', 'important');
+        }
+        if (bounds.height > area.height) {
+            modal.style.setProperty('min-height', '0', 'important');
+            modal.style.setProperty('max-height', area.height + 'px', 'important');
+            modal.style.setProperty('height', area.height + 'px', 'important');
+        }
+        bounds = modal.getBoundingClientRect();
+        changed = true;
+    }
+    const left = Math.max(area.left, Math.min(bounds.left, area.left + area.width - bounds.width));
+    const top = Math.max(area.top, Math.min(bounds.top, area.top + area.height - bounds.height));
+    if (Math.abs(left - bounds.left) > .5 || Math.abs(top - bounds.top) > .5) {
+        modal.style.setProperty('position', 'fixed', 'important');
+        modal.style.setProperty('left', left + 'px', 'important');
+        modal.style.setProperty('top', top + 'px', 'important');
+        modal.style.transform = 'none';
+        changed = true;
+    }
+    if (changed) modal.dispatchEvent(new Event('asfc:window-resize'));
+}
+
 // ---- Open Modal ----
 // Opens a modal with cascade positioning and brings it to front
 function openModal(modal) {
     if (!modal) return;
 
-    modal.style.display = 'block';
+    modal.style.display = modal.classList.contains('explorer-modal') ? 'flex' : 'block';
     bringToFront(modal);
 
     // Apply cascade offset (only if the modal doesn't have a custom fixed position via CSS)
@@ -47,6 +90,10 @@ function openModal(modal) {
         modal.style.top = `calc(10% + ${cascadeY}px)`;
         modal.dataset.hasBeenOpened = 'true';
     }
+
+    if (modal.classList.contains('is-maximized') && typeof setWindowBounds === 'function') {
+        setWindowBounds(modal, getDesktopWorkArea());
+    } else fitDesktopWindow(modal);
 
     // Add to taskbar if not already there
     addToTaskbar(modal);
@@ -105,9 +152,7 @@ function addToTaskbar(modal) {
     btn.addEventListener('click', () => {
         if (modal.style.display === 'none') {
             // Restore from minimized
-            modal.style.display = 'block';
-            bringToFront(modal);
-            updateTaskbarButton(modal, false);
+            openModal(modal);
         } else {
             // Already visible — bring to front
             bringToFront(modal);

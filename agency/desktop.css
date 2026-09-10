@@ -183,3 +183,20 @@
 
 /* Preserve the compose form’s white surface inside the shared gray frame. */
 #ModalContact.desktop-window > form { background: #fff; }
+
+/* Keep each app's scrolling surface inside its fitted frame. */
+#modalContainer .desktop-window > :is(.login-layout, .error-layout, .aim-layout, .channeltrack-content, .stats-body) {
+    box-sizing: border-box;
+    height: calc(100% - 34px);
+    min-height: 0;
+    margin-top: 4px;
+    overflow: auto;
+}
+#modalContainer .desktop-window.explorer-modal { flex-direction: column; }
+#modalContainer .desktop-window.explorer-modal > :not(.explorer-body) { flex-shrink: 0; }
+#modalContainer .desktop-window.explorer-modal > .explorer-body {
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+}

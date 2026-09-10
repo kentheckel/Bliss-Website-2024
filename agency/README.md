@@ -86,3 +86,10 @@ bridge normalizes every modal header and supplies one minimize/maximize/close
 control group. Existing title nodes, close handlers, and app content stay intact.
 All windows use the same maximize/restore behavior; the stats chart listens for
 the shared resize event rather than maintaining its own window controls.
+
+Window bounds use `getDesktopWorkArea()` and `fitDesktopWindow()` in `js/core.js`.
+The available area is measured above the actual taskbar, with a 12px margin for
+window shadows. Opening, taskbar restore, maximize/restore, and browser resize
+fit windows to that area. Channel pairs and the landscape presentation also pass
+through the same fit check. Explorer folders use a flexible scrolling body;
+padded native app panels size their padding inside the frame.
