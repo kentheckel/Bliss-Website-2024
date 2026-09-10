@@ -39,13 +39,16 @@ function toggleWindowMaximize(modal) {
         modal.style.cssText = agencyRestoredBounds.get(modal) || "";
         modal.classList.remove("is-maximized");
         button?.setAttribute("aria-label", "Maximize window");
+        if (button) { button.title = "Maximize window"; button.textContent = "□"; }
     } else {
         agencyRestoredBounds.set(modal, modal.style.cssText);
         modal.classList.add("is-maximized");
         setWindowBounds(modal, { left: 12, top: 12, width: innerWidth - 24, height: innerHeight - 94 });
         button?.setAttribute("aria-label", "Restore window size");
+        if (button) { button.title = "Restore window size"; button.textContent = "▣"; }
     }
     bringToFront(modal);
+    modal.dispatchEvent(new Event('asfc:window-resize'));
 }
 
 function arrangePresentationWindow(modal) {
@@ -114,23 +117,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileSlot = document.getElementById("phone-homepage-host");
     const mobileQuery = matchMedia("(max-width: 768px)");
 
-    document.querySelectorAll('#ModalWelcome, #ModalServices, [id^="ModalAnalytics"], [id^="ModalTextBox"]').forEach(modal => {
-        modal.classList.add("managed-window");
-        const header = modal.querySelector(".window-controls");
+    document.querySelectorAll('#modalContainer .modal').forEach(modal => {
+        const header = modal.querySelector(':scope > .window-controls');
         if (!header) return;
-        const controls = header.querySelector(".window-btn-container") || header;
-        const maximize = document.createElement("button");
-        maximize.className = "window-btn";
-        maximize.dataset.windowMaximize = "";
-        maximize.textContent = "□";
-        maximize.setAttribute("aria-label", "Maximize window");
-        const close = [...controls.querySelectorAll("button")].find(button => button.textContent.trim() === "X");
-        controls.insertBefore(maximize, close || null);
-        maximize.addEventListener("click", () => toggleWindowMaximize(modal));
-        header.querySelectorAll("button").forEach(button => {
-            if (button.textContent.trim() === "X") button.setAttribute("aria-label", "Close window");
-            if (button.textContent.trim() === "-") button.setAttribute("aria-label", "Minimize window");
-        });
+        modal.classList.add('desktop-window');
+        if (modal.matches('#ModalWelcome, #ModalServices, [id^="ModalAnalytics"], [id^="ModalTextBox"]')) {
+            modal.classList.add('managed-window');
+        }
+        // Keep existing title nodes and button listeners when normalizing the header.
+        let title = [...header.children].find(child => !child.matches('button, .window-btn-container'));
+        if (!title) {
+            title = document.createElement('span');
+            title.textContent = modal.id === 'ModalLogin' ? 'AIM Sign-in' : modal.id.replace(/^Modal/, '');
+            header.prepend(title);
+        }
+        title.classList.add('desktop-window-title');
+        let controls = header.querySelector('.window-btn-container');
+        if (!controls) {
+            controls = document.createElement('div');
+            controls.className = 'window-btn-container';
+            header.append(controls);
+        }
+        const existing = [...header.querySelectorAll('button')];
+        function control(label, symbol, existingButton, action) {
+            const button = existingButton || document.createElement('button');
+            button.type = 'button';
+            button.classList.add('window-btn');
+            button.textContent = symbol;
+            button.setAttribute('aria-label', label);
+            button.title = label;
+            if (!existingButton || label === 'Maximize window') {
+                button.addEventListener('click', event => { event.stopPropagation(); action(); });
+            }
+            controls.append(button);
+            return button;
+        }
+        control('Minimize window', '-', existing.find(button => button.textContent.trim() === '-'), () => minimizeModal(modal));
+        const maximize = control('Maximize window', '□', existing.find(button => button.matches('.window-btn-max, [data-window-maximize]')), () => toggleWindowMaximize(modal));
+        maximize.dataset.windowMaximize = '';
+        control('Close window', 'X', existing.find(button => button.textContent.trim() === 'X'), () => closeModal(modal));
         modal.querySelectorAll("iframe").forEach(child => {
             if (!child.title) child.title = header.querySelector("span")?.textContent || "Channel content";
             let registeredDocument;
@@ -162,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
     placeHomepage();
     mobileQuery.addEventListener("change", placeHomepage);
     window.addEventListener("resize", () => {
-        document.querySelectorAll(".managed-window.is-maximized").forEach(modal =>
+        document.querySelectorAll(".desktop-window.is-maximized").forEach(modal =>
             setWindowBounds(modal, { left: 12, top: 12, width: innerWidth - 24, height: innerHeight - 94 })
         );
         if (innerWidth > 768) {

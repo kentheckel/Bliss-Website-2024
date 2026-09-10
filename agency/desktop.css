@@ -1,61 +1,128 @@
-/* The approved homepage uses the existing ASFCos window manager. */
+/* Shared window chrome, based on the ASFC Home window. */
+:root {
+    --desktop-window-frame: #c0c0c0;
+    --desktop-window-titlebar: #0049d1;
+    --desktop-window-shadow: 7px 9px 0 #12364135;
+    --desktop-titlebar-height: 30px;
+}
 #ModalWelcome {
-    box-sizing: border-box;
     left: 160px;
     top: 38px;
     width: calc(100vw - 192px);
     height: calc(100dvh - 126px);
     max-width: none;
     max-height: none;
-    background: #c0c0c0;
-    border: 2px outset #e5e5e5;
-    box-shadow: 7px 9px 0 #12364135;
-    padding: 4px;
     transform: none;
 }
-#modalContainer .managed-window {
-    position: fixed !important;
+#modalContainer .desktop-window {
     box-sizing: border-box;
     padding: 4px;
-    background: #c0c0c0;
     border: 2px outset #e5e5e5;
     border-radius: 0;
+    background: var(--desktop-window-frame);
+    box-shadow: var(--desktop-window-shadow);
     overflow: hidden;
 }
-#modalContainer .managed-window .window-controls {
+#modalContainer .managed-window { position: fixed !important; }
+#modalContainer .desktop-window > .window-controls {
     box-sizing: border-box;
-    height: 30px;
-    min-height: 30px;
+    position: relative;
+    height: var(--desktop-titlebar-height);
+    min-height: var(--desktop-titlebar-height);
     margin: 0;
     padding: 3px 5px 3px 9px;
-    background: #0049d1;
+    border: 0;
+    border-radius: 0;
+    background: var(--desktop-window-titlebar);
     color: white;
+    box-shadow: none;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
-    font: bold 12px Tahoma, Arial, sans-serif;
+    font: bold 12px/1.2 Tahoma, Arial, sans-serif;
+    text-shadow: none;
     touch-action: none;
+    cursor: grab;
 }
-#modalContainer .managed-window .window-controls > span {
+#modalContainer .desktop-window > .window-controls .desktop-window-title {
     flex: 1;
     min-width: 0;
+    display: block;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     font: inherit;
+    color: inherit;
 }
-#modalContainer .managed-window .window-btn,
-#modalContainer .managed-window .window-btn-youtube {
+#modalContainer .desktop-window .desktop-window-title > span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font: inherit;
+    color: inherit;
+}
+#modalContainer .desktop-window .desktop-window-title img {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    border-radius: 0;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 7px;
+    flex-shrink: 0;
+}
+#modalContainer .desktop-window > .window-controls .window-btn-container {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+}
+#modalContainer .desktop-window > .window-controls button {
     box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 24px;
     height: 23px;
+    min-width: 24px;
+    min-height: 23px;
     padding: 0;
+    margin: 0;
     flex-shrink: 0;
     border: 2px outset #eee;
     border-radius: 0;
-    background: #c0c0c0;
+    background: var(--desktop-window-frame);
     color: #111;
+    box-shadow: none;
     font: bold 14px/17px monospace;
+    text-shadow: none;
+    cursor: pointer;
+    transition: none;
+}
+#modalContainer .desktop-window > .window-controls button:hover { background: #e2e2e2; color: #111; }
+#modalContainer .desktop-window > .window-controls button:active { border-style: inset; background: #b4b4b4; }
+#modalContainer .desktop-window > .window-controls button:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+#modalContainer .desktop-window > .modal-iframe {
+    display: block;
+    width: 100%;
+    height: calc(100% - 34px) !important;
+    margin: 4px 0 0;
+    padding: 0;
+    border: 0;
+}
+#modalContainer .desktop-window > .channeltrack-content {
+    height: calc(100% - 34px);
+    margin-top: 4px;
+}
+#modalContainer .desktop-window.is-maximized {
+    position: fixed !important;
+    max-width: none;
+    max-height: none;
 }
 #modalContainer .managed-window > .modal-iframe,
 #modalContainer .managed-window > .modal-content {
@@ -85,7 +152,7 @@
     margin: 0;
     background: #f8f7ef;
 }
-.managed-window.is-maximized .window-controls { cursor: default !important; }
+.desktop-window.is-maximized > .window-controls { cursor: default !important; }
 #taskbar-windows { min-width: 0; overflow-x: auto; }
 .taskbar-window-button { flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #phone-homepage-host { display: none; }
@@ -113,3 +180,6 @@
 @media (prefers-reduced-motion: reduce) {
     #boot-screen, #phone-boot { transition: none; }
 }
+
+/* Preserve the compose form’s white surface inside the shared gray frame. */
+#ModalContact.desktop-window > form { background: #fff; }

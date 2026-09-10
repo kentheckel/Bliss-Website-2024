@@ -2,7 +2,7 @@
 
 // ===========================================
 // NETWORK STATS TRACKER
-// Line + bar chart, category table, hover, tray
+// Line + bar chart, category table, hover
 // ===========================================
 
 (function () {
@@ -439,50 +439,12 @@
         });
     }
 
-    // ---- MAXIMIZE ----
-
-    function setupMaximize() {
-        const modal = document.getElementById("ModalStats");
-        if (!modal) return;
-        const maxBtn = modal.querySelector(".window-btn-max");
-        if (!maxBtn) return;
-
-        let isMaximized = false;
-        let prevStyles = {};
-
-        maxBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            if (!isMaximized) {
-                prevStyles = {
-                    width: modal.style.width,
-                    height: modal.style.height,
-                    top: modal.style.top,
-                    left: modal.style.left,
-                    transform: modal.style.transform,
-                    cssWidth: modal.offsetWidth + "px",
-                    cssHeight: modal.offsetHeight + "px",
-                };
-                modal.style.width = "calc(100vw - 20px)";
-                modal.style.height = "calc(100vh - 80px)";
-                modal.style.top = "10px";
-                modal.style.left = "10px";
-                modal.style.transform = "none";
-                maxBtn.innerHTML = "&#9632;";
-                maxBtn.title = "Restore";
-                isMaximized = true;
-            } else {
-                modal.style.width = prevStyles.cssWidth || "";
-                modal.style.height = prevStyles.cssHeight || "";
-                modal.style.top = prevStyles.top || "";
-                modal.style.left = prevStyles.left || "";
-                modal.style.transform = prevStyles.transform || "";
-                maxBtn.innerHTML = "&#9633;";
-                maxBtn.title = "Maximize";
-                isMaximized = false;
-            }
-            setTimeout(() => renderChart(false), 50);
+    // The shared desktop controls own maximize/restore for every window.
+    document.getElementById('ModalStats')?.addEventListener('asfc:window-resize', () => {
+        requestAnimationFrame(() => {
+            if (allDailyTotals.length > 1 && document.getElementById('ModalStats').offsetWidth) renderChart(false);
         });
-    }
+    });
 
     // ---- TABLE ----
 
@@ -641,7 +603,6 @@
         setupRangeButtons();
         setupChartToggle();
         setupHover();
-        setupMaximize();
     }
 
     if (document.readyState === "loading") {

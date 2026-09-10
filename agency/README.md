@@ -79,3 +79,10 @@ strategist, a vertical editing team, and a channel audit. The homepage summarize
 those same engagements. Individual specialists can be scoped separately; no
 pricing or fixed delivery volume is implied. The taskbar stats widget and its
 background prefetch have been removed; the homepage network estimate is separate.
+
+Desktop window chrome is shared in `agency/desktop.css`: frame, title bar,
+controls, typography, and shadow all use the ASFC Home treatment. The desktop
+bridge normalizes every modal header and supplies one minimize/maximize/close
+control group. Existing title nodes, close handlers, and app content stay intact.
+All windows use the same maximize/restore behavior; the stats chart listens for
+the shared resize event rather than maintaining its own window controls.
