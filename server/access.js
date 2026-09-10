@@ -40,7 +40,7 @@ export function accessDecision(pathname, cookie = '') {
   let path;
   try { path = decodeURIComponent(pathname).toLowerCase(); } catch { return 'deny'; }
   const parts = path.split('/').filter(Boolean);
-  if (parts.some(p => p.startsWith('.') || p.includes('\\')) || ['server','scripts','tests','supabase','node_modules'].includes(parts[0]) || /\.(?:sql|md|json|ts)$/.test(path) && !path.startsWith('/data/')) return 'deny';
+  if (parts.some(p => p.startsWith('.') || p.includes('\\')) || ['server','scripts','tests','supabase','node_modules'].includes(parts[0]) || (/\.(?:sql|md|ts)$/.test(path) || /^\/(?:package(?:-lock)?|vercel)\.json$/.test(path))) return 'deny';
   if (['/access', '/access/', '/access/index.html', '/access/access.css', '/access/access.js', '/api/session', '/favicon.ico'].includes(path)) return 'allow';
   if (parts[0] === 'api') return 'deny';
   if (hasSession(cookie)) return 'allow';
