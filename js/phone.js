@@ -33,6 +33,7 @@ const PHONE_APPS = [
     { id: "work",     label: "Channels",   glyph: "📁", accent: "#ffcc33" },
     { id: "products", label: "Products",   glyph: "🧰", accent: "#7db8ff" },
     { id: "team",     label: "Team",       glyph: "👥", accent: "#c9a0ff" },
+    { id: "trash", label: "Trash", glyph: "🗑", accent: "#c0c0c0" },
     { id: "games",    label: "Games",      glyph: "🕹️", accent: "#ff8fa3" },
     { id: "contact",  label: "Contact",    glyph: "✉",  accent: "#ff9d5c" }
 ];
@@ -114,7 +115,7 @@ function openApp(id) {
     const title = document.getElementById("phone-app-title");
     const body = document.getElementById("phone-app-body");
     const meta = PHONE_APPS.find(a => a.id === id);
-    title.textContent = meta ? meta.label : (id === "book" ? "Book a Call" : id === "channel" ? PHONE_CHANNELS[phoneState.channel].name : id === "explore" ? "ASFC Desktop" : "");
+    title.textContent = ({passwords: "Passwords", passwords_note: "passwords.txt"})[id] || (meta ? meta.label : (id === "book" ? "Book a Call" : id === "channel" ? PHONE_CHANNELS[phoneState.channel].name : id === "explore" ? "ASFC Desktop" : ""));
 
     body.scrollTop = 0;
     body.innerHTML = APP_BODY[id] ? APP_BODY[id]() : "<div class='phone-pad'>Coming soon.</div>";
@@ -204,7 +205,17 @@ const APP_BODY = {
             </div>`;
     },
 
+    trash() {
+        return '<div class="phone-pad"><button class="arcade-phone-trash" data-app="passwords"><span aria-hidden="true">📁</span>Passwords</button></div>';
+    },
+    passwords() {
+        return '<div class="phone-pad"><button class="arcade-phone-trash" data-app="passwords_note"><span aria-hidden="true">▤</span>passwords.txt</button></div>';
+    },
+    passwords_note() {
+        return `<div class="phone-pad"><pre class="arcade-phone-note">${esc(ASFCArcade.note)}</pre><button class="arcade-note-button" data-app="games">Open Games ↗</button></div>`;
+    },
     games() {
+        if (!ASFCArcade.isUnlocked()) return ASFCArcade.gateHTML();
         const games = [
             ["Viral Surfer", "games/viral-surfer/index.html"],
             ["Minesweeper", "games/minesweeper/index.html"],
@@ -213,7 +224,7 @@ const APP_BODY = {
         ];
         return `
             <div class="phone-pad">
-                <p class="phone-lede">Yeah, we built games too. Some play better with a mouse — the full arcade lives on desktop.</p>
+                <button class="arcade-relock" type="button" data-arcade-lock>Lock games</button><p class="phone-lede">Yeah, we built games too. Some play better with a mouse — the full arcade lives on desktop.</p>
                 <div class="pg-list">
                     ${games.map(g => `<a class="pg-row" href="${g[1]}"><span>🕹️ ${esc(g[0])}</span><span class="pw-arrow">›</span></a>`).join("")}
                 </div>

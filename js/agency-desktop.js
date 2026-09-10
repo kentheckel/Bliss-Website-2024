@@ -89,7 +89,7 @@ function openAgencyApp(app) {
         openApp(app === "contact" ? "book" : app);
         return;
     }
-    const windows = { team: "ModalAbout", products: "ModalOurProducts", work: "ModalOurWork", services: "ModalServices" };
+    const windows = { team: "ModalAbout", products: "ModalOurProducts", work: "ModalOurWork", services: "ModalServices", games: "ModalGames", trash: "ModalTrash" };
     if (app === "contact") document.getElementById("contactBtn").click();
     else if (app === "explore") minimizeModal(document.getElementById("ModalWelcome"));
     else if (windows[app]) openModal(document.getElementById(windows[app]));

@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="style.css?v=20260910services" rel="stylesheet">
     <link href="agency/desktop.css?v=20260910windows" rel="stylesheet">
+    <link href="games/lock.css?v=20260910arcade" rel="stylesheet">
+    <script src="games/access.js?v=20260910arcade"></script>
     <title>Antisocial Friends Club — YouTube &amp; Social Growth</title>
     <meta name="description" content="Strategy, creative, and channel operations for athletes, entertainers, and brands. Explore the work of Antisocial Friends Club.">
     <style>
@@ -931,7 +933,13 @@
                 <div class="menu-tab">View</div>
             </div>
             <div class="txt-content">
-                <textarea id="passwordTextArea">KIM PASSWORD: passw0rd</textarea>
+                <textarea id="passwordTextArea" aria-label="Arcade password note">ARCADE PASSWORD: touchgrass
+
+For the Games folder.
+Apparently this was worth keeping.
+
+Open Games and enter the password to play.</textarea>
+                <button type="button" class="arcade-note-button" data-arcade-open>Open Games ↗</button>
             </div>
         </div>
 
@@ -1184,19 +1192,20 @@
                 </div>
             </div>
 
-            <div class="games-menubar">
+            <div class="arcade-gate-host"></div>
+            <div class="games-menubar" data-arcade-content hidden>
                 <span class="games-menu-item"><u>F</u>ile</span>
                 <span class="games-menu-item"><u>E</u>dit</span>
                 <span class="games-menu-item"><u>V</u>iew</span>
                 <span class="games-menu-item"><u>H</u>elp</span>
             </div>
 
-            <div class="games-addressbar">
+            <div class="games-addressbar" data-arcade-content hidden>
                 <span class="games-addr-label">Address</span>
                 <div class="games-addr-input">C:\GAMES</div>
             </div>
 
-            <div class="games-body">
+            <div class="games-body" data-arcade-content hidden>
 
                 <a href="games/hangman/index.html" class="games-tile">
                     <div class="games-tile-img">
@@ -1271,10 +1280,10 @@
 
             </div>
 
-            <div class="games-statusbar">
+            <div class="games-statusbar" data-arcade-content hidden>
                 <span>4 object(s)</span>
                 <span class="games-status-spacer"></span>
-                <span>4 ready · leaderboards live</span>
+                <span><button class="arcade-relock" type="button" data-arcade-lock>Lock games</button></span>
             </div>
         </div>
 
@@ -1321,8 +1330,9 @@
             <script src="js/misc.js?v=20260909nopitch"></script>
             <script src="js/stats.js?v=20260910windows"></script>
             <script src="js/easter-eggs.js?v=20260908"></script>
-            <script src="js/phone.js?v=20260910services"></script>
-            <script src="js/agency-desktop.js?v=20260910windows"></script>
+            <script src="js/phone.js?v=20260910arcade"></script>
+            <script src="js/arcade-access.js?v=20260910arcade"></script>
+            <script src="js/agency-desktop.js?v=20260910arcade"></script>
             <script src="paint.js?v=20260521b"></script>
 </body>
 
