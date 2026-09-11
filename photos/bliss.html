@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>bliss.jpg — ASFC Photo Viewer</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body { display: flex; flex-direction: column; background: #202421; color: #fff; font: 13px/1.5 Tahoma, Arial, sans-serif; }
+    .photo { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 12px; }
+    img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; padding: 12px 16px; background: #efefed; color: #142520; }
+    p { margin: 0; }
+    a { color: #0049d1; text-underline-offset: 3px; white-space: nowrap; }
+    a:focus-visible { outline: 2px solid #0049d1; outline-offset: 4px; }
+    @media (max-width: 480px) { .photo { padding: 0; } }
+  </style>
+</head>
+<body>
+  <main class="photo"><img src="bliss.jpg" alt="Kent with his arms outstretched in front of the real Bliss hill from the Windows XP wallpaper."></main>
+  <footer><p>Kent at Bliss. Yes, the Windows XP hill.</p><a href="bliss.jpg" download="bliss.jpg">Download photo ↓</a></footer>
+</body>
+</html>

@@ -53,6 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// ---- Photo found in Trash ----
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('blissPhotoBtn')?.addEventListener('click', () => {
+        openModal(document.getElementById('ModalBliss'));
+    });
+});
+
 // ---- Trash -> Passwords chain ----
 document.addEventListener('DOMContentLoaded', () => {
     const passwordsFolderBtn = document.getElementById('passwordsFolderBtn');

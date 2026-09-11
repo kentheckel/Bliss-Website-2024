@@ -205,3 +205,9 @@
 #welcomeBtn > img { transform: scale(1.090116) translateX(-4.9%); }
 #aboutBtn > img { transform: scale(.968492); }
 #contactBtn > img { transform: scale(.999467) translate(-2.5%, -.3%); }
+
+/* Trash's photo uses the same desktop frame and a fitted, uncropped viewer. */
+#ModalTrash .top-left-folder { display:flex; flex-wrap:wrap; gap:24px; }
+#blissPhotoBtn img { object-fit:contain; }
+#ModalBliss > .modal-iframe { display:block; height:calc(100% - var(--desktop-titlebar-height)); }
+.phone-bliss-frame { display:block; width:100%; height:100%; min-height:calc(100dvh - 110px); border:0; }

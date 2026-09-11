@@ -114,8 +114,9 @@ function openApp(id) {
     const app = document.getElementById("phone-app");
     const title = document.getElementById("phone-app-title");
     const body = document.getElementById("phone-app-body");
+    phoneState.app = id;
     const meta = PHONE_APPS.find(a => a.id === id);
-    title.textContent = ({passwords: "Passwords", passwords_note: "passwords.txt"})[id] || (id === "contact" ? "New Message" : meta ? meta.label : (id === "book" ? "Book a Call" : id === "channel" ? PHONE_CHANNELS[phoneState.channel].name : id === "explore" ? "ASFC Desktop" : ""));
+    title.textContent = ({passwords: "Passwords", passwords_note: "passwords.txt", bliss: "bliss.jpg"})[id] || (id === "contact" ? "New Message" : meta ? meta.label : (id === "book" ? "Book a Call" : id === "channel" ? PHONE_CHANNELS[phoneState.channel].name : id === "explore" ? "ASFC Desktop" : ""));
 
     body.scrollTop = 0;
     body.innerHTML = APP_BODY[id] ? APP_BODY[id]() : "<div class='phone-pad'>Coming soon.</div>";
@@ -206,7 +207,10 @@ const APP_BODY = {
     },
 
     trash() {
-        return '<div class="phone-pad"><button class="arcade-phone-trash" data-app="passwords"><span aria-hidden="true">📁</span>Passwords</button></div>';
+        return '<div class="phone-pad"><button class="arcade-phone-trash" data-app="passwords"><span aria-hidden="true">📁</span>Passwords</button><button class="arcade-phone-trash" data-app="bliss"><img src="photos/bliss.jpg" width="60" height="45" alt="">bliss.jpg</button></div>';
+    },
+    bliss() {
+        return '<iframe class="phone-bliss-frame" src="photos/bliss.html" title="Kent at Bliss"></iframe>';
     },
     passwords() {
         return '<div class="phone-pad"><button class="arcade-phone-trash" data-app="passwords_note"><span aria-hidden="true">▤</span>passwords.txt</button></div>';
@@ -329,7 +333,8 @@ function initPhone() {
 
     document.getElementById("phone-back").addEventListener("click", () => {
         // From a channel detail, Back returns to the Our Work list; otherwise home
-        if (phoneState.viewingChannel) openApp("work");
+        if (phoneState.app === "bliss") openApp("trash");
+        else if (phoneState.viewingChannel) openApp("work");
         else closeApp();
     });
     document.getElementById("phone-home-btn").addEventListener("click", closeApp);
