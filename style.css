@@ -596,6 +596,9 @@ body, html {
     position: fixed;
     bottom: 100px; /* Moved up to ensure it is above the taskbar */
     right: 20px;
+    /* Sit below any icon dragged onto it (icons.js hands those z-index 100+),
+       so a dropped icon stays clickable instead of the trash stealing the click. */
+    z-index: 1;
 }
 
 /* Trash Modal Styles */
