@@ -10,9 +10,11 @@ export default async function handler(req, res) {
   if (Number(req.headers['content-length'] || 0) > 2048) return res.status(413).json({ error: 'Request too large' });
   const body = req.body;
   if (!body || typeof body !== 'object') return res.status(400).json({ error: 'Invalid request' });
-  if (body.action === 'logout') { res.setHeader('Set-Cookie',sessionCookie('',secure)); return res.status(200).json({ next: '/access/' }); }
-  if (!configured()) return res.status(503).json({ error: 'Preview access is being set up. Please try again shortly.' });
-  if (!checkPassword(body.password)) { await new Promise(resolve => setTimeout(resolve, 800)); return res.status(401).json({ error: 'That password did not match. Try again.' }); }
-  res.setHeader('Set-Cookie', sessionCookie(createSession(),secure));
-  return res.status(200).json({ next: safeNext(body.next) });
+  const scope = body.scope === 'spurs' ? 'spurs' : 'admin';
+  if (body.action === 'logout') { res.setHeader('Set-Cookie',[sessionCookie('',secure), sessionCookie('',secure,'spurs')]); return res.status(200).json({ next: '/access/' }); }
+  if (!configured(scope)) return res.status(503).json({ error: 'Preview access is being set up. Please try again shortly.' });
+  if (!checkPassword(body.password, scope) && !(scope === 'spurs' && checkPassword(body.password))) { await new Promise(resolve => setTimeout(resolve, 800)); return res.status(401).json({ error: 'That password did not match. Try again.' }); }
+  res.setHeader('Set-Cookie', sessionCookie(createSession(Date.now(),scope),secure,scope));
+  const next = safeNext(body.next);
+  return res.status(200).json({ next: scope === 'spurs' && !/^\/spurs\//i.test(next) ? '/Spurs/ASFC%20Spurs%20Season%20Story%20Deck%20v5%20-%20Presentation%20Mode.html' : next });
 }

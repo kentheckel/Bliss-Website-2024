@@ -115,7 +115,7 @@ function openApp(id) {
     const title = document.getElementById("phone-app-title");
     const body = document.getElementById("phone-app-body");
     const meta = PHONE_APPS.find(a => a.id === id);
-    title.textContent = ({passwords: "Passwords", passwords_note: "passwords.txt"})[id] || (meta ? meta.label : (id === "book" ? "Book a Call" : id === "channel" ? PHONE_CHANNELS[phoneState.channel].name : id === "explore" ? "ASFC Desktop" : ""));
+    title.textContent = ({passwords: "Passwords", passwords_note: "passwords.txt"})[id] || (id === "contact" ? "New Message" : meta ? meta.label : (id === "book" ? "Book a Call" : id === "channel" ? PHONE_CHANNELS[phoneState.channel].name : id === "explore" ? "ASFC Desktop" : ""));
 
     body.scrollTop = 0;
     body.innerHTML = APP_BODY[id] ? APP_BODY[id]() : "<div class='phone-pad'>Coming soon.</div>";

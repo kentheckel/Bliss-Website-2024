@@ -11,7 +11,7 @@ http.createServer(async(req,res)=>{
     res.setHeader('Cache-Control','private, no-store');
     const decision = accessDecision(url.pathname,req.headers.cookie);
     if(decision==='deny'){res.writeHead(404);return res.end('Not found');}
-    if(decision==='login'){res.writeHead(307,{Location:'/access/?next='+encodeURIComponent(url.pathname+url.search)});return res.end();}
+    if(decision==='login'||decision==='spurs-login'){res.writeHead(307,{Location:(decision==='spurs-login'?'/access/spurs.html':'/access/')+'?next='+encodeURIComponent(url.pathname+url.search)});return res.end();}
     if(url.pathname==='/api/session'){
       let body='';for await (const chunk of req){body+=chunk;if(body.length>2048){res.writeHead(413);return res.end();}}
       try{req.body=body?JSON.parse(body):null;}catch{res.writeHead(400);return res.end();}

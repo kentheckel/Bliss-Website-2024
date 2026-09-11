@@ -262,19 +262,8 @@ function autoRegisterIcons() {
             const btnId = button.id;
             if (!btnId) return;
 
-            // Contact icon: open the compose window. Open Gmail behind it only
-            // the first time (so re-clicking the icon to restore a minimized
-            // compose doesn't shove Gmail back in front of everything).
             if (btnId === 'contactBtn') {
-                const contact = document.getElementById('ModalContact');
-                const gmail = document.getElementById('ModalGmail');
-                const contactAlreadyOpened = contact && contact.dataset.hasBeenOpened === 'true';
-                if (gmail && !contactAlreadyOpened) {
-                    openModal(gmail);
-                    if (contact) setTimeout(() => openModal(contact), 100);
-                } else if (contact) {
-                    openModal(contact);
-                }
+                openContactComposer();
                 return;
             }
 
@@ -293,11 +282,33 @@ function autoRegisterIcons() {
     });
 }
 
-// ---- Listen for messages from iframes (e.g. Gmail compose button) ----
-window.addEventListener('message', (e) => {
-    if (e.data && e.data.action === 'openCompose') {
-        const contact = document.getElementById('ModalContact');
-        if (contact) openModal(contact);
+// All contact entry points share one composer and preserve an existing draft.
+function openContactComposer({ subject = '', message = '' } = {}) {
+    if (innerWidth <= 768) {
+        openApp('contact');
+        const body = document.querySelector('#phone-app-body textarea[name="message"]');
+        if (body && !body.value) body.value = message || subject;
+        return;
+    }
+    const contact = document.getElementById('ModalContact');
+    if (!contact) return;
+    openModal(contact);
+    const subjectField = document.getElementById('subjectField');
+    const body = document.getElementById('emailTextBody');
+    if (subject && !subjectField.value) {
+        subjectField.value = subject;
+        subjectField.dispatchEvent(new Event('input'));
+    }
+    if (message && !body.value) body.value = message;
+}
+
+window.addEventListener('message', event => {
+    if (event.origin !== location.origin) return;
+    if (![...document.querySelectorAll('iframe')].some(frame => frame.contentWindow === event.source)) return;
+    if (event.data?.type === 'asfc:contact' || event.data?.action === 'openCompose') {
+        const subject = typeof event.data.subject === 'string' ? event.data.subject.slice(0, 200) : '';
+        const message = typeof event.data.message === 'string' ? event.data.message.slice(0, 2000) : '';
+        openContactComposer({ subject, message });
     }
 });
 

@@ -93,3 +93,14 @@ window shadows. Opening, taskbar restore, maximize/restore, and browser resize
 fit windows to that area. Channel pairs and the landscape presentation also pass
 through the same fit check. Explorer folders use a flexible scrolling body;
 padded native app panels size their padding inside the frame.
+
+September 2026 polish: every contact CTA opens the shared message composer;
+strategy and private Spurs pages use /js/contact-link.js in embedded and direct
+views. Visible contact address is kent@antisocialfriendsclub.com; the existing
+FormSubmit forwarding destination is retained. The Receipts grid uses equal
+rows, and the Club section includes the approved “Antisocial by design” mission.
+
+The /Spurs/ directory is server-protected independently of maintenance mode.
+ASFC_SPURS_PASSWORD_HASH configures a deck-only password; the existing universal
+admin session also grants access. Spurs sessions cannot open admin or other
+private decks. The gate offers “Email us” to prefill a composer request.

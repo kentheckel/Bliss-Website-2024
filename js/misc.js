@@ -151,14 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     showStatus({
                         ok: false,
                         title: "Couldn't send",
-                        body: (data && data.message) || 'Something went wrong. Try again or email kent@kentheckel.com directly.',
+                        body: (data && data.message) || 'Something went wrong. Try again or email kent@antisocialfriendsclub.com directly.',
                     });
                 }
             } catch (err) {
                 showStatus({
                     ok: false,
                     title: "Couldn't send",
-                    body: 'Network error. Try again or email kent@kentheckel.com directly.',
+                    body: 'Network error. Try again or email kent@antisocialfriendsclub.com directly.',
                 });
             } finally {
                 if (sendBtn) {

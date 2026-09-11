@@ -29,11 +29,11 @@ const keys=['CamNewton','4thand1','FunkyFriday','JimGaffigan','KentHeckel','AllT
   await page.locator('summary').click();
   assert.equal(await page.locator('details').evaluate(e=>e.open),true);
   const links=await page.locator('a').evaluateAll(items=>items.map(a=>a.getAttribute('href')));
-  assert.ok(links.every(href=>href.startsWith('mailto:') || /\.(png|jpg|webp)$/i.test(href)), `${key} exposes an old strategy link`);
+  assert.ok(links.every(href=>href.startsWith('/?app=contact') || /\.(png|jpg|webp)$/i.test(href)), `${key} exposes an old strategy link`);
   await page.locator('summary').focus();await page.keyboard.press('Enter');
   assert.equal(await page.locator('details').evaluate(e=>e.open),false);
   await page.keyboard.press('Enter');
-  assert.ok((await page.locator('footer a').getAttribute('href')).startsWith('mailto:jordyn@antisocialfriendsclub.com'));
+  assert.ok((await page.locator('footer a').getAttribute('href')).startsWith('/?app=contact'));
   for(const width of [320,390,440,768]){
    await page.setViewportSize({width,height:900});
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${key} overflows at ${width}`);

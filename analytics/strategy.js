@@ -45,6 +45,6 @@
         </details>
         <footer>
             <p>Let’s find your next move.</p>
-            <a href="mailto:jordyn@antisocialfriendsclub.com?subject=${encodeURIComponent(`ASFC strategy — inspired by ${story.name}`)}">Talk strategy <span aria-hidden="true">↗</span></a>
+            <a data-contact href="/?app=contact&amp;subject=${encodeURIComponent(`ASFC strategy — inspired by ${story.name}`)}">Talk strategy <span aria-hidden="true">↗</span></a>
         </footer>`;
 })();

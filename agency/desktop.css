@@ -200,3 +200,8 @@
     min-height: 0;
     max-height: none;
 }
+
+/* Equal 60px artwork height, compensating for each asset's transparent padding. */
+#welcomeBtn > img { transform: scale(1.090116) translateX(-4.9%); }
+#aboutBtn > img { transform: scale(.968492); }
+#contactBtn > img { transform: scale(.999467) translate(-2.5%, -.3%); }

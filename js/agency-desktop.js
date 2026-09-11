@@ -91,13 +91,17 @@ function arrangeChannelWindows(analytics, strategy) {
 }
 
 function openAgencyApp(app) {
+    if (app === 'contact') {
+        const params = new URLSearchParams(location.search);
+        openContactComposer({ subject: params.get('subject') || '', message: params.get('message') || '' });
+        return;
+    }
     if (innerWidth <= 768) {
-        openApp(app === "contact" ? "book" : app);
+        openApp(app);
         return;
     }
     const windows = { team: "ModalAbout", products: "ModalOurProducts", work: "ModalOurWork", services: "ModalServices", games: "ModalGames", trash: "ModalTrash" };
-    if (app === "contact") document.getElementById("contactBtn").click();
-    else if (app === "explore") minimizeModal(document.getElementById("ModalWelcome"));
+    if (app === "explore") minimizeModal(document.getElementById("ModalWelcome"));
     else if (windows[app]) openModal(document.getElementById(windows[app]));
 }
 

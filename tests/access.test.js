@@ -48,3 +48,31 @@ test('database clock drives counter across days; offline growth stops after ten 
  tick=600000;const frozen=window.getASFCNetworkViews();tick=86400000;assert.equal(window.getASFCNetworkViews(),frozen);
  day=1;await window.refreshASFCNetworkViews();assert.equal(window.getASFCNetworkViews(),6802500000);
 });
+
+test('Spurs access stays private after launch and never grants admin or other deck access', () => {
+ process.env.ASFC_SPURS_PASSWORD_HASH = hashPassword('spurs-test-password');
+ process.env.ASFC_MAINTENANCE = 'false';
+ try {
+  const now = Date.now();
+  const token = createSession(now, 'spurs');
+  const cookie = 'asfc_spurs_access=' + token;
+  assert.equal(checkPassword('spurs-test-password', 'spurs'), true);
+  assert.equal(checkPassword('spurs-test-password'), false);
+  for (const path of ['/Spurs/', '/Spurs/ASFC%20Spurs%20Season%20Story%20Deck%20v5%20-%20Presentation%20Mode.html', '/spurs/anything.pdf', '/%53purs/assets.png']) {
+   assert.equal(accessDecision(path), 'spurs-login', path);
+   assert.equal(accessDecision(path, cookie), 'allow', path);
+  }
+  assert.equal(hasSession('asfc_access=' + token), false);
+  assert.equal(hasSession(cookie, now + TTL * 1000, 'spurs'), false);
+  assert.equal(hasSession(cookie.slice(0,-1)+(cookie.endsWith('a')?'b':'a'), now, 'spurs'), false);
+  for (const path of ['/admin/', '/lukadoncic/', '/lewishamilton/']) assert.equal(accessDecision(path, cookie), 'login');
+  for (const path of ['/analytics/strategy.html?channel=AllTheSmoke', '/analytics/indexYouTubeStudioSanAntonioSpurs.html']) assert.equal(accessDecision(path), 'allow');
+  assert.equal(accessDecision('/Spurs/deck.html', 'asfc_access='+createSession()), 'allow');
+  process.env.ASFC_SPURS_PASSWORD_HASH = hashPassword('rotated-spurs-password');
+  assert.equal(hasSession(cookie, now, 'spurs'), false);
+  process.env.ASFC_SPURS_PASSWORD_HASH = '';
+  assert.equal(accessDecision('/Spurs/deck.html', cookie), 'spurs-login');
+  process.env.ASFC_MAINTENANCE = 'true';
+  assert.equal(accessDecision('/', cookie), 'login');
+ } finally { process.env.ASFC_MAINTENANCE = 'true'; }
+});
