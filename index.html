@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <!-- Fonts for the About-window theme variants (deck = Anton/Archivo/Plex Mono, studio = Roboto) -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="style.css?v=20260910services" rel="stylesheet">
+    <link href="style.css?v=20260914podmonitor" rel="stylesheet">
     <link href="agency/desktop.css?v=20260911bliss" rel="stylesheet">
     <link href="games/lock.css?v=20260910arcade" rel="stylesheet">
     <script src="games/access.js?v=20260910arcade"></script>
@@ -572,9 +572,14 @@
                     <span>Uptides</span>
                     <small>uptides.ai</small>
                 </button>
+                <button class="explorer-item" data-opens="ModalPodMonitor">
+                    <img src="images/icons/Icon_PodMonitor.svg" alt="PodMonitor">
+                    <span>PodMonitor</span>
+                    <small>podmonitor.club</small>
+                </button>
             </div>
             <div class="explorer-statusbar">
-                <span>2 object(s)</span>
+                <span>3 object(s)</span>
                 <span>Built in-house</span>
             </div>
         </div>
@@ -1156,6 +1161,49 @@ Open Games and enter the password to play.</textarea>
             </div>
         </div>
 
+        <!-- MARK: PodMonitor Modal -->
+        <div id="ModalPodMonitor" class="modal channeltrack-modal">
+            <div id="modalHeaderPodMonitor" class="window-controls channeltrack-header">
+                <div class="channeltrack-header-content">
+                    <img src="images/icons/Icon_PodMonitor.svg" alt="PodMonitor Icon" class="channeltrack-header-icon">
+                    <span>podmonitor.club</span>
+                </div>
+                <div class="window-btn-container">
+                    <button class="window-btn channeltrack-btn" aria-label="Minimize PodMonitor">-</button>
+                    <button class="window-btn channeltrack-btn" aria-label="Close PodMonitor">X</button>
+                </div>
+            </div>
+            <div class="channeltrack-content">
+                <div class="channeltrack-hero">
+                    <img src="images/icons/Icon_PodMonitor.svg" alt="PodMonitor Icon" class="channeltrack-icon">
+                    <h1 class="channeltrack-title">PodMonitor</h1>
+                    <p class="channeltrack-domain">podmonitor.club</p>
+                    <p class="channeltrack-subtitle">The podcast leaderboard for YouTube</p>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">What is PodMonitor?</h2>
+                    <p class="channeltrack-text">PodMonitor helps podcast teams follow the shows gaining attention on YouTube. Explore rankings based on views, discover breakout videos, and see how shows compare across genres.</p>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">What it does:</h2>
+                    <ul class="channeltrack-list">
+                        <li>Publishes weekly and monthly charts with rankings that stay fixed once published</li>
+                        <li>Tracks live leaderboards and trending videos as views grow</li>
+                        <li>Breaks down each show's full episodes, clips, and Shorts</li>
+                        <li>Filters podcast rankings by genre for relevant comparisons</li>
+                        <li>Offers guest research for signed-in users, including appearances and episode performance</li>
+                    </ul>
+                </div>
+                <div class="channeltrack-section">
+                    <h2 class="channeltrack-heading">Why use it:</h2>
+                    <p class="channeltrack-text">Keep up with competitors, spot rising shows, and research potential guests with the numbers in one place. Built for podcast creators, producers, and media teams by Antisocial Friends Club.</p>
+                </div>
+                <div class="channeltrack-footer">
+                    <p>Explore the charts at <a href="https://podmonitor.club" target="_blank" rel="noopener noreferrer" class="channeltrack-link">podmonitor.club ↗</a></p>
+                </div>
+            </div>
+        </div>
+
         <!-- MARK: Stats Modal -->
         <div id="ModalStats" class="modal" style="display: none;">
             <div id="modalHeaderStats" class="window-controls stats-header">
@@ -1346,7 +1394,7 @@ Open Games and enter the password to play.</textarea>
             <script src="js/misc.js?v=20260911bliss"></script>
             <script src="js/stats.js?v=20260910windows"></script>
             <script src="js/easter-eggs.js?v=20260908"></script>
-            <script src="js/phone.js?v=20260911bliss"></script>
+            <script src="js/phone.js?v=20260914podmonitor"></script>
             <script src="js/arcade-access.js?v=20260910arcade"></script>
             <script src="js/agency-desktop.js?v=20260911feedback"></script>
             <script src="paint.js?v=20260521b"></script>

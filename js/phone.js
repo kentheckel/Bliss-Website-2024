@@ -193,6 +193,12 @@ const APP_BODY = {
                     <p>AI-powered trend detection — tells creators exactly what to make and when to post it.</p>
                     <a class="phone-cta" href="https://uptides.ai" target="_blank" rel="noopener">Visit uptides.ai ↗</a>
                 </div>
+                <div class="pp-card">
+                    <img src="images/icons/Icon_PodMonitor.svg" alt="PodMonitor">
+                    <h3>PodMonitor</h3>
+                    <p>The podcast leaderboard for YouTube — weekly and monthly charts, trending videos, and guest research for podcast teams.</p>
+                    <a class="phone-cta" href="https://podmonitor.club" target="_blank" rel="noopener noreferrer">Visit podmonitor.club ↗</a>
+                </div>
             </div>`;
     },
 

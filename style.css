@@ -1962,7 +1962,8 @@ body, html {
 
 /* Main modal container for ChannelTrack */
 /* Using Notion's signature warm, neutral color palette */
-#ModalChannelTrack {
+#ModalChannelTrack,
+#ModalPodMonitor {
     position: fixed;
     left: 25%;
     top: 10%;
@@ -1981,7 +1982,8 @@ body, html {
 
 /* Window header for ChannelTrack - Notion-themed */
 /* Using a subtle beige background like Notion's UI */
-#modalHeaderChannelTrack {
+#modalHeaderChannelTrack,
+#modalHeaderPodMonitor {
     background-color: #FAFAF9;
     color: #37352F;
     border-bottom: 1px solid #E5E5E5;
