@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "engines": {"node": "24.x"},
-  "scripts": {"test": "node --test tests/access.test.js", "dev": "node --env-file=.env.local scripts/dev-server.js", "build": "node scripts/check-release.js"},
+  "scripts": {"test": "node --test tests/access.test.js", "test:paint": "node --test tests/paint.test.js", "dev": "node --env-file=.env.local scripts/dev-server.js", "build": "node scripts/check-release.js"},
   "dependencies": {"@vercel/edge": "1.3.3"},
   "devDependencies": {"playwright": "1.63.0"}
 }

@@ -22,6 +22,178 @@
     let painting = false;
     let lastPainted = '';
     let initialized = false;
+    const CACHE_KEY = 'asfc-paint-canvas-v1';
+    const PENDING_PREFIX = 'asfc-paint-pending-v1:';
+    const pixels = new Map();
+    const pending = new Map();
+    let changesDuringLoad = null;
+    let loading = false;
+    let reloadRequested = false;
+    let connected = false;
+    let loadFailed = false;
+    let saveFailed = false;
+    let storageFailed = false;
+    let saving = false;
+    let saveTimer, cacheTimer;
+
+    const pixelKey = (row) => `${row.x},${row.y}`;
+    const validPixel = (row) => row && Number.isInteger(row.x) && Number.isInteger(row.y)
+        && row.x >= 0 && row.x < GRID && row.y >= 0 && row.y < GRID
+        && /^#[0-9a-f]{6}$/i.test(row.color);
+
+    function updateStatus() {
+        if (storageFailed && pending.size) setStatus('Keep this tab open — local backup unavailable', 'offline');
+        else if (!supabase) setStatus('Offline — saved on this browser', 'offline');
+        else if (saveFailed) setStatus('Saved locally — retrying sync…', 'offline');
+        else if (pending.size) setStatus('Saving…', null);
+        else if (loadFailed) setStatus('Offline — showing local copy', 'offline');
+        else if (loading) setStatus('Loading…', null);
+        else if (connected) setStatus('Live • painting together', 'connected');
+        else setStatus('Saved • reconnecting…', 'offline');
+    }
+
+    function cacheCanvas() {
+        clearTimeout(cacheTimer);
+        try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify([...pixels.values()]));
+        } catch (error) {
+            console.warn('Paint: local canvas backup unavailable', error);
+        }
+    }
+
+    function applyPixel(row) {
+        if (!validPixel(row)) return;
+        const key = pixelKey(row);
+        pixels.set(key, { x: row.x, y: row.y, color: row.color });
+        if (changesDuringLoad) changesDuringLoad.set(key, pixels.get(key));
+        drawPixel(row.x, row.y, row.color);
+        clearTimeout(cacheTimer);
+        cacheTimer = setTimeout(cacheCanvas, 300);
+    }
+
+    function readPending() {
+        try {
+            const stored = new Map();
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (!key.startsWith(PENDING_PREFIX)) continue;
+                try {
+                    const row = JSON.parse(localStorage.getItem(key));
+                    if (validPixel(row) && typeof row.id === 'string') stored.set(pixelKey(row), row);
+                } catch { /* Ignore an invalid local entry. */ }
+            }
+            // Keep in-memory edits if local storage could not save them.
+            if (!storageFailed) pending.clear();
+            stored.forEach((row, key) => {
+                if (!storageFailed || !pending.has(key)) pending.set(key, row);
+            });
+        } catch {
+            storageFailed = true;
+        }
+    }
+
+    function restoreCanvas() {
+        try {
+            const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || '[]');
+            if (Array.isArray(cached)) cached.forEach(applyPixel);
+        } catch { /* A missing or invalid cache is safe to ignore. */ }
+        readPending();
+        pending.forEach(applyPixel);
+    }
+
+    function scheduleSave(delay = 100) {
+        if (saving || saveTimer || !supabase || !pending.size) return;
+        saveTimer = setTimeout(() => {
+            saveTimer = null;
+            flushPending();
+        }, delay);
+    }
+
+    async function flushPending() {
+        if (saving || !supabase) return;
+        clearTimeout(saveTimer);
+        saveTimer = null;
+        saving = true;
+        const save = async () => {
+            readPending();
+            const batch = [...pending.values()].slice(0, 200);
+            if (!batch.length) { saveFailed = false; return; }
+            const { error } = await supabase.from('pixels').upsert(
+                batch.map(({ x, y, color }) => ({ x, y, color })),
+                { onConflict: 'x,y' }
+            );
+            if (error) throw error;
+            saveFailed = false;
+            for (const row of batch) {
+                const key = pixelKey(row);
+                // A newer stroke may have arrived while this batch was saving.
+                if (pending.get(key)?.id !== row.id) continue;
+                try {
+                    const stored = JSON.parse(localStorage.getItem(PENDING_PREFIX + key) || 'null');
+                    if (stored && stored.id !== row.id) {
+                        pending.set(key, stored);
+                        continue;
+                    }
+                    localStorage.removeItem(PENDING_PREFIX + key);
+                } catch { storageFailed = true; }
+                if (changesDuringLoad) changesDuringLoad.set(key, { x: row.x, y: row.y, color: row.color });
+                pending.delete(key);
+            }
+        };
+        try {
+            // Tabs share one durable outbox; serialize their requests where supported.
+            if (navigator.locks) await navigator.locks.request('asfc-paint-save', save);
+            else await save();
+        } catch (error) {
+            console.warn('Paint: save will retry', error);
+            saveFailed = true;
+        } finally {
+            saving = false;
+            updateStatus();
+            scheduleSave(saveFailed ? 2000 : 100);
+        }
+    }
+
+    function attachSyncHandlers() {
+        window.addEventListener('storage', (event) => {
+            if (!event.key?.startsWith(PENDING_PREFIX)) return;
+            const key = event.key.slice(PENDING_PREFIX.length);
+            if (event.newValue) {
+                try {
+                    const row = JSON.parse(event.newValue);
+                    if (!validPixel(row) || typeof row.id !== 'string') return;
+                    pending.set(key, row);
+                    applyPixel(row);
+                } catch { return; }
+            } else {
+                // Do not clear a newer local edit when another tab acknowledges a save.
+                try {
+                    if (pending.get(key)?.id === JSON.parse(event.oldValue)?.id) {
+                        if (changesDuringLoad) changesDuringLoad.set(key, pixels.get(key));
+                        pending.delete(key);
+                    }
+                } catch { return; }
+            }
+            if (!pending.size) saveFailed = false;
+            updateStatus();
+            scheduleSave();
+        });
+        const refresh = () => {
+            flushPending();
+            loadCanvas();
+        };
+        window.addEventListener('online', refresh);
+        window.addEventListener('focus', refresh);
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') refresh();
+            else cacheCanvas();
+        });
+        window.addEventListener('pagehide', cacheCanvas);
+        // Reconcile missed events, including when a WebSocket silently drops.
+        setInterval(() => {
+            if (document.visibilityState === 'visible') loadCanvas();
+        }, 15000);
+    }
 
     function setStatus(text, kind) {
         if (!statusEl) return;
@@ -70,22 +242,21 @@
         return { x: Math.floor(px / CELL), y: Math.floor(py / CELL) };
     }
 
-    async function paintCell(x, y) {
+    function paintCell(x, y) {
         if (x < 0 || x >= GRID || y < 0 || y >= GRID) return;
         const key = `${x},${y},${selectedColor}`;
         if (key === lastPainted) return;
         lastPainted = key;
 
-        drawPixel(x, y, selectedColor);
-
-        if (!supabase) return;
-        const { error } = await supabase
-            .from('pixels')
-            .upsert({ x, y, color: selectedColor }, { onConflict: 'x,y' });
-        if (error) {
-            console.error('paint upsert failed', error);
-            setStatus('Save failed', 'offline');
-        }
+        const row = { x, y, color: selectedColor, id: crypto.randomUUID() };
+        pending.set(pixelKey(row), row);
+        // Persist before sending: a refresh or closed tab cannot cancel the only copy.
+        try {
+            localStorage.setItem(PENDING_PREFIX + pixelKey(row), JSON.stringify(row));
+        } catch { storageFailed = true; }
+        applyPixel(row);
+        updateStatus();
+        scheduleSave();
     }
 
     function attachCanvasHandlers() {
@@ -115,52 +286,82 @@
     }
 
     async function loadCanvas() {
-        fillBackground();
-        if (!supabase) {
-            setStatus('Offline mode', 'offline');
-            return;
+        if (!supabase) { updateStatus(); return; }
+        if (loading) { reloadRequested = true; return; }
+        loading = true;
+        changesDuringLoad = new Map();
+        updateStatus();
+        try {
+            const snapshot = new Map();
+            // The API caps each response. Page in stable coordinate order to load
+            // all 10,000 cells rather than silently truncating the shared canvas.
+            const pageSize = 500;
+            for (let offset = 0; offset < GRID * GRID; offset += pageSize) {
+                const { data, error } = await supabase.from('pixels')
+                    .select('x, y, color').order('x').order('y')
+                    .range(offset, offset + pageSize - 1);
+                if (error) throw error;
+                data.filter(validPixel).forEach((row) => snapshot.set(pixelKey(row), row));
+                if (data.length < pageSize) break;
+            }
+            // Loading must never paint an old snapshot over a stroke or live event.
+            changesDuringLoad.forEach((row, key) => {
+                if (row) snapshot.set(key, row);
+                else snapshot.delete(key);
+            });
+            pending.forEach((row, key) => snapshot.set(key, row));
+            pixels.clear();
+            fillBackground();
+            snapshot.forEach((row, key) => {
+                pixels.set(key, { x: row.x, y: row.y, color: row.color });
+                drawPixel(row.x, row.y, row.color);
+            });
+            cacheCanvas();
+            loadFailed = false;
+        } catch (error) {
+            console.warn('Paint: could not refresh canvas', error);
+            loadFailed = true;
+        } finally {
+            changesDuringLoad = null;
+            loading = false;
+            updateStatus();
+            if (reloadRequested) {
+                reloadRequested = false;
+                loadCanvas();
+            }
         }
-        setStatus('Loading...', null);
-        const { data, error } = await supabase
-            .from('pixels')
-            .select('x, y, color');
-        if (error) {
-            console.error('load failed', error);
-            setStatus('Offline — not syncing', 'offline');
-            return;
-        }
-        data.forEach((p) => drawPixel(p.x, p.y, p.color));
-        setStatus(`Live • ${data.length} painted`, 'connected');
     }
 
     function subscribeRealtime() {
         if (!supabase) return;
-        supabase
-            .channel('pixels-stream')
-            .on(
-                'postgres_changes',
-                { event: '*', schema: 'public', table: 'pixels' },
-                (payload) => {
-                    const row = payload.new;
-                    if (!row) return;
-                    drawPixel(row.x, row.y, row.color);
-                }
-            )
+        supabase.channel('pixels-stream')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'pixels' }, (payload) => {
+                const row = payload.eventType === 'DELETE' ? payload.old : payload.new;
+                if (!row || pending.has(pixelKey(row))) return;
+                if (payload.eventType === 'DELETE') {
+                    const key = pixelKey(row);
+                    pixels.delete(key);
+                    if (changesDuringLoad) changesDuringLoad.set(key, null);
+                    drawPixel(row.x, row.y, '#FFFFFF');
+                    cacheCanvas();
+                } else applyPixel(row);
+            })
             .subscribe((status) => {
-                if (status === 'SUBSCRIBED') {
-                    setStatus('Live • painting together', 'connected');
-                } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
-                    setStatus('Reconnecting...', 'offline');
+                connected = status === 'SUBSCRIBED';
+                updateStatus();
+                if (connected) {
+                    // Catch up after subscribing/reconnecting, closing the load/subscribe gap.
+                    loadCanvas();
+                    scheduleSave();
                 }
             });
     }
 
     function initPaintApp() {
         if (initialized) return;
-        initialized = true;
 
         canvas = document.getElementById('paintCanvas');
-        ctx = canvas.getContext('2d');
+        ctx = canvas?.getContext('2d');
         paletteEl = document.getElementById('paintPalette');
         selectedSwatchEl = document.getElementById('paintSelectedSwatch');
         statusEl = document.getElementById('paintStatus');
@@ -169,6 +370,8 @@
             console.error('Paint: missing DOM nodes');
             return;
         }
+
+        initialized = true;
 
         if (window.supabase && typeof window.supabase.createClient === 'function') {
             supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
@@ -180,7 +383,10 @@
 
         buildPalette();
         fillBackground();
+        restoreCanvas();
         attachCanvasHandlers();
+        attachSyncHandlers();
+        scheduleSave();
         loadCanvas();
         subscribeRealtime();
     }

@@ -38,3 +38,13 @@ the test does not send messages.
 Screenshots are written to `.context/strategy-*.png`. The server must serve the
 whole repository, since the client pages use the existing portraits, Cam's
 thumbnail example, Studio pages, and Spurs presentation.
+
+## Paint persistence and collaboration
+
+Run `npm run test:paint` after `npm ci`. This starts its own local fixture and
+uses Chrome (or `CHROME_EXECUTABLE`, with Playwright Chromium as the fallback).
+It exercises the real Paint UI against a controlled shared service, without
+changing the public artwork. Coverage includes more than 1,000 saved pixels,
+refresh/close/reopen, immediate cross-tab strokes, failed-save recovery,
+successive colors on one cell, slow snapshot races, realtime updates, deletes,
+and reconnect catch-up.
