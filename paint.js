@@ -19,6 +19,9 @@
     let supabase = null;
     let canvas, ctx, paletteEl, selectedSwatchEl, statusEl;
     let selectedColor = PALETTE[5];
+    let brushSize = 1;
+    let lastTappedColor = '';
+    let colorTapCount = 0;
     let painting = false;
     let lastPainted = '';
     let initialized = false;
@@ -215,13 +218,29 @@
 
     function buildPalette() {
         paletteEl.innerHTML = '';
-        PALETTE.forEach((color, i) => {
+        PALETTE.forEach((color) => {
             const btn = document.createElement('button');
             btn.className = 'paint-swatch';
             btn.style.backgroundColor = color;
             btn.dataset.color = color;
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                colorTapCount = lastTappedColor === color ? colorTapCount + 1 : 1;
+                lastTappedColor = color;
+                if (colorTapCount === 5) {
+                    brushSize = brushSize === 1 ? 5 : 1;
+                    colorTapCount = 0;
+                    lastPainted = '';
+                    const label = document.getElementById('paintBrushSize');
+                    if (label) {
+                        label.hidden = false;
+                        label.textContent = `Brush: ${brushSize} × ${brushSize}`;
+                    }
+                    const cursor = '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"><rect x="1.5" y="1.5" width="22" height="22" fill="none" stroke="white" stroke-width="3"/><rect x="1.5" y="1.5" width="22" height="22" fill="none" stroke="black"/></svg>';
+                    canvas.style.cursor = brushSize === 5
+                        ? `url("data:image/svg+xml,${encodeURIComponent(cursor)}") 12 12, crosshair`
+                        : 'crosshair';
+                }
                 selectedColor = color;
                 selectedSwatchEl.style.backgroundColor = color;
                 paletteEl.querySelectorAll('.paint-swatch').forEach((s) => s.classList.remove('selected'));
@@ -231,6 +250,14 @@
             paletteEl.appendChild(btn);
         });
         selectedSwatchEl.style.backgroundColor = selectedColor;
+        // Any click outside the palette breaks the secret sequence, even when
+        // a window control stops the event from bubbling.
+        document.addEventListener('click', (event) => {
+            if (!paletteEl.contains(event.target)) {
+                lastTappedColor = '';
+                colorTapCount = 0;
+            }
+        }, true);
     }
 
     function cellFromEvent(e) {
@@ -242,19 +269,25 @@
         return { x: Math.floor(px / CELL), y: Math.floor(py / CELL) };
     }
 
-    function paintCell(x, y) {
+    function paintBrush(x, y) {
         if (x < 0 || x >= GRID || y < 0 || y >= GRID) return;
-        const key = `${x},${y},${selectedColor}`;
+        const key = `${x},${y},${selectedColor},${brushSize}`;
         if (key === lastPainted) return;
         lastPainted = key;
 
-        const row = { x, y, color: selectedColor, id: crypto.randomUUID() };
-        pending.set(pixelKey(row), row);
-        // Persist before sending: a refresh or closed tab cannot cancel the only copy.
-        try {
-            localStorage.setItem(PENDING_PREFIX + pixelKey(row), JSON.stringify(row));
-        } catch { storageFailed = true; }
-        applyPixel(row);
+        const radius = Math.floor(brushSize / 2);
+        for (let px = Math.max(0, x - radius); px <= Math.min(GRID - 1, x + radius); px++) {
+            for (let py = Math.max(0, y - radius); py <= Math.min(GRID - 1, y + radius); py++) {
+                const row = { x: px, y: py, color: selectedColor, id: crypto.randomUUID() };
+                if (pixels.get(pixelKey(row))?.color === selectedColor) continue;
+                pending.set(pixelKey(row), row);
+                // Keep every cell durable and use the same batched sync as the small pen.
+                try {
+                    localStorage.setItem(PENDING_PREFIX + pixelKey(row), JSON.stringify(row));
+                } catch { storageFailed = true; }
+                applyPixel(row);
+            }
+        }
         updateStatus();
         scheduleSave();
     }
@@ -265,14 +298,16 @@
             e.preventDefault();
             e.stopPropagation();
             painting = true;
+            lastTappedColor = '';
+            colorTapCount = 0;
             lastPainted = '';
             const { x, y } = cellFromEvent(e);
-            paintCell(x, y);
+            paintBrush(x, y);
         });
         canvas.addEventListener('mousemove', (e) => {
             if (!painting) return;
             const { x, y } = cellFromEvent(e);
-            paintCell(x, y);
+            paintBrush(x, y);
         });
         window.addEventListener('mouseup', () => {
             painting = false;

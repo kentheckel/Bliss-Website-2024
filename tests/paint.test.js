@@ -9,7 +9,7 @@ import { chromium } from 'playwright';
 const source = readFileSync(new URL('../paint.js', import.meta.url), 'utf8');
 const index = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const modal = index.slice(index.indexOf('<div id="ModalPaint"'), index.indexOf('<!-- MARK:', index.indexOf('<div id="ModalPaint"') + 1));
-const html = `<button id="paintBtn">Paint.exe</button>${modal.split('<script')[0]}<script src="/paint.js"></script>`;
+const html = `<meta charset="utf-8"><button id="paintBtn">Paint.exe</button>${modal.split('<script')[0]}<script src="/paint.js"></script>`;
 const key = row => `${row.x},${row.y}`;
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function until(fn, message) {
@@ -188,5 +188,61 @@ test('Paint persistence and collaboration', async t => {
             await b.evaluate(() => window.receivePixel({ eventType: 'DELETE', old: { x: 32, y: 33 } }));
             assert.equal(await colorAt(b, 32, 33), '#FFFFFF');
         } finally { await other.close(); }
+    });
+
+    await t.test('five consecutive color taps unlock a 5×5 brush that syncs and erases', async () => {
+        await reset(); const a = await open(), b = await open();
+        const red = a.locator('[data-color="#ED1C24"]');
+        for (let i = 0; i < 4; i++) await red.click();
+        await paint(a, 10, 10); await settled(a);
+        assert.equal(rows.size, 1, 'Four taps must leave the normal pen active');
+        await red.click();
+        assert.equal(await a.locator('#paintBrushSize').isVisible(), false, 'Drawing breaks the tap sequence');
+        await a.locator('[data-color="#22B14C"]').click();
+        for (let i = 0; i < 4; i++) await red.click();
+        assert.equal(await a.locator('#paintBrushSize').isVisible(), false, 'Changing colors starts a fresh sequence');
+        await red.click();
+        assert.equal(await a.locator('#paintBrushSize').textContent(), 'Brush: 5 × 5');
+
+        let release; holdWrite = new Promise(resolve => { release = resolve; });
+        try {
+            await paint(a, 50, 50);
+            await until(async () => await colorAt(b, 52, 52) === '#ED1C24', 'Large brush missed the other tab');
+            for (let x = 48; x <= 52; x++) for (let y = 48; y <= 52; y++) {
+                assert.equal(await colorAt(b, x, y), '#ED1C24');
+            }
+            assert.equal(await colorAt(b, 53, 50), '#FFFFFF');
+            assert.equal(rows.size, 1, 'Large stroke should sync locally before its save completes');
+        } finally { release(); holdWrite = null; }
+        await settled(a); await settled(b);
+        assert.equal(rows.size, 26);
+
+        await a.locator('[data-color="#FFFFFF"]').click();
+        await paint(a, 50, 50); await settled(a);
+        for (let x = 48; x <= 52; x++) for (let y = 48; y <= 52; y++) {
+            assert.equal(rows.get(`${x},${y}`).color, '#FFFFFF', 'White should erase the whole brush area');
+        }
+        await b.reload(); await b.locator('#paintBtn').click(); await settled(b);
+        assert.equal(await colorAt(b, 50, 50), '#FFFFFF');
+        assert.equal(await colorAt(b, 10, 10), '#ED1C24');
+
+        for (let i = 0; i < 5; i++) await red.click();
+        assert.equal(await a.locator('#paintBrushSize').textContent(), 'Brush: 1 × 1');
+        await paint(a, 80, 80); await settled(a);
+        assert.equal(rows.size, 27, 'Five more taps should restore the one-cell pen');
+    });
+
+    await t.test('large brush drags and clips cleanly at canvas edges', async () => {
+        await reset(); const page = await open();
+        for (let i = 0; i < 5; i++) await page.locator('[data-color="#ED1C24"]').click();
+        await paint(page, 0, 0); await settled(page);
+        assert.equal(rows.size, 9, 'A centered 5×5 stamp clips to 3×3 at the corner');
+        const bounds = await page.locator('#paintCanvas').boundingBox();
+        await page.mouse.move(bounds.x + 2, bounds.y + 2);
+        await page.mouse.down();
+        await page.mouse.move(bounds.x + 52, bounds.y + 2, { steps: 10 });
+        await page.mouse.up(); await settled(page);
+        assert.equal(rows.size, 39, 'Dragging should leave a continuous clipped strip');
+        assert.ok([...rows.values()].every(row => row.x >= 0 && row.x <= 12 && row.y >= 0 && row.y <= 2));
     });
 });
