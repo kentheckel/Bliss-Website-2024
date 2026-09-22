@@ -121,6 +121,7 @@ const TASKBAR_LABEL_OVERRIDES = {
     ModalContact: 'Contact',
     ModalWelcome: 'ASFC Home',
     ModalOurWork: 'Channels',
+    ModalDeck: 'Deck',
 };
 
 function getTaskbarLabel(modal) {

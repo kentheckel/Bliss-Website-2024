@@ -3538,6 +3538,21 @@ body, html {
 .phone-services-frame { display: block; width: 100%; height: calc(100dvh - 55px); border: 0; }
 @media (max-width: 768px) { #ModalServices { display: none !important; } }
 
+/* Deck window — wide 16:9-ish frame so the deck's 1600x900 stage scales cleanly */
+#ModalDeck {
+    width: min(1360px, calc(100vw - 80px));
+    height: calc(100dvh - 110px);
+    max-width: none;
+    max-height: none;
+    left: max(40px, calc((100vw - 1360px) / 2));
+    top: 30px;
+    transform: none;
+    cursor: default;
+}
+.deck-frame { background: #153a76; }
+.phone-deck-frame { display: block; width: 100%; height: calc(100dvh - 55px); border: 0; background: #153a76; }
+@media (max-width: 768px) { #ModalDeck { display: none !important; } }
+
 /* ---- Desktop BIOS boot screen ---- */
 #boot-screen {
     position: fixed;

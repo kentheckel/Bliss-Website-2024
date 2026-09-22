@@ -21,7 +21,7 @@ http.createServer(async(req,res)=>{
     }
     let file=path.resolve(root,'.'+decodeURIComponent(url.pathname));
     if(!file.startsWith(root+path.sep)&&file!==root){res.writeHead(404);return res.end();}
-    if((await stat(file)).isDirectory())file=path.join(file,'index.html');
+    if((await stat(file)).isDirectory()){if(!url.pathname.endsWith('/')){res.writeHead(302,{Location:url.pathname+'/'+url.search});return res.end();}file=path.join(file,'index.html');}
     res.setHeader('Content-Type',types[path.extname(file)]||'application/octet-stream');res.end(await readFile(file));
   }catch{res.writeHead(404);res.end('Not found');}
 }).listen(Number(process.env.PORT||5188),'127.0.0.1',()=>console.log('ASFC preview: http://127.0.0.1:'+(process.env.PORT||5188)));

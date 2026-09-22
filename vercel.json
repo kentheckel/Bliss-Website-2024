@@ -1,5 +1,6 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "public",
+  "redirects": [{"source":"/deck","destination":"/deck/","permanent":false}],
   "headers": [{"source":"/(.*)","headers":[{"key":"Cache-Control","value":"private, no-store"}]}]
 }

@@ -1,5 +1,5 @@
 import { cpSync, existsSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
-const directories = ['Documents','Spurs','Videos','YouTube','agency','analytics','aspensnowmass','audio','clubamerica','data','facebook','games','gmail','images','js','lewishamilton','logos','lukadoncic','lukaslovenia','parisvsslovenia','pitch','access','admin','services','photos'];
+const directories = ['Documents','Spurs','Videos','YouTube','agency','analytics','aspensnowmass','audio','clubamerica','data','facebook','games','gmail','images','js','lewishamilton','logos','lukadoncic','lukaslovenia','parisvsslovenia','pitch','access','admin','services','photos','deck'];
 rmSync('public',{ recursive:true,force:true }); mkdirSync('public');
 const filter = source => !source.split('/').some(p => p.startsWith('.')) && !/\.(?:psd|zip|py|md|cjs|sh|map)$/i.test(source);
 for (const dir of directories) if(existsSync(dir)) cpSync(dir,`public/${dir}`,{recursive:true,filter});
