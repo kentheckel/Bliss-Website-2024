@@ -30,7 +30,7 @@ const PHONE_CHANNELS = [
 // ---- App registry ----
 const PHONE_APPS = [
     { id: "services", label: "Services", glyph: "▤", accent: "#d5ff4e" },
-    { id: "deck",     label: "Deck",       glyph: "▶",  accent: "#ffd34d" },
+    { id: "deck",     label: "Deck",       glyph: "📊", accent: "#1649d5" },
     { id: "work",     label: "Channels",   glyph: "📁", accent: "#ffcc33" },
     { id: "products", label: "Products",   glyph: "🧰", accent: "#7db8ff" },
     { id: "team",     label: "Team",       glyph: "👥", accent: "#c9a0ff" },
@@ -135,7 +135,7 @@ const APP_BODY = {
         return '<iframe class="phone-services-frame services-frame" src="services/index.html?v=20260910" title="ASFC services and ways to work together"></iframe>';
     },
     deck() {
-        return '<iframe class="phone-deck-frame deck-frame" src="deck/index.html?v=20260922" title="ASFC agency deck" allow="autoplay"></iframe>';
+        return '<iframe class="phone-deck-frame deck-frame" src="deck/index.html?v=20260922" title="ASFC agency deck" allow="autoplay; fullscreen" allowfullscreen></iframe>';
     },
     work() {
         const rows = PHONE_CHANNELS.map(c => `

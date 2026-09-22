@@ -4,7 +4,9 @@ import path from 'node:path';
 import { accessDecision } from '../server/access.js';
 import handler from '../api/session.js';
 const root = path.resolve('public');
-const types = {'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.png':'image/png','.svg':'image/svg+xml','.jpg':'image/jpeg','.ico':'image/x-icon','.pdf':'application/pdf','.mp3':'audio/mpeg','.webp':'image/webp','.woff2':'font/woff2'};
+const types = {'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.png':'image/png','.svg':'image/svg+xml','.jpg':'image/jpeg','.jpeg':'image/jpeg','.ico':'image/x-icon','.pdf':'application/pdf','.mp3':'audio/mpeg','.mp4':'video/mp4','.webp':'image/webp','.woff':'font/woff','.woff2':'font/woff2','.ttf':'font/ttf'};
+// Mirror the exact-path redirects Vercel applies from vercel.json so local and production match.
+const redirects = JSON.parse(await readFile('vercel.json','utf8')).redirects || [];
 http.createServer(async(req,res)=>{
   try {
     const url = new URL(req.url,'http://'+req.headers.host);
@@ -19,9 +21,11 @@ http.createServer(async(req,res)=>{
       res.status=code=>{res.statusCode=code;return res;};res.json=obj=>{res.setHeader('Content-Type','application/json');res.end(JSON.stringify(obj));};
       return await handler(req,res);
     }
+    const redirect=redirects.find(r=>r.source===url.pathname);
+    if(redirect){res.writeHead(redirect.permanent?308:307,{Location:redirect.destination+url.search});return res.end();}
     let file=path.resolve(root,'.'+decodeURIComponent(url.pathname));
     if(!file.startsWith(root+path.sep)&&file!==root){res.writeHead(404);return res.end();}
-    if((await stat(file)).isDirectory()){if(!url.pathname.endsWith('/')){res.writeHead(302,{Location:url.pathname+'/'+url.search});return res.end();}file=path.join(file,'index.html');}
-    res.setHeader('Content-Type',types[path.extname(file)]||'application/octet-stream');res.end(await readFile(file));
+    if((await stat(file)).isDirectory())file=path.join(file,'index.html');
+    res.setHeader('Content-Type',types[path.extname(file).toLowerCase()]||'application/octet-stream');res.end(await readFile(file));
   }catch{res.writeHead(404);res.end('Not found');}
 }).listen(Number(process.env.PORT||5188),'127.0.0.1',()=>console.log('ASFC preview: http://127.0.0.1:'+(process.env.PORT||5188)));

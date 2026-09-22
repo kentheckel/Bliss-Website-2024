@@ -48,8 +48,11 @@ body, html {
     position: fixed;
     top: 30px;
     left: 20px;
-    /* Allow height to grow but leave room for taskbar */
+    /* Allow height to grow but leave room for taskbar; extra icons wrap into a second column */
     max-height: calc(100vh - 150px);
+    flex-wrap: wrap;
+    align-content: flex-start;
+    column-gap: 4px;
 }
 
 /* Icon Button Styles */

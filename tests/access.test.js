@@ -19,12 +19,13 @@ test('password, tampering, expiry, rotation, and fail-closed configuration',()=>
 });
 test('maintenance and permanent private routes cannot be bypassed with direct links',()=>{
  const cookie='asfc_access='+createSession();
- for(const path of ['/','/index.html','/agency/index.html',...decks.map(d=>d.href)]){assert.equal(accessDecision(path),'login',path);assert.equal(accessDecision(path,cookie),'allow',path);}
+ for(const path of ['/','/index.html','/agency/index.html','/deck/',...decks.map(d=>d.href)]){assert.equal(accessDecision(path),'login',path);assert.equal(accessDecision(path,cookie),'allow',path);}
  for(const path of ['/server/access.js','/.env.local','/foo/.git/config','/tests/access.test.js','/supabase/file.sql','/api/unknown','/%2eenv'])assert.equal(accessDecision(path,cookie),'deny',path);
  assert.equal(accessDecision('/pitch/data/network-stats.json',cookie),'allow');
  assert.equal(accessDecision('/pitch/data/network-stats.json'),'login');
  assert.equal(accessDecision('/access/'),'allow');assert.equal(accessDecision('/api/session'),'allow');
  process.env.ASFC_MAINTENANCE='false';assert.equal(accessDecision('/'),'allow');assert.equal(accessDecision('/Documents/ThumbpresentationV3.png'),'allow');
+ assert.equal(accessDecision('/deck/'),'allow');assert.equal(accessDecision('/deck'),'allow');assert.equal(accessDecision('/deck/assets/images/spurs.png'),'allow');
  for(const path of ['/admin/','/lewishamilton/index.html','/lukadoncic/','/pitch/exports/ASFC-Pitch-Teams.pdf','/Documents/Cam%20Newton%20Youtube.pptx','/LUKADONCIC/'])assert.equal(accessDecision(path),'login',path);
  process.env.ASFC_MAINTENANCE='true';
 });

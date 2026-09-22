@@ -100,7 +100,7 @@ function openAgencyApp(app) {
         openApp(app);
         return;
     }
-    const windows = { team: "ModalAbout", products: "ModalOurProducts", work: "ModalOurWork", services: "ModalServices", games: "ModalGames", trash: "ModalTrash" };
+    const windows = { team: "ModalAbout", products: "ModalOurProducts", work: "ModalOurWork", services: "ModalServices", deck: "ModalDeck", games: "ModalGames", trash: "ModalTrash" };
     if (app === "explore") minimizeModal(document.getElementById("ModalWelcome"));
     else if (windows[app]) openModal(document.getElementById(windows[app]));
 }
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const header = modal.querySelector(':scope > .window-controls');
         if (!header) return;
         modal.classList.add('desktop-window');
-        if (modal.matches('#ModalWelcome, #ModalServices, [id^="ModalAnalytics"], [id^="ModalTextBox"]')) {
+        if (modal.matches('#ModalWelcome, #ModalServices, #ModalDeck, [id^="ModalAnalytics"], [id^="ModalTextBox"]')) {
             modal.classList.add('managed-window');
         }
         // Keep existing title nodes and button listeners when normalizing the header.
