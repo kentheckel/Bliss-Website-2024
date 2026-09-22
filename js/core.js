@@ -78,6 +78,7 @@ function openModal(modal) {
     // Skip cascade for modals that have specific positioning (Videos, error modals, etc.)
     const skipCascade = modal.id === 'ModalWelcome' ||
                         modal.id === 'ModalServices' ||
+                        modal.id === 'ModalDeck' ||
                         modal.id === 'ModalError' ||
                         modal.id === 'ModalLogin' ||
                         modal.id === 'mobileWarningModal';
@@ -97,11 +98,27 @@ function openModal(modal) {
 
     // Add to taskbar if not already there
     addToTaskbar(modal);
+
+    // The deck is keyboard-driven (arrow keys change slides), so hand it focus right away
+    const deckFrame = modal.querySelector('iframe.deck-frame');
+    if (deckFrame) deckFrame.focus();
+}
+
+// ---- Pause embedded media ----
+// A hidden window keeps its iframe alive, so stop any same-origin video/audio
+// (e.g. the deck's looping clips) when the window is closed or minimized.
+function pauseFrameMedia(modal) {
+    modal.querySelectorAll('iframe').forEach(frame => {
+        try {
+            frame.contentDocument?.querySelectorAll('video, audio').forEach(media => media.pause());
+        } catch (_) { /* cross-origin frame — nothing to pause */ }
+    });
 }
 
 // ---- Close Modal ----
 function closeModal(modal) {
     if (!modal) return;
+    pauseFrameMedia(modal);
     modal.style.display = 'none';
     removeFromTaskbar(modal);
 }
@@ -109,6 +126,7 @@ function closeModal(modal) {
 // ---- Minimize Modal ----
 function minimizeModal(modal) {
     if (!modal) return;
+    pauseFrameMedia(modal);
     modal.style.display = 'none';
     // Taskbar button stays — clicking it restores
     updateTaskbarButton(modal, true);
@@ -121,6 +139,7 @@ const TASKBAR_LABEL_OVERRIDES = {
     ModalContact: 'Contact',
     ModalWelcome: 'ASFC Home',
     ModalOurWork: 'Channels',
+    ModalDeck: 'Deck',
 };
 
 function getTaskbarLabel(modal) {
