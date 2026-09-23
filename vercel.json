@@ -2,5 +2,8 @@
   "buildCommand": "npm run build",
   "outputDirectory": "public",
   "redirects": [{"source":"/deck","destination":"/deck/","permanent":false}],
-  "headers": [{"source":"/(.*)","headers":[{"key":"Cache-Control","value":"private, no-store"}]}]
+  "headers": [
+    {"source":"/(.*)","headers":[{"key":"Cache-Control","value":"private, no-store"}]},
+    {"source":"/deck/assets/(.*)","headers":[{"key":"Cache-Control","value":"private, max-age=86400, stale-while-revalidate=604800"}]}
+  ]
 }

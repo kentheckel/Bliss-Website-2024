@@ -10,7 +10,7 @@ const redirects = JSON.parse(await readFile('vercel.json','utf8')).redirects || 
 http.createServer(async(req,res)=>{
   try {
     const url = new URL(req.url,'http://'+req.headers.host);
-    res.setHeader('Cache-Control','private, no-store');
+    res.setHeader('Cache-Control',url.pathname.startsWith('/deck/assets/')?'private, max-age=86400, stale-while-revalidate=604800':'private, no-store');
     const decision = accessDecision(url.pathname,req.headers.cookie);
     if(decision==='deny'){res.writeHead(404);return res.end('Not found');}
     if(decision==='login'||decision==='spurs-login'){res.writeHead(307,{Location:(decision==='spurs-login'?'/access/spurs.html':'/access/')+'?next='+encodeURIComponent(url.pathname+url.search)});return res.end();}
