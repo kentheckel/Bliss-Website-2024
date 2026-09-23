@@ -112,6 +112,7 @@ function renderHome() {
 
 // ---- App screen open/close ----
 function openApp(id) {
+    if (id === "deck") { location.assign("deck/"); return; } // the deck is its own full page
     const app = document.getElementById("phone-app");
     const title = document.getElementById("phone-app-title");
     const body = document.getElementById("phone-app-body");
@@ -133,9 +134,6 @@ function closeApp() {
 const APP_BODY = {
     services() {
         return '<iframe class="phone-services-frame services-frame" src="services/index.html?v=20260910" title="ASFC services and ways to work together"></iframe>';
-    },
-    deck() {
-        return '<iframe class="phone-deck-frame deck-frame" src="deck/index.html?v=20260922" title="ASFC agency deck" allow="autoplay; fullscreen" allowfullscreen></iframe>';
     },
     work() {
         const rows = PHONE_CHANNELS.map(c => `

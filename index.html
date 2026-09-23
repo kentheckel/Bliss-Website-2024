@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <!-- Fonts for the About-window theme variants (deck = Anton/Archivo/Plex Mono, studio = Roboto) -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="style.css?v=20260922deck" rel="stylesheet">
+    <link href="style.css?v=20260923deck" rel="stylesheet">
     <link href="agency/desktop.css?v=20260911bliss" rel="stylesheet">
     <link href="games/lock.css?v=20260910arcade" rel="stylesheet">
     <script src="games/access.js?v=20260910arcade"></script>
@@ -45,7 +45,7 @@
     </div>
     <!-- Loaded here (not at end of body) so it can hide instantly for
          returning visitors and start typing before the rest of the page paints -->
-    <script src="js/boot.js?v=20260818b"></script>
+    <script src="js/boot.js?v=20260923deck"></script>
 
     <!-- ============================================================= -->
     <!-- ASFC PHONE OS — mobile experience (shown only on small screens) -->
@@ -122,7 +122,7 @@
             <span>Services</span>
         </button>
 
-        <!-- Deck — the September 2026 agency deck, also served at /deck -->
+        <!-- Deck — boots DECK.EXE then opens the September 2026 agency deck full page at /deck -->
         <button id="deckBtn" class="icon-btn">
             <img src="images/icons/Icon_Deck.svg" alt="Deck Icon">
             <span>Deck</span>
@@ -206,18 +206,6 @@
                 </div>
             </div>
             <iframe class="modal-iframe services-frame" src="services/index.html?v=20260910" title="ASFC services and ways to work together" loading="lazy"></iframe>
-        </div>
-
-        <!-- MARK: Deck Modal — the full ASFC agency deck, same file that lives at /deck -->
-        <div id="ModalDeck" class="modal deck-modal">
-            <div id="modalHeaderDeck" class="window-controls">
-                <span class="title">Deck — Antisocial Friends Club</span>
-                <div class="window-btn-container">
-                    <button class="window-btn">-</button>
-                    <button class="window-btn">X</button>
-                </div>
-            </div>
-            <iframe class="modal-iframe deck-frame" src="deck/index.html?v=20260922" title="ASFC agency deck" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
 
         <!-- About Modal (iframe to load HTML content) -->
@@ -1407,16 +1395,16 @@ Open Games and enter the password to play.</textarea>
             </audio>
 
             <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-            <script src="js/core.js?v=20260911feedback"></script>
+            <script src="js/core.js?v=20260923deck"></script>
             <script src="js/icons.js"></script>
             <script src="js/videos.js?v=20260908"></script>
             <script src="js/contact-subject.js?v=20260915"></script>
             <script src="js/misc.js?v=20260911bliss"></script>
             <script src="js/stats.js?v=20260910windows"></script>
             <script src="js/easter-eggs.js?v=20260908"></script>
-            <script src="js/phone.js?v=20260922deck"></script>
+            <script src="js/phone.js?v=20260923deck"></script>
             <script src="js/arcade-access.js?v=20260910arcade"></script>
-            <script src="js/agency-desktop.js?v=20260911feedback"></script>
+            <script src="js/agency-desktop.js?v=20260923deck"></script>
             <script src="paint.js?v=20260916a"></script>
 </body>
 

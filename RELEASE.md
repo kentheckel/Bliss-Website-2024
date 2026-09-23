@@ -45,3 +45,12 @@ cannot update it. See `agency/README.md` for the data source and update procedur
 
 The contact form is awaiting the owner's manual submission check. No automated
 check submits the form or sends email.
+
+## Deck
+
+`/deck` serves the September 2026 agency deck from `deck/`, a copy of the
+"ASFC Website Bundle.zip" export from the ASFC Deck Creator project. After
+re-extracting a new bundle, run `scripts/optimize-deck-assets.sh` to convert
+the images to WebP, the fonts to WOFF2 and re-encode the clips; the raw export
+is several times larger than the page needs. Deck assets are the only files
+served with a browser cache (one day), set in `middleware.ts` and `vercel.json`.

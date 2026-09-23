@@ -78,7 +78,6 @@ function openModal(modal) {
     // Skip cascade for modals that have specific positioning (Videos, error modals, etc.)
     const skipCascade = modal.id === 'ModalWelcome' ||
                         modal.id === 'ModalServices' ||
-                        modal.id === 'ModalDeck' ||
                         modal.id === 'ModalError' ||
                         modal.id === 'ModalLogin' ||
                         modal.id === 'mobileWarningModal';
@@ -98,10 +97,6 @@ function openModal(modal) {
 
     // Add to taskbar if not already there
     addToTaskbar(modal);
-
-    // The deck is keyboard-driven (arrow keys change slides), so hand it focus right away
-    const deckFrame = modal.querySelector('iframe.deck-frame');
-    if (deckFrame) deckFrame.focus();
 }
 
 // ---- Pause embedded media ----
@@ -139,7 +134,6 @@ const TASKBAR_LABEL_OVERRIDES = {
     ModalContact: 'Contact',
     ModalWelcome: 'ASFC Home',
     ModalOurWork: 'Channels',
-    ModalDeck: 'Deck',
 };
 
 function getTaskbarLabel(modal) {
@@ -283,6 +277,12 @@ function autoRegisterIcons() {
 
             if (btnId === 'contactBtn') {
                 openContactComposer();
+                return;
+            }
+
+            // The deck boots into its own full page (see launchDeck in boot.js)
+            if (btnId === 'deckBtn') {
+                launchDeck();
                 return;
             }
 
