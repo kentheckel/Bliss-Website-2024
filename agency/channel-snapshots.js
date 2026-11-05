@@ -1,4 +1,4 @@
-// Historical series copied from the Studio pages on this branch. Snapshot: July 2026.
+// Series copied from the Studio pages. Each channel retains its own snapshot and scope.
 window.ASFC_CHANNEL_SNAPSHOTS = {
   "SanAntonioSpurs": {
     "name": "San Antonio Spurs",
@@ -27,14 +27,25 @@ window.ASFC_CHANNEL_SNAPSHOTS = {
   "TheLateRun": {
     "name": "The Late Run",
     "handle": "@thelaterunshow",
-    "subscribers": "43.9K",
-    "snapshot": "July 2026",
+    "subscribers": "59.2K",
+    "snapshot": "November 4, 2026",
     "source": "analytics/indexYouTubeStudioTheLateRun.html",
+    "period": "November 20, 2025\u2013November 1, 2026 \u00b7 Pacific",
+    "metric": "Cumulative owner-report views; final month includes November 1 only",
     "points": [
-      ["Apr 2026", 10447766],
-      ["May 2026", 17768521],
-      ["Jun 2026", 24974736],
-      ["Jul 2026", 43435096]
+      ["Nov 2025", 0],
+      ["Dec 2025", 0],
+      ["Jan 2026", 0],
+      ["Feb 2026", 976082],
+      ["Mar 2026", 7272453],
+      ["Apr 2026", 10648931],
+      ["May 2026", 18039810],
+      ["Jun 2026", 25155194],
+      ["Jul 2026", 45121246],
+      ["Aug 2026", 49258483],
+      ["Sep 2026", 53144061],
+      ["Oct 2026", 60554595],
+      ["Nov 1, 2026", 60663719]
     ]
   },
   "AllTheSmoke": {

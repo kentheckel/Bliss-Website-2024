@@ -33,7 +33,7 @@
             <h2 id="execution-heading">How we made it work</h2>
             <ol>${story.moves.map(([heading, copy]) => `<li><h3>${escape(heading)}</h3><p>${escape(copy)}</p></li>`).join('')}</ol>
         </section>
-        <section class="result" aria-label="A result of the work">
+        <section class="result" aria-label="Reported performance">
             <strong>${escape(story.result)}</strong>
             <div><p>${escape(story.resultLabel)}</p><small>${escape(story.period)}</small></div>
         </section>

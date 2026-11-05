@@ -14,12 +14,12 @@ const INQUIRY_ENDPOINT = "https://formsubmit.co/kent@kentheckel.com";
 // ---- Channel data (mirrors the desktop "Our Work" folder) ----
 // story: responsive strategy page | deck: presentation | since: views since we teamed up
 const PHONE_CHANNELS = [
-    { id: "AllTheSmoke", name: "All The Smoke",      logo: "images/channels/AllTheSmoke.png",      subs: "1.33M", since: "225M", story: "analytics/strategy.html?channel=AllTheSmoke&v=20260909release",      watch: "https://www.youtube.com/@allthesmoke" },
-    { id: "AllTheSmokeFight", name: "All The Smoke Fight", logo: "images/channels/AllTheSmokeFight.png", subs: "1.93M", since: "61.6M", story: "analytics/strategy.html?channel=AllTheSmokeFight&v=20260909release", watch: "https://www.youtube.com/results?search_query=All+The+Smoke+Fight" },
+    { id: "AllTheSmoke", name: "All The Smoke",      logo: "images/channels/AllTheSmoke.png",      subs: "1.33M", since: "225M", story: "analytics/strategy.html?channel=AllTheSmoke&v=20261105laterun",      watch: "https://www.youtube.com/@allthesmoke" },
+    { id: "AllTheSmokeFight", name: "All The Smoke Fight", logo: "images/channels/AllTheSmokeFight.png", subs: "1.93M", since: "61.6M", story: "analytics/strategy.html?channel=AllTheSmokeFight&v=20261105laterun", watch: "https://www.youtube.com/results?search_query=All+The+Smoke+Fight" },
     { id: "SanAntonioSpurs", name: "San Antonio Spurs",  logo: "images/channels/SanAntonioSpurs.png",  subs: "265k",  since: "139M", deck: "Spurs/ASFC%20Spurs%20Season%20Story%20Deck%20v5%20-%20Presentation%20Mode.html", watch: "https://www.youtube.com/@spurs" },
-    { id: "KGCertified", name: "KG Certified",       logo: "images/channels/KGCertified.png",      subs: "260k",  since: "39.9M", story: "analytics/strategy.html?channel=KGCertified&v=20260909release",     watch: "https://www.youtube.com/results?search_query=KG+Certified" },
-    { id: "TheLateRun", name: "The Late Run",       logo: "images/channels/TheLateRun.png",       subs: "43.9k", since: "43.4M", story: "analytics/strategy.html?channel=TheLateRun&v=20260909release",      watch: "https://www.youtube.com/results?search_query=The+Late+Run+Ochocinco" },
-    { id: "RingChamps", name: "Ring Champs",        logo: "images/channels/RingChamps.png",       subs: "47.7k", since: "32.9M", story: "analytics/strategy.html?channel=RingChamps&v=20260909release",      watch: "https://www.youtube.com/results?search_query=Ring+Champs+AK+Barak" },
+    { id: "KGCertified", name: "KG Certified",       logo: "images/channels/KGCertified.png",      subs: "260k",  since: "39.9M", story: "analytics/strategy.html?channel=KGCertified&v=20261105laterun",     watch: "https://www.youtube.com/results?search_query=KG+Certified" },
+    { id: "TheLateRun", name: "The Late Run",       logo: "images/channels/TheLateRun.png",       subs: "59.2K", viewsNote: "60.81M public YouTube views · Nov 4, 2026", story: "analytics/strategy.html?channel=TheLateRun&v=20261105laterun",      watch: "https://www.youtube.com/results?search_query=The+Late+Run+Ochocinco" },
+    { id: "RingChamps", name: "Ring Champs",        logo: "images/channels/RingChamps.png",       subs: "47.7k", since: "32.9M", story: "analytics/strategy.html?channel=RingChamps&v=20261105laterun",      watch: "https://www.youtube.com/results?search_query=Ring+Champs+AK+Barak" },
     { id: "CamNewton", name: "Cam Newton",         logo: "images/cam.jpg",   subs: "1.57M", watch: "https://youtube.com/@CamNewton" },
     { id: "4thand1", name: "4th&1 w/ Cam Newton", logo: "images/4th.jpg",  subs: "300k",  watch: "https://www.youtube.com/@4thand1CamNewton" },
     { id: "FunkyFriday", name: "Funky Friday",       logo: "images/funky.jpg", subs: "126k",  watch: "https://www.youtube.com/@FunkyFridayCamNewton" },
@@ -141,7 +141,7 @@ const APP_BODY = {
                 <img src="${c.logo}" alt="${esc(c.name)}" loading="lazy">
                 <div class="pw-meta">
                     <div class="pw-name">${esc(c.name)}</div>
-                    <div class="pw-sub">${esc(c.subs)} subscribers${c.since ? ` · +${c.since} views with us` : ""}</div>
+                    <div class="pw-sub">${esc(c.subs)} subscribers${c.viewsNote ? ` · ${esc(c.viewsNote)}` : c.since ? ` · +${c.since} views with us` : ""}</div>
                 </div>
                 <span class="pw-arrow">›</span>
             </button>`).join("");
