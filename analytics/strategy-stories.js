@@ -135,8 +135,8 @@ window.ASFC_STRATEGY_STORIES = {
             ['Plan the whole life of an episode.', 'We handled the clips and vertical content for each platform, supported by title and thumbnail testing.'],
             ['Work backward from the business moment.', 'The World Cup gave us a clear target for getting the show optimized and ready for sponsors.']
         ],
-        result: '+43.4M', resultLabel: 'YouTube views from the channel launch', period: 'Reporting window · Jan–Jul 2026',
-        detail: 'The channel grew from zero to 43.9K subscribers in roughly seven months. The original recap reports 18M views in the last 28 days as the World Cup window arrived. The strategy connected launch planning, ongoing publishing, and a specific commercial milestone.',
+        result: '211.0M', resultLabel: 'Reported views and plays across five platforms', period: 'Cumulative snapshots · Nov 3–4, 2026',
+        detail: 'The November wrap-up records 211,014,126 reported views and plays: 62,259,949 Instagram plays, 43,227,387 TikTok plays, 31,638,100 Facebook Reel plays and other video views, 13,081,156 X post views, and 60,807,534 public YouTube views. YouTube reports 59,200 total subscribers across 759 public videos. The archive contains 39 public video publications with at least one million views or plays. Counters use different platform definitions and do not establish unique audience or ASFC-attributed results; collaborations are included, while identified reposts and three unlisted YouTube assets are excluded from performance totals.',
         role: 'Launch strategy, packaging & clips production',
     },
     RingChamps: {

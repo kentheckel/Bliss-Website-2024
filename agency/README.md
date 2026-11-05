@@ -21,15 +21,14 @@ shown in its expanded story. Kent's personal channel is identified as founder
 experience. Spurs retains its full presentation and landscape window.
 
 The compact client cards in `agency/index.html` identify the work's scope:
-all social platforms for Spurs, YouTube for the other four featured projects.
+all social platforms for Spurs, five platforms for The Late Run, and YouTube for the other three featured projects.
 Spurs leads with Kent's estimated 4.8B season views, separately labeled from the
 139.1M YouTube views and 265K total YouTube subscribers in its July 2026 snapshot.
 The three newer Studio snapshots retain their exact source series in
 `channel-snapshots.js` for reference; graphs live in the full Studio apps.
 
 “+” identifies views generated or subscribers gained, never a total subscriber
-count or a percentage change. The Late Run's strategy report explicitly records
-its growth from zero, so its 43.9K subscribers are gains. All the Smoke's 1.33M
+count or a percentage change. The Late Run now uses the November 3–4 social wrap-up: 211,014,126 reported views and plays across five platforms, including 60,807,534 public YouTube views. Its 59,200 YouTube subscribers are a rounded public total, not gains. All the Smoke's 1.33M
 subscribers remain a labeled total. Cam's figures describe his main channel,
 rather than a sum of the three shows. Cam's original monthly cumulative series
 is preserved in `analytics/cam-view-history.js`: 53,077,981 views before the
@@ -39,8 +38,7 @@ homepage summary uses the same reporting period and result. The prior 309.6M
 summary was inconsistent with the source series and has been replaced.
 
 Card dates describe reporting periods, not confirmed engagement end dates.
-The Late Run's report covers January–July 2026, All the Smoke March 2025–July
-2026, Cam January 2023–December 2024, and Jim February 2020–January 2021. Spurs
+The Late Run's public counters are November 3–4, 2026 snapshots; its separate YouTube owner report covers November 20, 2025–November 1, 2026 in Pacific time. All the Smoke covers March 2025–July 2026, Cam January 2023–December 2024, and Jim February 2020–January 2021. Spurs
 uses the 2025–26 season for its broader result and a separate May 2025–July 2026
 label for YouTube. Actual engagement start/end dates and ongoing status have been
 requested from Kent; do not infer them from these reporting windows.
@@ -104,3 +102,11 @@ The /Spurs/ directory is server-protected independently of maintenance mode.
 ASFC_SPURS_PASSWORD_HASH configures a deck-only password; the existing universal
 admin session also grants access. Spurs sessions cannot open admin or other
 private decks. The gate offers “Email us” to prefill a composer request.
+
+## The Late Run · November 2026 refresh
+
+Sources: [Social Wrap-Up & Post Catalog](https://app.notion.com/p/40d051ef80298179bbeaede7fbef573c) and [YouTube Channel Analytics & Growth](https://app.notion.com/p/40d051ef8029812c8700f4ea4cad108a), read November 5, 2026.
+
+The deck, homepage card, strategy story, phone summary, Studio page, and reference series use the updated figures. The deck chart shows the latest four complete owner-report months (July–October); the Studio chart cumulatively sums the direct monthly reports through November 1, totaling 60,663,719 views. Neither series splices the older July snapshot into the new owner report.
+
+The 211,014,126 total combines 197,932,970 video views/plays and 13,081,156 X post views. Facebook includes 25,023 other video views beyond its 31,613,077 Reel plays. Identified reposts and three unlisted YouTube assets are excluded; collaborations remain included. Platform definitions differ, so this is not unique audience or proof of ASFC attribution. The 39 million-view/play videos are platform publications, not unique creatives. Public YouTube video sums, channel counters, and dated owner analytics remain separate.

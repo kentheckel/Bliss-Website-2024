@@ -46,54 +46,29 @@
                 <div class="tab">Trends</div>
             </div>
             <div class="date-range">
-                <div class="date">Jan 2026 – Jul 2026</div>
-                <div class="status">Active</div>
+                <div class="date">Nov 20, 2025 – Nov 1, 2026 · Pacific</div>
+                <div class="status">Owner analytics · refreshed Nov 4</div>
             </div>
         </div>
         <div class="overview">
             <div class="summary">
                 <div class="card">
-                    <div class="description">Views Since We Teamed Up (Jan 2026)</div>
-                    <div class="value">43.4M <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">103 uploads in the last 28 days</div>
+                    <div class="description">YouTube owner-report views</div>
+                    <div class="value">60.66M</div>
+                    <div class="description">60,663,719 views through Nov 1, 2026</div>
                     <div class="info-card">
-                        <div class="info-item">
-                            <div class="info-label">All-Time Channel Views</div>
-                            <div class="info-value">43,435,096</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Average Monthly Views</div>
-                            <div class="info-value">10,995,776</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Views (Last 28 Days)</div>
-                            <div class="info-value">18,042,757</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Last Month Views</div>
-                            <div class="info-value">18,460,360</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Highest Monthly Views</div>
-                            <div class="info-value">18,460,360</div>
-                        </div>
+                        <div class="info-item"><div class="info-label">Watch hours</div><div class="info-value">973,610</div></div>
+                        <div class="info-item"><div class="info-label">Net subscribers · owner period</div><div class="info-value">+59,209</div></div>
+                        <div class="info-item"><div class="info-label">Public video views · Nov 4 snapshot</div><div class="info-value">60,807,534</div></div>
+                        <div class="info-item"><div class="info-label">Highest monthly views · July 2026</div><div class="info-value">19,966,052</div></div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="description">Total Uploads</div>
-                    <div class="value">489<i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">Yes, that's correct</div>
-                </div>
-                <div class="card">
-                    <div class="description">Subscribers</div>
-                    <div class="value">43.9k <i class="fas fa-arrow-up" style="color: #00c853;"></i></div>
-                    <div class="description">+11,799 in the last 28 days</div>
-                </div>
+                <div class="card"><div class="description">Public videos</div><div class="value">759</div><div class="description">Nov 4 snapshot · excludes 3 unlisted assets</div></div>
+                <div class="card"><div class="description">Total subscribers</div><div class="value">59.2K</div><div class="description">Nov 4 public snapshot · may be rounded</div></div>
             </div>
             <div class="chart">
                 <div class="chart-header">
-                    <span>Views since we teamed up</span>
-                    <button class="see-more">See more</button>
+                    <span>Cumulative owner-report views · through Nov 1</span>
                 </div>
                 <canvas id="viewsChart" class="chart-graph"></canvas>
             </div>
@@ -101,13 +76,22 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // The Late Run views gained since the partnership started (Jan 2026),
-        // cumulative by month (source: ChannelTrack / Notion YouTube Analytics)
+        // Direct monthly owner reports; cumulative sums. Final month is Nov 1 only.
+        // Source: Notion YouTube — Channel Analytics & Growth, Nov 4 refresh.
         const monthlyViews = [
-            ["Apr 2026", 10447766],
-            ["May 2026", 17768521],
-            ["Jun 2026", 24974736],
-            ["Jul 2026", 43435096]
+            ["Nov 2025", 0],
+            ["Dec 2025", 0],
+            ["Jan 2026", 0],
+            ["Feb 2026", 976082],
+            ["Mar 2026", 7272453],
+            ["Apr 2026", 10648931],
+            ["May 2026", 18039810],
+            ["Jun 2026", 25155194],
+            ["Jul 2026", 45121246],
+            ["Aug 2026", 49258483],
+            ["Sep 2026", 53144061],
+            ["Oct 2026", 60554595],
+            ["Nov 1, 2026", 60663719]
         ];
 
         const labels = monthlyViews.map(item => item[0]);
@@ -119,18 +103,18 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Views Since Partnership',
+                    label: 'Cumulative owner-report views',
                     data: data,
                     borderColor: '#40B4D9',
                     backgroundColor: 'rgba(64, 180, 217, 0.2)',
                     fill: true,
-                    tension: 0.4
+                    tension: 0
                 }]
             },
             options: {
                 scales: {
                     x: { display: true, title: { display: true, text: 'Month' } },
-                    y: { display: true, title: { display: true, text: 'Views Since Partnership' } }
+                    y: { display: true, title: { display: true, text: 'Cumulative owner-report views' } }
                 },
                 plugins: { legend: { display: false } }
             }
