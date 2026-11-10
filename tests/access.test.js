@@ -19,7 +19,7 @@ test('password, tampering, expiry, rotation, and fail-closed configuration',()=>
 });
 test('maintenance and permanent private routes cannot be bypassed with direct links',()=>{
  const cookie='asfc_access='+createSession();
- for(const path of ['/','/index.html','/agency/index.html','/deck/',...decks.map(d=>d.href)]){assert.equal(accessDecision(path),'login',path);assert.equal(accessDecision(path,cookie),'allow',path);}
+ for(const path of ['/','/index.html','/agency/index.html','/deck/',...decks.map(d=>d.href).filter(href=>href!=='/clubamerica/')]){assert.equal(accessDecision(path),'login',path);assert.equal(accessDecision(path,cookie),'allow',path);}
  for(const path of ['/server/access.js','/.env.local','/foo/.git/config','/tests/access.test.js','/supabase/file.sql','/api/unknown','/%2eenv'])assert.equal(accessDecision(path,cookie),'deny',path);
  assert.equal(accessDecision('/pitch/data/network-stats.json',cookie),'allow');
  assert.equal(accessDecision('/pitch/data/network-stats.json'),'login');
@@ -28,6 +28,57 @@ test('maintenance and permanent private routes cannot be bypassed with direct li
  assert.equal(accessDecision('/deck/'),'allow');assert.equal(accessDecision('/deck'),'allow');assert.equal(accessDecision('/deck/assets/images/spurs.png'),'allow');
  for(const path of ['/admin/','/lewishamilton/index.html','/lukadoncic/','/pitch/exports/ASFC-Pitch-Teams.pdf','/Documents/Cam%20Newton%20Youtube.pptx','/LUKADONCIC/'])assert.equal(accessDecision(path),'login',path);
  process.env.ASFC_MAINTENANCE='true';
+});
+test('Club América is public without unlocking the library or other decks',()=>{
+ const maintenance=process.env.ASFC_MAINTENANCE;
+ try {
+  for(const mode of ['true','false',undefined]){
+   if(mode===undefined)delete process.env.ASFC_MAINTENANCE;
+   else process.env.ASFC_MAINTENANCE=mode;
+   for(const path of ['/clubamerica','/clubamerica/','/clubamerica/index.html','/clubamerica/assets/images/ca-badge.svg','/clubamerica/assets/fonts/font-1.woff2'])assert.equal(accessDecision(path),'allow',path);
+   for(const path of ['/admin/','/pitch/','/lukadoncic/','/lewishamilton/'])assert.equal(accessDecision(path),'login',path);
+   for(const path of ['/clubamerica/.env','/clubamerica/../admin/','/clubamerica/source.ts'])assert.equal(accessDecision(path),'deny',path);
+  }
+  process.env.ASFC_MAINTENANCE='true';
+  assert.equal(accessDecision('/clubamerica-private/'),'login');
+ } finally {process.env.ASFC_MAINTENANCE=maintenance;}
+});
+test('Spurs 2026 is public during maintenance without opening the original Spurs deck',()=>{
+ const maintenance=process.env.ASFC_MAINTENANCE;
+ try {
+  for(const mode of ['true','false',undefined]){
+   if(mode===undefined)delete process.env.ASFC_MAINTENANCE;
+   else process.env.ASFC_MAINTENANCE=mode;
+   for(const path of ['/spurs2026','/spurs2026/','/spurs2026/index.html'])assert.equal(accessDecision(path),'allow',path);
+   assert.equal(accessDecision('/Spurs/'),mode==='false'?'spurs-login':'login');
+   assert.equal(accessDecision('/admin/'),'login');
+   for(const path of ['/spurs2026/.env','/spurs2026/../admin/','/spurs2026/source.ts'])assert.equal(accessDecision(path),'deny',path);
+  }
+  process.env.ASFC_MAINTENANCE='true';
+  assert.equal(accessDecision('/spurs2026-private/'),'login');
+  assert.equal(readFileSync('public/spurs2026/index.html','utf8'),readFileSync('spurs2026/index.html','utf8'));
+ } finally {
+  if(maintenance===undefined)delete process.env.ASFC_MAINTENANCE;
+  else process.env.ASFC_MAINTENANCE=maintenance;
+ }
+});
+test('Hornets and Utah are public while private routes remain protected',()=>{
+ const maintenance=process.env.ASFC_MAINTENANCE;
+ try {
+  for(const mode of ['true','false',undefined]){
+   if(mode===undefined)delete process.env.ASFC_MAINTENANCE;
+   else process.env.ASFC_MAINTENANCE=mode;
+   for(const path of ['/hornets','/hornets/','/hornets/index.html','/utah','/utah/','/utah/index.html'])assert.equal(accessDecision(path),'allow',path);
+   for(const path of ['/admin/','/pitch/'])assert.equal(accessDecision(path),'login',path);
+   for(const path of ['/hornets/.env','/hornets/../admin/','/hornets/source.ts','/utah/.env','/utah/../admin/','/utah/source.ts'])assert.equal(accessDecision(path),'deny',path);
+  }
+  process.env.ASFC_MAINTENANCE='true';
+  assert.equal(accessDecision('/hornets-private/'),'login');
+  assert.equal(accessDecision('/utah-private/'),'login');
+ } finally {
+  if(maintenance===undefined)delete process.env.ASFC_MAINTENANCE;
+  else process.env.ASFC_MAINTENANCE=maintenance;
+ }
 });
 test('post-login redirects stay on this site',()=>{
  for(const value of ['https://evil.test','//evil.test','/\\evil.test','/access/','/x\r\nLocation: evil',null])assert.equal(safeNext(value),'/');
@@ -76,4 +127,67 @@ test('Spurs access stays private after launch and never grants admin or other de
   process.env.ASFC_MAINTENANCE = 'true';
   assert.equal(accessDecision('/', cookie), 'login');
  } finally { process.env.ASFC_MAINTENANCE = 'true'; }
+});
+
+
+test('Texas A&M is public while private routes and source files remain protected',()=>{
+ const maintenance=process.env.ASFC_MAINTENANCE;
+ try {
+  for(const mode of ['true','false',undefined]){
+   if(mode===undefined)delete process.env.ASFC_MAINTENANCE;
+   else process.env.ASFC_MAINTENANCE=mode;
+   for(const path of ['/texasAM','/texasAM/','/texasAM/index.html'])assert.equal(accessDecision(path),'allow',path);
+   for(const path of ['/admin/','/pitch/'])assert.equal(accessDecision(path),'login',path);
+   for(const path of ['/texasAM/.env','/texasAM/../admin/','/texasAM/source.ts'])assert.equal(accessDecision(path),'deny',path);
+  }
+  process.env.ASFC_MAINTENANCE='true';
+  assert.equal(accessDecision('/texasAM-private/'),'login');
+  assert.equal(readFileSync('public/texasAM/index.html','utf8'),readFileSync('texasAM/index.html','utf8'));
+ } finally {
+  if(maintenance===undefined)delete process.env.ASFC_MAINTENANCE;
+  else process.env.ASFC_MAINTENANCE=maintenance;
+ }
+});
+
+test('Giro is public while private routes and source files remain protected',()=>{
+ const maintenance=process.env.ASFC_MAINTENANCE;
+ try {
+  for(const mode of ['true','false',undefined]){
+   if(mode===undefined)delete process.env.ASFC_MAINTENANCE;
+   else process.env.ASFC_MAINTENANCE=mode;
+   for(const path of ['/giro','/giro/','/giro/index.html'])assert.equal(accessDecision(path),'allow',path);
+   for(const path of ['/admin/','/pitch/'])assert.equal(accessDecision(path),'login',path);
+   for(const path of ['/giro/.env','/giro/../admin/','/giro/source.ts'])assert.equal(accessDecision(path),'deny',path);
+  }
+  process.env.ASFC_MAINTENANCE='true';
+  assert.equal(accessDecision('/giro-private/'),'login');
+  assert.equal(readFileSync('public/giro/index.html','utf8'),readFileSync('giro/index.html','utf8'));
+ } finally {
+  if(maintenance===undefined)delete process.env.ASFC_MAINTENANCE;
+  else process.env.ASFC_MAINTENANCE=maintenance;
+ }
+});
+
+
+test('every uploaded deck is shipped intact with a public canonical route',()=>{
+ const routes=['clubamerica','spurs2026','hornets','utah','allthesmokeOctober','texasAM','giro'];
+ const {redirects}=JSON.parse(readFileSync('vercel.json','utf8'));
+ const maintenance=process.env.ASFC_MAINTENANCE;
+ try {
+  for(const route of routes){
+   const source=readFileSync(`${route}/index.html`);
+   assert.deepEqual(readFileSync(`public/${route}/index.html`),source,`${route} must be included unchanged`);
+   assert.ok(redirects.some(r=>r.source===`/${route}`&&r.destination===`/${route}/`),`${route} canonical redirect`);
+   for(const mode of ['true','false',undefined]){
+    if(mode===undefined)delete process.env.ASFC_MAINTENANCE;
+    else process.env.ASFC_MAINTENANCE=mode;
+    for(const path of [`/${route}`,`/${route}/`,`/${route}/index.html`])assert.equal(accessDecision(path),'allow',path);
+    assert.equal(accessDecision('/admin/'),'login');
+    assert.equal(accessDecision(`/${route}/../admin/`),'deny');
+   }
+  }
+ } finally {
+  if(maintenance===undefined)delete process.env.ASFC_MAINTENANCE;
+  else process.env.ASFC_MAINTENANCE=maintenance;
+ }
 });
