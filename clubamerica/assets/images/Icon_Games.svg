@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" shape-rendering="crispEdges">
+  <!-- Outer black border (chunky) -->
+  <rect x="4" y="4" width="72" height="72" fill="#000"/>
+
+  <!-- Win95 bevel top/left -->
+  <rect x="6" y="6" width="68" height="2" fill="#ffffff"/>
+  <rect x="6" y="6" width="2" height="68" fill="#ffffff"/>
+
+  <!-- Dark grey bevel bottom/right -->
+  <rect x="6" y="72" width="68" height="2" fill="#808080"/>
+  <rect x="72" y="6" width="2" height="68" fill="#808080"/>
+
+  <!-- Background panel (Win95 teal) -->
+  <rect x="8" y="8" width="64" height="64" fill="#008080"/>
+
+  <!-- =========================== -->
+  <!-- JOYSTICK -->
+  <!-- =========================== -->
+
+  <!-- Base (chunky gray box with bevel) -->
+  <!-- Base black outline -->
+  <rect x="16" y="50" width="48" height="18" fill="#000"/>
+  <!-- Base body -->
+  <rect x="18" y="52" width="44" height="14" fill="#c0c0c0"/>
+  <!-- Base bevel highlights -->
+  <rect x="18" y="52" width="44" height="2" fill="#ffffff"/>
+  <rect x="18" y="52" width="2" height="14" fill="#ffffff"/>
+  <!-- Base bevel shadows -->
+  <rect x="18" y="64" width="44" height="2" fill="#404040"/>
+  <rect x="60" y="52" width="2" height="14" fill="#404040"/>
+
+  <!-- Red action button on base -->
+  <rect x="48" y="56" width="8" height="6" fill="#000"/>
+  <rect x="49" y="57" width="6" height="4" fill="#d92525"/>
+  <rect x="49" y="57" width="6" height="1" fill="#ff6b6b"/>
+
+  <!-- Yellow secondary button on base -->
+  <rect x="22" y="56" width="6" height="6" fill="#000"/>
+  <rect x="23" y="57" width="4" height="4" fill="#ffd34d"/>
+  <rect x="23" y="57" width="4" height="1" fill="#ffec88"/>
+
+  <!-- Joystick shaft (black, chunky) -->
+  <rect x="36" y="24" width="8" height="28" fill="#000"/>
+  <!-- Shaft body -->
+  <rect x="37" y="26" width="6" height="24" fill="#3a3a3a"/>
+  <!-- Shaft highlight -->
+  <rect x="37" y="26" width="2" height="24" fill="#6a6a6a"/>
+
+  <!-- Red ball top of joystick (chunky pixel circle) -->
+  <rect x="30" y="14" width="20" height="14" fill="#000"/>
+  <rect x="32" y="16" width="16" height="10" fill="#d92525"/>
+  <!-- Ball highlight -->
+  <rect x="34" y="17" width="6" height="2" fill="#ff8a8a"/>
+  <rect x="33" y="19" width="3" height="2" fill="#ff6b6b"/>
+  <!-- Ball shadow underneath -->
+  <rect x="32" y="24" width="16" height="2" fill="#8a1717"/>
+
+</svg>

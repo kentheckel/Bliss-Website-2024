@@ -6,6 +6,13 @@ SQL, credentials and local context are excluded. `api/session.js` and root
 `middleware.ts` enforce access on Vercel. Do not deploy `public/` to a static-only
 host: these decks rely on the server gate.
 
+## Publishing uploaded decks
+
+Commit each deck, its assets, build entry, public access rule, and redirect to
+`main` before publishing. A direct CLI upload alone is temporary: the next Git
+deployment replaces it with the contents of `main`. The build requires all seven
+uploaded decks, and the access tests verify their release copies and public routes.
+
 ## Preview and library
 
 Visit `/` to see the maintenance page and sign in, or `/admin/` to open the deck
@@ -13,6 +20,29 @@ library after signing in. One password unlocks the site preview and all 17 deck,
 report, PDF and PowerPoint links. The library list lives in `admin/decks.js`.
 Sign-in creates a seven-day HttpOnly, Secure, SameSite=Lax cookie. Sign out in
 the library to remove it. Old individual client-side deck passwords are retired.
+
+The Club América deck at `/clubamerica/` and its assets are public, including
+while maintenance is enabled. The deck library and other private decks still
+require sign-in.
+
+The Pro Social Playbook at `/spurs2026/` is also public without a password,
+including during maintenance. Its standalone HTML lives in `spurs2026/index.html`.
+
+The Charlotte Hornets presentation at `/hornets/` is public without a password,
+including during maintenance. Its original standalone HTML lives in `hornets/index.html`.
+
+The University of Utah presentation at `/utah/` is public without a password,
+including during maintenance. Its standalone HTML lives in `utah/index.html`.
+
+The All The Smoke October presentation at `/allthesmokeOctober/` is public without
+a password, including during maintenance. The original standalone HTML lives in
+`allthesmokeOctober/index.html`.
+
+The Texas A&M Athletics presentation at `/texasAM/` is public without a password,
+including during maintenance. Its original standalone HTML lives in `texasAM/index.html`.
+
+The Giro d’Italia YouTube partnership presentation at `/giro/` is public without a
+password, including during maintenance. Its supplied HTML lives in `giro/index.html`.
 
 These Vercel variables are required in Preview and Production:
 

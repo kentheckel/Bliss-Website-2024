@@ -42,7 +42,7 @@ export function safeNext(value) {
   if (typeof value !== 'string' || !value.startsWith('/') || value.startsWith('//') || /[\\\r\n]/.test(value)) return '/';
   try { const url = new URL(value, 'https://asfc.invalid'); return url.origin === 'https://asfc.invalid' && !url.pathname.startsWith('/access') ? url.pathname + url.search + url.hash : '/'; } catch { return '/'; }
 }
-const privateRoots = new Set(['admin', 'lewishamilton', 'lukadoncic', 'lukaslovenia', 'parisvsslovenia', 'aspensnowmass', 'clubamerica', 'pitch']);
+const privateRoots = new Set(['admin', 'lewishamilton', 'lukadoncic', 'lukaslovenia', 'parisvsslovenia', 'aspensnowmass', 'pitch']);
 export function accessDecision(pathname, cookie = '') {
   let path;
   try { path = decodeURIComponent(pathname).toLowerCase(); } catch { return 'deny'; }
@@ -50,6 +50,8 @@ export function accessDecision(pathname, cookie = '') {
   if (parts.some(p => p.startsWith('.') || p.includes('\\')) || ['server','scripts','tests','supabase','node_modules'].includes(parts[0]) || (/\.(?:sql|md|ts)$/.test(path) || /^\/(?:package(?:-lock)?|vercel)\.json$/.test(path))) return 'deny';
   if (['/access', '/access/', '/access/index.html', '/access/access.css', '/access/access.js', '/api/session', '/favicon.ico', '/access/spurs.html', '/access/spurs.js', '/js/contact-link.js'].includes(path)) return 'allow';
   if (parts[0] === 'api') return 'deny';
+  // These decks and their assets are public, including while the site is in maintenance.
+  if (['clubamerica', 'spurs2026', 'hornets', 'utah', 'allthesmokeoctober', 'texasam', 'giro'].includes(parts[0])) return 'allow';
   if (hasSession(cookie)) return 'allow';
   if (process.env.ASFC_MAINTENANCE !== 'false') return 'login';
   if (parts[0] === 'spurs' && !hasSession(cookie, Date.now(), 'spurs')) return 'spurs-login';
