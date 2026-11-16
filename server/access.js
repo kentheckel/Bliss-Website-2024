@@ -52,6 +52,8 @@ export function accessDecision(pathname, cookie = '') {
   if (parts[0] === 'api') return 'deny';
   // These decks and their assets are public, including while the site is in maintenance.
   if (['clubamerica', 'spurs2026', 'hornets', 'utah', 'allthesmokeoctober', 'texasam', 'giro'].includes(parts[0])) return 'allow';
+  // Only this self-contained Spurs deck is public; other Spurs routes keep their access checks.
+  if (path === '/spurs/asfc spurs season story deck v5 - presentation mode.html') return 'allow';
   if (hasSession(cookie)) return 'allow';
   if (process.env.ASFC_MAINTENANCE !== 'false') return 'login';
   if (parts[0] === 'spurs' && !hasSession(cookie, Date.now(), 'spurs')) return 'spurs-login';

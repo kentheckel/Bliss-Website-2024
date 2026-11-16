@@ -19,7 +19,7 @@ test('password, tampering, expiry, rotation, and fail-closed configuration',()=>
 });
 test('maintenance and permanent private routes cannot be bypassed with direct links',()=>{
  const cookie='asfc_access='+createSession();
- for(const path of ['/','/index.html','/agency/index.html','/deck/',...decks.map(d=>d.href).filter(href=>href!=='/clubamerica/')]){assert.equal(accessDecision(path),'login',path);assert.equal(accessDecision(path,cookie),'allow',path);}
+ for(const path of ['/','/index.html','/agency/index.html','/deck/',...decks.map(d=>d.href).filter(href=>!['/clubamerica/', '/Spurs/ASFC%20Spurs%20Season%20Story%20Deck%20v5%20-%20Presentation%20Mode.html'].includes(href))]){assert.equal(accessDecision(path),'login',path);assert.equal(accessDecision(path,cookie),'allow',path);}
  for(const path of ['/server/access.js','/.env.local','/foo/.git/config','/tests/access.test.js','/supabase/file.sql','/api/unknown','/%2eenv'])assert.equal(accessDecision(path,cookie),'deny',path);
  assert.equal(accessDecision('/pitch/data/network-stats.json',cookie),'allow');
  assert.equal(accessDecision('/pitch/data/network-stats.json'),'login');
@@ -110,7 +110,7 @@ test('Spurs access stays private after launch and never grants admin or other de
   const cookie = 'asfc_spurs_access=' + token;
   assert.equal(checkPassword('spurs-test-password', 'spurs'), true);
   assert.equal(checkPassword('spurs-test-password'), false);
-  for (const path of ['/Spurs/', '/Spurs/ASFC%20Spurs%20Season%20Story%20Deck%20v5%20-%20Presentation%20Mode.html', '/spurs/anything.pdf', '/%53purs/assets.png']) {
+  for (const path of ['/Spurs/', '/spurs/anything.pdf', '/%53purs/assets.png']) {
    assert.equal(accessDecision(path), 'spurs-login', path);
    assert.equal(accessDecision(path, cookie), 'allow', path);
   }
@@ -189,5 +189,28 @@ test('every uploaded deck is shipped intact with a public canonical route',()=>{
  } finally {
   if(maintenance===undefined)delete process.env.ASFC_MAINTENANCE;
   else process.env.ASFC_MAINTENANCE=maintenance;
+ }
+});
+
+test('only the Spurs Season Story presentation is public in every maintenance mode', () => {
+ const maintenance = process.env.ASFC_MAINTENANCE;
+ const deck = '/Spurs/ASFC Spurs Season Story Deck v5 - Presentation Mode.html';
+ try {
+  for (const mode of ['true', 'false', undefined]) {
+   if (mode === undefined) delete process.env.ASFC_MAINTENANCE;
+   else process.env.ASFC_MAINTENANCE = mode;
+   for (const path of [deck, encodeURI(deck), '/%53purs/' + encodeURIComponent(deck.split('/').pop())]) {
+    assert.equal(accessDecision(path), 'allow', path);
+    assert.equal(accessDecision(path, 'asfc_spurs_access=invalid'), 'allow', path);
+   }
+   for (const path of ['/Spurs/', '/Spurs/deck.html', deck + '.bak', deck + '/private.html']) {
+    assert.equal(accessDecision(path), mode === 'false' ? 'spurs-login' : 'login', path);
+   }
+   for (const path of ['/admin/', '/pitch/', '/lukadoncic/', '/lewishamilton/']) assert.equal(accessDecision(path), 'login', path);
+   for (const path of ['/Spurs/../admin/', '/Spurs/.env', '/Spurs/source.ts', '/Spurs/%zz']) assert.equal(accessDecision(path), 'deny', path);
+  }
+ } finally {
+  if (maintenance === undefined) delete process.env.ASFC_MAINTENANCE;
+  else process.env.ASFC_MAINTENANCE = maintenance;
  }
 });
