@@ -608,13 +608,15 @@ dialog{padding:4px;background:var(--gray);color:var(--ink);border:1px solid #152
 .v4-disclosure .vd-viewer figcaption>span:last-child{margin-left:auto;font:400 11px/1.3 var(--mono);letter-spacing:1px;color:#e0eaff}
 .v4-disclosure .vd-file-icon{width:12px;height:15px;background:#fff;border:1px solid #182c55;box-shadow:1px 1px 0 #182c55;transform:rotate(3deg)}
 .v4-disclosure .vd-sheet{margin:21px 21px 0;padding:26px 24px;background:#fffefa;border:1px solid #aab4a5}
-.v4-disclosure .vd-sheet .vt-kicker{color:#56685a;font-size:12px;margin-bottom:22px}
-.v4-disclosure .vd-row{padding:16px 0;border-top:1px solid #c3ccbd;display:flex;align-items:center;justify-content:space-between;gap:10px;font:500 22px/1.15 var(--font);letter-spacing:-.45px}
-.v4-disclosure .vd-row strong{font-weight:500}
-.v4-disclosure .vd-mask,.v4-disclosure .vd-range{display:inline-block;white-space:nowrap;font:500 13px/1.2 var(--mono);letter-spacing:.4px;padding:7px 10px}
-.v4-disclosure .vd-mask{background:#18221c;color:#f4f4eb;transform:rotate(-2deg)}
-.v4-disclosure .vd-range{background:#d8efb7;color:#203d1f}
-.v4-disclosure .vd-explain{border-top:1px solid #c3ccbd;padding-top:16px;font:400 21px/1.34 var(--font);letter-spacing:-.27px;color:#304130}
+.v4-disclosure .vd-sheet .vt-kicker{color:#56685a;font-size:12px;margin-bottom:9px}
+.v4-disclosure .vd-metric{font:600 37px/1.03 var(--font);letter-spacing:-1.7px;margin:0 0 21px}
+.v4-disclosure .vd-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font:500 21px/1.15 var(--font);letter-spacing:-.4px}
+.v4-disclosure .vd-row strong{font:650 33px/1 var(--font);letter-spacing:-1.3px;color:#26372d}
+.v4-disclosure .vd-target strong{color:#1649d5}
+.v4-disclosure .vd-meter{height:11px;background:#e3e7dd;margin:7px 0 18px}
+.v4-disclosure .vd-meter i{display:block;width:52%;height:100%;background:#455b49}
+.v4-disclosure .vd-target-meter i{width:65%;background:#1649d5}
+.v4-disclosure .vd-explain{border-top:1px solid #c3ccbd;padding-top:15px;font:400 20px/1.32 var(--font);letter-spacing:-.27px;color:#304130}
 .v4-disclosure .vd-caption{padding:20px 25px 22px;font:400 20px/1.31 var(--font);letter-spacing:-.25px;color:#2a402d}
 
 @media(max-width:900px){
@@ -643,9 +645,11 @@ dialog{padding:4px;background:var(--gray);color:var(--ink);border:1px solid #152
  .v4-disclosure .vd-viewer figcaption{padding:7px 8px;font-size:10px;gap:5px}
  .v4-disclosure .vd-viewer figcaption>span:last-child{font-size:8px;letter-spacing:0}
  .v4-disclosure .vd-sheet{margin:12px 11px 0;padding:14px 11px}
- .v4-disclosure .vd-sheet .vt-kicker{font-size:10px;margin-bottom:15px}
- .v4-disclosure .vd-row{font-size:16px;padding:11px 0}
- .v4-disclosure .vd-mask,.v4-disclosure .vd-range{padding:5px;font-size:10px}
+ .v4-disclosure .vd-sheet .vt-kicker{font-size:10px;margin-bottom:8px}
+ .v4-disclosure .vd-metric{font-size:28px;margin-bottom:18px;letter-spacing:-1.3px}
+ .v4-disclosure .vd-row{font-size:15px}
+ .v4-disclosure .vd-row strong{font-size:25px}
+ .v4-disclosure .vd-meter{height:8px;margin:6px 0 13px}
  .v4-disclosure .vd-explain,.v4-disclosure .vd-caption{font-size:16px;line-height:1.32}
  .v4-disclosure .vd-caption{padding:12px 14px 15px}
 }
@@ -782,7 +786,7 @@ dialog{padding:4px;background:var(--gray);color:var(--ink);border:1px solid #152
 <section class="af-scope-col">
 <h3>The strategy &amp; workshops</h3>
 <ul>
-<li>A full audit of your YouTube channel and social accounts</li>
+<li><strong>A private audit of everything.</strong> We go through all of YouTube Studio, your social accounts, publishing workflow, revenue and costs.</li>
 <li>In-person workshops on every part of making and publishing a YouTube video</li>
 <li>A video brainstorm with your team and a six-month channel plan</li>
 <li>Introductions to brands looking for content to sponsor</li>
@@ -854,25 +858,28 @@ dialog{padding:4px;background:var(--gray);color:var(--ink);border:1px solid #152
 </div>
 </div></div><div class="statusbar">Antisocial Friends Club  /  Revenue planning</div></div></section><section aria-hidden="true" aria-label="What we share" class="scene" data-title="What we share" id="sharing" inert=""><div class="window main-window native-out"><div class="titlebar"><span aria-label="Production  /  What goes on camera"><img alt="" src="/crazy-idea/assets/images/Icon_Folder.svg"/><b class="chrome-wide">Production  /  What goes on camera</b><b class="chrome-narrow">What we share</b></span><div class="window-controls"><button aria-label="Minimize window" data-guard=""><i aria-hidden="true" class="control-min"></i></button><button aria-label="Toggle full screen" data-fullscreen=""><i aria-hidden="true" class="control-max"></i></button><button aria-label="Close window" data-guard=""><i aria-hidden="true" class="control-close"></i></button></div></div><div class="window-body outreach-body">
 <div class="v4-disclosure">
-<header class="vd-intro"><p class="vt-kicker">FILMING THE ANALYTICS</p>
-<h2>What are you comfortable <em>sharing?</em></h2></header>
+<header class="vd-intro"><p class="vt-kicker">THE PUBLISHED EPISODE</p>
+<h2>Which numbers go <em>in the video?</em></h2></header>
 <div class="vd-grid">
 <section class="vd-copy">
-<p class="vd-lead">I’d love to open YouTube Studio together. The numbers can explain why we chose a format or changed a title.</p>
-<h3>What we look at together</h3>
-<p>Ideally, we review the full dashboard off camera. You choose what I see. We can work from a few screens or ranges if that feels better.</p>
-<h3>What makes the episode</h3>
-<p>Before filming, we agree on what can appear. We can crop a screen, cover a figure or describe a trend. You’ll review the analytics we plan to show before the video goes live.</p>
+<p class="vd-lead">Viewers need a few real numbers to follow the story. Where is your channel today? What are we aiming for? And when we check back, did it work?</p>
+<h3>Let’s pick something worth following.</h3>
+<p>Before we film, we’ll choose a starting number and a target your team is happy to put on screen. If viewers leave early, we could try a different opening and show what share stayed for the first 30 seconds.</p>
+<h3>What stays off camera?</h3>
+<p>We’ll dig into everything in the private audit. You’ll approve the figures we use in the video. Total revenue can stay private even if we show a range for revenue per 1,000 views (RPM).</p>
 </section>
 <figure class="vd-viewer">
-<figcaption><span aria-hidden="true" class="vd-file-icon"></span>analytics_preview.png <span>ON-CAMERA EXAMPLE</span></figcaption>
+<figcaption><span aria-hidden="true" class="vd-file-icon"></span>episode_graphic.png <span>ILLUSTRATIVE NUMBERS</span></figcaption>
 <div class="vd-sheet">
-<p class="vt-kicker">YOUTUBE STUDIO EXCERPT</p>
-<div class="vd-row"><strong>Total channel revenue</strong><span aria-label="Redacted" class="vd-mask">REDACTED</span></div>
-<div class="vd-row"><strong>Revenue per 1,000 views</strong><span class="vd-range">RPM range</span></div>
-<p class="vd-explain">For long-form videos, RPM is what your channel earns per 1,000 views after YouTube’s share. We can compare formats and decide what to test next.</p>
+<p class="vt-kicker">AUDIENCE RETENTION</p>
+<h3 class="vd-metric">Still watching at 0:30</h3>
+<div class="vd-row"><span>Last three videos · average</span><strong>52%</strong></div>
+<div aria-hidden="true" class="vd-meter"><i></i></div>
+<div class="vd-row vd-target"><span>Next three videos · target</span><strong>65%</strong></div>
+<div aria-hidden="true" class="vd-meter vd-target-meter"><i></i></div>
+<p class="vd-explain">We’d measure each video seven days after release so the comparison is fair.</p>
 </div>
-<p class="vd-caption">Want the total kept private? With your okay, we could show an RPM range and leave out the matching view count.</p>
+<p class="vd-caption">At the check-in, we’d put the actual average for those next three videos on screen beside the target.</p>
 </figure>
 </div>
 </div></div><div class="statusbar">Kent Heckel  /  Series production</div></div></section><section aria-hidden="true" aria-label="Let’s do this!" class="scene" data-title="Let’s do this!" id="reply" inert=""><div class="window main-window native-out"><div class="titlebar"><span aria-label="Antisocial Friends Club  /  A note from Kent"><img alt="" src="/crazy-idea/assets/images/Icon_About.svg"/><b class="chrome-wide">Antisocial Friends Club  /  A note from Kent</b><b class="chrome-narrow">Let’s do this!</b></span><div class="window-controls"><button aria-label="Minimize window" data-guard=""><i aria-hidden="true" class="control-min"></i></button><button aria-label="Toggle full screen" data-fullscreen=""><i aria-hidden="true" class="control-max"></i></button><button aria-label="Close window" data-guard=""><i aria-hidden="true" class="control-close"></i></button></div></div><div class="window-body outreach-body">
