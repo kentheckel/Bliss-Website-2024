@@ -170,7 +170,7 @@ test('Giro is public while private routes and source files remain protected',()=
 
 
 test('every uploaded deck is shipped intact with a public canonical route',()=>{
- const routes=['clubamerica','spurs2026','hornets','utah','allthesmokeOctober','texasAM','giro'];
+ const routes=['clubamerica','spurs2026','hornets','utah','allthesmokeOctober','texasAM','giro','crazy-idea'];
  const {redirects}=JSON.parse(readFileSync('vercel.json','utf8'));
  const maintenance=process.env.ASFC_MAINTENANCE;
  try {
