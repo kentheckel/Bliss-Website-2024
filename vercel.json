@@ -2,6 +2,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "public",
   "redirects": [
+    {"source":"/crazy-idea","destination":"/crazy-idea/","permanent":false},
     {"source":"/deck","destination":"/deck/","permanent":false},
     {"source":"/clubamerica","destination":"/clubamerica/","permanent":false},
     {"source":"/spurs2026","destination":"/spurs2026/","permanent":false},
